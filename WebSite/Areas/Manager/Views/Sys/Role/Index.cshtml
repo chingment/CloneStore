@@ -1,0 +1,270 @@
+﻿@{
+    ViewBag.Title = "Roles Setting";
+    Layout = "~/Areas/Manager/Views/Shared/_LayoutTree.cshtml";
+}
+@section scripts{
+    <script type="text/javascript">
+        <!--
+        var setting = {
+            view: {
+                showLine: true,
+                selectedMulti: false
+            },
+            data: {
+                simpleData: { enable: true }
+            },
+            callback: {
+                onClick: onClick
+            }
+        };
+
+        var treeControlID = "treemenu";
+        $(this).ready(function () {
+
+            loadTreeList();
+
+            $.formValidator.initConfig({ formID: "form1", onError: function (msg) { art.dialog.alert(msg); }, onSuccess: function () { return save(); } });
+            $("#txt_PName").formValidator({ onShow: "Please select a node on the left!", onFocus: "Please select a node on the left!", onCorrect: "&nbsp;" }).inputValidator({ min: 1, onError: "Please select a node on the left!" });
+            $("#txt_Name").formValidator({ onShow: "Required!", onFocus: "Required,and no more than 20 characters！", onCorrect: "&nbsp;" }).inputValidator({ min: 1, max: 20, empty: { leftEmpty: false, emptyError: "Required!" }, onError: "Required,and no more than 20 characters！" });
+            $("#txt_Description").formValidator().inputValidator({ min: 0, max: 500, onError: "Remark is no more than 500 characters!" });
+            $("#abtn_Add").click(function () {
+                var treeObj = $.fn.zTree.getZTreeObj(treeControlID).getSelectedNodes();
+                if ($.lumos.common.isNullOrEmpty(treeObj)) {
+                    art.dialog.alert("Please select a node on the left!");
+                    return false;
+                }
+
+               $.lumos.openWin(this, '../Role/Add?type=add&id=' + treeObj[0].id+'&pName='+ escape(treeObj[0].name), 'Add', '700px', '350px');
+
+            });
+
+            $("#abtn_Del").click(function () {
+                var treeObj = $.fn.zTree.getZTreeObj(treeControlID).getSelectedNodes();
+
+                if ($.lumos.common.isNullOrEmpty(treeObj)) {
+                    art.dialog.alert("Please select a node on the left!");
+                    return false;
+                }
+
+                    var l_txt = $("#txt_PName").val();
+                    if (l_txt == "/") {
+                        art.dialog.alert("Root node cannot be deleted!");
+                        return false;
+                    }
+
+
+                    art.dialog.confirm(
+                        "Confirm delete [" + treeObj[0].name + "] the node and its children？",
+                             function () {
+                                 var ids = [];
+                                 ids = getChildrenIds(ids, treeObj[0])
+                                 var l_Data = $("#form1").serializeArray();
+                                 $.lumos.dataParmsPush(l_Data, "roleIds", ids);
+
+                                 $.lumos.post({
+                                     url: "../Role/Delete",
+                                     data: l_Data,
+                                     success: function (data) {
+                                         art.dialog.alert(data.message);
+                                         loadTreeList();
+                                     }
+                                 });
+
+                                 return true;
+                             });
+
+
+                return false;
+            });
+
+            $("#" + treeControlID).tabToTree({
+                tabid: 'tabbox',
+                selTabFun: function (tabIndexVal, tableSelVal) {
+                    var iframe = $("#tabbox").find('.tab-content>.content').eq(tabIndexVal).find('.tabContent');
+                    if (iframe != null) {
+                        switch (tabIndexVal) {
+                            case 1:
+                                $(iframe, parent.document.body).attr("src", "../Role/RoleUser?id=" + tableSelVal);
+                                break;
+                            case 2:
+                                $(iframe, parent.document.body).attr("src", "../Role/RoleMenu?id=" + tableSelVal);
+                                break;
+                            case 3:
+                                $(iframe, parent.document.body).attr("src", "../Role/RolePermission?id=" + tableSelVal);
+                                break;
+                        }
+                    }
+                },
+                tabIsSelFirBox: true
+            });
+        });
+
+        function onClick(event, treeId, treeNode, clickFlag) {
+            $("#" + treeId).tabToTreeGetCurBox();
+            $("#txt_PName").defaultPassed();
+            $("#txt_Name").defaultPassed();
+
+            var parentName = "/";
+            if (treeNode.getParentNode() != null) {
+                parentName = treeNode.getParentNode().name;
+                $(".a-btn-del").show();
+            }
+            else {
+                $(".a-btn-del").hide();
+            }
+
+            $.lumos.post({
+                data: { roleId: treeNode.id },
+                url: "/Role/GetRoleDetail",
+                success: function (data) {
+                    $('#lbl_PName').text(parentName);
+                    $("#txt_Id").val(data.content.PId);
+                    $("#txt_PName").val(parentName);
+                    $("#txt_Name").val(data.content.Name);
+                    $("#txt_Description").val(data.content.Description);
+                }
+            });
+        }
+
+
+        function getChildrenIds(ids, treeNode) {
+            ids.push(treeNode.id);//选中节点id，即父节点id
+            if (treeNode.isParent) {
+                for (var obj in treeNode.children) {
+                    getChildrenIds(ids, treeNode.children[obj]);
+                }
+            }
+            return ids;
+        }
+
+
+        function loadTreeList(id) {
+            $.ajax({
+                type: "post",
+                url: "../Role/GetRoleTree",
+                dataType: "json",
+                data: $('#form1').serialize(),
+                success: function (data) {
+                    $.fn.zTree.init($("#" + treeControlID), setting, data.content);
+                    var node = $.fn.zTree.getZTreeObj(treeControlID).getNodeByParam("id", id, null);
+                    $.fn.zTree.getZTreeObj(treeControlID).selectNode(node);
+                }
+            });
+        }
+
+        function save() {
+            var treeObj = $.fn.zTree.getZTreeObj(treeControlID).getSelectedNodes();
+            if ($.lumos.common.isNullOrEmpty(treeObj)) {
+                art.dialog.alert("Please select a node on the left!");
+                return;
+            }
+
+            var id = treeObj[0].id;
+            var l_Data = $("#form1").serializeArray();
+            $.lumos.dataParmsPush(l_Data, "roleId", id);
+            $.lumos.post({
+                url: "../Role/Update",
+                data: l_Data,
+                success: function (data) {
+                    art.dialog.alert(data.message);
+                    loadTreeList(id);
+
+                }
+            });
+            return false;
+        }
+        //-->
+    </script>
+}
+<div class="gbr gbr-maintitle" id="gbr-maintitle">
+    <div class="wrapper">
+        <div class="content">
+            <span class="title-icon">@ViewBag.Title</span>
+            <span class="title-message"></span>
+        </div>
+    </div>
+</div>
+
+<div class="gbr gbr-mainbody" id="gbr-mainbody">
+    <div class="wrapper">
+        <div class="content">
+            <form name="form1" method="post" id="form1">
+                @AntiForgery.GetHtml()
+                <table class="table-tabtree" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="left-tree">
+                            <ul id="treemenu" class="ztree"></ul>
+                        </td>
+                        <td class="right-tab">
+                            <div class="tab" id="tabbox">
+                                <div class="tab-item">
+                                    <ul>
+                                        <li class="item first selected"><a class="a-btn-info" href="javascript:void(0)">Basic Information</a></li>
+                                        <li class="item"><a class="a-btn-users" href="javascript:void(0)">Associated Users</a></li>
+                                        <li class="item"><a class="a-btn-menus" href="javascript:void(0)">Associated Menus</a></li>
+                                        @*<li class="item last"><a class="a-btn-opfuns">关联权限</a></li>*@
+                                    </ul>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="content">
+                                        <div>
+                                            <div class="f-btn-area">
+                                                <a id="abtn_Add" class="a-btn-add" href="javascript:void(0)" target="_self">Add Sub Role</a>
+                                                <a id="abtn_Del" class="a-btn-del hide" href="javascript:void(0)">Delete Role </a>
+                                            </div>
+                                            <table class="f-tb" cellpadding="0" cellspacing="1">
+                                                <tr>
+                                                    <td class="f-tb-t">
+                                                        Parent Name：
+                                                    </td>
+                                                    <td class="f-tb-c">
+                                                        <label id="lbl_PName">/</label>
+                                                        <input name="txt_PName" type="hidden" id="txt_PName" />
+                                                        <input name="txt_PId" type="hidden" id="txt_PId" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="f-tb-t">
+                                                        Name：
+                                                    </td>
+                                                    <td class="f-tb-c">
+                                                        <input name="txt_Name" type="text" autocomplete="off" value="" id="txt_Name" style="width: 250px;" class="form-control" />
+                                                        <span id="txt_NameTip"></span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="f-tb-t">
+                                                        Remark：
+                                                    </td>
+                                                    <td class="f-tb-c">
+                                                        <textarea name="txt_Description" rows="5" cols="42" id="txt_Description" class="form-control"></textarea>
+                                                        @*<span id="txt_DescriptionTip"></span>*@
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="f-tb-t"></td>
+                                                    <td class="f-tb-c">
+                                                        <input type="submit" name="btn_Save" value="Save" id="btn_Save" class="f-tb-btn" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <iframe class="tabContent" name="tabIframe2" src="" id="tabIframe2" marginheight="8" marginwidth="8" frameborder="0" style=" width: 100%; height:100%; overflow: hidden;"></iframe>
+                                    </div>
+                                    <div class="content">
+                                        <iframe class="tabContent" name="tabIframe3" src="" id="tabIframe3" marginheight="8" marginwidth="8" frameborder="0" style=" width: 100%; height: 100%; overflow: hidden;"></iframe>
+                                    </div>
+                                    @*<div class="content">
+                                            <iframe class="tabContent" name="tabIframe3" src="" id="tabIframe4" marginheight="8" marginwidth="8" frameborder="0" style=" width: 100%; height: 100%; overflow: hidden;"></iframe>
+                                        </div>*@
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>

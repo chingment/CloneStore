@@ -1,0 +1,794 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7151B554-8154-4EAC-A4F8-1A5924D8AA60}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebSite</RootNamespace>
+    <AssemblyName>WebSite</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.5.452, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ICSharpCode\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.0.2\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Hosting, Version=2.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Hosting.2.0.2\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.0.2\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.0.2\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.0.2\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.0.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.0.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.1\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.1.0.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Manager\Controllers\Sys\MachineKeyController.cs" />
+    <Compile Include="Areas\Manager\ManagerBaseAuthorizeAttribute.cs" />
+    <Compile Include="Areas\Manager\ManagerBaseExceptionAttribute.cs" />
+    <Compile Include="Areas\Manager\Controllers\CommonController.cs" />
+    <Compile Include="Areas\Manager\HmlEx.cs" />
+    <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Manager\Models\LoginViewModel.cs" />
+    <Compile Include="Areas\Manager\Models\LogViewModel.cs" />
+    <Compile Include="Areas\Manager\Models\MessageBoxViewModel.cs" />
+    <Compile Include="Areas\Manager\Models\ZTreeViewModel.cs" />
+    <Compile Include="Areas\Manager\NoResubmitAttribute.cs" />
+    <Compile Include="Areas\Manager\Controllers\PersonalCenter\PersonalCenterController.cs" />
+    <Compile Include="Areas\Manager\ManagerStatisticsTrackerAttribute.cs" />
+    <Compile Include="Areas\Manager\Controllers\Sys\LogViewController.cs" />
+    <Compile Include="Areas\Manager\Controllers\Sys\MenuController.cs" />
+    <Compile Include="Areas\Manager\Controllers\Sys\PermissionController.cs" />
+    <Compile Include="Areas\Manager\Controllers\Sys\RoleController.cs" />
+    <Compile Include="Areas\Manager\Controllers\Sys\UserController.cs" />
+    <Compile Include="Areas\Manager\Controllers\TestController.cs" />
+    <Compile Include="Areas\Manager\Controllers\UploadImageController.cs" />
+    <Compile Include="Areas\Manager\ManagerBaseApiController.cs" />
+    <Compile Include="Areas\Manager\ManagerBaseController.cs" />
+    <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
+    <Compile Include="Controllers\AboutUsController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContactUsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MyModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="backup.html" />
+    <Content Include="Content\Manager\base\images\bg-bankaccount.png" />
+    <Content Include="Content\Manager\base\images\bg.jpg" />
+    <Content Include="Content\Manager\base\images\bgimg-lumos-header.png" />
+    <Content Include="Content\Manager\base\images\bgimg-lumos-left.gif" />
+    <Content Include="Content\Manager\base\images\btn_class.gif" />
+    <Content Include="Content\Manager\base\images\btn_fst.gif" />
+    <Content Include="Content\Manager\base\images\btn_hidden_leftmenu.gif" />
+    <Content Include="Content\Manager\base\images\btn_show_leftmenu.gif" />
+    <Content Include="Content\Manager\base\images\calendar_view_month.gif" />
+    <Content Include="Content\Manager\base\images\city_area_bg_mc_0113_1.png" />
+    <Content Include="Content\Manager\base\images\city_area_bg_mc_0113_2.png" />
+    <Content Include="Content\Manager\base\images\city_area_bg_mc_0113_3.png" />
+    <Content Include="Content\Manager\base\images\city_area_bg_mc_0113_4.png" />
+    <Content Include="Content\Manager\base\images\city_area_bg_mc_0130_1.png" />
+    <Content Include="Content\Manager\base\images\city_area_bg_mc_0130_2.png" />
+    <Content Include="Content\Manager\base\images\city_area_ts-indexcity.png" />
+    <Content Include="Content\Manager\base\images\cloud-download-on.png" />
+    <Content Include="Content\Manager\base\images\eye.gif" />
+    <Content Include="Content\Manager\base\images\f-btn-area.gif" />
+    <Content Include="Content\Manager\base\images\f-tb-btn.gif" />
+    <Content Include="Content\Manager\base\images\filesave.png" />
+    <Content Include="Content\Manager\base\images\huashu.gif" />
+    <Content Include="Content\Manager\base\images\icon_add.gif" />
+    <Content Include="Content\Manager\base\images\icon_baodan.gif" />
+    <Content Include="Content\Manager\base\images\icon_caseusers.gif" />
+    <Content Include="Content\Manager\base\images\icon_chanpinmingxi.gif" />
+    <Content Include="Content\Manager\base\images\icon_code.gif" />
+    <Content Include="Content\Manager\base\images\icon_comsb.gif" />
+    <Content Include="Content\Manager\base\images\icon_contract.gif" />
+    <Content Include="Content\Manager\base\images\icon_date.gif" />
+    <Content Include="Content\Manager\base\images\icon_delete.gif" />
+    <Content Include="Content\Manager\base\images\icon_depart.gif" />
+    <Content Include="Content\Manager\base\images\icon_edit.gif" />
+    <Content Include="Content\Manager\base\images\icon_education22.gif" />
+    <Content Include="Content\Manager\base\images\icon_goback.gif" />
+    <Content Include="Content\Manager\base\images\icon_goback.png" />
+    <Content Include="Content\Manager\base\images\icon_housingfound.gif" />
+    <Content Include="Content\Manager\base\images\icon_info.png" />
+    <Content Include="Content\Manager\base\images\icon_info2.png" />
+    <Content Include="Content\Manager\base\images\icon_info4.png" />
+    <Content Include="Content\Manager\base\images\icon_jiatingxinxi.gif" />
+    <Content Include="Content\Manager\base\images\icon_listcursel.gif" />
+    <Content Include="Content\Manager\base\images\icon_mubiaokuser.gif" />
+    <Content Include="Content\Manager\base\images\icon_orderby.gif" />
+    <Content Include="Content\Manager\base\images\icon_product.gif" />
+    <Content Include="Content\Manager\base\images\icon_qitaxinxi.gif" />
+    <Content Include="Content\Manager\base\images\icon_read.gif" />
+    <Content Include="Content\Manager\base\images\icon_read.png" />
+    <Content Include="Content\Manager\base\images\icon_read1.gif" />
+    <Content Include="Content\Manager\base\images\icon_restore.gif" />
+    <Content Include="Content\Manager\base\images\icon_role.gif" />
+    <Content Include="Content\Manager\base\images\icon_salary.gif" />
+    <Content Include="Content\Manager\base\images\icon_selok.gif" />
+    <Content Include="Content\Manager\base\images\icon_selusers.gif" />
+    <Content Include="Content\Manager\base\images\icon_social.gif" />
+    <Content Include="Content\Manager\base\images\icon_sort.gif" />
+    <Content Include="Content\Manager\base\images\icon_tonghuajilu.gif" />
+    <Content Include="Content\Manager\base\images\icon_toubaoguize.gif" />
+    <Content Include="Content\Manager\base\images\icon_transferpos.gif" />
+    <Content Include="Content\Manager\base\images\icon_trash.gif" />
+    <Content Include="Content\Manager\base\images\icon_weibouser.gif" />
+    <Content Include="Content\Manager\base\images\icon_weilianxiuser.gif" />
+    <Content Include="Content\Manager\base\images\icon_workexp.gif" />
+    <Content Include="Content\Manager\base\images\icon_workinout.gif" />
+    <Content Include="Content\Manager\base\images\icon_xls.gif" />
+    <Content Include="Content\Manager\base\images\icon_yinhangcard.gif" />
+    <Content Include="Content\Manager\base\images\IndexTop.png" />
+    <Content Include="Content\Manager\base\images\info_selusers.png" />
+    <Content Include="Content\Manager\base\images\initem.png" />
+    <Content Include="Content\Manager\base\images\laybj.gif" />
+    <Content Include="Content\Manager\base\images\laybj_b.gif" />
+    <Content Include="Content\Manager\base\images\laybj_r.gif" />
+    <Content Include="Content\Manager\base\images\layer6.css" />
+    <Content Include="Content\Manager\base\images\lay_titbj.gif" />
+    <Content Include="Content\Manager\base\images\left_menu_child.gif" />
+    <Content Include="Content\Manager\base\images\left_menu_closed.gif" />
+    <Content Include="Content\Manager\base\images\left_menu_open.gif" />
+    <Content Include="Content\Manager\base\images\lightbulb.gif" />
+    <Content Include="Content\Manager\base\images\lightbulb2.gif" />
+    <Content Include="Content\Manager\base\images\lightbulb3.gif" />
+    <Content Include="Content\Manager\base\images\lightbulb3.png" />
+    <Content Include="Content\Manager\base\images\lightbulb_off.gif" />
+    <Content Include="Content\Manager\base\images\line_conn.gif" />
+    <Content Include="Content\Manager\base\images\list_btnarea.gif" />
+    <Content Include="Content\Manager\base\images\list_btnarea2.png" />
+    <Content Include="Content\Manager\base\images\list_page_queryarea_ico.gif" />
+    <Content Include="Content\Manager\base\images\list_page_title.gif" />
+    <Content Include="Content\Manager\base\images\list_page_title_ico.gif" />
+    <Content Include="Content\Manager\base\images\list_table_thead.gif" />
+    <Content Include="Content\Manager\base\images\loading.gif" />
+    <Content Include="Content\Manager\base\images\loginpage-BackImage.jpg" />
+    <Content Include="Content\Manager\base\images\LOGIN_C.png" />
+    <Content Include="Content\Manager\base\images\LOGIN_N.png" />
+    <Content Include="Content\Manager\base\images\magic_wand.png" />
+    <Content Include="Content\Manager\base\images\nav-arrow-down-on.png" />
+    <Content Include="Content\Manager\base\images\nav-arrow-down-open.png" />
+    <Content Include="Content\Manager\base\images\nav-arrow-down.png" />
+    <Content Include="Content\Manager\base\images\nav-arrow-left-on.png" />
+    <Content Include="Content\Manager\base\images\nav-arrow-left-open.png" />
+    <Content Include="Content\Manager\base\images\nav-arrow-left.png" />
+    <Content Include="Content\Manager\base\images\nav-arrow-right-on.png" />
+    <Content Include="Content\Manager\base\images\nav-arrow-right-open.png" />
+    <Content Include="Content\Manager\base\images\nav-arrow-right.png" />
+    <Content Include="Content\Manager\base\images\nav-arrow-up-on.png" />
+    <Content Include="Content\Manager\base\images\nav-arrow-up-open.png" />
+    <Content Include="Content\Manager\base\images\nav-arrow-up.png" />
+    <Content Include="Content\Manager\base\images\nav-left.png" />
+    <Content Include="Content\Manager\base\images\nav-right.png" />
+    <Content Include="Content\Manager\base\images\onCorrect.gif" />
+    <Content Include="Content\Manager\base\images\onError.gif" />
+    <Content Include="Content\Manager\base\images\onFocus.gif" />
+    <Content Include="Content\Manager\base\images\onLoad.gif" />
+    <Content Include="Content\Manager\base\images\onShow.gif" />
+    <Content Include="Content\Manager\base\images\onSuccess.gif" />
+    <Content Include="Content\Manager\base\images\pattern1.png" />
+    <Content Include="Content\Manager\base\images\pattern2.png" />
+    <Content Include="Content\Manager\base\images\pattern3.png" />
+    <Content Include="Content\Manager\base\images\phone.gif" />
+    <Content Include="Content\Manager\base\images\phone1.gif" />
+    <Content Include="Content\Manager\base\images\phone1.png" />
+    <Content Include="Content\Manager\base\images\p_icon_menu.png" />
+    <Content Include="Content\Manager\base\images\quick1.gif" />
+    <Content Include="Content\Manager\base\images\record.gif" />
+    <Content Include="Content\Manager\base\images\record.png" />
+    <Content Include="Content\Manager\base\images\right.gif" />
+    <Content Include="Content\Manager\base\images\s.gif" />
+    <Content Include="Content\Manager\base\images\selected-bankaccount.png" />
+    <Content Include="Content\Manager\base\images\SysLogo.png" />
+    <Content Include="Content\Manager\base\images\tableWhiteStyle_h_split.png" />
+    <Content Include="Content\Manager\base\images\tableWhiteStyle_v_split.png" />
+    <Content Include="Content\Manager\base\images\tag_blue.gif" />
+    <Content Include="Content\Manager\base\images\tag_green.gif" />
+    <Content Include="Content\Manager\base\images\tag_orange.gif" />
+    <Content Include="Content\Manager\base\images\tag_pink.gif" />
+    <Content Include="Content\Manager\base\images\tag_purple.gif" />
+    <Content Include="Content\Manager\base\images\tag_red.gif" />
+    <Content Include="Content\Manager\base\images\tag_yellow.gif" />
+    <Content Include="Content\Manager\base\images\tb.gif" />
+    <Content Include="Content\Manager\base\images\today104472.gif" />
+    <Content Include="Content\Manager\base\images\tree_icon_menu.ico" />
+    <Content Include="Content\Manager\base\images\tree_icon_menus.ico" />
+    <Content Include="Content\Manager\base\images\tree_icon_opfun.ico" />
+    <Content Include="Content\Manager\base\images\tree_icon_opfuns.ico" />
+    <Content Include="Content\Manager\base\images\tree_icon_org.png" />
+    <Content Include="Content\Manager\base\images\tree_icon_orgs.png" />
+    <Content Include="Content\Manager\base\images\tree_icon_role.ico" />
+    <Content Include="Content\Manager\base\images\tree_icon_roles.ico" />
+    <Content Include="Content\Manager\base\images\tubiao.gif" />
+    <Content Include="Content\Manager\base\images\wand.png" />
+    <Content Include="Content\Manager\base\images\zoom.gif" />
+    <Content Include="Content\Manager\base\images\zTreeStandard.gif" />
+    <Content Include="Content\Manager\base\images\zTreeStandard.png" />
+    <Content Include="Content\Manager\base\images\zTreeStandard2.gif" />
+    <Content Include="Content\Manager\base\owl.carousel.css" />
+    <Content Include="Content\Manager\base\Site.css" />
+    <Content Include="Content\W\owl.carousel.css" />
+    <Content Include="Content\W\Site.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="HtmlPage1.html" />
+    <Content Include="HtmlPage2.html" />
+    <Content Include="images\01.jpg" />
+    <Content Include="images\02.jpg" />
+    <Content Include="images\03.jpg" />
+    <Content Include="images\04.jpg" />
+    <Content Include="images\05.jpg" />
+    <Content Include="images\06.jpg" />
+    <Content Include="images\07.jpg" />
+    <Content Include="images\08.jpg" />
+    <Content Include="images\demo\saved\pants\01.jpg" />
+    <Content Include="images\demo\saved\pants\02.jpg" />
+    <Content Include="images\demo\saved\pants\03.jpg" />
+    <Content Include="images\demo\saved\pants\04.jpg" />
+    <Content Include="images\demo\saved\pants\05.jpg" />
+    <Content Include="images\demo\saved\pants\06.jpg" />
+    <Content Include="images\demo\saved\pants\07.jpg" />
+    <Content Include="images\demo\saved\pants\08.jpg" />
+    <Content Include="images\demo\saved\pants\09.jpg" />
+    <Content Include="images\demo\saved\pants\10.jpg" />
+    <Content Include="images\demo\saved\pants\11.jpg" />
+    <Content Include="images\demo\saved\pants\12.jpg" />
+    <Content Include="images\demo\saved\pants\13.jpg" />
+    <Content Include="images\demo\saved\pants\14.jpg" />
+    <Content Include="images\demo\saved\pants\15.jpg" />
+    <Content Include="images\demo\saved\shirt\01.jpg" />
+    <Content Include="images\demo\saved\shirt\02.jpg" />
+    <Content Include="images\demo\saved\shirt\03.jpg" />
+    <Content Include="images\demo\saved\shirt\04.jpg" />
+    <Content Include="images\demo\saved\shirt\05.jpg" />
+    <Content Include="images\demo\saved\shirt\06.jpg" />
+    <Content Include="images\demo\saved\shirt\07.jpg" />
+    <Content Include="images\demo\saved\shirt\08.jpg" />
+    <Content Include="images\demo\saved\shirt\09.jpg" />
+    <Content Include="images\demo\saved\shirt\10.jpg" />
+    <Content Include="images\demo\saved\shirt\11.jpg" />
+    <Content Include="images\demo\saved\shirt\12.jpg" />
+    <Content Include="images\demo\saved\shirt\13.jpg" />
+    <Content Include="images\demo\saved\shirt\14.jpg" />
+    <Content Include="images\demo\saved\shirt\15.jpg" />
+    <Content Include="images\demo\saved\shoes\01.jpg" />
+    <Content Include="images\demo\saved\shoes\02.jpg" />
+    <Content Include="images\demo\saved\shoes\03.jpg" />
+    <Content Include="images\demo\saved\shoes\04.jpg" />
+    <Content Include="images\demo\saved\shoes\05.jpg" />
+    <Content Include="images\demo\saved\shoes\06.jpg" />
+    <Content Include="images\demo\saved\shoes\07.jpg" />
+    <Content Include="images\demo\saved\shoes\08.jpg" />
+    <Content Include="images\demo\saved\shoes\09.jpg" />
+    <Content Include="images\demo\saved\shoes\10.jpg" />
+    <Content Include="images\demo\saved\shoes\11.jpg" />
+    <Content Include="images\demo\saved\shoes\12.jpg" />
+    <Content Include="images\demo\saved\shoes\13.jpg" />
+    <Content Include="images\demo\saved\shoes\14.jpg" />
+    <Content Include="images\demo\saved\shoes\15.jpg" />
+    <Content Include="images\templatemo_slider_left1.png" />
+    <Content Include="images\templatemo_slider_right1.png" />
+    <Content Include="images\tips.png" />
+    <Content Include="index.html" />
+    <Content Include="MyCart.html" />
+    <Content Include="product.html" />
+    <Content Include="product2.html" />
+    <Content Include="product3.html" />
+    <Content Include="Scripts\Manager\AreaSelect\public.js" />
+    <Content Include="Scripts\Manager\AreaSelect\queryAllAreas.js" />
+    <Content Include="Scripts\Manager\AreaSelect\queryAllProvinces.js" />
+    <Content Include="Scripts\Manager\AreaSelect\queryCities.js" />
+    <Content Include="Scripts\Manager\ArtDialog\artDialog.js" />
+    <Content Include="Scripts\Manager\ArtDialog\artDialog.source.js" />
+    <Content Include="Scripts\Manager\ArtDialog\iframeTools.js" />
+    <Content Include="Scripts\Manager\ArtDialog\iframeTools.source.js" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\aero.css" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\aero\aero_s.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\aero\aero_s2.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\aero\ie6\aui_close.hover.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\aero\ie6\aui_close.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\aero\ie6\aui_e.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\aero\ie6\aui_n.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\aero\ie6\aui_ne.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\aero\ie6\aui_nw.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\aero\ie6\aui_s.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\aero\ie6\aui_se.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\aero\ie6\aui_sw.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\aero\ie6\aui_title_icon.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\aero\ie6\aui_w.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\base.css" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\base\bg.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\base\bg2.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\base\bg_css3.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\base\bg_css3_2.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\base\ie6\close.hover.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\base\ie6\close.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\base\ie6\e.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\base\ie6\n.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\base\ie6\ne.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\base\ie6\nw.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\base\ie6\s.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\base\ie6\se.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\base\ie6\sw.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\base\ie6\w.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\black.css" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\black\bg.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\black\bg2.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\black\bg_css3.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\black\bg_css3_2.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\black\ie6\close.hover.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\black\ie6\close.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\black\ie6\e.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\black\ie6\n.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\black\ie6\ne.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\black\ie6\nw.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\black\ie6\s.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\black\ie6\se.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\black\ie6\sw.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\black\ie6\w.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\chrome.css" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\chrome\border.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\chrome\chrome_s.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\default.css" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\green.css" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\green\bg.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\green\bg2.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\green\bg_css3.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\green\bg_css3_2.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\green\color_bg.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\green\ie6\close.hover.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\green\ie6\close.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\green\ie6\e.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\green\ie6\n.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\green\ie6\ne.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\green\ie6\nw.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\green\ie6\s.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\green\ie6\se.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\green\ie6\sw.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\green\ie6\w.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\icons\error.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\icons\face-sad.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\icons\face-smile.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\icons\loading.gif" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\icons\question.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\icons\succeed.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\icons\warning.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\idialog.css" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\idialog\idialog_s.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\idialog\idialog_s2.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\idialog\ie6\aui_close.hover.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\idialog\ie6\aui_close.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\idialog\ie6\aui_e.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\idialog\ie6\aui_n.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\idialog\ie6\aui_ne.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\idialog\ie6\aui_nw.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\idialog\ie6\aui_s.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\idialog\ie6\aui_se.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\idialog\ie6\aui_sw.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\idialog\ie6\aui_w.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\opera.css" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\opera\ie6\aui_close.hover.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\opera\ie6\aui_close.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\opera\ie6\aui_e.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\opera\ie6\aui_n.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\opera\ie6\aui_ne.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\opera\ie6\aui_nw.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\opera\ie6\aui_s.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\opera\ie6\aui_se.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\opera\ie6\aui_sw.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\opera\ie6\aui_w.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\opera\s1.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\opera\s2.png" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\simple.css" />
+    <Content Include="Scripts\Manager\ArtDialog\skins\twitter.css" />
+    <Content Include="Scripts\Manager\bootstrap.js" />
+    <Content Include="Scripts\Manager\bootstrap.min.js" />
+    <Content Include="log4net.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Scripts\Manager\Calendar\images\all.css" />
+    <Content Include="Scripts\Manager\Calendar\images\calendar.css" />
+    <Content Include="Scripts\Manager\Calendar\images\calTit.jpg" />
+    <Content Include="Scripts\Manager\Calendar\images\fontSize12.css" />
+    <Content Include="Scripts\Manager\Calendar\images\ji.gif" />
+    <Content Include="Scripts\Manager\Calendar\images\skin.css" />
+    <Content Include="Scripts\Manager\Calendar\images\tool-sprites.gif" />
+    <Content Include="Scripts\Manager\Calendar\images\topBarC.gif" />
+    <Content Include="Scripts\Manager\Calendar\images\yi.gif" />
+    <Content Include="Scripts\Manager\Calendar\js\CalConvert.js" />
+    <Content Include="Scripts\Manager\Calendar\js\calendar.js" />
+    <Content Include="Scripts\Manager\Calendar\js\jquery.js" />
+    <Content Include="Scripts\DatePicker\lang\vssver2.scc" />
+    <Content Include="Scripts\DatePicker\skin\whyGreen\vssver2.scc" />
+    <Content Include="Areas\Manager\Views\web.config" />
+    <Content Include="Areas\Manager\Views\Common\SelectClient.cshtml" />
+    <Content Include="Areas\Manager\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Home\Login.cshtml" />
+    <Content Include="Areas\Manager\Views\Home\Main.cshtml" />
+    <Content Include="Areas\Manager\Views\Home\MessageBox.cshtml" />
+    <Content Include="Areas\Manager\Views\MachineKey\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\PersonalCenter\ChangePassword.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\_LayoutEdit.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\_LayoutList.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\_LayoutTest.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\_LayoutTree.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\LogView\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\LogView\WebBack.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\Menu\Add.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\Menu\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\Menu\Sort.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\Permission\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\Role\Add.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\Role\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\Role\Menu.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\Role\RoleMenu.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\Role\RolePermission.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\Role\RoleUser.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\Role\RoleUserSel.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\Role\Update.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\User\Add.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\User\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\User\Update.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\User\UserRole.cshtml" />
+    <Content Include="Areas\Manager\Views\Test\Index.cshtml" />
+    <None Include="Scripts\Manager\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\DatePicker\calendar.js" />
+    <Content Include="Scripts\DatePicker\config.js" />
+    <Content Include="Scripts\DatePicker\lang\en.js" />
+    <Content Include="Scripts\DatePicker\lang\zh-cn.js" />
+    <Content Include="Scripts\DatePicker\lang\zh-tw.js" />
+    <Content Include="Scripts\DatePicker\skin\datePicker.gif" />
+    <Content Include="Scripts\DatePicker\skin\default\datepicker.css" />
+    <Content Include="Scripts\DatePicker\skin\default\down.jpg" />
+    <Content Include="Scripts\DatePicker\skin\default\img.gif" />
+    <Content Include="Scripts\DatePicker\skin\default\left.gif" />
+    <Content Include="Scripts\DatePicker\skin\default\navLeft.gif" />
+    <Content Include="Scripts\DatePicker\skin\default\navRight.gif" />
+    <Content Include="Scripts\DatePicker\skin\default\qs.jpg" />
+    <Content Include="Scripts\DatePicker\skin\default\right.gif" />
+    <Content Include="Scripts\DatePicker\skin\default\up.jpg" />
+    <Content Include="Scripts\DatePicker\skin\WdatePicker.css" />
+    <Content Include="Scripts\DatePicker\skin\whyGreen\bg.jpg" />
+    <Content Include="Scripts\DatePicker\skin\whyGreen\datepicker.css" />
+    <Content Include="Scripts\DatePicker\skin\whyGreen\down.jpg" />
+    <Content Include="Scripts\DatePicker\skin\whyGreen\img.gif" />
+    <Content Include="Scripts\DatePicker\skin\whyGreen\left.gif" />
+    <Content Include="Scripts\DatePicker\skin\whyGreen\navLeft.gif" />
+    <Content Include="Scripts\DatePicker\skin\whyGreen\navRight.gif" />
+    <Content Include="Scripts\DatePicker\skin\whyGreen\qs.jpg" />
+    <Content Include="Scripts\DatePicker\skin\whyGreen\right.gif" />
+    <Content Include="Scripts\DatePicker\skin\whyGreen\up.jpg" />
+    <Content Include="Scripts\DatePicker\WdatePicker.js" />
+    <Content Include="Scripts\DatePicker\开发包\lang\en.js" />
+    <Content Include="Scripts\DatePicker\开发包\lang\zh-cn.js" />
+    <Content Include="Scripts\DatePicker\开发包\lang\zh-tw.js" />
+    <Content Include="Scripts\DatePicker\开发包\readme.txt" />
+    <Content Include="Scripts\DatePicker\开发包\skin\datePicker.gif" />
+    <Content Include="Scripts\DatePicker\开发包\skin\default\datepicker.css" />
+    <Content Include="Scripts\DatePicker\开发包\skin\default\img.gif" />
+    <Content Include="Scripts\DatePicker\开发包\skin\WdatePicker.css" />
+    <Content Include="Scripts\DatePicker\开发包\skin\whyGreen\bg.jpg" />
+    <Content Include="Scripts\DatePicker\开发包\skin\whyGreen\datepicker.css" />
+    <Content Include="Scripts\DatePicker\开发包\skin\whyGreen\img.gif" />
+    <Content Include="Scripts\Manager\html5shiv.js" />
+    <Content Include="Scripts\Manager\jquery-1.10.2.js" />
+    <Content Include="Scripts\Manager\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\Manager\Jquery.Lumos.2.0.1.js" />
+    <Content Include="Scripts\Manager\Jquery.Lumos.Biz.2.0.1.js" />
+    <Content Include="Scripts\Manager\Jquery.Lumos.Com.2.0.1.js" />
+    <Content Include="Scripts\Manager\Jquery.Lumos.Mobile.2.0.1.js" />
+    <Content Include="Scripts\Manager\jquery.resizeEnd.js" />
+    <Content Include="Scripts\Manager\Jquery.tree\vssver2.scc" />
+    <None Include="Scripts\Manager\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\Manager\jquery-1.8.3.min.js" />
+    <Content Include="Scripts\Manager\jquery.form.js" />
+    <Content Include="Scripts\Manager\jquery.formValidator.js" />
+    <Content Include="Scripts\Manager\jquery.formValidatorRegex.js" />
+    <Content Include="Scripts\Manager\Jquery.tree\jquery.ztree.core-3.2.js" />
+    <Content Include="Scripts\Manager\Jquery.tree\jquery.ztree.excheck-3.2.js" />
+    <Content Include="Scripts\Manager\Jquery.tree\zTreeStyle.css" />
+    <Content Include="Scripts\Manager\Jquery.tree\zTreeStyle1.css" />
+    <Content Include="Scripts\Manager\jquery.validate.js" />
+    <Content Include="Scripts\Manager\jquery.validate.min.js" />
+    <Content Include="Scripts\Manager\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\Manager\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\json2.js" />
+    <Content Include="Scripts\Manager\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Manager\owl.carousel.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Manager\_references.js" />
+    <Content Include="right.html" />
+    <Content Include="Scripts\W\._jquery-1.8.3.js" />
+    <Content Include="Scripts\W\._jquery.js" />
+    <Content Include="Scripts\W\._jquery.mousewheel.js" />
+    <Content Include="Scripts\W\artDialog\artDialog.js" />
+    <Content Include="Scripts\W\artDialog\artDialog.source.js" />
+    <Content Include="Scripts\W\artDialog\iframeTools.js" />
+    <Content Include="Scripts\W\artDialog\iframeTools.source.js" />
+    <Content Include="Scripts\W\artDialog\jquery.artDialog.js" />
+    <Content Include="Scripts\W\artDialog\jquery.artDialog.source.js" />
+    <Content Include="Scripts\W\artDialog\skins\default.css" />
+    <Content Include="Scripts\W\artDialog\skins\icons\error.png" />
+    <Content Include="Scripts\W\artDialog\skins\icons\face-sad.png" />
+    <Content Include="Scripts\W\artDialog\skins\icons\face-smile.png" />
+    <Content Include="Scripts\W\artDialog\skins\icons\loading.gif" />
+    <Content Include="Scripts\W\artDialog\skins\icons\question.png" />
+    <Content Include="Scripts\W\artDialog\skins\icons\succeed.png" />
+    <Content Include="Scripts\W\artDialog\skins\icons\warning.png" />
+    <Content Include="Scripts\W\artDialog\skins\idialog.css" />
+    <Content Include="Scripts\W\artDialog\skins\idialog\idialog_s.png" />
+    <Content Include="Scripts\W\artDialog\skins\idialog\idialog_s2.png" />
+    <Content Include="Scripts\W\artDialog\skins\idialog\ie6\aui_close.hover.png" />
+    <Content Include="Scripts\W\artDialog\skins\idialog\ie6\aui_close.png" />
+    <Content Include="Scripts\W\artDialog\skins\idialog\ie6\aui_e.png" />
+    <Content Include="Scripts\W\artDialog\skins\idialog\ie6\aui_n.png" />
+    <Content Include="Scripts\W\artDialog\skins\idialog\ie6\aui_ne.png" />
+    <Content Include="Scripts\W\artDialog\skins\idialog\ie6\aui_nw.png" />
+    <Content Include="Scripts\W\artDialog\skins\idialog\ie6\aui_s.png" />
+    <Content Include="Scripts\W\artDialog\skins\idialog\ie6\aui_se.png" />
+    <Content Include="Scripts\W\artDialog\skins\idialog\ie6\aui_sw.png" />
+    <Content Include="Scripts\W\artDialog\skins\idialog\ie6\aui_w.png" />
+    <Content Include="Scripts\W\CloudCarousel.1.0.5.js" />
+    <Content Include="Scripts\W\jquery-1.8.3.js" />
+    <Content Include="Scripts\W\jquery.js" />
+    <Content Include="Scripts\W\jquery.mouseoverbox.js" />
+    <Content Include="Scripts\W\jquery.mousewheel.js" />
+    <Content Include="Scripts\W\jquery.resizeEnd.js" />
+    <Content Include="Scripts\W\owl.carousel.js" />
+    <Content Include="SignIn.html" />
+    <Content Include="SignUp.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Scripts\Manager\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\AboutUs\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\ContactUs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{640a898e-2b63-4a12-ac93-2c61d718cc6c}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{241bdf50-401f-44bf-81cd-acc2ffc3a952}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{0e039414-2a2e-48b4-8db7-c4346106fa68}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{c19704c7-7d89-42e8-9f15-d8c1a1a0c525}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVC\Mvc.csproj">
+      <Project>{ed113ad7-1b20-4b05-8961-9b701e51734c}</Project>
+      <Name>Mvc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>12059</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:12059/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

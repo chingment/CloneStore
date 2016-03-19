@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "Add Role";
+    Layout = "~/Areas/Manager/Views/Shared/_LayoutEdit.cshtml";
+}
+@section scripts{
+    <script type="text/javascript">
+        <!--
+        $(this).ready(function () {
+            var id = $.lumos.getUrlParamValue("id");
+            var pName = $.lumos.getUrlParamValue("pName");
+            $("#lbl_PName").text(pName);
+
+            $.formValidator.initConfig({ formID: "form1", onError: function (msg) { art.dialog.alert(msg); }, onSuccess: function () { return add(); } });
+            $("#txt_Name").formValidator({ onShow: "Required!", onFocus: "Required,and no more than 20 characters！", onCorrect: "&nbsp;" }).inputValidator({ min: 1, max: 20, empty: { leftEmpty: false, emptyError: "Required!" }, onError: "Required,and no more than 20 characters！" });
+            $("#txt_Description").formValidator().inputValidator({ min: 0, max: 500, onError: "Remark is no more than 500 characters!" });
+
+
+        });
+
+        function add() {
+            var l_Data = $("#form1").serializeArray();
+            l_Data.push({ name: "pId", value: $.lumos.getUrlParamValue("id") });
+
+            $.lumos.post({
+                url: "../Role/Create",
+                data: l_Data,
+                success: function (data) {
+                    if (data.result == "Success") {
+                        var win = art.dialog.open.origin;
+                        win.loadTreeList($.lumos.getUrlParamValue("id"));
+                    }
+                    art.dialog.alert(data.message, function () { art.dialog.close() });
+
+                }
+            });
+
+            return false;
+        }
+        //-->
+    </script>
+}
+
+<div class="gbr gbr-maintitle" id="gbr-maintitle">
+    <div class="wrapper">
+        <div class="content">
+            <span class="title-icon">@ViewBag.Title</span>
+            <span class="title-message"></span>
+        </div>
+    </div>
+</div>
+
+<div class="gbr gbr-mainbody" id="gbr-mainbody">
+    <div class="wrapper">
+        <div class="content">
+            <form name="form1" method="post" id="form1">
+                @Html.AntiForgeryToken()
+                <table class="f-tb" cellpadding="0" cellspacing="1">
+                    <tr>
+                        <td class="f-tb-t">
+                            Parent Name：
+                        </td>
+                        <td class="f-tb-c">
+                            <label id="lbl_PName"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="f-tb-t">
+                            Name：
+                        </td>
+                        <td class="f-tb-c">
+                            <input name="txt_Name" type="text" id="txt_Name" value="" class="form-control" style=" width:250px;" />
+                            <span id="txt_NameTip"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="f-tb-t">
+                            Remark：
+                        </td>
+                        <td class="f-tb-c" style="white-space:normal;">
+                            <textarea name="txt_Description" rows="5" cols="42" id="txt_Description" class="form-control"></textarea>
+                            @*<span id="txt_DescriptionTip"></span>*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="f-tb-t"></td>
+                        <td class="f-tb-c">
+                            <input type="submit" name="btn_Submit" id="btn_Submit" value="Confirm" class="f-tb-btn btn" />
+                            <input type="button" name="btn_Cancle" id="btn_Cancle" value="Close" class="f-tb-btn btn" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+

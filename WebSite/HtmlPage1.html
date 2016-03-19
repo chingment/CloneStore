@@ -1,0 +1,194 @@
+﻿<html>
+
+
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>js 点击鼠标位置弹出div层</title>
+<script src="Scripts/Manager/jquery-1.8.3.min.js"></script>
+    <style type="text/css">
+
+ #jToolTipsInfoBox {  
+
+
+     display:none;  
+
+
+ }  
+
+
+    
+
+
+ .jToolTips {  
+
+
+ }  
+
+
+    
+
+
+ #jToolTipsBox {  
+
+
+     position:absolute;  
+
+
+     border:2px solid #39F;  
+
+
+     background:#FFF;  
+
+
+     max-width:300px;  
+
+
+     padding:5px;  
+
+
+ } 
+
+
+
+    </style>
+    <script>
+
+
+
+        (function ($) {
+
+
+
+
+
+            $.tooltips = function (opts) {
+
+
+
+
+
+                var settings = $.extend({
+
+
+                    className: "jToolTips",
+
+
+                    tipbox: "jToolTipsBox"
+
+
+                }, opts);
+
+
+
+
+
+                var tipBox = $('  <DIV id="' + settings['tipbox'] + '"></DIV>  ').hide().appendTo('body');
+
+
+
+
+
+                $("." + settings['className']).each(function () {
+
+
+                    var _this = this;
+
+
+
+
+
+                    $(this).bind("mouseover mousemove", function (event) {
+
+
+
+
+
+                        if (!_this.isActive) {
+
+
+                            $(_this).attr("title", "");
+
+
+                            _this.isActive = true;
+
+
+                            tipBox.html($("#" + $(_this).attr("rel")).html()).show();
+
+
+                        }
+
+
+
+
+
+                        tipBox.css({ top: event.pageY + 12, left: event.pageX + 12 });
+
+
+                    });
+
+
+
+
+
+                    $(this).mouseout(function () {
+
+
+                        _this.isActive = false;
+
+
+                        tipBox.hide();
+
+
+                    });
+
+
+
+
+
+                });
+
+
+
+
+
+            };
+
+
+
+
+
+        })(jQuery);
+
+
+
+
+        $(document).ready(function () {
+
+
+            $.tooltips();
+
+
+        });
+
+    </script>
+</head>
+<body style="height: 100%;">
+
+    <a class="jToolTips" title="jQuery" href="http://jquery.com" rel="jQueryInfo">jQuery</a>
+
+
+    <div id="jToolTipsInfoBox">
+
+
+        <div id="jQueryInfo">
+            A fast, concise, library that simplifies how to traverse HTML documents, handle events, perform animations, and add AJAX.  
+
+
+        </div>
+
+
+    </div>
+
+</body>
+</html>

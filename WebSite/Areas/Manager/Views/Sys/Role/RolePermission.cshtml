@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "";
+    Layout = "~/Areas/Manager/Views/Shared/_LayoutTree.cshtml";
+}
+
+@section scripts{
+    <script src="/Scripts/Manager/Jquery.tree/jquery.ztree.excheck-3.2.js"></script>
+    <script type="text/javascript">
+		<!--
+        //配置树形
+        var setting = {
+            view: {
+                selectedMulti: false
+            },
+            check: {
+                enable: true
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            }
+        };
+
+
+        function loadTreeList() {
+            var id = $.lumos.getUrlParamValue("id");
+
+            $.lumos.post({
+                url: "../Role/GetRolePermissionTreeList",
+                data: { roleId: id },
+                success: function (data) {
+                    var zNodes = data.content;
+                    $.fn.zTree.init($("#treeul"), setting, zNodes);
+                }
+            });
+
+        }
+
+        $(document).ready(function () {
+            loadTreeList();
+        });
+
+
+        function save() {
+
+            var treeObj = $.fn.zTree.getZTreeObj("treeul");
+            var nodes = treeObj.getCheckedNodes(true);
+            var l_strs = "";
+            for (var key in nodes) {
+                l_strs += nodes[key].id + ",";
+            }
+            if (l_strs != "") {
+                l_strs = l_strs.substring(0, l_strs.length - 1);
+            }
+
+            var l_Data = [];
+            var id = $.lumos.getUrlParamValue("id");
+            $.lumos.dataParmsPush(l_Data, "roleId", id);
+            $.lumos.dataParmsPush(l_Data, "permissionIds", l_strs);
+
+
+            $.lumos.post({
+                url: "../Role/SaveRolePermission",
+                data: l_Data,
+                success: function (data) {
+                    art.dialog.alert(data.message);
+                }
+            });
+            return false;
+        }
+
+		//-->
+    </script>
+    <style type="text/css">
+        html, body, .gb {
+            height: auto;
+        }
+    </style>
+}
+
+<div class="gbr gbr-mainbody" id="gbr-mainbody">
+    <div class="wrapper">
+        <div class="content">
+            <form id="form1" name="form1">
+                @AntiForgery.GetHtml()
+                <div style="width:100%">
+                    <div class="btn-area text-center">
+                        <input type="button" name="btn_Submit" value="保存" class="btn" onclick="save()" />
+                    </div>
+                    <ul id="treeul" class="ztree"></ul>
+                    <div class="btn-area text-center">
+                        <input type="button" name="btn_submit" value="保存" class="btn" onclick="save()" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

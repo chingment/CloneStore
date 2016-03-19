@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="/Content/Manager/base/Site.css" rel="stylesheet" />
+    @RenderSection("styles", required: false)
+    <script src="/Scripts/Manager/ArtDialog/artDialog.source.js?skin=base" type="text/javascript" id="artDialog"></script>
+    <script src="/Scripts/Manager/ArtDialog/iframeTools.source.js" type="text/javascript"></script>
+    <script src="/Scripts/DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <script src="/Scripts/Manager/jquery-1.8.3.min.js"></script>
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/Manager/jquery.resizeEnd.js"></script>
+    <!--[if lt IE 9]>
+    <script src="/Scripts/html5shiv.js"></script>
+    <![endif]-->
+
+</head>
+<body >
+    <div class="gb">
+        @RenderBody()
+       
+        <div class="clear">
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+    </script>
+</body>
+</html>

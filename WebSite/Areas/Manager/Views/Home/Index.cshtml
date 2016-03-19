@@ -1,0 +1,241 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
+}
+@section styles{
+
+    <style type="text/css">
+        html {
+            overflow: hidden;
+        }
+
+        body {
+            min-width: 1028px;
+        }
+
+        /*
+        * 	Core Owl Carousel CSS File
+        *	v1.3.3
+        */
+        /* clearfix */
+        .nav-dropdown-horizontal .owl-wrapper:after {
+            content: ".";
+            display: block;
+            clear: both;
+            visibility: hidden;
+            line-height: 0;
+            height: 0;
+        }
+        /* display none until init */
+        .nav-dropdown-horizontal {
+            display: none;
+            position: relative;
+            width: 100%;
+            -ms-touch-action: pan-y;
+        }
+
+            .nav-dropdown-horizontal .owl-wrapper {
+                display: none;
+                position: relative;
+                -webkit-transform: translate3d(0px, 0px, 0px);
+                margin-left: 15px;
+            }
+
+            .nav-dropdown-horizontal .owl-wrapper-outer {
+                overflow: hidden;
+                position: relative;
+                width: 100%;
+            }
+
+                .nav-dropdown-horizontal .owl-wrapper-outer.autoHeight {
+                    -webkit-transition: height 500ms ease-in-out;
+                    -moz-transition: height 500ms ease-in-out;
+                    -ms-transition: height 500ms ease-in-out;
+                    -o-transition: height 500ms ease-in-out;
+                    transition: height 500ms ease-in-out;
+                }
+
+            .nav-dropdown-horizontal .owl-item {
+                float: left;
+            }
+
+
+        /* mouse grab icon */
+        .grabbing {
+            cursor: url(grabbing.png) 8 8, move;
+        }
+
+        /* fix */
+        .nav-dropdown-horizontal .owl-wrapper,
+        .nav-dropdown-horizontal .owl-item {
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+        }
+
+
+        .nav-dropdown-horizontal .owl-wrapper-outer {
+            overflow: visible;
+        }
+
+        .nav-dropdown-horizontal .owl-item {
+            width: 10px;
+        }
+    </style>
+}
+@section scripts{
+    <script src="/Scripts/Manager/owl.carousel.js"></script>
+}
+<div class="gbr gbr-header" id="lumos-header" style="z-index:800">
+    <div class="wrapper">
+        <div class="content">
+            <div class="top">
+                <div class="logo">
+                </div>
+                <div class="quit">
+                    @using Microsoft.AspNet.Identity
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Home", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    Hello,【@User.Identity.GetUserName()】,Welcome to use system！
+                                </li>
+                                <li><a href="javascript:document.getElementById('logoutForm').submit()">Sign Out</a></li>
+                            </ul>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="bottom" style="display: block; white-space: nowrap;  overflow: hidden;">
+                <div id="p-lumos-header-nav" style=" display:none;  width: 20px; position: relative; float:right; height: 20px; margin: 2px auto 0; background-repeat: no-repeat; background-image: url(/Content/themes/base/images/p_icon_menu.png); ">
+                </div>
+
+                <a href="javascript:void(0)" id="btn_NavLeft" class="btn-navleft"></a>
+                <a href="javascript:void(0)" id="btn_NavRight" class="btn-navright"></a>
+                <ul id="nav" class="nav-dropdown-horizontal  dropdown dropdown-horizontal" style=" margin-left:15px; margin-top:0px;position:absolute; height:30px;">
+                    @*position:absolute;*@
+                @if (Request.IsAuthenticated)
+                {
+                    var model = User.Identity.GetUserMenus();
+                    var model1 = from c in model where c.PId == 1 select c;
+                    foreach (var m1 in model1)
+                    {
+                        <li class="nav-1" style="display: inline-block; float: left;">
+                            <span class="dir" title="@m1.Name">@m1.Name</span>
+                            @{
+                        var model2 = from c in model where c.PId == m1.Id select c;
+                        <ul>
+                            @foreach (var m2 in model2)
+                            {
+                                <li style=" padding-left: 4px; white-space:nowrap;padding-right:4px;">
+                                    <a href="@Url.AreaContent(m2.Url)" target="page_maincontent">@m2.Name</a>
+                                </li>
+
+                            }
+                        </ul>
+                            }
+                        </li>
+                    }
+                }
+            </ul>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="gbr gbr-mainbody" id="gbr-mainbody" style="z-index: -1000">
+    <div class="wrapper">
+        <div class="content">
+            <iframe frameborder="0" src="@Url.AreaContent("/Home/Main")" id="page_maincontent" name="page_maincontent" style="width: 100%; height:100% "></iframe>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function getFrames(frames, main_bodyHeight) {
+        var fs = frames;
+        var name = $(fs).attr("name");
+        console.log(name);
+        if (name.indexOf("tabIframe") > -1) {
+            console.log("main_bodyHeight:" + main_bodyHeight);
+            $(fs).height(main_bodyHeight - 42);
+        }
+        fs = $(fs).contents().find("iframe")
+        for (var i = 0; i < fs.length; i++) {
+            getFrames(fs[i], main_bodyHeight);
+        }
+    }
+
+
+
+    function reWinSize() {
+
+        var h_windowHeight = $(window.top).height();//获取屏幕高度
+        var h_headerHeight = $("#lumos-header").height();//获取主部分头部高度
+
+        //console.log("h_windowHeight:" + h_windowHeight);
+        //console.log("h_headerHeight:" + h_headerHeight);
+        var h_bodyHeight = h_windowHeight - h_headerHeight;//得到主部分除了头部以外的高度
+        $("#gbr-mainbody").height(h_bodyHeight);
+        var main = $("iframe[name=page_maincontent]");
+        $(main).height(h_bodyHeight);
+
+        var main_heardHeight = $(main).contents().find("#gbr-maintitle").height();//获取主部分头部高度
+        var main_bodyHeight = h_bodyHeight - main_heardHeight;//得到主部分除了头部以外的高度
+        $(main).contents().find("#gbr-mainbody").height(main_bodyHeight);
+
+        var fs = $("iframe[name=page_maincontent]").contents().find("iframe");
+        for (var i = 0; i < fs.length; i++) {
+            if (typeof fs[i] != "undefined") {
+                getFrames(fs[i], main_bodyHeight);
+            }
+        }
+    }
+
+
+
+
+    $(window).resizeEnd({
+        delay: 100
+    }, function () {
+        reWinSize();
+    });
+
+    $(document).ready(function () {
+
+        $("ul.dropdown li").hover(function () {
+            $(this).addClass("hover");
+            $('> .dir', this).addClass("open");
+            $('ul:first', this).css('visibility', 'visible');
+        }, function () {
+            $(this).removeClass("hover");
+            $('.open', this).removeClass("open");
+            $('ul:first', this).css('visibility', 'hidden');
+        });
+
+        reWinSize();
+
+        //控制导航栏目，如果不想owlCarousel控制 请在nav class中去掉nav-dropdown-horizontal 样式
+        $('#nav').owlCarousel({
+            items: 16,
+            pagination: false,
+            mouseDrag: false,
+            itemsDesktop: [1199, 12],
+            itemsDesktopSmall: [979, 8],
+            itemsTablet: [768, 6],//当宽度小于768时显示5个栏目
+            itemsMobile: [479, 3],
+            baseClass: "nav-dropdown-horizontal",
+            navigationUcButton: ["btn_NavLeft", "btn_NavRight"]
+        });
+    });
+
+</script>

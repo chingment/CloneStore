@@ -1,0 +1,123 @@
+﻿@{
+    ViewBag.Title = "Modified Sort";
+    Layout = "~/Areas/Manager/Views/Shared/_LayoutEdit.cshtml";
+}
+
+@section scripts{
+    <script type="text/javascript">
+     <!--
+        //设置菜单树形属性
+        var setting = {
+            view: {
+                showLine: true,
+                addDiyDom: addDiyDom
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            }
+        };
+
+        var IDMark_A = "_a";
+        function addDiyDom(treeId, treeNode) {
+            if (treeNode.id == "1") return;
+            var aObj = $("#" + treeNode.tId + IDMark_A);
+            var editStr = "";
+            editStr = "<input id='menuId_" + treeNode.id + "' type='text' class='menuPriority' name='menuId_" + treeNode.id + "' type='text' style='width:80px;' value='" + treeNode.Priority + "' onkeypress = 'return event.keyCode>=48&&event.keyCode<=57||event.keyCode==46'   />";
+            aObj.after(editStr);
+        }
+
+        function keyPress() {
+            var keyCode = event.keyCode;
+            if ((keyCode >= 48 && keyCode <= 57)){
+                          event.returnValue = true;
+            } else {
+                  event.returnValue = false;
+            }
+        }
+
+
+        $(this).ready(function () {
+                loadTreeList();
+        });
+
+
+        function edit() {
+
+            var isflag = false;
+
+            $(".menuPriority").each(function () {
+                var v=$(this).val();
+                if (v > 10000||v=="") {
+                    isflag = true;
+                }
+            })
+
+            if (isflag) {
+                art.dialog.alert("Required,and less than or equal to 10000");
+                return;
+            }
+
+
+            var l_Data = decodeURIComponent($("#form1").serialize());
+            $.lumos.post({
+                url: "../Menu/SaveSort",
+                data: l_Data,
+                success: function (data) {
+                        var win = art.dialog.open.origin;
+                        win.loadTreeList();
+                        art.dialog.alert(data.message);
+                }
+            });
+            return false;
+        }
+
+        function loadTreeList() {
+
+            $.lumos.post({
+                url: "../Menu/GetMenuTree?pId=" + $.lumos.getUrlParamValue("id"),
+                success: function (data) {
+                    var obj = eval(data.content);
+                     $.fn.zTree.init($("#treemenu"), setting, obj);
+                }
+            });
+
+        }
+
+  //-->
+    </script>
+    <style type="text/css">
+        body {
+            background-color: #fff;
+        }
+    </style>
+}
+
+<div class="gbr gbr-maintitle" id="gbr-maintitle">
+    <div class="wrapper">
+        <div class="content">
+            <span class="title-icon">@ViewBag.Title</span>
+            <span class="title-message"></span>
+        </div>
+    </div>
+</div>
+
+<form name="form1" method="post" id="form1">
+    @AntiForgery.GetHtml()
+
+    <div class="btn-area" style=" text-align:center">
+        <input type="button" name="btn_Save" value="Save" id="btn_Save" class="btn" onclick="edit()" />
+    </div>
+
+    <ul id="treemenu" class="ztree" style="overflow: auto; "></ul>
+
+    <div class="btn-area" style=" text-align:center">
+        <input type="button" name="btn_Save" value="Save" id="btn_Save" class="btn" onclick="edit()" />
+
+    </div>
+    <input name="txt_Target" type="hidden" autocomplete="off" id="txt_Target" value="page_maincontent" style="width: 350px;" />
+
+</form>
+
+

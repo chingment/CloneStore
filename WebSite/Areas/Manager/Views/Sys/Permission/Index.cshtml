@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "Permission";
+    Layout = "~/Areas/Manager/Views/Shared/_LayoutTree.cshtml";
+}
+
+@section scripts{
+    <script type="text/javascript">
+     <!--
+        //设置菜单树形属性
+        var setting = {
+            view: {
+                showLine: true,
+                selectedMulti: false
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            callback: {
+                onClick: onClick
+            }
+
+        };
+
+        function onClick(event, treeId, treeNode, clickFlag) {
+
+            var parentName = "/";
+            if (treeNode.getParentNode() != null) {
+                parentName = treeNode.getParentNode().name;
+            }
+            $("#lbl_PName").text(parentName);
+            $("#lbl_Name").text(treeNode.name);
+            $("#lbl_Id").text(treeNode.id);
+
+        }
+
+        $(this).ready(function () {
+                loadTreeList();
+        });
+
+        function loadTreeList(id) {
+
+            $.lumos.post({
+                url: "/Permission/GetPermissionTree",
+                success: function (data) {
+                    var obj = eval(data.content);
+                    $.fn.zTree.init($("#treemenu"), setting, obj);
+                }
+            });
+        }
+
+  //-->
+    </script>
+}
+
+<div class="gbr gbr-maintitle" id="gbr-maintitle">
+    <div class="wrapper">
+        <div class="content">
+            <span class="title-icon">@ViewBag.Title</span>
+            <span class="title-message"></span>
+        </div>
+    </div>
+</div>
+
+<div class="gbr gbr-mainbody" id="gbr-mainbody">
+    <div class="wrapper">
+        <div class="content">
+            <form name="form1" method="post" id="form1">
+                @AntiForgery.GetHtml()
+                <table cellpadding="0" cellspacing="0" class="table-tabtree">
+                    <tr>
+                        <td class="left-tree">
+                            <ul id="treemenu" class="ztree"></ul>
+                        </td>
+                        <td class="right-tab">
+                            <div class="tab" id="tabbox">
+                                <div class="tab-item">
+                                    <ul>
+                                        <li class="item first selected"><a class="a-btn-info">基本信息</a></li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="content" style="display:block">
+                                        <div>
+                                            <table class="f-tb" cellpadding="0" cellspacing="1">
+                                                <tr>
+                                                    <td class="f-tb-t">
+                                                        上级名称：
+                                                    </td>
+                                                    <td class="f-tb-c">
+                                                        <label id="lbl_PName"></label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="f-tb-t">
+                                                        编码：
+                                                    </td>
+                                                    <td class="f-tb-c">
+                                                        <label id="lbl_Id"></label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="f-tb-t">
+                                                        名称：
+                                                    </td>
+                                                    <td class="f-tb-c">
+                                                        <label id="lbl_Name"></label>
+                                                    </td>
+                                                </tr>
+                                                <tr style="display:none;">
+                                                    <td class="form_tableedit_title titletop">
+                                                        备注：
+                                                    </td>
+                                                    <td class="form_tableedit_conent pd5px">
+                                                        <textarea name="txt_Description" rows="2" cols="20" id="txt_Description"
+                                                                  style="height: 80px; width: 350px;"></textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
