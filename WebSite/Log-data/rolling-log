@@ -6355,3 +6355,47 @@ System.Web.HttpException (0x80004005): 未找到路径“/Areas/Manager/Views/Sys/Role
       Form表单数据：
       URL参数：
           
+2016-03-19 16:46:37,581 [5] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/3/19 16:46:37
+      结束时间：2016/3/19 16:46:37
+      总 时 间：0.1930156秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-03-19 16:46:40,839 [5] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/3/19 16:46:37
+      结束时间：2016/3/19 16:46:40
+      总 时 间：3.1431798秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-03-20 12:02:00,365 [5] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/3/20 12:02:00
+      结束时间：2016/3/20 12:02:00
+      总 时 间：0.2340235秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-03-20 12:02:02,034 [5] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/3/20 12:02:00
+      结束时间：2016/3/20 12:02:02
+      总 时 间：1.3416024秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          

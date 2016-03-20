@@ -91,8 +91,8 @@
 
         // Turn on the infoBox
         if (options.altBox !== null) {
-            $(options.altBox).css('display', 'block');
-            $(options.titleBox).css('display', 'block');
+            //$(options.altBox).css('display', 'block');
+            //$(options.titleBox).css('display', 'block');
         }
         // Turn on relative position for container to allow absolutely positioned elements
         // within it to work.
