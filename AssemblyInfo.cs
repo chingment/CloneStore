@@ -8,10 +8,10 @@ using System.Runtime.InteropServices;
 //[assembly: AssemblyTitle("BLL")]
 //[assembly: AssemblyDescription("")]
 //[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("深圳环球高富金融信息服务有限公司")]
+[assembly: AssemblyCompany("Lumos")]
 //[assembly: AssemblyProduct("BLL")]
-[assembly: AssemblyCopyright("Copyright © 2015 环球高富金融")]
-[assembly: AssemblyTrademark("环球高富金融|GPCF")]
+[assembly: AssemblyCopyright("Copyright © 2015 Lumos")]
+[assembly: AssemblyTrademark("Lumos")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

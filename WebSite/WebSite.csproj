@@ -375,8 +375,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="HtmlPage1.html" />
-    <Content Include="HtmlPage2.html" />
     <Content Include="images\01.jpg" />
     <Content Include="images\02.jpg" />
     <Content Include="images\03.jpg" />
@@ -436,8 +434,6 @@
     <Content Include="index.html" />
     <Content Include="MyCart.html" />
     <Content Include="product.html" />
-    <Content Include="product2.html" />
-    <Content Include="product3.html" />
     <Content Include="Scripts\Manager\AreaSelect\public.js" />
     <Content Include="Scripts\Manager\AreaSelect\queryAllAreas.js" />
     <Content Include="Scripts\Manager\AreaSelect\queryAllProvinces.js" />
