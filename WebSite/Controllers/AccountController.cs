@@ -1,23 +1,118 @@
-﻿using System;
+﻿using log4net;
+using Lumos.Common;
+using Lumos.DAL.AuthorizeRelay;
+using Lumos.Entity;
+using Lumos.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebSite.Models;
 
 namespace WebSite.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : WebBaseController
     {
         //
         // GET: /Account/
-        public ActionResult SignIn()
+        public ViewResult SignIn()
         {
             return View();
         }
 
-        public ActionResult SignUp()
+        public ViewResult SignUp()
         {
             return View();
         }
-	}
+
+        [HttpPost]
+        public JsonResult SignUp(RegisterModel model)
+        {
+            SysClientUser user = new SysClientUser();
+            user.UserName = model.txt_UserName;
+            user.PasswordHash = model.txt_Password;
+            user.FirstName = model.txt_FirstName;
+            user.LastName = model.txt_LastName;
+            user.FavoriteColors =model.cb_Colors==null?null:string.Join(",",model.cb_Colors);
+            user.FavoriteRetailers = model.cb_Retailers == null ? null : string.Join(",", model.cb_Retailers);
+            user.Address = model.txt_Address;
+            user.CreateTime = DateTime.Now;
+            user.Creator = 0;
+            var relay = new AspNetIdentiyAuthorizeRelay<SysClientUser>(CurrentDb);
+
+            if (relay.UserExists(user.UserName.Trim()))
+            {
+                return Json("text/html", ResultType.Failure, "This account already exists");
+            }
+
+            bool r = relay.CreateUser(user, user.PasswordHash);
+            if (!r)
+            {
+                return Json("text/html", ResultType.Failure, "Failure");
+            }
+
+            CurrentDb.SaveChanges();
+
+            return Json(ResultType.Success, "Success");
+        }
+
+
+        /// <summary>
+        /// 登录方法
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public JsonResult SignIn(LoginModel model)
+        {
+            var identity = new AspNetIdentiyAuthorizeRelay<SysClientUser>(CurrentDb);
+            var user = identity.SignIn(model.txt_UserName, model.txt_Password, model.ckb_RememberMe);
+            CustomJsonResult result = new CustomJsonResult();
+            GoToViewModel gotoViewModel = new GoToViewModel();
+            int userId = 0;
+            string userName = model.txt_UserName;
+            if (user != null)
+            {
+                userId = user.Id;
+                userName = user.UserName;
+                if (!user.IsDelete)
+                {
+                    if (user.IsDisable)
+                    {
+                        result.Result = ResultType.Failure;
+                        result.Message = "The account has been disabled";
+                        gotoViewModel.GotoUrl = @"/Home/Login";
+                    }
+                    else
+                    {
+                        result.Result = ResultType.Success;
+                        result.Message = "Success";
+                        gotoViewModel.GotoUrl = @"/Home/Index";
+                    }
+                }
+                else
+                {
+                    result.Result = ResultType.Failure;
+                    result.Message = "Account or password is incorrect. Please try again!";
+                    gotoViewModel.GotoUrl = @"/Home/Login";
+                }
+            }
+            else
+            {
+                result.Result = ResultType.Failure;
+                result.Message = "Account or password is incorrect. Please try again!";
+                gotoViewModel.GotoUrl = @"/Home/Login";
+            }
+
+            result.Content = gotoViewModel;
+
+            ILog log = LogManager.GetLogger(CommonSetting.LoggerLoginWeb);
+            log.Info(FormatUtility.LoginInWeb(userId, userName, result.Message));
+
+            return result;
+        }
+    }
 }

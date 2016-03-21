@@ -1,8 +1,116 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@ViewContext.RouteData.DataTokens["area"]
-<h2>Index</h2>
+@section styles{
 
+}
+@section scripts{
+    <script type="text/javascript">
+        function initCarousel() {
+            var w_h = $(window).height();
+            var c_h = w_h - 170;
+
+            if (c_h < 500) {
+                c_h = 500;
+            }
+
+            if (c_h > 600) {
+                c_h = 550;
+            }
+
+            $("#home_carousel").height(c_h);
+
+            var yPos = c_h - (c_h / 1.19);
+
+            // 这初始化容器中指定的元素，在这种情况下，旋转木马.
+            $("#home_carousel").CloudCarousel({
+                xPos: 570,
+                yPos: yPos,
+                buttonLeft: $('#but1'),
+                buttonRight: $('#but2'),
+                buttonMouseOver: false,
+                altBox: $("#alt-text"),
+                titleBox: $("#title-text"),
+                FPS: 30,
+                reflHeight: null,
+                reflGap: 2,
+                yRadius: 100,
+                autoRotateDelay: 1200,
+                speed: 0.2,
+                mouseWheel: false,
+                bringToFront: true
+            });
+            var top = c_h/2-20;
+            $("#but1,#but2").css("top", top + "px")
+
+        }
+
+        $(window).resizeEnd({
+            delay: 100
+        }, function () {
+            initCarousel();
+        });
+
+        $(document).ready(function () {
+            initCarousel();
+
+            $("#home_carousel .item img").each(function () {
+
+                $(this).click(function () {
+                    var iscenter = $(this).attr("iscenter")
+                    if (iscenter == "true") {
+                        art.dialog.open('product.html', { id: "Product", top: "80px", title: "Product", width: "1100px", height: "500px" });
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+<!--Top Menus Start-->
+<div class="gbr gbr-topmenus">
+    <div class="wrapper">
+        <div class="content clearfix">
+            <ul class="horizontal menu">
+                <li><a href="/Account/SignIn" id="a_Btn_SignIn">Sign In</a></li>
+                <li><a href="/Account/SignUp" id="a_Btn_SignUp">Sign Up</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--Top Menus Register End-->
+<!--Ad Start-->
+<div class="gbr">
+    <div class="wrapper">
+        <div class="content clearfix">
+            <!--home_carousel start-->
+            <div id="home_carousel">
+                <p id="title-text"></p>
+                <p id="alt-text"></p>
+                <a href="javascript:void(0)" target="_parent" class="item"><img class="cloudcarousel" data="1" src="/images/01.jpg" alt="p1" iscenter="true" /></a>
+                <a href="javascript:void(0)" target="_parent" class="item"><img class="cloudcarousel" data="2" src="/images/02.jpg" alt="p2" iscenter="false" /></a>
+                <a href="javascript:void(0)" target="_parent" class="item"><img class="cloudcarousel" data="3" src="/images/03.jpg" alt="p3" iscenter="false" /></a>
+                <a href="javascript:void(0)" target="_parent" class="item"><img class="cloudcarousel" data="4" src="/images/04.jpg" alt="p4" iscenter="false" /></a>
+                <a href="javascript:void(0)" target="_parent" class="item"><img class="cloudcarousel" data="5" src="/images/05.jpg" alt="p5" iscenter="false" /></a>
+                <div id="but1" class="carouselLeft"></div>
+                <div id="but2" class="carouselRight"></div>
+            </div>
+            <!--home_carousel end-->
+        </div>
+    </div>
+</div>
+<!--Ad End-->
+<!--Bottom Menus Start-->
+<div class="gbr gbr-bottommenus">
+    <div class="wrapper">
+        <div class="content clearfix">
+            <ul class="horizontal menu">
+                <li><a href="/Home/Index">Home</a></li>
+                <li><a href="/Home/AboutUs">About Us</a></li>
+                <li><a href="/Home/ContactUs">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--Bottom Menus End-->

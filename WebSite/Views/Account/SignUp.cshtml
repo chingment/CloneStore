@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+@section styles{
+    <style type="text/css">
+        .gbr-signuo > .wrapper {
+            width: 100%;
+        }
+
+        .gbr-signup > .wrapper > .content {
+            margin: 10px 10px auto;
+        }
+
+        .signup-box {
+            width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        .signup-fields > li {
+            line-height: 30px;
+            height: 30px;
+        }
+    </style>
+}
+
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/W/jquery.formValidator.js"></script>
+    <script type="text/javascript" src="~/Scripts/W/jquery.formValidatorRegex.js"></script>
+    <script type="text/javascript">
+        $(this).ready(function () {//art.dialog.alert(msg);
+            $.formValidator.initConfig({
+                formID: "form1", onError: function (msg, a, b) {
+                  //  alert(msg)
+                    alert(b.length)
+                    var html = "<ul>";
+                    for (var i = 0; i < b.length; i++) {
+                        html += "<li>" + b[i] + "</li>";
+                    }
+                    html += "</ul>";
+                    $("#message_tip").html(html);
+
+
+                }, onSuccess: function () { return register(); }
+            });
+            $("#txt_UserName").formValidator({ onShow: "Required!", onFocus: "Required,3 to 20 numbers, English letters or underscores!", onCorrect: "&nbsp;" }).regexValidator({ min: 3, max: 20, regExp: "^[0-9a-zA-Z_]{3,20}$", onError: "Required,3 to 20 numbers, English letters or underscores!" });
+            $("#txt_Password").formValidator({ onShow: "Required!", onFocus: "Required,6 to 20 numbers, English letters or underscores!", onCorrect: "&nbsp;" }).regexValidator({ regExp: regexEnum.password, onError: "Required,6 to 20 numbers, English letters or underscores!" });
+        });
+
+        function register() {
+            $.ajax({
+                type: "post",
+                url: "/Account/SignUp",
+                dataType: "json",
+                data: $('#form1').serialize(),
+                beforeSend: function (data) {
+                }
+            }).done(function (data) {
+
+            });
+
+            return false;
+        }
+
+    </script>
+}
+
+<div class="gbr gbr-signup">
+    <div class="wrapper">
+        <div class="content clearfix">
+            <form id="form1" name="form1" enctype="multipart/form-data" method="post">
+                <div id="message_tip">
+
+                </div>
+                @Html.AntiForgeryToken()
+                <div class="signup-box">
+                    <ul class="signup-fields">
+                        <li><span>Create An Account</span></li>
+                        <li><input type="text" id="txt_UserName" name="txt_UserName" placeholder="Email" /></li>
+                        <li><input type="text" id="txt_Password1" placeholder="Password" /></li>
+                        <li><input type="text" id="txt_Password" name="txt_Password" placeholder="Confirm Password" /></li>
+                        <li><input type="text" id="txt_FirstName" name="txt_FirstName" placeholder="FirstName" /> <input type="text" name="txt_LastName" placeholder="LastName" /></li>
+                        <li><input type="text" id="txt_Address" name="txt_Address" placeholder="Address" style="width:306px" /></li>
+                    </ul>
+                    <ul class="signup-fields">
+                        <li><span>Other Option</span></li>
+                        <li><span>Top 5 Favorite Retailers</span></li>
+                        <li>
+                            <span><input type="checkbox" id="cb_Retailers0" name="cb_Retailers" value="Bonobos" /><label for="cb_Retailers0">Bonobos</label></span>
+                            <span><input type="checkbox" id="cb_Retailers1" name="cb_Retailers" value="Jcrew" /><label for="cb_Retailers1">Jcrew</label></span>
+                            <span><input type="checkbox" id="cb_Retailers2" name="cb_Retailers" value="JackErwin" /><label for="cb_Retailers2">Jack Erwin</label></span>
+                            <span><input type="checkbox" id="cb_Retailers3" name="cb_Retailers" value="MrPorter" /><label for="cb_Retailers3">Mr Porter</label></span>
+
+                        </li>
+                        <li><span>Favorite Colors</span></li>
+                        <li>
+                            <span><input type="checkbox" id="cb_Colors0" name="cb_Colors" value="Red" /><label for="cb_Colors0">Red</label></span>
+                            <span><input type="checkbox" id="cb_Colors1" name="cb_Colors" value="Green" /><label for="cb_Colors1">Green</label></span>
+                            <span><input type="checkbox" id="cb_Colors2" name="cb_Colors" value="Black" /><label for="cb_Colors2">Black</label></span>
+                            <span><input type="checkbox" id="cb_Colors3" name="cb_Colors" value="Orange" /><label for="cb_Colors3">Orange</label></span>
+                            <span><input type="checkbox" id="cb_Colors4" name="cb_Colors" value="Pink" /><label for="cb_Colors4">Pink</label></span>
+                            <span><input type="checkbox" id="cb_Colors5" name="cb_Colors" value="White" /><label for="cb_Colors5">White</label></span>
+                            <span><input type="checkbox" id="cb_Colors6" name="cb_Colors" value="Gray" /><label for="cb_Colors6">Gray</label></span>
+                            <span><input type="checkbox" id="cb_Colors7" name="cb_Colors" value="Blue" /><label for="cb_Colors7">Blue</label></span>
+                        </li>
+                        <li><input type="submit" name="btn_SignUp" value="Register" /> <input type="submit" name="btn_SignIn" value="SignIn" /></li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

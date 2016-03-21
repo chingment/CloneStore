@@ -45,6 +45,18 @@ namespace Lumos.Entity
         public override string UserName { get; set; }
 
         /// <summary>
+        /// 姓
+        /// </summary>
+        [MaxLength(50)]
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// 名
+        /// </summary>
+        [MaxLength(50)]
+        public string LastName { get; set; }
+
+        /// <summary>
         /// 是否删除
         /// </summary>
         [DefaultValue(false)]
@@ -64,7 +76,7 @@ namespace Lumos.Entity
         /// <summary>
         /// 创建人
         /// </summary>
-        public int Creator { get; set; }
+        public int? Creator { get; set; }
 
         /// <summary>
         /// 创建时间
@@ -92,16 +104,10 @@ namespace Lumos.Entity
         [MaxLength(50)]
         public string LastLoginIp { get; set; }
 
-        /// <summary>
-        /// 安全密码
-        /// </summary>
-        [MaxLength(500)]
-        public string SecurityPassword { get; set; }
 
-        /// <summary>
-        /// 是否修改过安全密码
-        /// </summary>
-        public bool IsSetSecurityPwd { get; set; }
+        [MaxLength(50)]
+        public string Address { get; set; }
+
 
     }
 }

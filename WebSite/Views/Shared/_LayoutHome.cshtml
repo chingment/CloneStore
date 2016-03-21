@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = ViewBag.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles{
+    <style type="text/css">
+        .gbr-bottommenus {
+            padding: 20px 0px;
+        }
+
+        .gbr{
+            margin-left:auto;
+            margin-right:auto;
+        }
+    </style>
+    @RenderSection("styles", required: false)
+}
+
+@section scripts{
+    @RenderSection("scripts", required: false)
+}
+
+
+<!--Bottom Menus Start-->
+<div class="gbr gbr-bottommenus">
+    <div class="wrapper">
+        <div class="content clearfix">
+            <ul class="horizontal menu">
+                <li><a href="/Home/Index">Home</a></li>
+                <li><a href="/Home/AboutUs">About Us</a></li>
+                <li><a href="/Home/ContactUs">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--Bottom Menus End-->
+@RenderBody()
+

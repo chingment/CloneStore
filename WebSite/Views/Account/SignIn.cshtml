@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+@section styles{
+    <style type="text/css">
+        .gbr-signin > .wrapper > .content {
+            width: 155px;
+            margin: 80px auto;
+        }
+
+        .signin-fields > li {
+            line-height: 30px;
+            height: 30px;
+        }
+    </style>
+}
+
+@section scripts{
+    <script type="text/javascript">
+
+        function login() {
+            var msgObj = $("#txt_Message");
+            $(msgObj).text("");
+            if ($("#txt_UserName").val().length == 0) {
+                $(msgObj).text("账号为空!");
+                return false;
+            }
+
+            if ($("#txt_Password").val().length == 0) {
+                $(msgObj).text("密码为空！");
+                return false;
+            }
+
+            $.ajax({
+                type: "post",
+                url: "/Account/SignIn",
+                dataType: "json",
+                data: $('#form1').serialize(),
+                beforeSend: function (data) {
+                   // $(msgObj).text("正在登录中...");
+                }
+            }).done(function (data) {
+                if (data.result == "Success") {
+                    $(msgObj).text("");
+                    window.location.href = data.content.GotoUrl;
+                }
+                else {
+                    $(msgObj).text(data.message);
+                }
+
+            });
+            return false;
+        }
+
+    </script>
+}
+    <div class="gbr gbr-signin">
+        <div class="wrapper">
+            <div class="content clearfix">
+                <form id="form1" onsubmit="return login()">
+                    @Html.AntiForgeryToken()
+                    <ul class="signin-fields">
+                        <li><input type="text" id="txt_UserName" name="txt_UserName" placeholder="Email" /></li>
+                        <li><input type="text" id="txt_Password" name="txt_Password" placeholder="Password" /></li>
+                        <li><input type="submit" name="btn_SignIn" value="Sign In" />    <input type="button" name="btn_SignUp" value="Sign Up" /></li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+

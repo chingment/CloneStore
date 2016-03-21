@@ -166,11 +166,10 @@ a.btn:hover, a.btn:link, a.btn:visited {
         }
 
 .gb {
-
 }
 
-.gb-1200{
-    min-width:1200px;
+.gb-1200 {
+    min-width: 1200px;
 }
 
 .gbr > div > .content {
@@ -188,54 +187,116 @@ ul.horizontal {
     }
 
 
-.gbr-topmenus{
-    padding-top:20px;
-    padding-bottom:20px;
-    
+.gbr-topmenus {
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 
-.gbr-topmenus ul.menu {
-    width: 204px;
-    margin-left: auto;
-    margin-right: auto;
-    border-top: 1px solid #000;
-    border-right: 1px solid #000;
-    border-bottom: 1px solid #000;
-    height:50px;
-}
-
-
-    .gbr-topmenus ul.menu li {
-        width: 100px;
+    .gbr-topmenus ul.menu {
+        width: 204px;
+        margin-left: auto;
+        margin-right: auto;
+        border-top: 1px solid #000;
+        border-right: 1px solid #000;
+        border-bottom: 1px solid #000;
         height: 50px;
-        line-height: 50px;
-        text-align: center;
-         border-left: 1px solid #000;
     }
+
+
+        .gbr-topmenus ul.menu li {
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-left: 1px solid #000;
+        }
 
 .gbr-bottommenus {
     padding-bottom: 20px;
 }
 
-.gbr-bottommenus ul.menu {
-    width: 603px;
-    margin-left: auto;
-    margin-right: auto;
-    height: 50px;
-    border-top: 1px solid #000;
-    border-right: 1px solid #000;
-    border-bottom: 1px solid #000;
-}
-
-
-    .gbr-bottommenus ul.menu li {
-        width: 200px;
+    .gbr-bottommenus ul.menu {
+        width: 603px;
+        margin-left: auto;
+        margin-right: auto;
         height: 50px;
-        line-height: 50px;
-        text-align: center;
-        border-left: 1px solid #000;
+        border-top: 1px solid #000;
+        border-right: 1px solid #000;
+        border-bottom: 1px solid #000;
     }
 
 
+        .gbr-bottommenus ul.menu li {
+            width: 200px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-left: 1px solid #000;
+        }
 
+
+
+#home_carousel {
+    width: 1200px;
+    height: 600px;
+    overflow: hidden;
+    position: relative;
+    /*border-bottom: solid 1px #d8d9da;*/
+    margin: 0 auto;
+}
+
+    #home_carousel img {
+        border: none;
+        width: 300px;
+        height: 280px;
+        border: solid 1px #000;
+    }
+
+    #home_carousel #title-text {
+        font-size: 22px;
+        margin: 10px 20px 0 0;
+        padding: 0;
+        text-align: right;
+    }
+
+    #home_carousel #alt-text {
+        font-size: 14px;
+        margin: 5px 20px 0 0;
+        padding: 0;
+        text-align: right;
+    }
+
+    #home_carousel #user-c {
+        padding: 0;
+        position: absolute;
+        right: 15px;
+        bottom: 10px;
+    }
+
+    #home_carousel .carouselLeft, #home_carousel .carouselRight {
+        position: absolute;
+        bottom: 20px;
+        width: 29px;
+        height: 30px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    #home_carousel .carouselLeft {
+        right: 00px;
+        top: 300px;
+        z-index: 1000;
+        background: url(images/templatemo_slider_right1.png) no-repeat;
+    }
+
+    #home_carousel .carouselRight {
+        left: 0px;
+        top: 300px;
+        z-index: 1000;
+        background: url(images/templatemo_slider_left1.png) no-repeat;
+    }
+
+    #home_carousel #title-text, #home_carousel #alt-text {
+        display: none;
+    }

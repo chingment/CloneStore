@@ -301,7 +301,7 @@
                         $(this).find("td").eq(0).find("input[type='checkbox']").hide();
                         if (thcbox.length > 0) {
                             $(thcbox).hide();
-                            $(this).find("th").eq(0).text("序号");
+                            $(this).find("th").eq(0).text("No.");
                         }
                     });
                 }
@@ -1314,7 +1314,7 @@
             }
             else {
                 if ($(l_DataTable).find(" thead tr").length < 2) {
-                    $(l_DataTable).find(" thead th ").eq(0).text("序号");
+                    $(l_DataTable).find(" thead th ").eq(0).text("No.");
                     var trobj = $(l_DataTable).find("tbody tr");
                     for (var i = 0; i < trobj.length; i++) {
                         if ($(trobj[i]).attr("null") == undefined) {

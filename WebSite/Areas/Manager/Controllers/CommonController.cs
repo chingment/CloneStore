@@ -25,27 +25,29 @@ namespace WebSite.Areas.Manager.Controllers
 
         public JsonResult GetClientList()
         {
-            string userName = Request.Form["txt_UserName"].ToString();
-            string realName = Request.Form["txt_RealName"].ToString();
+            //string userName = Request.Form["txt_UserName"].ToString();
+            //string realName = Request.Form["txt_RealName"].ToString();
 
 
-            var list = (from ur in CurrentDb.SysClientUser
-                        join u in CurrentDb.Users on ur.Id equals u.Id
-                        where
-                           ur.IsDelete == false && 
-                            (userName.Length == 0 || u.UserName.Contains(userName)) &&
-                            (realName.Length == 0 || ur.RealUserName.Contains(realName)) 
-                        select new { ur.Id, ur.RealUserName, u.UserName }).Distinct();
+            //var list = (from ur in CurrentDb.SysClientUser
+            //            join u in CurrentDb.Users on ur.Id equals u.Id
+            //            where
+            //               ur.IsDelete == false && 
+            //                (userName.Length == 0 || u.UserName.Contains(userName)) &&
+            //                (realName.Length == 0 || ur.RealUserName.Contains(realName)) 
+            //            select new { ur.Id, ur.RealUserName, u.UserName }).Distinct();
 
-            int total = list.Count();
+            //int total = list.Count();
 
-            int pageIndex = int.Parse(Request.Form["pageindex"].ToString());
-            int pageSize = 10;
-            list = list.OrderBy(r => r.UserName).Skip(pageSize * (pageIndex)).Take(pageSize);
+            //int pageIndex = int.Parse(Request.Form["pageindex"].ToString());
+            //int pageSize = 10;
+            //list = list.OrderBy(r => r.UserName).Skip(pageSize * (pageIndex)).Take(pageSize);
 
-            PageEntity pageEntity = new PageEntity { PageSize = pageSize, TotalRecord = total, Rows = list };
+            //PageEntity pageEntity = new PageEntity { PageSize = pageSize, TotalRecord = total, Rows = list };
 
-            return Json(ResultType.Success, pageEntity);
+            //return Json(ResultType.Success, pageEntity);
+
+            return Json(ResultType.Success);
         }
 
       

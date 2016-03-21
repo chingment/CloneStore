@@ -179,6 +179,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Manager\Controllers\Sys\ClientUserController.cs" />
     <Compile Include="Areas\Manager\Controllers\Sys\MachineKeyController.cs" />
     <Compile Include="Areas\Manager\ManagerBaseAuthorizeAttribute.cs" />
     <Compile Include="Areas\Manager\ManagerBaseExceptionAttribute.cs" />
@@ -204,12 +205,16 @@
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Controllers\AboutUsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\GoToViewModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MyModels.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -370,6 +375,9 @@
     <Content Include="Content\Manager\base\images\zTreeStandard2.gif" />
     <Content Include="Content\Manager\base\owl.carousel.css" />
     <Content Include="Content\Manager\base\Site.css" />
+    <Content Include="Content\W\images\templatemo_slider_left1.png" />
+    <Content Include="Content\W\images\templatemo_slider_right1.png" />
+    <Content Include="Content\W\images\tips.png" />
     <Content Include="Content\W\owl.carousel.css" />
     <Content Include="Content\W\Site.css" />
     <Content Include="favicon.ico" />
@@ -593,6 +601,11 @@
     <Content Include="Areas\Manager\Views\Sys\User\Update.cshtml" />
     <Content Include="Areas\Manager\Views\Sys\User\UserRole.cshtml" />
     <Content Include="Areas\Manager\Views\Test\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\ClientUser\Add.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\ClientUser\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\ClientUser\Update.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\_LayoutDetails.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\ClientUser\Details.cshtml" />
     <None Include="Scripts\Manager\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DatePicker\calendar.js" />
     <Content Include="Scripts\DatePicker\config.js" />
@@ -693,6 +706,8 @@
     <Content Include="Scripts\W\artDialog\skins\idialog\ie6\aui_w.png" />
     <Content Include="Scripts\W\CloudCarousel.1.0.5.js" />
     <Content Include="Scripts\W\jquery-1.8.3.js" />
+    <Content Include="Scripts\W\jquery.formValidator.js" />
+    <Content Include="Scripts\W\jquery.formValidatorRegex.js" />
     <Content Include="Scripts\W\jquery.js" />
     <Content Include="Scripts\W\jquery.mouseoverbox.js" />
     <Content Include="Scripts\W\jquery.mousewheel.js" />
@@ -718,11 +733,15 @@
     <Content Include="Scripts\Manager\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
+    <Content Include="Views\Account\SignUp.cshtml" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\Account\SignIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\AboutUs\" />
-    <Folder Include="Views\Account\" />
     <Folder Include="Views\ContactUs\" />
   </ItemGroup>
   <ItemGroup>
