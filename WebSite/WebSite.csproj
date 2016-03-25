@@ -376,6 +376,7 @@
     <Content Include="Content\Manager\base\images\zTreeStandard2.gif" />
     <Content Include="Content\Manager\base\owl.carousel.css" />
     <Content Include="Content\Manager\base\Site.css" />
+    <Content Include="Content\W\images\shoppingcart3.png" />
     <Content Include="Content\W\images\templatemo_slider_left1.png" />
     <Content Include="Content\W\images\templatemo_slider_right1.png" />
     <Content Include="Content\W\images\tips.png" />
@@ -438,6 +439,9 @@
     <Content Include="images\demo\saved\shoes\13.jpg" />
     <Content Include="images\demo\saved\shoes\14.jpg" />
     <Content Include="images\demo\saved\shoes\15.jpg" />
+    <Content Include="images\gallary-pants.png" />
+    <Content Include="images\gallary-shirt.png" />
+    <Content Include="images\gallary_shoes.png" />
     <Content Include="images\templatemo_slider_left1.png" />
     <Content Include="images\templatemo_slider_right1.png" />
     <Content Include="images\tips.png" />
