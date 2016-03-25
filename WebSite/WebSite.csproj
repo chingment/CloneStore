@@ -181,8 +181,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Manager\Controllers\Sys\ClientUserController.cs" />
     <Compile Include="Areas\Manager\Controllers\Sys\MachineKeyController.cs" />
-    <Compile Include="Areas\Manager\ManagerBaseAuthorizeAttribute.cs" />
-    <Compile Include="Areas\Manager\ManagerBaseExceptionAttribute.cs" />
+    <Compile Include="Areas\Manager\ManagerAuthorizeAttribute.cs" />
+    <Compile Include="Areas\Manager\ManagerExceptionAttribute.cs" />
     <Compile Include="Areas\Manager\Controllers\CommonController.cs" />
     <Compile Include="Areas\Manager\HmlEx.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
@@ -200,14 +200,15 @@
     <Compile Include="Areas\Manager\Controllers\Sys\UserController.cs" />
     <Compile Include="Areas\Manager\Controllers\TestController.cs" />
     <Compile Include="Areas\Manager\Controllers\UploadImageController.cs" />
-    <Compile Include="Areas\Manager\ManagerBaseApiController.cs" />
-    <Compile Include="Areas\Manager\ManagerBaseController.cs" />
+    <Compile Include="Areas\Manager\ManagerApiController.cs" />
+    <Compile Include="Areas\Manager\ManagerController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Controllers\AboutUsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -380,6 +381,7 @@
     <Content Include="Content\W\images\tips.png" />
     <Content Include="Content\W\owl.carousel.css" />
     <Content Include="Content\W\Site.css" />
+    <Content Include="Content\W\Site_test.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -738,6 +740,8 @@
     <Content Include="Views\Home\AboutUs.cshtml" />
     <Content Include="Views\Home\ContactUs.cshtml" />
     <Content Include="Views\Account\SignIn.cshtml" />
+    <Content Include="Views\Product\List.cshtml" />
+    <Content Include="Views\Account\MyCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

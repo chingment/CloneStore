@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace WebSite.Areas.Manager.Controllers
 {
-    public class UploadImageController : ManagerBaseApiController
+    public class UploadImageController : ManagerApiController
     {
         private bool GreateMiniImageModel(string originalpath, string savepath, int tWidth, int tHeight)
         {

@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace WebSite.Areas.Manager.Controllers
 {
-    public class PersonalCenterController : ManagerBaseController
+    public class PersonalCenterController : ManagerController
     {
         //
         // GET: /PersonalCenter/

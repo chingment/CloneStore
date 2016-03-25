@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace WebSite.Areas.Manager.Controllers
 {
-    public class RoleController : ManagerBaseController
+    public class RoleController : ManagerController
     {
         #region 视图
         public ViewResult Index()

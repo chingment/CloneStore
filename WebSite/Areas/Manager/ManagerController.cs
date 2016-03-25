@@ -26,10 +26,10 @@ namespace WebSite.Areas.Manager
     /// <summary>
     /// BaseController用来扩展Controller,凡是在都该继承BaseController
     /// </summary>
-    [ManagerBaseException]
-    [ManagerBaseAuthorize]
+    [ManagerException]
+    [ManagerAuthorize]
     [ValidateInput(false)]
-    public class ManagerBaseController : BaseController
+    public class ManagerController : BaseController
     {
         #region 公共的方法
         public string ConvertToZTreeJson(object obj, string idField, string pIdField, string nameField, string IconSkinField)
@@ -253,7 +253,7 @@ namespace WebSite.Areas.Manager
                 ThreadContext.Properties["trackid"] = DateTime.Now.TimeOfDay.TotalMilliseconds.ToString("00000000"); //Guid.NewGuid().ToString("N");
         }
 
-        public ManagerBaseController()
+        public ManagerController()
         {
             _currentDb = new FxDbContext();
             var identity = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);

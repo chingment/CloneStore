@@ -21,7 +21,7 @@ using Lumos.Common;
 
 namespace WebSite.Areas.Manager.Controllers
 {
-    public class ClientUserController : ManagerBaseController
+    public class ClientUserController : ManagerController
     {
         #region 视图
         public ViewResult Index()

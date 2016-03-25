@@ -20,7 +20,7 @@ using Lumos.Common;
 
 namespace WebSite.Areas.Manager.Controllers
 {
-    public class UserController : ManagerBaseController
+    public class UserController : ManagerController
     {
 
         #region 视图

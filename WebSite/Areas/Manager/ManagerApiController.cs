@@ -11,7 +11,7 @@ using Lumos.Mvc;
 
 namespace WebSite.Areas.Manager
 {
-    public class ManagerBaseApiController : ApiController
+    public class ManagerApiController : ApiController
     {
         #region JsonResult 扩展
 
@@ -83,7 +83,7 @@ namespace WebSite.Areas.Manager
                 ThreadContext.Properties["trackid"] = DateTime.Now.TimeOfDay.TotalMilliseconds.ToString("00000000"); //Guid.NewGuid().ToString("N");
         }
 
-        public ManagerBaseApiController()
+        public ManagerApiController()
         {
 
         }

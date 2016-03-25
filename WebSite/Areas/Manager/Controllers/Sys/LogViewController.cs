@@ -12,7 +12,7 @@ using WebSite.Areas.Manager.Models;
 
 namespace WebSite.Areas.Manager.Controllers
 {
-    public class LogViewController : ManagerBaseController
+    public class LogViewController : ManagerController
     {
         protected FileInfo[] Files;
         protected DirectoryInfo[] Dirs;

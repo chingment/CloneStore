@@ -30,7 +30,7 @@ namespace WebSite.Areas.Manager.Controllers
         public string provinceId { get; set; }
     }
 
-    public class HomeController : ManagerBaseController
+    public class HomeController : ManagerController
     {
         /// <summary>  
         /// 获取客户端Ip  

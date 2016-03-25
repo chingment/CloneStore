@@ -47,6 +47,7 @@
         //如果是精简模式，发生错误的时候，第一个错误的控件就不获得焦点
         if (settings.tidyMode) { settings.errorFocus = false };
         //如果填写了表单和按钮，就注册验证事件
+
         if (settings.formID != "") {
             $("#" + settings.formID).submit(function () { return $.formValidator.bindSubmit(settings); });
         }
@@ -122,7 +123,7 @@
 
     //把提示层重置成原始提示(如果有defaultPassed,应该设置为onCorrect)
     resetTipState: function (validatorGroup) {
-     
+
         if (validatorGroup == undefined) { validatorGroup = "1" };
         var initConfig = $('body').data(validatorGroup);
         $.each(initConfig.validObjects, function () {
@@ -148,7 +149,7 @@
         var showmsg = "", showclass = "";
         var intiConfig = $('body').data(elem.validatorGroup);
         var empty = returnObj.empty;
-      
+
         if (!isValid) {
             showclass = "onError";
             if (setting.validateType == "AjaxValidator") {
@@ -276,6 +277,7 @@
         returnObj.ajax = -1;
         returnObj.errormsg = "";       //自定义错误信息
         returnObj.min = 0;
+        returnObj.onfocusmsg = "dsdd";
         var settings = elem.settings;
         var settingslen = settings.length;
         var validateType;
@@ -293,6 +295,7 @@
                 continue;
             }
             returnObj.setting = settings[i];
+
             validateType = settings[i].validateType;
             //根据类型触发校验
             switch (validateType) {
@@ -361,27 +364,34 @@
                     onceValided = this.onceValided == undefined ? false : this.onceValided;
                     if (name) { name_list = name_list + name + "^" };
 
-              
+
 
                     returnObj = $.formValidator.oneIsValid(this.id);
                     returnObj.empty = this.settings[0].empty;
+
                     if (returnObj) {
                         //校验失败,获取第一个发生错误的信息和ID
                         if (!returnObj.isValid) {
                             //记录不含ajaxValidator校验函数的校验结果
                             isValid = false;
-                    
+
+                            //待处理
+                            var len = $.formValidator.getLength(this.id);
+                            if (len == 0) {
+                                errorMessage = this.settings[0].onShow;
+                            }
+                            else {
+                                errorMessage = returnObj.errormsg == "" ? returnObj.setting.onError : returnObj.errormsg;
+                            }
 
 
-                            errorMessage = returnObj.errormsg == "" ? returnObj.setting.onError : returnObj.errormsg;
-                  
-      
                             errorlist[errorlist.length] = errorMessage;
+
                             if (thefirstid == null) { thefirstid = returnObj.id };
                             if (firstErrorMessage == "") { firstErrorMessage = errorMessage };
                         }
 
-           
+
                         //为了解决使用同个TIP提示问题:后面的成功或失败都不覆盖前面的失败
                         if (!initConfig.alertMessage) {
                             var tipID = this.settings[0].tipID;
@@ -510,7 +520,7 @@
         var srcTag = $("#" + id).get(0).tagName;
         var elem = $("#" + id).get(0);
         var isValid;
- 
+
         //如果有输入正则表达式，就进行表达式校验
         returnObj.valLen = elem.value.length;
 
@@ -561,12 +571,14 @@
     inputValid: function (returnObj) {
         var id = returnObj.id;
         var setting = returnObj.setting;
+
         var srcjo = $("#" + id);
         var elem = srcjo.get(0);
         var val = srcjo.val();
         var sType = elem.type;
         var len = $.formValidator.getLength(id);
         var empty = setting.empty, emptyError = false;
+
         var oldVal = val;
         returnObj.minValLen = setting.min;
         switch (sType) {
@@ -578,7 +590,6 @@
                 if (setting.type == "size") {
                     empty = setting.empty;
                     if (!empty.leftEmpty) {
-
                         emptyError = (val.replace(/^[ \s]+/, '').length != trimLeft(val).length);
                     }
 
@@ -740,6 +751,23 @@
                 $("#" + setting.tipID).parent().show().css({ left: x + "px", top: y + "px" });
             }
         });
+    },
+
+
+    setformTip: function (error) {
+        var html="";
+        if (error.constructor == Array) {
+            html = "<ul>";
+            for (var i = 0; i < error.length; i++) {
+                html += "<li>" + error[i] + "</li>";
+            }
+            html += "</ul>";
+        }
+        else
+        {
+            html = "<p>" + error + "<p>";
+        }
+        $(".form-tip").html(html);
     }
 };
 

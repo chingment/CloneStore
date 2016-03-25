@@ -13,7 +13,7 @@ namespace WebSite.Areas.Manager
     /// <summary>
     /// 控制方法异常扑捉,跳转页面,记录信息
     /// </summary>
-    public class ManagerBaseExceptionAttribute : FilterAttribute, IExceptionFilter
+    public class ManagerExceptionAttribute : FilterAttribute, IExceptionFilter
     {
         private string _Message = "An exception error occurred";
         public string Message

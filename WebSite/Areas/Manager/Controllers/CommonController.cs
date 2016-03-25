@@ -14,7 +14,7 @@ using Lumos.Entity;
 namespace WebSite.Areas.Manager.Controllers
 {
 
-    public class CommonController : ManagerBaseController
+    public class CommonController : ManagerController
     {
 
         public ViewResult SelectClient()

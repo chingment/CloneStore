@@ -1,11 +1,9 @@
 ﻿@{
     ViewBag.Title = "Home";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
-@section styles{
-
-}
-@section scripts{
+@section scriptsbyend{
+    <script type="text/JavaScript" src="/Scripts/W/CloudCarousel.1.0.5.js"></script>
     <script type="text/javascript">
         function initCarousel() {
             var w_h = $(window).height();
@@ -56,35 +54,20 @@
             initCarousel();
 
             $("#home_carousel .item img").each(function () {
-
                 $(this).click(function () {
                     var iscenter = $(this).attr("iscenter")
                     if (iscenter == "true") {
-                        art.dialog.open('product.html', { id: "Product", top: "80px", title: "Product", width: "1100px", height: "500px" });
+                        window.location.href = "/Product/List/1"
                     }
                 });
             });
         });
     </script>
 }
-
-<!--Top Menus Start-->
-<div class="gbr gbr-topmenus">
+<!--Retailers Start-->
+<div class="gbr gbr-home-carousel">
     <div class="wrapper">
         <div class="content clearfix">
-            <ul class="horizontal menu">
-                <li><a href="/Account/SignIn" id="a_Btn_SignIn">Sign In</a></li>
-                <li><a href="/Account/SignUp" id="a_Btn_SignUp">Sign Up</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-<!--Top Menus Register End-->
-<!--Ad Start-->
-<div class="gbr">
-    <div class="wrapper">
-        <div class="content clearfix">
-            <!--home_carousel start-->
             <div id="home_carousel">
                 <p id="title-text"></p>
                 <p id="alt-text"></p>
@@ -96,21 +79,7 @@
                 <div id="but1" class="carouselLeft"></div>
                 <div id="but2" class="carouselRight"></div>
             </div>
-            <!--home_carousel end-->
         </div>
     </div>
 </div>
-<!--Ad End-->
-<!--Bottom Menus Start-->
-<div class="gbr gbr-bottommenus">
-    <div class="wrapper">
-        <div class="content clearfix">
-            <ul class="horizontal menu">
-                <li><a href="/Home/Index">Home</a></li>
-                <li><a href="/Home/AboutUs">About Us</a></li>
-                <li><a href="/Home/ContactUs">Contact Us</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-<!--Bottom Menus End-->
+<!--Retailers End-->

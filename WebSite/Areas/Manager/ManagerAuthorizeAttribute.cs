@@ -19,7 +19,7 @@ namespace WebSite.Areas.Manager
     //     继承Authorize属性
     //     扩展Permission权限代码,用来控制用户是否拥有该类或方法的权限
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, Inherited = true, AllowMultiple = true)]
-    public class ManagerBaseAuthorizeAttribute : AuthorizeAttribute
+    public class ManagerAuthorizeAttribute : AuthorizeAttribute
     {
         /// <summary>
         /// 权限代码

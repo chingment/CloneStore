@@ -9,7 +9,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebSite.Models;
-
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 namespace WebSite.Controllers
 {
     public class AccountController : WebBaseController
@@ -25,6 +26,12 @@ namespace WebSite.Controllers
         {
             return View();
         }
+
+        public ViewResult MyCart()
+        {
+            return View();
+        }
+
 
         [HttpPost]
         public JsonResult SignUp(RegisterModel model)
@@ -113,6 +120,21 @@ namespace WebSite.Controllers
             log.Info(FormatUtility.LoginInWeb(userId, userName, result.Message));
 
             return result;
+        }
+
+        /// <summary>
+        /// 退出方法
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SignOut()
+        {
+            ILog log = LogManager.GetLogger(CommonSetting.LoggerLoginWeb);
+            log.Info(FormatUtility.LoginOffWeb(User.Identity.GetUserId<int>(), User.Identity.GetUserName()));
+            var identity = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
+            identity.SignOut();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

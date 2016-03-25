@@ -3,26 +3,48 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section styles{
-    <style type="text/css">
-        .gbr-bottommenus {
-            padding: 20px 0px;
-        }
-
-        .gbr{
-            margin-left:auto;
-            margin-right:auto;
-        }
-    </style>
     @RenderSection("styles", required: false)
 }
-
 @section scripts{
     @RenderSection("scripts", required: false)
 }
+@section scriptsbyend{
+    @RenderSection("scriptsbyend", required: false)
+}
+<!--header Start-->
 
+<div class="gbr gbr-top">
+    <div class="wrapper">
+        <div class="content clearfix">
+            @using Microsoft.AspNet.Identity
+            @if (Request.IsAuthenticated)
+            {
+                using (Html.BeginForm("SignOut", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                    @Html.AntiForgeryToken()
 
-<!--Bottom Menus Start-->
-<div class="gbr gbr-bottommenus">
+                    <ul class="horizontal button">
+                        <li><a href="javascriot:void(0)">Welcome,@User.Identity.GetUserName()</a></li>
+                        <li><a href="/Account/MyCart">My Cart</a></li>
+                     
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Sign Out</a></li>
+                    </ul>
+
+                }
+            }
+            else
+            {
+                <ul class="horizontal button">
+                    <li><a href="/Account/SignIn">Sign In</a></li>
+                    <li><a href="/Account/SignUp">Sign Up</a></li>
+                </ul>
+            }
+
+        </div>
+    </div>
+</div>
+
+<div class="gbr gbr-header">
     <div class="wrapper">
         <div class="content clearfix">
             <ul class="horizontal menu">
@@ -33,6 +55,22 @@
         </div>
     </div>
 </div>
-<!--Bottom Menus End-->
-@RenderBody()
-
+<!--header End-->
+<!--main Start-->
+<div class="gbr gbr-main">
+    <div class="wrapper">
+        <div class="content clearfix gbr-main-content">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+<!--main End-->
+<!--footer Start-->
+<div class="gbr gbr-footer">
+    <div class="wrapper">
+        <div class="content clearfix">
+            <p class="copyright">Copyright © 2015</p>
+        </div>
+    </div>
+</div>
+<!--footer End-->

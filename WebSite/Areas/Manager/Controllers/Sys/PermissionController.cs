@@ -14,7 +14,7 @@ using System.Web.Mvc;
 namespace WebSite.Areas.Manager.Controllers
 {
 
-    public class PermissionController : ManagerBaseController
+    public class PermissionController : ManagerController
     {
     
         public ViewResult Index()

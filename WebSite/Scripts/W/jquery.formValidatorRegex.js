@@ -97,3 +97,13 @@ function isUserName(str) {
     var d = new Date(r[1], r[3] - 1, r[4], r[5], r[6], r[7]);
     return (d.getFullYear() == r[1] && (d.getMonth() + 1) == r[3] && d.getDate() == r[4] && d.getHours() == r[5] && d.getMinutes() == r[6] && d.getSeconds() == r[7]);
 }
+
+
+//function setformTip(errorList) {
+//    var html = "<ul>";
+//    for (var i = 0; i < errorList.length; i++) {
+//        html += "<li>" + errorList[i] + "</li>";
+//    }
+//    html += "</ul>";
+//    $(".form-tip").html(html);
+//}

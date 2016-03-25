@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace WebSite.Areas.Manager.Controllers
 {
-    public class MenuController : ManagerBaseController
+    public class MenuController : ManagerController
     {
         //
         // GET: /Menu/
