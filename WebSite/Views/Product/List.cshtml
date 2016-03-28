@@ -1,6 +1,9 @@
 ﻿@{
     ViewBag.Title = "Retailer";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    string controller = Request.RequestContext.RouteData.Values["controller"] == null ? "" : Request.RequestContext.RouteData.Values["controller"].ToString().ToLower();
+    string action = Request.RequestContext.RouteData.Values["action"] == null ? "" : Request.RequestContext.RouteData.Values["action"].ToString().ToLower();
+    string id = Request.RequestContext.RouteData.Values["id"] == null ? "" : Request.RequestContext.RouteData.Values["id"].ToString().ToLower();
 }
 @section styles{
     <style type="text/css">
@@ -226,6 +229,9 @@
 
             });
 
+
+            $("#retailers-@id").addClass("select");
+
         });
     </script>
 }
@@ -268,163 +274,173 @@
                     <div class="content clearfix middle-box" id="middle_box">
                         <!-- ProductBox -->
                         <div class="product-box" id="product_box">
-                            <div id="owl_product" class="owl-carousel owl-product">
-                                <a class="item">
-                                    <ul>
-                                        <li style="margin-bottom: 5px;">
-                                            <span info="manosque|羽绒服|1,223.00">
-                                                <img src="/images/demo/saved/shirt/01.jpg" alt="">
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span info="manosque|羽绒服|2,223.00">
-                                                <img src="/images/demo/saved/shoes/02.jpg" alt="">
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </a>
-                                <a class="item">
-                                    <ul>
-                                        <li>
-                                            <span info="manosque|羽绒服|3,223.00">
-                                                <img src="/images/demo/saved/shirt/03.jpg" alt="">
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span info="manosque|羽绒服|4,223.00">
-                                                <img src="/images/demo/saved/shoes/04.jpg" alt="">
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </a>
-                                <a class="item">
-                                    <ul>
-                                        <li>
-                                            <span info="manosque|羽绒服|5,223.00">
-                                                <img src="/images/demo/saved/shirt/05.jpg" alt="">
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span info="manosque|羽绒服|6,223.00">
-                                                <img src="/images/demo/saved/pants/06.jpg" alt="">
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </a>
-                                <a class="item">
-                                    <ul>
-                                        <li>
-                                            <span info="manosque|羽绒服|7,223.00">
-                                                <img src="/images/demo/saved/shoes/07.jpg" alt="">
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span info="manosque|羽绒服|8,223.00">
-                                                <img src="/images/demo/saved/pants/08.jpg" alt="">
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </a>
-                                <a class="item">
-                                    <ul>
-                                        <li>
-                                            <span info="manosque|羽绒服|9,223.00">
-                                                <img src="/images/demo/saved/shoes/09.jpg" alt="">
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span info="manosque|羽绒服|10,223.00">
-                                                <img src="/images/demo/saved/pants/10.jpg" alt="">
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </a>
-                                <a class="item">
-                                    <ul>
-                                        <li>
-                                            <span info="manosque|羽绒服|11,223.00">
-                                                <img src="/images/demo/saved/shirt/11.jpg" alt="">
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span info="manosque|羽绒服|12,223.00">
-                                                <img src="/images/demo/saved/pants/12.jpg" alt="">
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </a>
-                                <a class="item">
-                                    <ul>
-                                        <li>
-                                            <span info="manosque|羽绒服|13,223.00">
-                                                <img src="/images/demo/saved/shirt/13.jpg" alt="">
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span info="manosque|羽绒服|14,223.00">
-                                                <img src="/images/demo/saved/pants/14.jpg" alt="">
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </a>
-                                <a class="item">
-                                    <ul>
-                                        <li>
-                                            <span info="manosque|羽绒服|15,223.00">
-                                                <img src="/images/demo/saved/pants/15.jpg" alt="">
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span info="manosque|羽绒服|16,223.00">
-                                                <img src="/images/demo/saved/shirt/04.jpg" alt="">
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </a>
-                                <a class="item">
-                                    <ul>
-                                        <li>
-                                            <span info="manosque|羽绒服|17,223.00">
-                                                <img src="/images/demo/saved/pants/01.jpg" alt="">
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span info="manosque|羽绒服|18,223.00">
-                                                <img src="/images/demo/saved/shirt/13.jpg" alt="">
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </a>
-                                <a class="item">
-                                    <ul>
-                                        <li>
-                                            <span info="manosque|羽绒服|19,223.00">
-                                                <img src="/images/demo/saved/pants/12.jpg" alt="">
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span info="manosque|羽绒服|20,223.00">
-                                                <img src="/images/demo/saved/shoes/11.jpg" alt="">
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </a>
+                            <div class="wrapper">
+                                <div class="content">
+                                    <div id="owl_product" class="owl-carousel owl-product">
+                                        <a class="item">
+                                            <ul>
+                                                <li style="margin-bottom: 5px;">
+                                                    <span info="manosque|羽绒服|1,223.00">
+                                                        <img src="/images/demo/saved/shirt/01.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span info="manosque|羽绒服|2,223.00">
+                                                        <img src="/images/demo/saved/shoes/02.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </a>
+                                        <a class="item">
+                                            <ul>
+                                                <li>
+                                                    <span info="manosque|羽绒服|3,223.00">
+                                                        <img src="/images/demo/saved/shirt/03.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span info="manosque|羽绒服|4,223.00">
+                                                        <img src="/images/demo/saved/shoes/04.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </a>
+                                        <a class="item">
+                                            <ul>
+                                                <li>
+                                                    <span info="manosque|羽绒服|5,223.00">
+                                                        <img src="/images/demo/saved/shirt/05.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span info="manosque|羽绒服|6,223.00">
+                                                        <img src="/images/demo/saved/pants/06.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </a>
+                                        <a class="item">
+                                            <ul>
+                                                <li>
+                                                    <span info="manosque|羽绒服|7,223.00">
+                                                        <img src="/images/demo/saved/shoes/07.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span info="manosque|羽绒服|8,223.00">
+                                                        <img src="/images/demo/saved/pants/08.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </a>
+                                        <a class="item">
+                                            <ul>
+                                                <li>
+                                                    <span info="manosque|羽绒服|9,223.00">
+                                                        <img src="/images/demo/saved/shoes/09.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span info="manosque|羽绒服|10,223.00">
+                                                        <img src="/images/demo/saved/pants/10.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </a>
+                                        <a class="item">
+                                            <ul>
+                                                <li>
+                                                    <span info="manosque|羽绒服|11,223.00">
+                                                        <img src="/images/demo/saved/shirt/11.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span info="manosque|羽绒服|12,223.00">
+                                                        <img src="/images/demo/saved/pants/12.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </a>
+                                        <a class="item">
+                                            <ul>
+                                                <li>
+                                                    <span info="manosque|羽绒服|13,223.00">
+                                                        <img src="/images/demo/saved/shirt/13.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span info="manosque|羽绒服|14,223.00">
+                                                        <img src="/images/demo/saved/pants/14.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </a>
+                                        <a class="item">
+                                            <ul>
+                                                <li>
+                                                    <span info="manosque|羽绒服|15,223.00">
+                                                        <img src="/images/demo/saved/pants/15.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span info="manosque|羽绒服|16,223.00">
+                                                        <img src="/images/demo/saved/shirt/04.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </a>
+                                        <a class="item">
+                                            <ul>
+                                                <li>
+                                                    <span info="manosque|羽绒服|17,223.00">
+                                                        <img src="/images/demo/saved/pants/01.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span info="manosque|羽绒服|18,223.00">
+                                                        <img src="/images/demo/saved/shirt/13.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </a>
+                                        <a class="item">
+                                            <ul>
+                                                <li>
+                                                    <span info="manosque|羽绒服|19,223.00">
+                                                        <img src="/images/demo/saved/pants/12.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span info="manosque|羽绒服|20,223.00">
+                                                        <img src="/images/demo/saved/shoes/11.jpg" alt="">
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </a>
+                                    </div>
+                                </div>
+
                             </div>
+
                         </div>
                         <!-- ProductBox end -->
                         <!-- CartBox -->
                         <div class="cart-box">
-                            <div id="owl_cart" class="owl-carousel owl-cart">
-                                <span class="owl-cart-null"></span>
-                            </div>
+                            <div class="wrapper">
+                                <div class="content">
+                                    <div id="owl_cart" class="owl-carousel owl-cart">
+                                        <span class="owl-cart-null"></span>
+                                    </div>
 
-                            <div class="cart-box-null">
-                                <div class="cart-box-null-img">
+                                    <div class="cart-box-null">
+                                        <div class="cart-box-null-img">
+
+                                        </div>
+                                        <p class="cart-box-null-text">choice products into the shopping cart </p>
+                                    </div>
 
                                 </div>
-                                <p class="cart-box-null-text">choice products into the shopping cart </p>
                             </div>
-
                         </div>
                         <!-- CartBox end -->
                     </div>
@@ -433,13 +449,13 @@
             <div class="right">
                 <div class="wrapper">
                     <div class="content clearfix">
-                        <div class="retailers-box">
+                        <div class="retailers-box" style="height:410px;">
                             <span class="title">Retailers</span>
                             <ul class="options">
-                                <li><a href="/Product/List/1">Bonobos</a> </li>
-                                <li><a href="/Product/List/2">Jcrew</a> </li>
-                                <li><a href="/Product/List/3">Jack Erwin</a> </li>
-                                <li><a href="/Product/List/4">Mr Porter</a> </li>
+                                <li><a href="/Product/List/1" id="retailers-1">Bonobos</a> </li>
+                                <li><a href="/Product/List/2" id="retailers-2">Jcrew</a> </li>
+                                <li><a href="/Product/List/3" id="retailers-3">Jack Erwin</a> </li>
+                                <li><a href="/Product/List/4" id="retailers-4">Mr Porter</a> </li>
                             </ul>
                         </div>
                         <div>

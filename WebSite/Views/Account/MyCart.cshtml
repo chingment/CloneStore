@@ -11,27 +11,23 @@
 
         $(document).ready(function () {
 
-            //$("#owl_cart_shoes .item   span,#owl_cart_shirt .item   span,#owl_cart_pants .item   span ").each(function () {
+            $("#owl_cart_shoes .item   span,#owl_cart_shirt .item   span,#owl_cart_pants .item   span ").each(function () {
 
+                var ihtml = '';
+                ihtml += '  <div style="border: 1px solid rgb(0, 0, 0); border-image: none; width: 146px; height: 146px; margin-right: 10px; float: left;">';
 
-            //    // var ihtml = $(this).attr('info');
+                ihtml += '?';
 
-            //    var ihtml = '';
-            //    ihtml += '  <div style="border: 1px solid rgb(0, 0, 0); border-image: none; width: 146px; height: 146px; margin-right: 10px; float: left;">';
+                ihtml += ' </div>';
 
-            //    ihtml += '?';
-
-            //    ihtml += ' </div>';
-
-
-            //    $(this).mouseOverTip({
-            //        width: '150px',
-            //        height: '150px',
-            //        outlineBoxId: "mycart_box",
-            //        boxId: "savedproduct_box_xiuTipBox",
-            //        content: ihtml
-            //    });
-            //});
+                $(this).mouseOverTip({
+                    width: '150px',
+                    height: '150px',
+                    outlineBoxId: "mycart_box",
+                    boxId: "savedproduct_box_xiuTipBox",
+                    content: ihtml
+                });
+            });
 
 
 

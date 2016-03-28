@@ -3,7 +3,7 @@
 }
 
 html, body {
-	font-family: 'Microsoft yahei','????',Tahoma,Verdana,Arial,sans-serif;
+	font-family: "Myriad Set Pro","Helvetica Neue","Helvetica","Arial",sans-serif;
 	font-size: 12px;
 	font-weight: 400;
 	letter-spacing: normal;
@@ -579,7 +579,6 @@ ul.horizontal li {
 	display: block;
 	line-height: 30px;
 	height: 30px;
-	font-weight: 600;
 	padding: 2px;
 }
 
@@ -587,27 +586,38 @@ ul.horizontal li {
 	border-bottom: 1px solid #000;
 	width: 100%;
 	display: block;
+}
+
+.retailers-box .options > li > a {
+	display: block;
 	line-height: 28px;
 	height: 28px;
-	padding: 2px 10px;
+	text-indent: 10px;
 }
 
+.retailers-box .options .select {
+	color: #00a9e0;
+}
 
 .product-box {
-	border: 1px solid #000;
-	height: 300px;
+	height: 302px;
 	width: 100%;
 }
 
+.product-box > .wrapper > .content {
+	border: 1px solid #000;
+}
 
 .cart-box {
-	border: 1px solid #000;
-	height: 140px;
-	width: 100%;
 	margin-top: 10px;
-	overflow: hidden;
+	width: 100%;
 }
 
+.cart-box > .wrapper > .content {
+	border: 1px solid #000;
+	overflow: hidden;
+	height: 140px;
+}
 
 .cart-box-null {
 	width: 300px;
