@@ -2,6 +2,13 @@
     ViewBag.Title = "Retailer";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
+@section styles{
+    <style type="text/css">
+        .gbr-main {
+            min-height: auto;
+        }
+    </style>
+}
 @section scriptsbyend{
     <script src="~/Scripts/W/owl.carousel.js"></script>
     <script src="~/Scripts/W/jquery.mouseoverbox.js"></script>
@@ -9,8 +16,6 @@
 
         i = 0;
         $(document).ready(function () {
-
-
 
             $(".btn-addtocart").live("click", function () {
                 var src = $(this).attr("imgurl");
@@ -77,7 +82,6 @@
 
             });
 
-
             $(".btn-removetocart").live("click", function () {
                 var owl_cart_item_id = $(this).attr("itemid")
                 var index = -1;
@@ -95,7 +99,6 @@
                     owl.goTo(index + 1);
                 }
             });
-
 
             $("#owl_product .item  ul li span ").each(function (i) {
 
@@ -159,43 +162,72 @@
                     content: ihtml
                 });
             });
-
-
         });
-
     </script>
-
     <script type="text/javascript">
 
         $(document).ready(function () {
 
             $('#owl_product').owlCarousel({
-                items: 6,
+                items: 5,
                 navigation: true,
                 mouseDrag: false,
-                itemsDesktop: [1199, 6],
-                itemsDesktopSmall: [979, 6],
-                itemsTablet: [768, 6],
-                itemsMobile: [479, 6],
+                itemsDesktop: [1199, 5],
+                itemsDesktopSmall: [979, 5],
+                itemsTablet: [768, 5],
+                itemsMobile: [479, 5],
                 navigationText: ["", ""]
             });
 
 
             $('#owl_cart').owlCarousel({
-                items: 6,
+                items: 5,
                 navigation: true,
                 mouseDrag: false,
-                itemsDesktop: [1199, 6],
-                itemsDesktopSmall: [979, 6],
-                itemsTablet: [768, 6],
-                itemsMobile: [479, 6],
+                itemsDesktop: [1199, 5],
+                itemsDesktopSmall: [979, 5],
+                itemsTablet: [768, 5],
+                itemsMobile: [479, 5],
                 navigationText: ["", ""]
+            });
+
+
+            $('.filter-entries .filter-entries-values .filter-item').each(function (e, t) {
+
+                $(this).click(function () {
+
+                    var checked = $(this).attr('checked');
+                    var value = $(this).attr('value');
+
+
+                    if (value === '0') {
+                        $(this).parent().find('span').attr("checked", false);
+                        $(this).parent().find('span').css('color', '#000');
+                        $(this).css('color', '#95bcf2');
+                        $(this).attr('checked', true);
+                    }
+                    else {
+                        $(this).parent().find('span').eq(0).css('color', '#000');
+                        if (checked) {
+                            $(this).attr('checked', false);
+                            $(this).css('color', '#000');
+                        }
+                        else {
+                            $(this).attr('checked', true);
+                            $(this).css('color', '#95bcf2');
+                        }
+                    }
+
+
+
+
+                });
+
+
             });
 
         });
     </script>
-
-
 }
 
 <div class="gbr gbr-product">
@@ -204,28 +236,30 @@
             <div class="left">
                 <div class="wrapper">
                     <div class="content clearfix">
-                        <ul class="filters-box">
-                            <li class="filter">
-                                <span class="title">Colors</span>
-                                <ul class="options">
-                                    <li>Red</li>
-                                    <li>Green</li>
-                                    <li>Black</li>
-                                    <li>Orange</li>
-                                </ul>
-                            </li>
-                            <li class="filter">
-                                <span class="title">Fabric</span>
-                                <ul class="options">
-                                    <li>Cotton</li>
-                                    <li>Wool</li>
-                                    <li>Silk</li>
-                                    <li>Linen</li>
-                                    <li>Nylon</li>
-                                    <li>Ramine</li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <div class="filter-lists-container product-filters-box">
+                            <dl class="filter-entries clearfix">
+                                <dt class="filter-entries-label"><span>Color</span></dt>
+                                <dd class="filter-entries-values">
+                                    <span class="filter-item" value="0">All</span>
+                                    <span class="filter-item" value="1">Green</span>
+                                    <span class="filter-item" value="2">Black</span>
+                                    <span class="filter-item" value="3">Blue</span>
+                                    <span class="filter-item" value="4">Orange</span>
+                                </dd>
+                            </dl>
+                            <dl class="filter-entries clearfix">
+                                <dt class="filter-entries-label"><span>Fabric</span></dt>
+                                <dd class="filter-entries-values">
+                                    <span class="filter-item" value="0">All</span>
+                                    <span class="filter-item">Cotton</span>
+                                    <span class="filter-item">Wool</span>
+                                    <span class="filter-item">Silk</span>
+                                    <span class="filter-item">Linen</span>
+                                    <span class="filter-item">Nylon</span>
+                                    <span class="filter-item">Ramine</span>
+                                </dd>
+                            </dl>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -399,7 +433,7 @@
             <div class="right">
                 <div class="wrapper">
                     <div class="content clearfix">
-                        <div class="retailers-box" style="height: 380px;">
+                        <div class="retailers-box">
                             <span class="title">Retailers</span>
                             <ul class="options">
                                 <li><a href="/Product/List/1">Bonobos</a> </li>
@@ -409,7 +443,7 @@
                             </ul>
                         </div>
                         <div>
-                            <span style="height: 30px; line-height: 30px; display: block; text-align: center;"><a class="a-btn"  style="font-size:12px; padding:6px 8px;" href="/Account/MyCart">Go My Cart</a></span>
+                            <span style="height: 30px; line-height: 30px; display: block; text-align: center;"><a class="a-btn" style="font-size:12px; padding:6px 8px;" href="/Account/MyCart">Go My Cart</a></span>
                         </div>
                     </div>
                 </div>

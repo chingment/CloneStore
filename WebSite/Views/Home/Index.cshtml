@@ -2,6 +2,13 @@
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
+@section styles{
+    <style type="text/css">
+        .gbr-main > .wrapper > .content {
+            max-width: 1200px;
+        }
+    </style>
+}
 @section scriptsbyend{
     <script type="text/JavaScript" src="/Scripts/W/CloudCarousel.1.0.5.js"></script>
     <script type="text/javascript">
@@ -25,8 +32,8 @@
             $("#home_carousel").CloudCarousel({
                 xPos: 570,
                 yPos: yPos,
-                buttonLeft: $('#but1'),
-                buttonRight: $('#but2'),
+                buttonLeft: $('#home_carousel_left'),
+                buttonRight: $('#home_carousel_right'),
                 buttonMouseOver: false,
                 altBox: $("#alt-text"),
                 titleBox: $("#title-text"),
@@ -40,7 +47,7 @@
                 bringToFront: true
             });
             var top = c_h/2-20;
-            $("#but1,#but2").css("top", top + "px")
+            $("#home_carousel_left,#home_carousel_right").css("top", top + "px")
 
         }
 
@@ -76,8 +83,8 @@
                 <a href="javascript:void(0)" target="_parent" class="item"><img class="cloudcarousel" data="3" src="/images/03.jpg" alt="p3" iscenter="false" /></a>
                 <a href="javascript:void(0)" target="_parent" class="item"><img class="cloudcarousel" data="4" src="/images/04.jpg" alt="p4" iscenter="false" /></a>
                 <a href="javascript:void(0)" target="_parent" class="item"><img class="cloudcarousel" data="5" src="/images/05.jpg" alt="p5" iscenter="false" /></a>
-                <div id="but1" class="carouselLeft"></div>
-                <div id="but2" class="carouselRight"></div>
+                <div id="home_carousel_left" class="carouselLeft"></div>
+                <div id="home_carousel_right" class="carouselRight"></div>
             </div>
         </div>
     </div>

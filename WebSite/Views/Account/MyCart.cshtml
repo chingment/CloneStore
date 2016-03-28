@@ -3,68 +3,58 @@
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 @section scriptsbyend{
-<script src="~/Scripts/W/owl.carousel.js"></script>
-<script src="~/Scripts/W/jquery.mouseoverbox.js"></script>
-    <script type="text/javascript">
-
-
-        $(document).ready(function () {
-
-
-
-
-            $("#owl_cart_shoes .item   span,#owl_cart_shirt .item   span,#owl_cart_pants .item   span ").each(function () {
-
-
-                // var ihtml = $(this).attr('info');
-
-                var ihtml = '';
-                ihtml += '  <div style="border: 1px solid rgb(0, 0, 0); border-image: none; width: 146px; height: 146px; margin-right: 10px; float: left;">';
-
-                ihtml += '?';
-
-                ihtml += ' </div>';
-
-
-                $(this).mouseOverTip({
-                    width: '150px',
-                    height: '150px',
-                    outlineBoxId: "mycart_box",
-                    boxId: "savedproduct_box_xiuTipBox",
-                    content: ihtml
-                });
-            });
-
-
-        });
-
-
-    </script>
-
+    <script src="~/Scripts/W/owl.carousel.js"></script>
+    <script src="~/Scripts/W/jquery.mouseoverbox.js"></script>
     <script type="text/javascript">
 
 
 
         $(document).ready(function () {
+
+            //$("#owl_cart_shoes .item   span,#owl_cart_shirt .item   span,#owl_cart_pants .item   span ").each(function () {
+
+
+            //    // var ihtml = $(this).attr('info');
+
+            //    var ihtml = '';
+            //    ihtml += '  <div style="border: 1px solid rgb(0, 0, 0); border-image: none; width: 146px; height: 146px; margin-right: 10px; float: left;">';
+
+            //    ihtml += '?';
+
+            //    ihtml += ' </div>';
+
+
+            //    $(this).mouseOverTip({
+            //        width: '150px',
+            //        height: '150px',
+            //        outlineBoxId: "mycart_box",
+            //        boxId: "savedproduct_box_xiuTipBox",
+            //        content: ihtml
+            //    });
+            //});
+
+
+
+
 
             $('#owl_cart_shirt').owlCarousel({
-                items: 6,
+                items: 7,
                 navigation: true,
-                itemsDesktop: [1199, 6],
-                itemsDesktopSmall: [979, 6],
-                itemsTablet: [768, 6],
-                itemsMobile: [479, 6],
+                itemsDesktop: [1199, 7],
+                itemsDesktopSmall: [979,7],
+                itemsTablet: [768,7],
+                itemsMobile: [479, 7],
                 navigationText: ["", ""]
             });
 
 
             $('#owl_cart_shoes').owlCarousel({
-                items: 6,
+                items: 7,
                 navigation: true,
-                itemsDesktop: [1199, 6],
-                itemsDesktopSmall: [979, 6],
-                itemsTablet: [768, 6],
-                itemsMobile: [479, 6],
+                itemsDesktop: [1199, 7],
+                itemsDesktopSmall: [979,7],
+                itemsTablet: [768, 7],
+                itemsMobile: [479, 7],
                 navigationText: ["", ""]
             });
 
@@ -84,7 +74,6 @@
                 $("#gallary_shirt_img").attr("src", src);
             });
 
-
             $("#owl_cart_shoes .item  span img").live('click', function (i) {
                 var src = $(this).attr("src");
                 $("#gallary_shoes_img").attr("src", src);
@@ -94,9 +83,6 @@
                 var src = $(this).attr("src");
                 $("#gallary_pants_img").attr("src", src);
             });
-
-
-
 
         });
     </script>
@@ -109,7 +95,7 @@
                 <div class="wrapper">
                     <div class="content clearfix mycart-box" id="mycart_box">
                         <!-- cart-shirt-box -->
-                        <div class="cart-shirt-box" id="cart_shirt_box">
+                        <div class="cart-shirt-box cart-top" id="cart_shirt_box">
                             <div class="cart-shirt-box-content">
 
                                 <div id="owl_cart_shirt" class="owl-carousel owl-cart-shirt">
@@ -168,23 +154,23 @@
                             </div>
                         </div>
                         <!-- cart-shirt-box end -->
-                        <div style="height: 330px; width: 100%; margin-top: 10px; margin-bottom: 10px;">
-                            <div class="gallary-box" id="gallary_box" style="height: 330px; float: left; width: 608px; border: 1px solid #000;">
-                                <div class="gallary-pants-box" style="width: 200px; float: left; line-height: 330px;">
+                        <div class="cart-middle">
+                            <div class="cart-gallary-box" id="cart_gallary_box">
+                                <div class="gallary-pants-box gallary-item" >
                                     <span></span>
-                                    <img id="gallary_pants_img" src="/images/gallary-pants.png" style="width: 180px; vertical-align: middle">
+                                    <img id="gallary_pants_img" src="/images/gallary-pants.png" style="width: 160px; vertical-align: middle">
                                 </div>
-                                <div class="gallary-shirt-box" style="width: 200px; float: left; line-height: 330px;">
+                                <div class="gallary-shirt-box gallary-item" >
                                     <span></span>
-                                    <img id="gallary_shirt_img" src="/images/gallary-shirt.png" alt="" style="width: 180px; vertical-align: middle">
+                                    <img id="gallary_shirt_img" src="/images/gallary-shirt.png" alt="" style="width: 160px; vertical-align: middle">
                                 </div>
-                                <div class="gallary-shoes-box" style="width: 200px; float: left; line-height: 330px;">
+                                <div class="gallary-shoes-box gallary-item" >
                                     <span></span>
-                                    <img id="gallary_shoes_img" src="/images/gallary_shoes.png" alt="" style="width: 180px; vertical-align: middle">
+                                    <img id="gallary_shoes_img" src="/images/gallary_shoes.png" alt="" style="width: 160px; vertical-align: middle">
                                 </div>
                             </div>
                             <!-- cart-pants-box -->
-                            <div class="cart-pants-box" style="height: 330px; float: right; width: 280px;">
+                            <div class="cart-pants-box" >
                                 <div class="cart-pants-box-content">
                                     <div id="owl_cart_pants" class="owl-carousel owl_cart_pants">
                                         <a class="item">
@@ -288,9 +274,8 @@
                             <!-- cart-pants-box -->
                         </div>
                         <!-- cart-shoes-box -->
-                        <div class="cart-shoes-box" id="cart_shoes_box">
+                        <div class="cart-shoes-box cart-bottom" id="cart_shoes_box">
                             <div class="cart-shoes-box-content">
-
                                 <div id="owl_cart_shoes" class="owl-carousel owl-cart-shoes">
                                     <a class="item">
                                         <span info="manosque|羽绒服|5,223.00">
@@ -354,7 +339,7 @@
             <div class="right">
                 <div class="wrapper">
                     <div class="content clearfix">
-                        <div class="retailers-box" style="height: 380px;">
+                        <div class="retailers-box">
                             <span class="title">Retailers</span>
                             <ul class="options">
                                 <li><a href="/Product/List/1">Bonobos</a> </li>
