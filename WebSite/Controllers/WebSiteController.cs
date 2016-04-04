@@ -11,11 +11,11 @@ using Lumos.Mvc;
 
 namespace WebSite.Controllers
 {
-    public class WebBaseController : BaseController
+    public class WebSiteController : BaseController
     {
 
 
-        public WebBaseController()
+        public WebSiteController()
         {
             _currentDb = new FxDbContext();
         }

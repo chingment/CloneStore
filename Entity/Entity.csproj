@@ -58,6 +58,7 @@
     <Compile Include="..\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Biz\Product.cs" />
     <Compile Include="DBNullCreationConverter.cs" />
     <Compile Include="EnumerationTypeConverter.cs" />
     <Compile Include="PageEntity.cs" />

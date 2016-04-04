@@ -2,12 +2,17 @@
     ViewBag.Title = "MyCart";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
+@section styles{
+    <style type="text/css">
+        .owl-item{
+          /*height:100px;*/
+        }
+    </style>
+}
 @section scriptsbyend{
     <script src="~/Scripts/W/owl.carousel.js"></script>
     <script src="~/Scripts/W/jquery.mouseoverbox.js"></script>
     <script type="text/javascript">
-
-
 
         $(document).ready(function () {
 
@@ -30,15 +35,12 @@
             });
 
 
-
-
-
             $('#owl_cart_shirt').owlCarousel({
                 items: 7,
                 navigation: true,
                 itemsDesktop: [1199, 7],
-                itemsDesktopSmall: [979,7],
-                itemsTablet: [768,7],
+                itemsDesktopSmall: [979, 7],
+                itemsTablet: [768, 7],
                 itemsMobile: [479, 7],
                 navigationText: ["", ""]
             });
@@ -48,7 +50,7 @@
                 items: 7,
                 navigation: true,
                 itemsDesktop: [1199, 7],
-                itemsDesktopSmall: [979,7],
+                itemsDesktopSmall: [979, 7],
                 itemsTablet: [768, 7],
                 itemsMobile: [479, 7],
                 navigationText: ["", ""]
@@ -146,27 +148,32 @@
                                         </span>
                                     </a>
                                 </div>
+                                <div class="cart-box-null" style="margin-top:10px;">
+                                    <div class="cart-box-null-img">
 
+                                    </div>
+                                    <p class="cart-box-null-text">choice <a href="/Product/List">clothes</a> into the cart </p>
+                                </div>
                             </div>
                         </div>
                         <!-- cart-shirt-box end -->
                         <div class="cart-middle">
                             <div class="cart-gallary-box" id="cart_gallary_box">
-                                <div class="gallary-pants-box gallary-item" >
+                                <div class="gallary-pants-box gallary-item">
                                     <span></span>
                                     <img id="gallary_pants_img" src="/images/gallary-pants.png" style="width: 160px; vertical-align: middle">
                                 </div>
-                                <div class="gallary-shirt-box gallary-item" >
+                                <div class="gallary-shirt-box gallary-item">
                                     <span></span>
                                     <img id="gallary_shirt_img" src="/images/gallary-shirt.png" alt="" style="width: 160px; vertical-align: middle">
                                 </div>
-                                <div class="gallary-shoes-box gallary-item" >
+                                <div class="gallary-shoes-box gallary-item">
                                     <span></span>
                                     <img id="gallary_shoes_img" src="/images/gallary_shoes.png" alt="" style="width: 160px; vertical-align: middle">
                                 </div>
                             </div>
                             <!-- cart-pants-box -->
-                            <div class="cart-pants-box" >
+                            <div class="cart-pants-box">
                                 <div class="cart-pants-box-content">
                                     <div id="owl_cart_pants" class="owl-carousel owl_cart_pants">
                                         <a class="item">
@@ -265,6 +272,12 @@
                                             </ul>
                                         </a>
                                     </div>
+                                    <div class="cart-box-null" style="margin-top:114px;width:200px;">
+                                        <div class="cart-box-null-img">
+
+                                        </div>
+                                        <p class="cart-box-null-text">choice <a href="/Product/List">pants</a> into the cart </p>
+                                    </div>
                                 </div>
                             </div>
                             <!-- cart-pants-box -->
@@ -324,7 +337,12 @@
                                         </span>
                                     </a>
                                 </div>
+                                <div class="cart-box-null" style="margin-top:10px;">
+                                    <div class="cart-box-null-img">
 
+                                    </div>
+                                    <p class="cart-box-null-text">choice <a href="/Product/List">shoes</a> into the cart </p>
+                                </div>
                             </div>
                         </div>
                         <!-- cart-shoes-box end -->

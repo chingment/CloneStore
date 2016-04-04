@@ -393,7 +393,7 @@ ul.horizontal li {
 	float: left;
 	border: 1px solid #000;
 	width: 118px;
-	height: 618px;
+	height: 592px;
 }
 
 
@@ -405,17 +405,31 @@ ul.horizontal li {
 
 .cart-shirt-box-content, .cart-shoes-box-content {
 	border: 1px solid #000;
-	padding: 10px 0px;
+	/*padding: 10px 0px;*/
+	height: 120px;
+	overflow: hidden;
+}
+
+.owl-cart-shirt,.owl-cart-shoes{
+ height:100px;
+ padding:10px 0px;
 }
 
 .cart-pants-box-content {
 	border: 1px solid #000;
-	padding: 10px 0px 5px;
+	height: 328px;
+	overflow: hidden;
 }
+
+.owl_cart_pants {
+	padding: 7px 0px;
+}
+
+
 
 .cart-shirt-box .item, .cart-shoes-box .item {
 	display: block;
-	margin: 5px;
+	margin:0px 5px;
 }
 
 .cart-shirt-box .item span, .cart-shoes-box .item span, .owl_cart_pants .item span {
@@ -456,7 +470,7 @@ ul.horizontal li {
 }
 
 .cart-gallary-box {
-	height: 330px;
+	height: 328px;
 	float: left;
 	width: 577px;
 	border: 1px solid #000;
@@ -470,7 +484,6 @@ ul.horizontal li {
 }
 
 .cart-pants-box {
-	height: 300px;
 	float: right;
 	width: 240px;
 }
@@ -636,7 +649,7 @@ ul.horizontal li {
 
 
 .owl-product {
-	padding: 20px 0px;
+	padding: 15px 0px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -644,15 +657,17 @@ ul.horizontal li {
 .owl-product .item {
 	display: block;
 	margin: 5px;
+ text-align:center;
 }
 
 .owl-product .item span {
 	display: block;
+
 }
 
 
 .owl-product .item ul li:first-child {
-	margin-bottom: 5px;
+	margin-bottom: 15px;
 }
 
 .owl-product img {
@@ -723,14 +738,11 @@ ul.horizontal li {
 .poptip {
 	position: absolute;
 	z-index: 999;
-	right: 20px;
-	top: 20px;
+	right: 5px;
+	top: 5px;
 	background: #fff;
 	border: #9ca09f 1px solid;
-	border: #9ca09f 1px solid;
-	width: 144px;
 	text-align: center;
-	padding: 3px;
 	border-radius: 5px;
 }
 

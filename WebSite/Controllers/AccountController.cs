@@ -11,9 +11,11 @@ using System.Web.Mvc;
 using WebSite.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
+
 namespace WebSite.Controllers
 {
-    public class AccountController : WebBaseController
+    public class AccountController : WebSiteController
     {
         //
         // GET: /Account/
@@ -60,6 +62,11 @@ namespace WebSite.Controllers
             }
 
             CurrentDb.SaveChanges();
+
+
+            relay.SignIn(model.txt_UserName, model.txt_Password, false);
+
+
 
             return Json(ResultType.Success, "Success");
         }

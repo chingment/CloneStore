@@ -45978,3 +45978,2440 @@ System.Web.HttpException (0x80004005): A public action method 'Retailer' was not
       Form表单数据：
       URL参数：
           
+2016-04-03 11:13:29,383 [11] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/3 11:13:29
+      结束时间：2016/4/3 11:13:29
+      总 时 间：1.42E-05秒
+      用户Id:3
+      Form表单数据：
+      URL参数：
+          
+2016-04-03 11:13:29,805 [11] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/3 11:13:29
+      结束时间：2016/4/3 11:13:29
+      总 时 间：0.4219103秒
+      用户Id:3
+      Form表单数据：
+      URL参数：
+          
+2016-04-03 11:13:43,056 [10] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/3 11:13:43
+      结束时间：2016/4/3 11:13:43
+      总 时 间：6.12E-05秒
+      用户Id:3
+      Form表单数据：
+      URL参数：
+          
+2016-04-03 11:13:43,056 [10] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/3 11:13:43
+      结束时间：2016/4/3 11:13:43
+      总 时 间：0秒
+      用户Id:3
+      Form表单数据：
+      URL参数：
+          
+2016-04-03 11:14:49,222 [18] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/3 11:14:49
+      结束时间：2016/4/3 11:14:49
+      总 时 间：7.9E-05秒
+      用户Id:3
+      Form表单数据：
+      URL参数：
+          
+2016-04-03 11:14:49,222 [18] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/3 11:14:49
+      结束时间：2016/4/3 11:14:49
+      总 时 间：0秒
+      用户Id:3
+      Form表单数据：
+      URL参数：
+          
+2016-04-03 11:15:32,741 [15] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:3,UserName:t@11.com,IP:::1,CreateTime:2016-04-03 11:15:03,Path：/Account/SignOut
+2016-04-03 11:15:32,741 [15] INFO  LoginWebLogger (null) - [Logout website]]-> UserID:3,UserName:t@11.com,IP:::1,CreateTime:2016-04-03 11:15:03,Path：/Account/SignOut
+2016-04-03 11:15:32,741 [15] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignOut
+      开始时间：2016/4/3 11:15:32
+      结束时间：2016/4/3 11:15:32
+      总 时 间：5.67E-05秒
+      用户Id:3
+      Form表单数据：__RequestVerificationToken=N4RgoS7wBeNnIoRld63VHtMRtiQguPXSFdXTy9G0jGpnhRW1oQD2ZQhRGpTlSh2CaHzvTQ4vrGsaG0EQRN8zSNNFgkomkUe3pHg9Npr6pysBvHO80
+      URL参数：
+          
+2016-04-03 11:15:32,757 [15] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignOut
+      开始时间：2016/4/3 11:15:32
+      结束时间：2016/4/3 11:15:32
+      总 时 间：0秒
+      用户Id:3
+      Form表单数据：__RequestVerificationToken=N4RgoS7wBeNnIoRld63VHtMRtiQguPXSFdXTy9G0jGpnhRW1oQD2ZQhRGpTlSh2CaHzvTQ4vrGsaG0EQRN8zSNNFgkomkUe3pHg9Npr6pysBvHO80
+      URL参数：
+          
+2016-04-03 11:15:32,757 [17] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/3 11:15:32
+      结束时间：2016/4/3 11:15:32
+      总 时 间：8.33E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-03 11:15:32,772 [17] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/3 11:15:32
+      结束时间：2016/4/3 11:15:32
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-03 11:15:35,001 [11] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/3 11:15:35
+      结束时间：2016/4/3 11:15:35
+      总 时 间：7.52E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-03 11:15:35,001 [11] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/3 11:15:35
+      结束时间：2016/4/3 11:15:35
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-03 11:15:35,767 [14] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/3 11:15:35
+      结束时间：2016/4/3 11:15:35
+      总 时 间：6.15E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-03 11:15:35,767 [14] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/3 11:15:35
+      结束时间：2016/4/3 11:15:35
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:04:32,658 [6] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 12:04:32
+      结束时间：2016/4/4 12:04:32
+      总 时 间：0.0156571秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:04:32,829 [6] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 12:04:32
+      结束时间：2016/4/4 12:04:32
+      总 时 间：0.1562738秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:04:34,126 [6] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:04:34
+      结束时间：2016/4/4 12:04:34
+      总 时 间：2.31E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:04:34,173 [6] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:04:34
+      结束时间：2016/4/4 12:04:34
+      总 时 间：0.0468901秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:04:37,814 [7] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:04:37
+      结束时间：2016/4/4 12:04:37
+      总 时 间：1.35E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:04:37,814 [7] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:04:37
+      结束时间：2016/4/4 12:04:37
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:04:39,769 [6] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:04:04,Path：/Account/MyCart
+2016-04-04 12:04:39,769 [6] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:MyCart
+      开始时间：2016/4/4 12:04:39
+      结束时间：2016/4/4 12:04:39
+      总 时 间：3.59E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:04:39,800 [6] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:MyCart
+      开始时间：2016/4/4 12:04:39
+      结束时间：2016/4/4 12:04:39
+      总 时 间：0.0312373秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:05:05,100 [8] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:05:05
+      结束时间：2016/4/4 12:05:05
+      总 时 间：1.07E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:05:05,115 [8] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:05:05
+      结束时间：2016/4/4 12:05:05
+      总 时 间：0.0155281秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:05:24,727 [9] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:05:24
+      结束时间：2016/4/4 12:05:24
+      总 时 间：2.76E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:05:24,742 [9] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:05:24
+      结束时间：2016/4/4 12:05:24
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:05:26,164 [10] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:05:04,Path：/Account/MyCart
+2016-04-04 12:05:26,164 [10] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:MyCart
+      开始时间：2016/4/4 12:05:26
+      结束时间：2016/4/4 12:05:26
+      总 时 间：3.15E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:05:26,180 [10] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:MyCart
+      开始时间：2016/4/4 12:05:26
+      结束时间：2016/4/4 12:05:26
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:05:28,008 [7] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 12:05:28
+      结束时间：2016/4/4 12:05:28
+      总 时 间：5.18E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:05:28,008 [7] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 12:05:28
+      结束时间：2016/4/4 12:05:28
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:05:28,830 [9] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:05:28
+      结束时间：2016/4/4 12:05:28
+      总 时 间：2.55E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:05:28,830 [9] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:05:28
+      结束时间：2016/4/4 12:05:28
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:05:29,721 [6] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:05:04,Path：/Account/MyCart
+2016-04-04 12:05:29,721 [6] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:MyCart
+      开始时间：2016/4/4 12:05:29
+      结束时间：2016/4/4 12:05:29
+      总 时 间：2.74E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:05:29,721 [6] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:MyCart
+      开始时间：2016/4/4 12:05:29
+      结束时间：2016/4/4 12:05:29
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:05:31,440 [10] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 12:05:31
+      结束时间：2016/4/4 12:05:31
+      总 时 间：8.8E-06秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:05:31,455 [10] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 12:05:31
+      结束时间：2016/4/4 12:05:31
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:05:32,190 [9] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:05:32
+      结束时间：2016/4/4 12:05:32
+      总 时 间：6.71E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:05:32,205 [9] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:05:32
+      结束时间：2016/4/4 12:05:32
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:07:28,715 [9] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:07:28
+      结束时间：2016/4/4 12:07:28
+      总 时 间：8.98E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:07:28,715 [9] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:07:28
+      结束时间：2016/4/4 12:07:28
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:08:10,144 [9] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:08:10
+      结束时间：2016/4/4 12:08:10
+      总 时 间：8.41E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:08:10,816 [9] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:08:10
+      结束时间：2016/4/4 12:08:10
+      总 时 间：0.6719278秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:16:59,330 [8] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:16:59
+      结束时间：2016/4/4 12:16:59
+      总 时 间：9.7E-06秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:16:59,710 [8] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:16:59
+      结束时间：2016/4/4 12:16:59
+      总 时 间：0.371445秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:17:08,829 [8] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:17:08
+      结束时间：2016/4/4 12:17:08
+      总 时 间：5.62E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:17:08,829 [8] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:17:08
+      结束时间：2016/4/4 12:17:08
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:18:33,292 [8] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:18:33
+      结束时间：2016/4/4 12:18:33
+      总 时 间：5.48E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:18:33,300 [8] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:18:33
+      结束时间：2016/4/4 12:18:33
+      总 时 间：0.0040016秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:19:28,690 [23] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:19:28
+      结束时间：2016/4/4 12:19:28
+      总 时 间：5.47E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:19:28,690 [23] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:19:28
+      结束时间：2016/4/4 12:19:28
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:19:38,948 [11] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:19:38
+      结束时间：2016/4/4 12:19:38
+      总 时 间：3.16E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:19:38,948 [11] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:19:38
+      结束时间：2016/4/4 12:19:38
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:19:49,743 [23] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:19:49
+      结束时间：2016/4/4 12:19:49
+      总 时 间：7.29E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:19:49,759 [23] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:19:49
+      结束时间：2016/4/4 12:19:49
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:19:54,290 [11] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:19:54
+      结束时间：2016/4/4 12:19:54
+      总 时 间：9.93E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:19:54,306 [11] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:19:54
+      结束时间：2016/4/4 12:19:54
+      总 时 间：0.0156118秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:20:03,888 [24] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:20:03
+      结束时间：2016/4/4 12:20:03
+      总 时 间：9.14E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:20:03,904 [24] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:20:03
+      结束时间：2016/4/4 12:20:03
+      总 时 间：0.0156244秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:21:11,831 [11] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:21:11
+      结束时间：2016/4/4 12:21:11
+      总 时 间：5.14E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:21:12,242 [11] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:21:11
+      结束时间：2016/4/4 12:21:12
+      总 时 间：0.3950709秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:21:17,817 [24] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:21:17
+      结束时间：2016/4/4 12:21:17
+      总 时 间：1.75E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:21:17,826 [24] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:21:17
+      结束时间：2016/4/4 12:21:17
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:21:32,369 [8] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:21:32
+      结束时间：2016/4/4 12:21:32
+      总 时 间：4.5E-06秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:21:32,369 [8] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:21:32
+      结束时间：2016/4/4 12:21:32
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:22:18,975 [23] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:22:18
+      结束时间：2016/4/4 12:22:18
+      总 时 间：8.62E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:22:18,975 [23] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:22:18
+      结束时间：2016/4/4 12:22:18
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:44:12,289 [48] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:44:04,Path：/Account/SignIn
+2016-04-04 12:44:12,289 [48] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:12
+      结束时间：2016/4/4 12:44:12
+      总 时 间：3.41E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:44:12,320 [48] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:12
+      结束时间：2016/4/4 12:44:12
+      总 时 间：0.0156258秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:44:15,473 [44] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:44:04,Path：/Account/SignUp
+2016-04-04 12:44:15,473 [44] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignUp
+      开始时间：2016/4/4 12:44:15
+      结束时间：2016/4/4 12:44:15
+      总 时 间：9.83E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:44:15,488 [44] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignUp
+      开始时间：2016/4/4 12:44:15
+      结束时间：2016/4/4 12:44:15
+      总 时 间：0.0156232秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:44:17,409 [28] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:44:04,Path：/Account/SignIn
+2016-04-04 12:44:17,409 [28] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:17
+      结束时间：2016/4/4 12:44:17
+      总 时 间：6.53E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:44:17,425 [28] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:17
+      结束时间：2016/4/4 12:44:17
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:44:44,607 [44] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:44:04,Path：/Account/SignIn
+2016-04-04 12:44:45,295 [44] INFO  LoginWebLogger (null) - [Login website]-> UserID:0,UserName:qqq@ssa.com,IP:::1,CreateTime:2016-04-04 12:44:04,Path：/Account/SignIn,Tip:Account or password is incorrect. Please try again!
+2016-04-04 12:44:45,295 [44] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:44
+      结束时间：2016/4/4 12:44:45
+      总 时 间：0.6875908秒
+      用户Id:0
+      Form表单数据：__RequestVerificationToken=kTBYnA-PRqRlk1rsF8pKAHfvDIZbXlaPpL6ht8kk8YwfuRL3Mw26KPNG_RB-Eld9HavdgQ2&txt_UserName=qqq@ssa.com&txt_Password=
+      URL参数：
+          
+2016-04-04 12:44:45,388 [44] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:45
+      结束时间：2016/4/4 12:44:45
+      总 时 间：0.0781418秒
+      用户Id:0
+      Form表单数据：__RequestVerificationToken=kTBYnA-PRqRlk1rsF8pKAHfvDIZbXlaPpL6ht8kk8YwfuRL3Mw26KPNG_RB-Eld9HavdgQ2&txt_UserName=qqq@ssa.com&txt_Password=
+      URL参数：
+          
+2016-04-04 12:44:46,834 [35] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:44:04,Path：/Account/SignIn
+2016-04-04 12:44:46,834 [35] INFO  LoginWebLogger (null) - [Login website]-> UserID:0,UserName:qqq@ssa.com,IP:::1,CreateTime:2016-04-04 12:44:04,Path：/Account/SignIn,Tip:Account or password is incorrect. Please try again!
+2016-04-04 12:44:46,834 [35] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:46
+      结束时间：2016/4/4 12:44:46
+      总 时 间：2.06E-05秒
+      用户Id:0
+      Form表单数据：__RequestVerificationToken=kTBYnA-PRqRlk1rsF8pKAHfvDIZbXlaPpL6ht8kk8YwfuRL3Mw26KPNG_RB-Eld9HavdgQ2&txt_UserName=qqq@ssa.com&txt_Password=
+      URL参数：
+          
+2016-04-04 12:44:46,834 [35] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:46
+      结束时间：2016/4/4 12:44:46
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：__RequestVerificationToken=kTBYnA-PRqRlk1rsF8pKAHfvDIZbXlaPpL6ht8kk8YwfuRL3Mw26KPNG_RB-Eld9HavdgQ2&txt_UserName=qqq@ssa.com&txt_Password=
+      URL参数：
+          
+2016-04-04 12:44:47,334 [28] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:44:04,Path：/Account/SignIn
+2016-04-04 12:44:47,350 [28] INFO  LoginWebLogger (null) - [Login website]-> UserID:0,UserName:qqq@ssa.com,IP:::1,CreateTime:2016-04-04 12:44:04,Path：/Account/SignIn,Tip:Account or password is incorrect. Please try again!
+2016-04-04 12:44:47,350 [28] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:47
+      结束时间：2016/4/4 12:44:47
+      总 时 间：0.0155864秒
+      用户Id:0
+      Form表单数据：__RequestVerificationToken=kTBYnA-PRqRlk1rsF8pKAHfvDIZbXlaPpL6ht8kk8YwfuRL3Mw26KPNG_RB-Eld9HavdgQ2&txt_UserName=qqq@ssa.com&txt_Password=
+      URL参数：
+          
+2016-04-04 12:44:47,350 [28] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:47
+      结束时间：2016/4/4 12:44:47
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：__RequestVerificationToken=kTBYnA-PRqRlk1rsF8pKAHfvDIZbXlaPpL6ht8kk8YwfuRL3Mw26KPNG_RB-Eld9HavdgQ2&txt_UserName=qqq@ssa.com&txt_Password=
+      URL参数：
+          
+2016-04-04 12:44:47,522 [55] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:44:04,Path：/Account/SignIn
+2016-04-04 12:44:47,522 [55] INFO  LoginWebLogger (null) - [Login website]-> UserID:0,UserName:qqq@ssa.com,IP:::1,CreateTime:2016-04-04 12:44:04,Path：/Account/SignIn,Tip:Account or password is incorrect. Please try again!
+2016-04-04 12:44:47,522 [55] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:47
+      结束时间：2016/4/4 12:44:47
+      总 时 间：7.51E-05秒
+      用户Id:0
+      Form表单数据：__RequestVerificationToken=kTBYnA-PRqRlk1rsF8pKAHfvDIZbXlaPpL6ht8kk8YwfuRL3Mw26KPNG_RB-Eld9HavdgQ2&txt_UserName=qqq@ssa.com&txt_Password=
+      URL参数：
+          
+2016-04-04 12:44:47,522 [55] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:47
+      结束时间：2016/4/4 12:44:47
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：__RequestVerificationToken=kTBYnA-PRqRlk1rsF8pKAHfvDIZbXlaPpL6ht8kk8YwfuRL3Mw26KPNG_RB-Eld9HavdgQ2&txt_UserName=qqq@ssa.com&txt_Password=
+      URL参数：
+          
+2016-04-04 12:44:47,662 [49] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:44:04,Path：/Account/SignIn
+2016-04-04 12:44:47,678 [49] INFO  LoginWebLogger (null) - [Login website]-> UserID:0,UserName:qqq@ssa.com,IP:::1,CreateTime:2016-04-04 12:44:04,Path：/Account/SignIn,Tip:Account or password is incorrect. Please try again!
+2016-04-04 12:44:47,678 [49] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:47
+      结束时间：2016/4/4 12:44:47
+      总 时 间：3.82E-05秒
+      用户Id:0
+      Form表单数据：__RequestVerificationToken=kTBYnA-PRqRlk1rsF8pKAHfvDIZbXlaPpL6ht8kk8YwfuRL3Mw26KPNG_RB-Eld9HavdgQ2&txt_UserName=qqq@ssa.com&txt_Password=
+      URL参数：
+          
+2016-04-04 12:44:47,678 [49] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:47
+      结束时间：2016/4/4 12:44:47
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：__RequestVerificationToken=kTBYnA-PRqRlk1rsF8pKAHfvDIZbXlaPpL6ht8kk8YwfuRL3Mw26KPNG_RB-Eld9HavdgQ2&txt_UserName=qqq@ssa.com&txt_Password=
+      URL参数：
+          
+2016-04-04 12:44:47,837 [35] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:44:04,Path：/Account/SignIn
+2016-04-04 12:44:47,837 [35] INFO  LoginWebLogger (null) - [Login website]-> UserID:0,UserName:qqq@ssa.com,IP:::1,CreateTime:2016-04-04 12:44:04,Path：/Account/SignIn,Tip:Account or password is incorrect. Please try again!
+2016-04-04 12:44:47,837 [35] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:47
+      结束时间：2016/4/4 12:44:47
+      总 时 间：9.5E-06秒
+      用户Id:0
+      Form表单数据：__RequestVerificationToken=kTBYnA-PRqRlk1rsF8pKAHfvDIZbXlaPpL6ht8kk8YwfuRL3Mw26KPNG_RB-Eld9HavdgQ2&txt_UserName=qqq@ssa.com&txt_Password=
+      URL参数：
+          
+2016-04-04 12:44:47,853 [35] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:47
+      结束时间：2016/4/4 12:44:47
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：__RequestVerificationToken=kTBYnA-PRqRlk1rsF8pKAHfvDIZbXlaPpL6ht8kk8YwfuRL3Mw26KPNG_RB-Eld9HavdgQ2&txt_UserName=qqq@ssa.com&txt_Password=
+      URL参数：
+          
+2016-04-04 12:44:48,025 [55] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:44:04,Path：/Account/SignIn
+2016-04-04 12:44:48,025 [55] INFO  LoginWebLogger (null) - [Login website]-> UserID:0,UserName:qqq@ssa.com,IP:::1,CreateTime:2016-04-04 12:44:04,Path：/Account/SignIn,Tip:Account or password is incorrect. Please try again!
+2016-04-04 12:44:48,025 [55] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:48
+      结束时间：2016/4/4 12:44:48
+      总 时 间：2.69E-05秒
+      用户Id:0
+      Form表单数据：__RequestVerificationToken=kTBYnA-PRqRlk1rsF8pKAHfvDIZbXlaPpL6ht8kk8YwfuRL3Mw26KPNG_RB-Eld9HavdgQ2&txt_UserName=qqq@ssa.com&txt_Password=
+      URL参数：
+          
+2016-04-04 12:44:48,025 [55] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:48
+      结束时间：2016/4/4 12:44:48
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：__RequestVerificationToken=kTBYnA-PRqRlk1rsF8pKAHfvDIZbXlaPpL6ht8kk8YwfuRL3Mw26KPNG_RB-Eld9HavdgQ2&txt_UserName=qqq@ssa.com&txt_Password=
+      URL参数：
+          
+2016-04-04 12:44:49,919 [44] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 12:44:49
+      结束时间：2016/4/4 12:44:49
+      总 时 间：1.14E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:44:49,919 [44] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 12:44:49
+      结束时间：2016/4/4 12:44:49
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:44:50,995 [28] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:44:50
+      结束时间：2016/4/4 12:44:50
+      总 时 间：5.66E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:44:50,995 [28] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:44:50
+      结束时间：2016/4/4 12:44:50
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:44:52,339 [38] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:44:04,Path：/Account/SignIn
+2016-04-04 12:44:52,339 [38] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:52
+      结束时间：2016/4/4 12:44:52
+      总 时 间：9.52E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:44:52,355 [38] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:44:52
+      结束时间：2016/4/4 12:44:52
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:44:53,149 [49] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:44:04,Path：/Account/SignUp
+2016-04-04 12:44:53,149 [49] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignUp
+      开始时间：2016/4/4 12:44:53
+      结束时间：2016/4/4 12:44:53
+      总 时 间：2.06E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:44:53,149 [49] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignUp
+      开始时间：2016/4/4 12:44:53
+      结束时间：2016/4/4 12:44:53
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:33,306 [56] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:45:04,Path：/Account/SignUp
+2016-04-04 12:45:33,306 [56] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignUp
+      开始时间：2016/4/4 12:45:33
+      结束时间：2016/4/4 12:45:33
+      总 时 间：2.68E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:33,321 [56] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignUp
+      开始时间：2016/4/4 12:45:33
+      结束时间：2016/4/4 12:45:33
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:35,336 [28] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:45:04,Path：/Account/SignIn
+2016-04-04 12:45:35,352 [28] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:45:35
+      结束时间：2016/4/4 12:45:35
+      总 时 间：2.02E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:35,352 [28] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:45:35
+      结束时间：2016/4/4 12:45:35
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:36,506 [49] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:45:04,Path：/Account/SignIn
+2016-04-04 12:45:36,521 [49] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:45:36
+      结束时间：2016/4/4 12:45:36
+      总 时 间：8.32E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:36,521 [49] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:45:36
+      结束时间：2016/4/4 12:45:36
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:38,854 [44] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:45:04,Path：/Account/SignUp
+2016-04-04 12:45:38,854 [44] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignUp
+      开始时间：2016/4/4 12:45:38
+      结束时间：2016/4/4 12:45:38
+      总 时 间：9.88E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:38,870 [44] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignUp
+      开始时间：2016/4/4 12:45:38
+      结束时间：2016/4/4 12:45:38
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:40,289 [48] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:45:04,Path：/Account/SignIn
+2016-04-04 12:45:40,289 [48] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:45:40
+      结束时间：2016/4/4 12:45:40
+      总 时 间：7.94E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:40,305 [48] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:45:40
+      结束时间：2016/4/4 12:45:40
+      总 时 间：0.015525秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:47,306 [35] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 12:45:47
+      结束时间：2016/4/4 12:45:47
+      总 时 间：9.25E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:47,321 [35] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 12:45:47
+      结束时间：2016/4/4 12:45:47
+      总 时 间：0.0155352秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:54,695 [28] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:45:54
+      结束时间：2016/4/4 12:45:54
+      总 时 间：3.1E-06秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:54,695 [28] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:45:54
+      结束时间：2016/4/4 12:45:54
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:56,862 [55] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:45:04,Path：/Account/MyCart
+2016-04-04 12:45:56,877 [55] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:MyCart
+      开始时间：2016/4/4 12:45:56
+      结束时间：2016/4/4 12:45:56
+      总 时 间：6.42E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:56,877 [55] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:MyCart
+      开始时间：2016/4/4 12:45:56
+      结束时间：2016/4/4 12:45:56
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:58,399 [38] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:45:04,Path：/Account/SignIn
+2016-04-04 12:45:58,399 [38] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:45:58
+      结束时间：2016/4/4 12:45:58
+      总 时 间：8.65E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:58,415 [38] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignIn
+      开始时间：2016/4/4 12:45:58
+      结束时间：2016/4/4 12:45:58
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:59,742 [44] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:45:04,Path：/Account/SignUp
+2016-04-04 12:45:59,742 [44] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:SignUp
+      开始时间：2016/4/4 12:45:59
+      结束时间：2016/4/4 12:45:59
+      总 时 间：1.05E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:45:59,742 [44] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:SignUp
+      开始时间：2016/4/4 12:45:59
+      结束时间：2016/4/4 12:45:59
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:46:02,302 [44] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 12:46:02
+      结束时间：2016/4/4 12:46:02
+      总 时 间：3.11E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:46:02,318 [44] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 12:46:02
+      结束时间：2016/4/4 12:46:02
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:46:03,302 [42] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:46:03
+      结束时间：2016/4/4 12:46:03
+      总 时 间：8.1E-06秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:46:03,302 [42] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:46:03
+      结束时间：2016/4/4 12:46:03
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:46:39,992 [49] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:46:39
+      结束时间：2016/4/4 12:46:39
+      总 时 间：2.55E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:46:40,008 [49] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:46:40
+      结束时间：2016/4/4 12:46:40
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:46:56,584 [38] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:46:56
+      结束时间：2016/4/4 12:46:56
+      总 时 间：6.8E-06秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:46:56,584 [38] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:46:56
+      结束时间：2016/4/4 12:46:56
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:47:28,512 [53] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:47:04,Path：/Account/MyCart
+2016-04-04 12:47:28,512 [53] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:MyCart
+      开始时间：2016/4/4 12:47:28
+      结束时间：2016/4/4 12:47:28
+      总 时 间：3.92E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:47:28,528 [53] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:MyCart
+      开始时间：2016/4/4 12:47:28
+      结束时间：2016/4/4 12:47:28
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:48:37,820 [38] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 12:48:04,Path：/Account/MyCart
+2016-04-04 12:48:37,820 [38] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：AccountController
+      Name:MyCart
+      开始时间：2016/4/4 12:48:37
+      结束时间：2016/4/4 12:48:37
+      总 时 间：3.34E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:48:37,836 [38] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：AccountController
+      Name:MyCart
+      开始时间：2016/4/4 12:48:37
+      结束时间：2016/4/4 12:48:37
+      总 时 间：0.0156167秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:49:06,588 [55] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 12:49:06
+      结束时间：2016/4/4 12:49:06
+      总 时 间：8.6E-06秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:49:06,603 [55] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 12:49:06
+      结束时间：2016/4/4 12:49:06
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:49:07,619 [42] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:49:07
+      结束时间：2016/4/4 12:49:07
+      总 时 间：4.75E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:49:07,619 [42] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:49:07
+      结束时间：2016/4/4 12:49:07
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:52:23,517 [42] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:52:23
+      结束时间：2016/4/4 12:52:23
+      总 时 间：9.51E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:52:23,892 [42] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:52:23
+      结束时间：2016/4/4 12:52:23
+      总 时 间：0.3594038秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:56:21,372 [42] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:56:21
+      结束时间：2016/4/4 12:56:21
+      总 时 间：2.73E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:56:21,731 [42] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:56:21
+      结束时间：2016/4/4 12:56:21
+      总 时 间：0.3437909秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:56:58,164 [42] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:56:58
+      结束时间：2016/4/4 12:56:58
+      总 时 间：7.79E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 12:56:58,539 [42] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 12:56:58
+      结束时间：2016/4/4 12:56:58
+      总 时 间：0.3594038秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:13:54,277 [37] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 13:13:54
+      结束时间：2016/4/4 13:13:54
+      总 时 间：6.34E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:13:55,387 [37] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 13:13:54
+      结束时间：2016/4/4 13:13:55
+      总 时 间：1.0938246秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:16:42,811 [36] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 13:16:42
+      结束时间：2016/4/4 13:16:42
+      总 时 间：7.1E-06秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:16:42,826 [36] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 13:16:42
+      结束时间：2016/4/4 13:16:42
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:27:55,820 [19] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 13:27:55
+      结束时间：2016/4/4 13:27:55
+      总 时 间：0.0156517秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:27:56,914 [19] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 13:27:55
+      结束时间：2016/4/4 13:27:56
+      总 时 间：1.0781983秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:28:00,938 [24] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 01:28:04,Path：/Manager/Home/Login
+2016-04-04 13:28:00,953 [24] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Login
+      开始时间：2016/4/4 13:28:00
+      结束时间：2016/4/4 13:28:00
+      总 时 间：4.8E-06秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:28:01,500 [24] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Login
+      开始时间：2016/4/4 13:28:00
+      结束时间：2016/4/4 13:28:01
+      总 时 间：0.5469036秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:28:10,105 [30] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 01:28:04,Path：/Manager/Home/Login
+2016-04-04 13:28:22,892 [30] INFO  LoginWebLogger (null) - [Login website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 01:28:04,Path：/Manager/Home/Login,Tip:
+2016-04-04 13:28:22,892 [30] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Login
+      开始时间：2016/4/4 13:28:10
+      结束时间：2016/4/4 13:28:22
+      总 时 间：12.7866045秒
+      用户Id:0
+      Form表单数据：__RequestVerificationToken=e4HHeuXsHv1Zu85rW4wlR1_tTzK_xspN3ObqeRYWU6UYTyW3PTmDx1DpUIpbcBdRC8iUlA2&txt_UserName=admin&txt_Password=
+      URL参数：
+          
+2016-04-04 13:28:22,954 [30] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Login
+      开始时间：2016/4/4 13:28:22
+      结束时间：2016/4/4 13:28:22
+      总 时 间：0.0625046秒
+      用户Id:0
+      Form表单数据：__RequestVerificationToken=e4HHeuXsHv1Zu85rW4wlR1_tTzK_xspN3ObqeRYWU6UYTyW3PTmDx1DpUIpbcBdRC8iUlA2&txt_UserName=admin&txt_Password=
+      URL参数：
+          
+2016-04-04 13:28:22,985 [23] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:1,UserName:admin,IP:::1,CreateTime:2016-04-04 01:28:04,Path：/Manager/Home/Index
+2016-04-04 13:28:22,985 [23] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 13:28:22
+      结束时间：2016/4/4 13:28:22
+      总 时 间：6.31E-05秒
+      用户Id:1
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:28:23,439 [23] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 13:28:23
+      结束时间：2016/4/4 13:28:23
+      总 时 间：0.4375294秒
+      用户Id:1
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:28:23,532 [19] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:1,UserName:admin,IP:::1,CreateTime:2016-04-04 01:28:04,Path：/Manager/Home/Main
+2016-04-04 13:28:23,532 [19] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Main
+      开始时间：2016/4/4 13:28:23
+      结束时间：2016/4/4 13:28:23
+      总 时 间：7.99E-05秒
+      用户Id:1
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:28:23,532 [19] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Main
+      开始时间：2016/4/4 13:28:23
+      结束时间：2016/4/4 13:28:23
+      总 时 间：0秒
+      用户Id:1
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:39:39,405 [69] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 13:39:39
+      结束时间：2016/4/4 13:39:39
+      总 时 间：0.0156987秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:39:40,514 [69] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 13:39:39
+      结束时间：2016/4/4 13:39:40
+      总 时 间：1.0938518秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:39:43,186 [66] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 01:39:04,Path：/Manager/Home/Login
+2016-04-04 13:39:43,202 [66] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Login
+      开始时间：2016/4/4 13:39:43
+      结束时间：2016/4/4 13:39:43
+      总 时 间：0.0156618秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:39:43,686 [66] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Login
+      开始时间：2016/4/4 13:39:43
+      结束时间：2016/4/4 13:39:43
+      总 时 间：0.4844259秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:39:52,187 [62] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 01:39:04,Path：/Manager/Home/Login
+2016-04-04 13:40:04,823 [62] INFO  LoginWebLogger (null) - [Login website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 01:40:04,Path：/Manager/Home/Login,Tip:
+2016-04-04 13:40:04,823 [62] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Login
+      开始时间：2016/4/4 13:39:52
+      结束时间：2016/4/4 13:40:04
+      总 时 间：12.6198049秒
+      用户Id:0
+      Form表单数据：__RequestVerificationToken=-T00PejShNWqN9gC5_RFBCTNavMz6usuQeXFY7tb9oN6Mf7KPDKEbAFHofEkguejogjJ5w2&txt_UserName=admin&txt_Password=
+      URL参数：
+          
+2016-04-04 13:40:04,885 [62] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Login
+      开始时间：2016/4/4 13:40:04
+      结束时间：2016/4/4 13:40:04
+      总 时 间：0.0468791秒
+      用户Id:0
+      Form表单数据：__RequestVerificationToken=-T00PejShNWqN9gC5_RFBCTNavMz6usuQeXFY7tb9oN6Mf7KPDKEbAFHofEkguejogjJ5w2&txt_UserName=admin&txt_Password=
+      URL参数：
+          
+2016-04-04 13:40:04,901 [60] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:1,UserName:admin,IP:::1,CreateTime:2016-04-04 01:40:04,Path：/Manager/Home/Index
+2016-04-04 13:40:04,916 [60] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 13:40:04
+      结束时间：2016/4/4 13:40:04
+      总 时 间：4.9E-05秒
+      用户Id:1
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:40:05,338 [60] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Index
+      开始时间：2016/4/4 13:40:04
+      结束时间：2016/4/4 13:40:05
+      总 时 间：0.421921秒
+      用户Id:1
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:40:05,416 [66] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:1,UserName:admin,IP:::1,CreateTime:2016-04-04 01:40:04,Path：/Manager/Home/Main
+2016-04-04 13:40:05,416 [66] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：HomeController
+      Name:Main
+      开始时间：2016/4/4 13:40:05
+      结束时间：2016/4/4 13:40:05
+      总 时 间：9.17E-05秒
+      用户Id:1
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:40:05,416 [66] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：HomeController
+      Name:Main
+      开始时间：2016/4/4 13:40:05
+      结束时间：2016/4/4 13:40:05
+      总 时 间：0秒
+      用户Id:1
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:41:45,665 [65] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 13:41:45
+      结束时间：2016/4/4 13:41:45
+      总 时 间：7.11E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:41:46,055 [65] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 13:41:45
+      结束时间：2016/4/4 13:41:46
+      总 时 间：0.390656秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:49:52,817 [8] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 13:49:52
+      结束时间：2016/4/4 13:49:52
+      总 时 间：0.0156795秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:49:53,911 [8] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 13:49:52
+      结束时间：2016/4/4 13:49:53
+      总 时 间：1.07821秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:51:58,535 [64] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 01:51:04,Path：/Product/List/1
+2016-04-04 13:52:00,229 [64] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 13:51:58
+      结束时间：2016/4/4 13:52:00
+      总 时 间：1.6782064秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:52:01,370 [64] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 13:52:00
+      结束时间：2016/4/4 13:52:01
+      总 时 间：1.140726秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:56:53,403 [9] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 01:56:04,Path：/Product/List/1
+2016-04-04 13:56:53,403 [9] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 13:56:53
+      结束时间：2016/4/4 13:56:53
+      总 时 间：4.04E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:56:54,512 [9] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 13:56:53
+      结束时间：2016/4/4 13:56:54
+      总 时 间：1.1094622秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:58:00,171 [24] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 01:58:04,Path：/Product/List/1
+2016-04-04 13:58:00,171 [24] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 13:58:00
+      结束时间：2016/4/4 13:58:00
+      总 时 间：9.48E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 13:58:00,530 [24] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 13:58:00
+      结束时间：2016/4/4 13:58:00
+      总 时 间：0.3437761秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:00:10,060 [34] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 02:00:04,Path：/Product/List/1
+2016-04-04 14:00:10,076 [34] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:00:10
+      结束时间：2016/4/4 14:00:10
+      总 时 间：0.0156175秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:00:10,419 [34] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:00:10
+      结束时间：2016/4/4 14:00:10
+      总 时 间：0.3437891秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:00:56,356 [30] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 02:00:04,Path：/Product/List/1
+2016-04-04 14:00:56,356 [30] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:00:56
+      结束时间：2016/4/4 14:00:56
+      总 时 间：9.34E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:00:56,356 [30] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:00:56
+      结束时间：2016/4/4 14:00:56
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:00:56,372 [30] ERROR StatisticsTrackerLogger (null) - 在执行 controller[ProductController] 的 action[List] 时产生异常
+System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 ASP._Page_Views_Product_List_cshtml.Execute() 位置 d:\github\CloneStore\WebSite\Views\Product\List.cshtml:行号 318
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.StartPage.RunPage()
+   在 System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   在 System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<>c__DisplayClass28.<BeginInvokeAction>b__19()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__1b(IAsyncResult asyncResult)
+2016-04-04 14:00:56,388 [30] ERROR WebSite.MvcApplication (null) - Application to catch an exception error
+System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 ASP._Page_Views_Product_List_cshtml.Execute() 位置 d:\github\CloneStore\WebSite\Views\Product\List.cshtml:行号 318
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.StartPage.RunPage()
+   在 System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   在 System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<>c__DisplayClass28.<BeginInvokeAction>b__19()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__1b(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   在 System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(IAsyncResult asyncResult, ProcessRequestState innerState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2016-04-04 14:01:35,544 [40] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 02:01:04,Path：/Product/List/1
+2016-04-04 14:01:35,560 [40] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:01:35
+      结束时间：2016/4/4 14:01:35
+      总 时 间：3.12E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:01:35,919 [40] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:01:35
+      结束时间：2016/4/4 14:01:35
+      总 时 间：0.3437749秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:02:33,657 [40] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 02:02:04,Path：/Product/List/1
+2016-04-04 14:02:33,673 [40] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:02:33
+      结束时间：2016/4/4 14:02:33
+      总 时 间：5.95E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:02:34,017 [40] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:02:33
+      结束时间：2016/4/4 14:02:34
+      总 时 间：0.3281658秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:02:34,032 [40] ERROR StatisticsTrackerLogger (null) - 在执行 controller[ProductController] 的 action[List] 时产生异常
+System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 ASP._Page_Views_Product_List_cshtml.Execute() 位置 d:\github\CloneStore\WebSite\Views\Product\List.cshtml:行号 326
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.StartPage.RunPage()
+   在 System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   在 System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<>c__DisplayClass28.<BeginInvokeAction>b__19()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__1b(IAsyncResult asyncResult)
+2016-04-04 14:02:34,032 [40] ERROR WebSite.MvcApplication (null) - Application to catch an exception error
+System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 ASP._Page_Views_Product_List_cshtml.Execute() 位置 d:\github\CloneStore\WebSite\Views\Product\List.cshtml:行号 326
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.StartPage.RunPage()
+   在 System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   在 System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<>c__DisplayClass28.<BeginInvokeAction>b__19()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__1b(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   在 System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(IAsyncResult asyncResult, ProcessRequestState innerState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2016-04-04 14:02:52,722 [39] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 02:02:04,Path：/Product/List/1
+2016-04-04 14:02:52,737 [39] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:02:52
+      结束时间：2016/4/4 14:02:52
+      总 时 间：3.49E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:02:53,081 [39] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:02:52
+      结束时间：2016/4/4 14:02:53
+      总 时 间：0.3281469秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:03:07,147 [22] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 02:03:04,Path：/Product/List/1
+2016-04-04 14:03:07,163 [22] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:03:07
+      结束时间：2016/4/4 14:03:07
+      总 时 间：7.52E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:03:07,522 [22] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:03:07
+      结束时间：2016/4/4 14:03:07
+      总 时 间：0.3437791秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:04:36,720 [47] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 02:04:04,Path：/Product/List/1
+2016-04-04 14:04:36,736 [47] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:04:36
+      结束时间：2016/4/4 14:04:36
+      总 时 间：0.0156409秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:04:37,126 [47] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:04:36
+      结束时间：2016/4/4 14:04:37
+      总 时 间：0.3906711秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:09:11,742 [39] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 02:09:04,Path：/Product/List/1
+2016-04-04 14:09:13,344 [39] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:09:11
+      结束时间：2016/4/4 14:09:13
+      总 时 间：1.5828367秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:09:14,455 [39] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:09:13
+      结束时间：2016/4/4 14:09:14
+      总 时 间：1.103479秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:09:22,938 [46] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 02:09:04,Path：/Product/List/1
+2016-04-04 14:09:22,945 [46] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:09:22
+      结束时间：2016/4/4 14:09:22
+      总 时 间：0.0019923秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:09:22,950 [46] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:09:22
+      结束时间：2016/4/4 14:09:22
+      总 时 间：0.0009986秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:09:29,343 [46] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 02:09:04,Path：/Product/List/1
+2016-04-04 14:09:29,350 [46] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:09:29
+      结束时间：2016/4/4 14:09:29
+      总 时 间：0.0010723秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:09:29,355 [46] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:09:29
+      结束时间：2016/4/4 14:09:29
+      总 时 间：0秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:14:37,195 [41] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 02:14:04,Path：/Product/List/1
+2016-04-04 14:14:38,805 [41] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:14:37
+      结束时间：2016/4/4 14:14:38
+      总 时 间：1.5939276秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:14:38,805 [41] ERROR StatisticsTrackerLogger (null) - 在执行 controller[ProductController] 的 action[List] 时产生异常
+System.InvalidOperationException: The model backing the 'FxDbContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+   在 System.Data.Entity.CreateDatabaseIfNotExists`1.InitializeDatabase(TContext context)
+   在 System.Data.Entity.Internal.InternalContext.<>c__DisplayClassf`1.<CreateInitializationAction>b__e()
+   在 System.Data.Entity.Internal.InternalContext.PerformInitializationAction(Action action)
+   在 System.Data.Entity.Internal.InternalContext.PerformDatabaseInitialization()
+   在 System.Data.Entity.Internal.LazyInternalContext.<InitializeDatabase>b__4(InternalContext c)
+   在 System.Data.Entity.Internal.RetryAction`1.PerformAction(TInput input)
+   在 System.Data.Entity.Internal.LazyInternalContext.InitializeDatabaseAction(Action`1 action)
+   在 System.Data.Entity.Internal.LazyInternalContext.InitializeDatabase()
+   在 System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   在 System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   在 System.Data.Entity.Internal.Linq.InternalSet`1.GetEnumerator()
+   在 System.Data.Entity.Infrastructure.DbQuery`1.System.Collections.Generic.IEnumerable<TResult>.GetEnumerator()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 WebSite.Controllers.ProductController.List() 位置 D:\github\CloneStore\WebSite\Controllers\ProductController.cs:行号 45
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__36(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3c()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass45.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3e()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass45.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3e()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass30.<BeginInvokeActionMethodWithFilters>b__2f(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<>c__DisplayClass28.<BeginInvokeAction>b__19()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__1b(IAsyncResult asyncResult)
+2016-04-04 14:14:38,820 [41] ERROR WebSite.MvcApplication (null) - Application to catch an exception error
+System.InvalidOperationException: The model backing the 'FxDbContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+   在 System.Data.Entity.CreateDatabaseIfNotExists`1.InitializeDatabase(TContext context)
+   在 System.Data.Entity.Internal.InternalContext.<>c__DisplayClassf`1.<CreateInitializationAction>b__e()
+   在 System.Data.Entity.Internal.InternalContext.PerformInitializationAction(Action action)
+   在 System.Data.Entity.Internal.InternalContext.PerformDatabaseInitialization()
+   在 System.Data.Entity.Internal.LazyInternalContext.<InitializeDatabase>b__4(InternalContext c)
+   在 System.Data.Entity.Internal.RetryAction`1.PerformAction(TInput input)
+   在 System.Data.Entity.Internal.LazyInternalContext.InitializeDatabaseAction(Action`1 action)
+   在 System.Data.Entity.Internal.LazyInternalContext.InitializeDatabase()
+   在 System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   在 System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   在 System.Data.Entity.Internal.Linq.InternalSet`1.GetEnumerator()
+   在 System.Data.Entity.Infrastructure.DbQuery`1.System.Collections.Generic.IEnumerable<TResult>.GetEnumerator()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 WebSite.Controllers.ProductController.List() 位置 D:\github\CloneStore\WebSite\Controllers\ProductController.cs:行号 45
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__36(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3c()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass45.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3e()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass45.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3e()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass30.<BeginInvokeActionMethodWithFilters>b__2f(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<>c__DisplayClass28.<BeginInvokeAction>b__19()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__1b(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   在 System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(IAsyncResult asyncResult, ProcessRequestState innerState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   在 System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2016-04-04 14:15:03,894 [41] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 02:15:04,Path：/Product/List
+2016-04-04 14:15:04,863 [41] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:15:03
+      结束时间：2016/4/4 14:15:04
+      总 时 间：0.9376627秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:15:06,181 [41] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:15:04
+      结束时间：2016/4/4 14:15:06
+      总 时 间：1.3028245秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:15:10,691 [22] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 02:15:04,Path：/Product/List/1
+2016-04-04 14:15:10,706 [22] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:15:10
+      结束时间：2016/4/4 14:15:10
+      总 时 间：0.0156488秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:15:10,769 [22] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:15:10
+      结束时间：2016/4/4 14:15:10
+      总 时 间：0.0468799秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:15:37,069 [41] INFO  AccessWebLogger (null) - [Visit the website]-> UserID:0,UserName:,IP:::1,CreateTime:2016-04-04 02:15:04,Path：/Product/List/1
+2016-04-04 14:15:37,085 [41] INFO  StatisticsTrackerLogger (null) - 
+      Action执行时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:15:37
+      结束时间：2016/4/4 14:15:37
+      总 时 间：8.93E-05秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
+2016-04-04 14:15:37,428 [41] INFO  StatisticsTrackerLogger (null) - 
+      View视图生成时间监控：
+      ControllerName：ProductController
+      Name:List
+      开始时间：2016/4/4 14:15:37
+      结束时间：2016/4/4 14:15:37
+      总 时 间：0.3437985秒
+      用户Id:0
+      Form表单数据：
+      URL参数：
+          
