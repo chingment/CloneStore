@@ -46,7 +46,7 @@
                 mouseWheel: false,
                 bringToFront: true
             });
-            var top = c_h/2-20;
+            var top = c_h / 2 - 20;
             $("#home_carousel_left,#home_carousel_right").css("top", top + "px")
 
         }
@@ -62,9 +62,10 @@
 
             $("#home_carousel .item img").each(function () {
                 $(this).click(function () {
-                    var iscenter = $(this).attr("iscenter")
+                    var iscenter = $(this).attr("iscenter");
+                    var id = $(this).attr("id");
                     if (iscenter == "true") {
-                        window.location.href = "/Product/List/1"
+                        window.location.href = "/Product/List/" + id;
                     }
                 });
             });
@@ -78,11 +79,11 @@
             <div id="home_carousel">
                 <p id="title-text"></p>
                 <p id="alt-text"></p>
-                <a href="javascript:void(0)" target="_parent" class="item"><img class="cloudcarousel" data="1" src="/images/01.jpg" alt="p1" iscenter="true" /></a>
-                <a href="javascript:void(0)" target="_parent" class="item"><img class="cloudcarousel" data="2" src="/images/02.jpg" alt="p2" iscenter="false" /></a>
-                <a href="javascript:void(0)" target="_parent" class="item"><img class="cloudcarousel" data="3" src="/images/03.jpg" alt="p3" iscenter="false" /></a>
-                <a href="javascript:void(0)" target="_parent" class="item"><img class="cloudcarousel" data="4" src="/images/04.jpg" alt="p4" iscenter="false" /></a>
-                <a href="javascript:void(0)" target="_parent" class="item"><img class="cloudcarousel" data="5" src="/images/05.jpg" alt="p5" iscenter="false" /></a>
+                <a href="javascript:void(0)" target="_parent" class="item"><img id="1" class="cloudcarousel" data="1" src="/images/01.jpg" alt="p1" iscenter="true" /></a>
+                <a href="javascript:void(0)" target="_parent" class="item"><img id="2" class="cloudcarousel" data="2" src="/images/02.jpg" alt="p2" iscenter="false" /></a>
+                <a href="javascript:void(0)" target="_parent" class="item"><img id="3" class="cloudcarousel" data="3" src="/images/03.jpg" alt="p3" iscenter="false" /></a>
+                <a href="javascript:void(0)" target="_parent" class="item"><img id="4" class="cloudcarousel" data="4" src="/images/04.jpg" alt="p4" iscenter="false" /></a>
+                <a href="javascript:void(0)" target="_parent" class="item"><img id="5" class="cloudcarousel" data="5" src="/images/05.jpg" alt="p5" iscenter="false" /></a>
                 <div id="home_carousel_left" class="carouselLeft"></div>
                 <div id="home_carousel_right" class="carouselRight"></div>
             </div>

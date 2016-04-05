@@ -383,6 +383,7 @@
     <Content Include="Content\W\images\templatemo_slider_right1.png" />
     <Content Include="Content\W\images\tips.png" />
     <Content Include="Content\W\owl.carousel.css" />
+    <Content Include="Content\W\owl.theme.css" />
     <Content Include="Content\W\Site.css" />
     <Content Include="Content\W\Site_test.css" />
     <Content Include="favicon.ico" />

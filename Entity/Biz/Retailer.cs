@@ -9,31 +9,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lumos.Entity
 {
-    [Table("Product")]
-    public class Product
+    [Table("Retailer")]
+    public class Retailer
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public int Retailer { get; set; }
-
-        public string Category { get; set; }
-
-        public string Materials { get; set; }
-
-        public string Colors { get; set; }
-
-        public string Style { get; set; }
-
-        public decimal Price { get; set; }
-
-        public string Sizes { get; set; }
-
-        public string SmallImg { get; set; }
-
-        public string BigImg { get; set; }
+        public string BannerImgUrl { get; set; }
 
         public string Description { get; set; }
     }

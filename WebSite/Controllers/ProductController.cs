@@ -39,10 +39,10 @@ namespace WebSite.Controllers
 
         //
         // GET: /Product/
-        public ActionResult List()
+        public ActionResult List(int id)
         {
             ProductViewModel model = new ProductViewModel();
-            model.Products = GetRandomList(CurrentDb.Product.ToList());
+            model.Products = GetRandomList(CurrentDb.Product.Where(m=>m.Retailer==id).ToList());
             return View(model);
         }
 	}
