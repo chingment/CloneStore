@@ -116,42 +116,67 @@
 
             $("#owl_product .item  ul li span ").each(function (i) {
 
+                var pJStr = $(this).find('pre').html();
+                var pJObj = JSON.parse(pJStr);
+
                 var ihtml = '';
 
-                ihtml += '        <div class="filter-lists-container" style="width: 160px;border-image: none; border:1px solid #000; width: 160px; margin-right: 10px; height: 228px; float: left;">';
-                ihtml += '     <dl class="filter-entries clearfix">';
-                ihtml += '      <dt class="filter-entries-label">Material:</dt>';
+                ihtml += ' <div class="filter-lists-container" style="width: 160px;border-image: none; border:1px solid #000; width: 160px; margin-right: 10px; height: 228px; float: left;">';
+                ihtml += '<dl class="filter-entries clearfix">';
+                ihtml += ' <dt class="filter-entries-label">Material:</dt>';
                 ihtml += '   <dd class="filter-entries-values">';
-                ihtml += '      <span class="filter-item "> 100% Cotton</span>';
+                ihtml += '      <span class="filter-item ">' + pJObj.Materials + '</span>';
                 ihtml += '   </dd>';
                 ihtml += '  </dl>';
                 ihtml += '  <dl class="filter-entries clearfix">';
                 ihtml += '    <dt class="filter-entries-label">Color:</dt>';
                 ihtml += '    <dd class="filter-entries-values">';
-                ihtml += '      <span class="filter-item">Red</span>';
-                ihtml += '     <span class="filter-item">Blue</span>';
-                ihtml += '    <span class="filter-item">Blue</span>';
-                ihtml += '    <span class="filter-item">Blue</span>';
-                ihtml += '      <span class="filter-item">Blue</span>';
-                ihtml += '      <span class="filter-item">Blue</span>';
+
+                var colors = pJObj.Colors.split(',');
+                for (var i = 0; i < colors.length; i++) {
+
+                    ihtml += '    <span class="filter-item">' + colors[i] + '</span>';
+                }
+
+                //ihtml += '      <span class="filter-item">Red</span>';
+                //ihtml += '     <span class="filter-item">Blue</span>';
+                //ihtml += '    <span class="filter-item">Blue</span>';
+                //ihtml += '    <span class="filter-item">Blue</span>';
+                //ihtml += '      <span class="filter-item">Blue</span>';
+                //ihtml += '      <span class="filter-item">Blue</span>';
+
+
                 ihtml += '      </dd>';
                 ihtml += '     </dl>';
                 ihtml += '   <dl class="filter-entries clearfix">';
                 ihtml += '   <dt class="filter-entries-label">Style:</dt>';
                 ihtml += '   <dd class="filter-entries-values">';
-                ihtml += '    <span class="filter-item ">   Striped</span>';
+                ihtml += '    <span class="filter-item ">' + pJObj.Style + '</span>';
                 ihtml += '    </dd>';
                 ihtml += '  </dl>';
                 ihtml += '  <dl class="filter-entries clearfix">';
                 ihtml += '   <dt class="filter-entries-label">Price:</dt>';
                 ihtml += '    <dd class="filter-entries-values">';
-                ihtml += '      <span class="filter-item ">1000</span>';
+                ihtml += '      <span class="filter-item ">' + pJObj.Price+ '</span>';
                 ihtml += '    </dd>';
                 ihtml += '  </dl>';
                 ihtml += '  <dl class="filter-entries clearfix">';
                 ihtml += '     <dt class="filter-entries-label">Size:</dt>';
                 ihtml += '      <dd class="filter-entries-values">';
-                ihtml += '        <span class="filter-item ">S-L</span>';
+
+
+                var sizes = pJObj.Sizes.split(',');
+                for (var i = 0; i < sizes.length; i++) {
+
+                    ihtml += '    <span class="filter-item">' + sizes[i] + '</span>';
+                }
+
+
+
+             //   ihtml += '        <span class="filter-item ">S-L</span>';
+
+
+
                 ihtml += '    </dd>';
                 ihtml += '  </dl>';
                 ihtml += '  </div>';
@@ -321,7 +346,8 @@
                                                     <li>
                                                         @if (i < Model.Products.Count)
                                                         {
-                                                            <span info="@Newtonsoft.Json.JsonConvert.SerializeObject(Model.Products[i])">
+                                                            <span>
+                                                                <pre style="display:none">@Newtonsoft.Json.JsonConvert.SerializeObject(Model.Products[i])</pre>
                                                                 <img src="@Model.Products[i].SmallImg" alt="">
                                                             </span>
                                                         }
@@ -329,7 +355,8 @@
                                                     <li>
                                                         @if ((i + 1) < Model.Products.Count)
                                                         {
-                                                            <span info="@Newtonsoft.Json.JsonConvert.SerializeObject(Model.Products[i])">
+                                                            <span>
+                                                                <pre style="display:none">@Newtonsoft.Json.JsonConvert.SerializeObject(Model.Products[i+1])</pre>
                                                                 <img src="@Model.Products[i + 1].SmallImg" alt="">
                                                             </span>
                                                         }

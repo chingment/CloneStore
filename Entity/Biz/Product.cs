@@ -21,18 +21,20 @@ namespace Lumos.Entity
 
         public string Category { get; set; }
 
-        public string Material { get; set; }
+        public string Materials { get; set; }
 
-        public string Color { get; set; }
+        public string Colors { get; set; }
 
         public string Style { get; set; }
 
         public decimal Price { get; set; }
 
-        public string Size { get; set; }
+        public string Sizes { get; set; }
 
         public string SmallImg { get; set; }
 
         public string BigImg { get; set; }
+
+        public string Description { get; set; }
     }
 }
