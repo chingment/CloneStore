@@ -31,7 +31,18 @@ namespace WebSite.Controllers
 
         public ViewResult MyCart()
         {
-            return View();
+            MyCartViewModel model = new MyCartViewModel();
+
+            if (Request.Cookies[CommonSetting.CartProductsCookiesName] != null)
+            {
+                string strCartProducts = System.Web.HttpUtility.UrlDecode(Request.Cookies[CommonSetting.CartProductsCookiesName].Value.ToString());
+                List<Product> products = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(strCartProducts);
+                model.Clothes = products.Where(m => m.Category == "Clothes").ToList();
+                model.Pants = products.Where(m => m.Category == "Pants").ToList();
+                model.Shoes = products.Where(m => m.Category == "Shoes").ToList();
+            }
+
+            return View(model);
         }
 
 
@@ -43,7 +54,7 @@ namespace WebSite.Controllers
             user.PasswordHash = model.txt_Password;
             user.FirstName = model.txt_FirstName;
             user.LastName = model.txt_LastName;
-            user.FavoriteColors =model.cb_Colors==null?null:string.Join(",",model.cb_Colors);
+            user.FavoriteColors = model.cb_Colors == null ? null : string.Join(",", model.cb_Colors);
             user.FavoriteRetailers = model.cb_Retailers == null ? null : string.Join(",", model.cb_Retailers);
             user.Address = model.txt_Address;
             user.CreateTime = DateTime.Now;

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Lumos.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebSite.Models;
-
+using Lumos.Common;
 namespace WebSite.Controllers
 {
     public class ProductController : WebSiteController
@@ -39,11 +40,30 @@ namespace WebSite.Controllers
 
         //
         // GET: /Product/
-        public ActionResult List(int id)
+        public ActionResult List(int? id=1)
         {
             ProductViewModel model = new ProductViewModel();
-            model.Products = GetRandomList(CurrentDb.Product.Where(m=>m.Retailer==id).ToList());
+            model.Products = GetRandomList(CurrentDb.Product.Where(m => m.Retailer == id).ToList());
+
+            if (Request.Cookies[CommonSetting.CartProductsCookiesName] != null)
+            {
+
+                string strCartProducts = System.Web.HttpUtility.UrlDecode(Request.Cookies[CommonSetting.CartProductsCookiesName].Value.ToString());
+                model.CartProducts = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(strCartProducts);
+            }
+
+
             return View(model);
         }
-	}
+
+
+        public JsonResult SetMyCartCookies(string cartProducts)
+        {
+            HttpCookie cookie = new HttpCookie(CommonSetting.CartProductsCookiesName);
+            cookie.Value = cartProducts;
+            cookie.Expires = DateTime.Now.AddDays(7);
+            Response.Cookies.Add(cookie);
+            return Json(ResultType.Success, "");
+        }
+    }
 }

@@ -1,11 +1,16 @@
-﻿@{
+﻿@model WebSite.Models.MyCartViewModel
+@{
     ViewBag.Title = "MyCart";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 @section styles{
     <style type="text/css">
-        .owl-item{
-          /*height:100px;*/
+        .owl-item {
+            /*height:100px;*/
+        }
+
+        .owl_cart_pants  li{
+            height:103px;
         }
     </style>
 }
@@ -98,58 +103,15 @@
                         <!-- cart-shirt-box -->
                         <div class="cart-shirt-box cart-top" id="cart_shirt_box">
                             <div class="cart-shirt-box-content">
-
                                 <div id="owl_cart_shirt" class="owl-carousel owl-cart-shirt">
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shirt/01.jpg" alt="">
-                                        </span>
-                                    </a>
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shirt/02.jpg" alt="">
-                                        </span>
-                                    </a>
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shirt/03.jpg" alt="">
-                                        </span>
-                                    </a>
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shirt/04.jpg" alt="">
-                                        </span>
-                                    </a>
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shirt/05.jpg" alt="">
-                                        </span>
-                                    </a>
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shirt/06.jpg" alt="">
-                                        </span>
-                                    </a>
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shirt/07.jpg" alt="">
-                                        </span>
-                                    </a>
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shirt/08.jpg" alt="">
-                                        </span>
-                                    </a>
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shirt/09.jpg" alt="">
-                                        </span>
-                                    </a>
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shirt/10.jpg" alt="">
-                                        </span>
-                                    </a>
+                                    @for (var i = 0; i < Model.Clothes.Count; i++)
+                                    {
+                                        <a class="item" id="">
+                                            <span id="cartproduct_@Model.Clothes[i].Id">
+                                                <img src="@Model.Clothes[i].SmallImg" alt="">
+                                            </span>
+                                        </a>
+                                    }
                                 </div>
                                 <div class="cart-box-null" style="margin-top:10px;">
                                     <div class="cart-box-null-img">
@@ -179,101 +141,43 @@
                             <div class="cart-pants-box">
                                 <div class="cart-pants-box-content">
                                     <div id="owl_cart_pants" class="owl-carousel owl_cart_pants">
-                                        <a class="item">
-                                            <ul>
-                                                <li style="margin-bottom: 5px;">
-                                                    <span info="manosque|羽绒服|1,223.00">
-                                                        <img src="/images/demo/saved/pants/01.jpg" alt="">
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <span info="manosque|羽绒服|2,223.00">
-                                                        <img src="/images/demo/saved/pants/02.jpg" alt="">
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <span info="manosque|羽绒服|2,223.00">
-                                                        <img src="/images/demo/saved/pants/03.jpg" alt="">
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </a>
-                                        <a class="item">
-                                            <ul>
-                                                <li>
-                                                    <span info="manosque|羽绒服|3,223.00">
-                                                        <img src="/images/demo/saved/pants/04.jpg" alt="">
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <span info="manosque|羽绒服|4,223.00">
-                                                        <img src="/images/demo/saved/pants/05.jpg" alt="">
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <span info="manosque|羽绒服|2,223.00">
-                                                        <img src="/images/demo/saved/pants/06.jpg" alt="">
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </a>
-                                        <a class="item">
-                                            <ul>
-                                                <li>
-                                                    <span info="manosque|羽绒服|5,223.00">
-                                                        <img src="/images/demo/saved/pants/07.jpg" alt="">
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <span info="manosque|羽绒服|6,223.00">
-                                                        <img src="/images/demo/saved/pants/08.jpg" alt="">
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <span info="manosque|羽绒服|2,223.00">
-                                                        <img src="/images/demo/saved/pants/09.jpg" alt="">
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </a>
-                                        <a class="item">
-                                            <ul>
-                                                <li>
-                                                    <span info="manosque|羽绒服|7,223.00">
-                                                        <img src="/images/demo/saved/pants/10.jpg" alt="">
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <span info="manosque|羽绒服|8,223.00">
-                                                        <img src="/images/demo/saved/pants/11.jpg" alt="">
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <span info="manosque|羽绒服|2,223.00">
-                                                        <img src="/images/demo/saved/pants/12.jpg" alt="">
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </a>
-                                        <a class="item">
-                                            <ul>
-                                                <li>
-                                                    <span info="manosque|羽绒服|9,223.00">
-                                                        <img src="/images/demo/saved/pants/13.jpg" alt="">
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <span info="manosque|羽绒服|10,223.00">
-                                                        <img src="/images/demo/saved/pants/14.jpg" alt="">
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <span info="manosque|羽绒服|2,223.00">
-                                                        <img src="/images/demo/saved/pants/15.jpg" alt="">
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </a>
+
+
+
+                                        @for (var i = 0; i < Model.Pants.Count; i = i + 3)
+                                        {
+                                            <a class="item">
+                                                <ul>
+                                                    <li style="margin-bottom: 5px;">
+                                                        @if (i < Model.Pants.Count)
+                                                        {
+                                                            <span id="product_@Model.Pants[i].Id">
+                                                                <pre style="display:none">@Newtonsoft.Json.JsonConvert.SerializeObject(Model.Pants[i])</pre>
+                                                                <img src="@Model.Pants[i].SmallImg" alt="">
+                                                            </span>
+                                                        }
+                                                    </li>
+                                                    <li>
+                                                        @if ((i + 1) < Model.Pants.Count)
+                                                        {
+                                                            <span id="product_@Model.Pants[i+1].Id">
+                                                                <pre style="display:none">@Newtonsoft.Json.JsonConvert.SerializeObject(Model.Pants[i + 1])</pre>
+                                                                <img src="@Model.Pants[i + 1].SmallImg" alt="">
+                                                            </span>
+                                                        }
+                                                    </li>
+                                                    <li>
+                                                        @if ((i + 2) < Model.Pants.Count)
+                                                        {
+                                                            <span id="product_@Model.Pants[i+2].Id">
+                                                                <pre style="display:none">@Newtonsoft.Json.JsonConvert.SerializeObject(Model.Pants[i + 2])</pre>
+                                                                <img src="@Model.Pants[i + 2].SmallImg" alt="">
+                                                            </span>
+                                                        }
+                                                    </li>
+                                                </ul>
+                                            </a>
+                                        }
                                     </div>
                                     <div class="cart-box-null" style="margin-top:114px;width:200px;">
                                         <div class="cart-box-null-img">
@@ -289,56 +193,14 @@
                         <div class="cart-shoes-box cart-bottom" id="cart_shoes_box">
                             <div class="cart-shoes-box-content">
                                 <div id="owl_cart_shoes" class="owl-carousel owl-cart-shoes">
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shoes/01.jpg" alt="">
-                                        </span>
-                                    </a>
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shoes/02.jpg" alt="">
-                                        </span>
-                                    </a>
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shoes/03.jpg" alt="">
-                                        </span>
-                                    </a>
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shoes/04.jpg" alt="">
-                                        </span>
-                                    </a>
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shoes/05.jpg" alt="">
-                                        </span>
-                                    </a>
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shoes/06.jpg" alt="">
-                                        </span>
-                                    </a>
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shoes/07.jpg" alt="">
-                                        </span>
-                                    </a>
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shoes/08.jpg" alt="">
-                                        </span>
-                                    </a>
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shoes/09.jpg" alt="">
-                                        </span>
-                                    </a>
-                                    <a class="item">
-                                        <span info="manosque|羽绒服|5,223.00">
-                                            <img src="/images/demo/saved/shoes/10.jpg" alt="">
-                                        </span>
-                                    </a>
+                                    @for (var i = 0; i < Model.Shoes.Count; i++)
+                                    {
+                                        <a class="item" id="">
+                                            <span id="cartproduct_@Model.Shoes[i].Id">
+                                                <img src="@Model.Shoes[i].SmallImg" alt="">
+                                            </span>
+                                        </a>
+                                    }
                                 </div>
                                 <div class="cart-box-null" style="margin-top:10px;">
                                     <div class="cart-box-null-img">

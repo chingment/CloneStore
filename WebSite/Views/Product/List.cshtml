@@ -26,73 +26,108 @@
     <script src="~/Scripts/W/jquery.mouseoverbox.js"></script>
     <script type="text/javascript">
         var product = { id: '1', material: '100% Cotton', color: ['red', 'blue'], style: 'striped ', price: '1000', size: ['S', 'M', 'L'], smallImg: '' };
-        var cartProducts = [];
+        var cartProducts = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.CartProducts));
         i = 0;
         $(document).ready(function () {
 
             $(".btn-addtocart").live("click", function () {
 
-                var src = $(this).attr("imgurl");
-                var id = $(this).attr("id");
-                var owl_cart_item_id = "owl_cart_item" + id;
-                var ihtml = '<a class="item" id="' + owl_cart_item_id + '" >';
-                ihtml += '<span  info="manosque|羽绒服|5,223.00">';
-                ihtml += '<img src="' + src + '" alt="">';
-                ihtml += '</span>';
-                ihtml += '</a>';
-                var owl = $("#owl_cart").data('owlCarousel');
-                owl.addItem(ihtml, 0);//添加到第1个位置
+                var productid = $(this).attr("productid");
+                var pJStr = $("#" + productid).find('pre').html();
+                var pJObj = JSON.parse(pJStr);
 
 
-                var ihtml = '';
-                ihtml += '  <div style="border: 1px solid rgb(0, 0, 0); border-image: none;  margin-right: 10px; float: left;">';
-                ihtml += '  <div class="filter-lists-container" style="width:170px;">';
-                ihtml += '   <dl class="filter-entries clearfix">';
-                ihtml += '    <dt class="filter-entries-label">Material:</dt>';
-                ihtml += '   <dd class="filter-entries-values">';
-                ihtml += '    <span class="filter-item "> 100% Cotton</span>';
-                ihtml += '  </dd>';
-                ihtml += '  </dl>';
-                ihtml += '  <dl class="filter-entries clearfix">';
-                ihtml += '    <dt class="filter-entries-label">Color:</dt>';
-                ihtml += '   <dd class="filter-entries-values">';
-                ihtml += '     <span class="filter-item">Red</span>';
-                ihtml += '     <span class="filter-item">Blue</span>';
-                ihtml += '    <span class="filter-item">Blue</span>';
-                ihtml += '     <span class="filter-item">Blue</span>';
-                ihtml += '     <span class="filter-item">Blue</span>';
-                ihtml += '     <span class="filter-item">Blue</span>';
-                ihtml += '   </dd>';
-                ihtml += '  </dl>';
-                ihtml += '   <dl class="filter-entries clearfix">';
-                ihtml += '   <dt class="filter-entries-label">Style:</dt>';
-                ihtml += '   <dd class="filter-entries-values">';
-                ihtml += '     <span class="filter-item ">   Striped</span>';
-                ihtml += '    </dd>';
-                ihtml += '  </dl>';
-                ihtml += ' <dl class="filter-entries clearfix">';
-                ihtml += '   <dt class="filter-entries-label">Price:</dt>';
-                ihtml += '  <dd class="filter-entries-values">';
-                ihtml += '     <span class="filter-item ">1000</span>';
-                ihtml += ' </dd>';
-                ihtml += '  </dl>';
-                ihtml += ' <dl class="filter-entries clearfix">';
-                ihtml += '   <dt class="filter-entries-label">Size:</dt>';
-                ihtml += '  <dd class="filter-entries-values">';
-                ihtml += '    <span class="filter-item ">S-L</span>';
-                ihtml += '  </dd>';
-                ihtml += '  </dl>';
-                ihtml += ' </div>';
-                ihtml += '   <input type="button" value="Remove" class="btn-removetocart" itemid="' + owl_cart_item_id + '"/><br />';
-                ihtml += ' </div>';
-
-                $("#" + owl_cart_item_id).mouseOverTip({
-                    width: '175px',
-                    height: '200px',
-                    outlineBoxId: "middle_box",
-                    boxId: "savedmiddle_box_xiuTipBox",
-                    content: ihtml
+                var isflag = false;
+                $.each(cartProducts, function (p_index, p_row) {
+                    if (p_row.Id == pJObj.Id) {
+                        isflag = true;
+                    }
                 });
+
+
+                if (!isflag) {
+
+                    cartProducts.push(pJObj);
+
+
+
+                    $.ajax({
+                        type: "post",
+                        url: "/Product/SetMyCartCookies",
+                        dataType: "json",
+                        data: {cartProducts:JSON.stringify(cartProducts)}
+                    }).done(function (data) {
+
+                    });
+
+
+
+
+                    // $.cookie('cartProducts', JSON.stringify(cartProducts));
+
+                    var smallImg = pJObj.SmallImg;
+
+                    var id = $(this).attr("id");
+                    var owl_cart_item_id = "owl_cart_item" + id;
+                    var ihtml = '<a class="item" id="' + owl_cart_item_id + '" >';
+                    ihtml += '<span>';
+                    ihtml += '<img src="' + smallImg + '" alt="">';
+                    ihtml += '</span>';
+                    ihtml += '</a>';
+                    var owl = $("#owl_cart").data('owlCarousel');
+                    owl.addItem(ihtml, 0);//添加到第1个位置
+
+
+                    //var ihtml = '';
+                    //ihtml += '  <div style="border: 1px solid rgb(0, 0, 0); border-image: none;  margin-right: 10px; float: left;">';
+                    //ihtml += '  <div class="filter-lists-container" style="width:170px;">';
+                    //ihtml += '   <dl class="filter-entries clearfix">';
+                    //ihtml += '    <dt class="filter-entries-label">Material:</dt>';
+                    //ihtml += '   <dd class="filter-entries-values">';
+                    //ihtml += '    <span class="filter-item "> 100% Cotton</span>';
+                    //ihtml += '  </dd>';
+                    //ihtml += '  </dl>';
+                    //ihtml += '  <dl class="filter-entries clearfix">';
+                    //ihtml += '    <dt class="filter-entries-label">Color:</dt>';
+                    //ihtml += '   <dd class="filter-entries-values">';
+                    //ihtml += '     <span class="filter-item">Red</span>';
+                    //ihtml += '     <span class="filter-item">Blue</span>';
+                    //ihtml += '    <span class="filter-item">Blue</span>';
+                    //ihtml += '     <span class="filter-item">Blue</span>';
+                    //ihtml += '     <span class="filter-item">Blue</span>';
+                    //ihtml += '     <span class="filter-item">Blue</span>';
+                    //ihtml += '   </dd>';
+                    //ihtml += '  </dl>';
+                    //ihtml += '   <dl class="filter-entries clearfix">';
+                    //ihtml += '   <dt class="filter-entries-label">Style:</dt>';
+                    //ihtml += '   <dd class="filter-entries-values">';
+                    //ihtml += '     <span class="filter-item ">   Striped</span>';
+                    //ihtml += '    </dd>';
+                    //ihtml += '  </dl>';
+                    //ihtml += ' <dl class="filter-entries clearfix">';
+                    //ihtml += '   <dt class="filter-entries-label">Price:</dt>';
+                    //ihtml += '  <dd class="filter-entries-values">';
+                    //ihtml += '     <span class="filter-item ">1000</span>';
+                    //ihtml += ' </dd>';
+                    //ihtml += '  </dl>';
+                    //ihtml += ' <dl class="filter-entries clearfix">';
+                    //ihtml += '   <dt class="filter-entries-label">Size:</dt>';
+                    //ihtml += '  <dd class="filter-entries-values">';
+                    //ihtml += '    <span class="filter-item ">S-L</span>';
+                    //ihtml += '  </dd>';
+                    //ihtml += '  </dl>';
+                    //ihtml += ' </div>';
+                    //ihtml += '   <input type="button" value="Remove" class="btn-removetocart" itemid="' + owl_cart_item_id + '"/><br />';
+                    //ihtml += ' </div>';
+
+                    //$("#" + owl_cart_item_id).mouseOverTip({
+                    //    width: '175px',
+                    //    height: '200px',
+                    //    outlineBoxId: "middle_box",
+                    //    boxId: "savedmiddle_box_xiuTipBox",
+                    //    content: ihtml
+                    //});
+                }
 
             });
 
@@ -116,6 +151,7 @@
 
             $("#owl_product .item  ul li span ").each(function (i) {
 
+                var pId = $(this).attr("id");
                 var pJStr = $(this).find('pre').html();
                 var pJObj = JSON.parse(pJStr);
 
@@ -138,13 +174,6 @@
                     ihtml += '    <span class="filter-item">' + colors[i] + '</span>';
                 }
 
-                //ihtml += '      <span class="filter-item">Red</span>';
-                //ihtml += '     <span class="filter-item">Blue</span>';
-                //ihtml += '    <span class="filter-item">Blue</span>';
-                //ihtml += '    <span class="filter-item">Blue</span>';
-                //ihtml += '      <span class="filter-item">Blue</span>';
-                //ihtml += '      <span class="filter-item">Blue</span>';
-
 
                 ihtml += '      </dd>';
                 ihtml += '     </dl>';
@@ -157,7 +186,7 @@
                 ihtml += '  <dl class="filter-entries clearfix">';
                 ihtml += '   <dt class="filter-entries-label">Price:</dt>';
                 ihtml += '    <dd class="filter-entries-values">';
-                ihtml += '      <span class="filter-item ">' + pJObj.Price+ '</span>';
+                ihtml += '      <span class="filter-item ">' + pJObj.Price + '</span>';
                 ihtml += '    </dd>';
                 ihtml += '  </dl>';
                 ihtml += '  <dl class="filter-entries clearfix">';
@@ -171,18 +200,11 @@
                     ihtml += '    <span class="filter-item">' + sizes[i] + '</span>';
                 }
 
-
-
-             //   ihtml += '        <span class="filter-item ">S-L</span>';
-
-
-
                 ihtml += '    </dd>';
                 ihtml += '  </dl>';
                 ihtml += '  </div>';
 
 
-                var src = $($(this).find("img")[0]).attr("src")
                 ihtml += '   <div style="border-image: none; width: 150px;height: 100%;  float: left;">';
                 ihtml += '     <div style="border: 1px solid rgb(0, 0, 0); border-image: none; width: 100%; height: 158px; margin-bottom: 5px;">manosque|羽绒服|1,223.00 </div>';
                 ihtml += '   <div style="text-align: left; line-height: 28px;">';
@@ -191,25 +213,11 @@
                 ihtml += '   </span>';
                 ihtml += '   <span style="height: 30px; line-height: 30px; display: block; ">';
                 ihtml += ' <a class="a-btn" style="font-size:12px; padding:6px 16px;" href="/Account/MyCart">Share</a>';
-                ihtml += ' <a class="a-btn btn-addtocart" id="btn-addtocart_' + i + '" imgurl="' + src + '" style="font-size:12px; padding:6px 6px;" href="javascript:void(0)">Add To Cart</a>';
+                ihtml += ' <a class="a-btn btn-addtocart" id="btn-addtocart_' + i + '"  productid="' + pId + '" style="font-size:12px; padding:6px 6px;" href="javascript:void(0)">Add To Cart</a>';
 
                 ihtml += '  </span>';
                 ihtml += '  </div>';
                 ihtml += ' </div>';
-
-
-
-
-
-                //    //ihtml += $(this).attr('info');
-                //    //var src = $($(this).find("img")[0]).attr("src")
-
-                //    //ihtml += ' </div>';
-                //    //ihtml += ' <div style="text-align:left; line-height:28px;">';
-                //    //ihtml += '   <input type="button" id="btn-addtocart_' + i + '" value="Add To Cart" class="btn-addtocart" imgurl="' + src + '"/><br />';
-                //    //ihtml += '  <span>Reserve at $<input type="text" style="width:50px;" /></span>';
-                //    //ihtml += '</div>';
-
 
                 $(this).mouseOverTip({
                     width: '340px',
@@ -348,7 +356,7 @@
                                                     <li>
                                                         @if (i < Model.Products.Count)
                                                         {
-                                                            <span>
+                                                            <span id="product_@Model.Products[i].Id">
                                                                 <pre style="display:none">@Newtonsoft.Json.JsonConvert.SerializeObject(Model.Products[i])</pre>
                                                                 <img src="@Model.Products[i].SmallImg" alt="">
                                                             </span>
@@ -357,7 +365,7 @@
                                                     <li>
                                                         @if ((i + 1) < Model.Products.Count)
                                                         {
-                                                            <span>
+                                                            <span id="product_@Model.Products[i+1].Id">
                                                                 <pre style="display:none">@Newtonsoft.Json.JsonConvert.SerializeObject(Model.Products[i+1])</pre>
                                                                 <img src="@Model.Products[i + 1].SmallImg" alt="">
                                                             </span>
@@ -366,148 +374,6 @@
                                                 </ul>
                                             </a>
                                         }
-
-
-                                        @*<a class="item">
-                                                <ul>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|1,223.00">
-                                                            <img src="/images/demo/saved/shirt/01.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|2,223.00">
-                                                            <img src="/images/demo/saved/shoes/02.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </a>
-                                            <a class="item">
-                                                <ul>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|3,223.00">
-                                                            <img src="/images/demo/saved/shirt/03.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|4,223.00">
-                                                            <img src="/images/demo/saved/shoes/04.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </a>
-                                            <a class="item">
-                                                <ul>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|5,223.00">
-                                                            <img src="/images/demo/saved/shirt/05.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|6,223.00">
-                                                            <img src="/images/demo/saved/pants/06.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </a>
-                                            <a class="item">
-                                                <ul>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|7,223.00">
-                                                            <img src="/images/demo/saved/shoes/07.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|8,223.00">
-                                                            <img src="/images/demo/saved/pants/08.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </a>
-                                            <a class="item">
-                                                <ul>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|9,223.00">
-                                                            <img src="/images/demo/saved/shoes/09.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|10,223.00">
-                                                            <img src="/images/demo/saved/pants/10.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </a>
-                                            <a class="item">
-                                                <ul>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|11,223.00">
-                                                            <img src="/images/demo/saved/shirt/11.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|12,223.00">
-                                                            <img src="/images/demo/saved/pants/12.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </a>
-                                            <a class="item">
-                                                <ul>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|13,223.00">
-                                                            <img src="/images/demo/saved/shirt/13.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|14,223.00">
-                                                            <img src="/images/demo/saved/pants/14.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </a>
-                                            <a class="item">
-                                                <ul>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|15,223.00">
-                                                            <img src="/images/demo/saved/pants/15.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|16,223.00">
-                                                            <img src="/images/demo/saved/shirt/04.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </a>
-                                            <a class="item">
-                                                <ul>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|17,223.00">
-                                                            <img src="/images/demo/saved/pants/01.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|18,223.00">
-                                                            <img src="/images/demo/saved/shirt/13.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </a>
-                                            <a class="item">
-                                                <ul>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|19,223.00">
-                                                            <img src="/images/demo/saved/pants/12.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                    <li>
-                                                        <span info="manosque|羽绒服|20,223.00">
-                                                            <img src="/images/demo/saved/shoes/11.jpg" alt="">
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                            </a>*@
                                     </div>
                                 </div>
 
@@ -520,10 +386,19 @@
                             <div class="wrapper">
                                 <div class="content">
                                     <div id="owl_cart" class="owl-carousel owl-cart">
-                                        <span class="owl-cart-null"></span>
+
+                                        @for (var i = 0; i < Model.CartProducts.Count; i++)
+                                        {
+                                            <a class="item" id="">
+                                                <span id="cartproduct_@Model.CartProducts[i].Id">
+                                                    <img src="@Model.CartProducts[i].SmallImg" alt="">
+                                                </span>
+                                            </a>
+                                        }
+
                                     </div>
 
-                                    <div class="cart-box-null">
+                                    <div class="cart-box-null" style="margin-top:20px;">
                                         <div class="cart-box-null-img">
 
                                         </div>

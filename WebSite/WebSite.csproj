@@ -215,6 +215,7 @@
     </Compile>
     <Compile Include="Models\GoToViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\MyCartViewModel.cs" />
     <Compile Include="Models\MyModels.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
@@ -715,6 +716,7 @@
     <Content Include="Scripts\W\artDialog\skins\idialog\ie6\aui_w.png" />
     <Content Include="Scripts\W\CloudCarousel.1.0.5.js" />
     <Content Include="Scripts\W\jquery-1.8.3.js" />
+    <Content Include="Scripts\W\jquery.cookie.js" />
     <Content Include="Scripts\W\jquery.formValidator.js" />
     <Content Include="Scripts\W\jquery.formValidatorRegex.js" />
     <Content Include="Scripts\W\jquery.js" />

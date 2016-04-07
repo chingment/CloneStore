@@ -11,9 +11,12 @@ namespace WebSite.Models
         public ProductViewModel()
         {
             this.Products = new List<Product>();
+            this.CartProducts = new List<Product>();
         }
 
 
         public List<Product> Products { get; set; }
+
+        public List<Product> CartProducts { get; set; }
     }
 }

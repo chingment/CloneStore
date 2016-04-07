@@ -14,7 +14,6 @@ namespace WebSite.Controllers
     public class WebSiteController : BaseController
     {
 
-
         public WebSiteController()
         {
             _currentDb = new FxDbContext();
