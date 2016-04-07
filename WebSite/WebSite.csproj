@@ -223,7 +223,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="backup.html" />
     <Content Include="Content\Manager\base\images\bg-bankaccount.png" />
     <Content Include="Content\Manager\base\images\bg.jpg" />
     <Content Include="Content\Manager\base\images\bgimg-lumos-header.png" />
@@ -449,9 +448,6 @@
     <Content Include="images\templatemo_slider_left1.png" />
     <Content Include="images\templatemo_slider_right1.png" />
     <Content Include="images\tips.png" />
-    <Content Include="index.html" />
-    <Content Include="MyCart.html" />
-    <Content Include="product.html" />
     <Content Include="Scripts\Manager\AreaSelect\public.js" />
     <Content Include="Scripts\Manager\AreaSelect\queryAllAreas.js" />
     <Content Include="Scripts\Manager\AreaSelect\queryAllProvinces.js" />
@@ -683,7 +679,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Manager\_references.js" />
-    <Content Include="right.html" />
     <Content Include="Scripts\W\._jquery-1.8.3.js" />
     <Content Include="Scripts\W\._jquery.js" />
     <Content Include="Scripts\W\._jquery.mousewheel.js" />
@@ -724,8 +719,6 @@
     <Content Include="Scripts\W\jquery.mousewheel.js" />
     <Content Include="Scripts\W\jquery.resizeEnd.js" />
     <Content Include="Scripts\W\owl.carousel.js" />
-    <Content Include="SignIn.html" />
-    <Content Include="SignUp.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
