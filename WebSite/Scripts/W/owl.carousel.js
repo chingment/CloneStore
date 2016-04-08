@@ -699,6 +699,7 @@ if (typeof Object.create !== "function") {
                     base.checkAp();
                 }
             }
+
             if (typeof base.options.afterMove === "function" && base.prevItem !== base.currentItem) {
                 base.options.afterMove.apply(this, [base.$elem]);
             }
@@ -1512,7 +1513,7 @@ if (typeof Object.create !== "function") {
         beforeInit : false,
         afterInit : false,
         beforeMove : false,
-        afterMove : false,
+        afterMove: false,
         afterAction : false,
         startDragging : false,
         afterLazyLoad: false

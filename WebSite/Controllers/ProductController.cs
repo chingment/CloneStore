@@ -44,15 +44,15 @@ namespace WebSite.Controllers
         public ActionResult List(int? id = 1)
         {
             ProductViewModel model = new ProductViewModel();
-            model.Products = GetRandomList(CurrentDb.Product.Where(m => m.Retailer == id).ToList());
+            model.Products = CurrentDb.Product.Where(m => m.Retailer == id).ToList();
             //where x.Field<string>("fieldname").IndexOf("char")>0
 
-           // Expression  d=Expression.ArrayIndex
+            // Expression  d=Expression.ArrayIndex
             //string k=",White,";
             //var a = from c in CurrentDb.Product where k.Contains(c.Colors) select c; 
 
             string k = ",White,";
-            var a = from c in CurrentDb.Product where c.Colors.ToString().Contains(k) select c; 
+            var a = from c in CurrentDb.Product where c.Colors.ToString().Contains(k) select c;
 
             //var a = from c in CurrentDb.Product where c.Colors.IndexOf("Gray")>0 select c;
             var b = a.ToList();
@@ -72,7 +72,45 @@ namespace WebSite.Controllers
         {
 
             var b = "";
-            List<Product> products=GetRandomList(CurrentDb.Product.ToList());
+            var sql = "select * from Product";
+            sql += " where 1=1 ";
+            if (Category != null)
+            {
+                if (!Category.Contains("0"))
+                {
+                    string s = " and Category in (";
+                    for (var i = 0; i < Category.Length; i++)
+                    {
+                        s += "'" + Category[i] + "',";
+                    }
+                    s = s.Substring(0, s.Length - 1);
+                    s += ")";
+                    sql += s;
+                }
+            }
+
+
+            if (Color != null)
+            {
+                string s = " ";
+                if (Color.Length > 0)
+                {
+                    s += " and (";
+                    for (var i = 0; i < Color.Length; i++)
+                    {
+                        s += " charindex('" + Color[i] + "',Colors)>0 or";
+                    }
+
+                    s = s.Substring(0, s.Length - 2);
+                    s += ")";
+                }
+
+                sql += s;
+            }
+
+
+
+            List<Product> products = CurrentDb.Database.SqlQuery<Product>(sql).ToList();
             return Json(ResultType.Success, products);
         }
 

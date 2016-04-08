@@ -110,62 +110,7 @@
                         ihtml += '</a>';
                         var owl = $("#owl_cart").data('owlCarousel');
                         owl.addItem(ihtml, 0);//添加到第1个位置
-
                     });
-
-
-
-
-
-                    //var ihtml = '';
-                    //ihtml += '  <div style="border: 1px solid rgb(0, 0, 0); border-image: none;  margin-right: 10px; float: left;">';
-                    //ihtml += '  <div class="filter-lists-container" style="width:170px;">';
-                    //ihtml += '   <dl class="filter-entries clearfix">';
-                    //ihtml += '    <dt class="filter-entries-label">Material:</dt>';
-                    //ihtml += '   <dd class="filter-entries-values">';
-                    //ihtml += '    <span class="filter-item "> 100% Cotton</span>';
-                    //ihtml += '  </dd>';
-                    //ihtml += '  </dl>';
-                    //ihtml += '  <dl class="filter-entries clearfix">';
-                    //ihtml += '    <dt class="filter-entries-label">Color:</dt>';
-                    //ihtml += '   <dd class="filter-entries-values">';
-                    //ihtml += '     <span class="filter-item">Red</span>';
-                    //ihtml += '     <span class="filter-item">Blue</span>';
-                    //ihtml += '    <span class="filter-item">Blue</span>';
-                    //ihtml += '     <span class="filter-item">Blue</span>';
-                    //ihtml += '     <span class="filter-item">Blue</span>';
-                    //ihtml += '     <span class="filter-item">Blue</span>';
-                    //ihtml += '   </dd>';
-                    //ihtml += '  </dl>';
-                    //ihtml += '   <dl class="filter-entries clearfix">';
-                    //ihtml += '   <dt class="filter-entries-label">Style:</dt>';
-                    //ihtml += '   <dd class="filter-entries-values">';
-                    //ihtml += '     <span class="filter-item ">   Striped</span>';
-                    //ihtml += '    </dd>';
-                    //ihtml += '  </dl>';
-                    //ihtml += ' <dl class="filter-entries clearfix">';
-                    //ihtml += '   <dt class="filter-entries-label">Price:</dt>';
-                    //ihtml += '  <dd class="filter-entries-values">';
-                    //ihtml += '     <span class="filter-item ">1000</span>';
-                    //ihtml += ' </dd>';
-                    //ihtml += '  </dl>';
-                    //ihtml += ' <dl class="filter-entries clearfix">';
-                    //ihtml += '   <dt class="filter-entries-label">Size:</dt>';
-                    //ihtml += '  <dd class="filter-entries-values">';
-                    //ihtml += '    <span class="filter-item ">S-L</span>';
-                    //ihtml += '  </dd>';
-                    //ihtml += '  </dl>';
-                    //ihtml += ' </div>';
-                    //ihtml += '   <input type="button" value="Remove" class="btn-removetocart" itemid="' + owl_cart_item_id + '"/><br />';
-                    //ihtml += ' </div>';
-
-                    //$("#" + owl_cart_item_id).mouseOverTip({
-                    //    width: '175px',
-                    //    height: '200px',
-                    //    outlineBoxId: "middle_box",
-                    //    boxId: "savedmiddle_box_xiuTipBox",
-                    //    content: ihtml
-                    //});
                 }
 
             });
@@ -325,7 +270,14 @@
                 itemsDesktopSmall: [979, 5],
                 itemsTablet: [768, 5],
                 itemsMobile: [479, 5],
-                navigationText: ["", ""]
+                navigationText: ["", ""],
+                afterMove: function () {
+
+                    var owl = $("#owl_product").data('owlCarousel');
+                    if (owl.currentItem == owl.maximumItem) {
+                        getProductList({ isAppend: true, currentItem: owl.currentItem });
+                    }
+                }
             });
 
 
@@ -347,16 +299,26 @@
                 var input = $(this).find("input")[0];
                 var input_value = $(input).val();
                 var input_checked = $(input).attr("checked") == undefined ? false : true;
+                var input_type = $(input).attr("type");
+
+
 
                 if (input_value === '0') {
                     $(this).parent().find('input').attr("checked", false);
                     $(this).parent().find('span').css('color', '#000');
                     $(this).css('color', '#00a9e0');
-                    $(input).attr('checked', true);
                 }
                 else {
-                    $(this).parent().find('span').eq(0).css('color', '#000');
-                    $(this).parent().find('span').eq(0).find('input').attr("checked", false);
+
+                    if (input_type === "checkbox") {
+                        $(this).parent().find('span').eq(0).css('color', '#000');
+                        $(this).parent().find('span').eq(0).find('input').attr("checked", false);
+                    }
+                    else {
+                        $(this).parent().find('span').css('color', '#000');
+                        $(this).parent().find('input').attr("checked", false);
+                    }
+
                     if (input_checked) {
                         $(input).attr('checked', false);
                         $(this).css('color', '#000');
@@ -367,57 +329,79 @@
                     }
                 }
 
-
-                $.ajax({
-                    type: "post",
-                    url: "/Product/GetList",
-                    dataType: "json",
-                    data: $("#form1").serializeArray()
-                }).done(function (data) {
-                    if (data.result == "Success") {
-
-                        var owl = $("#owl_product").data('owlCarousel');
-                        $("#owl_product").html("");
-                        var products = data.content;
-
-                        for (var i = 0; i < products.length; i = i + 2) {
-                            var id = products[i].Id;
-                            var owl_cart_item_id = "owl_cart_item" + id;
-                            var ihtml = '<a class="item" id="' + owl_cart_item_id + '" >';
-                            ihtml += '<ul>';
-                            ihtml += '<li>';
-
-                            if (i < products.length) {
-                                ihtml += '<span>';
-                                ihtml += '<pre style="display:none">' + JSON.stringify(products[i]) + '</pre>';
-                                ihtml += '<img src="' + products[i].SmallImg + '" alt="">';
-                                ihtml += '</span>';
-                            }
-
-                            ihtml += '</li>';
-                            ihtml += '<li>';
-                            if ((i + 1) < products.length) {
-                                ihtml += '<span>';
-                                ihtml += '<pre style="display:none">' + JSON.stringify(products[i + 1]) + '</pre>';
-                                ihtml += '<img src="' + products[i + 1].SmallImg + '" alt="">';
-                                ihtml += '</span>';
-                            }
-                            ihtml += '</li>';
-                            ihtml += '</ul>';
-                            ihtml += '</a>';
-                            owl.addItem(ihtml);
-                        }
-
-                    }
-                });
-
+                getProductList({ isAppend: false });
 
             });
+
 
 
             $("#retailers-@id").addClass("select");
 
         });
+
+
+        function getProductList(opts) {
+
+            opts = $.extend({
+                isAppend: false,
+                currentItem: 0
+            }, opts || {});
+
+
+            $.ajax({
+                type: "post",
+                url: "/Product/GetList",
+                dataType: "json",
+                data: $("#form1").serializeArray()
+            }).done(function (data) {
+                if (data.result == "Success") {
+
+                    var owl = $("#owl_product").data('owlCarousel');
+
+                    if (!opts.isAppend) {
+                        $("#owl_product").html("");
+                    }
+
+                    var products = data.content;
+
+                    for (var i = 0; i < products.length; i = i + 2) {
+                        var id = products[i].Id;
+                        var owl_cart_item_id = "owl_cart_item" + id;
+                        var ihtml = '<a class="item" id="' + owl_cart_item_id + '" >';
+                        ihtml += '<ul>';
+                        ihtml += '<li>';
+
+                        if (i < products.length) {
+                            ihtml += '<span id="product_' + products[i].Id + '">';
+                            ihtml += '<pre style="display:none">' + JSON.stringify(products[i]) + '</pre>';
+                            ihtml += '<img src="' + products[i].SmallImg + '" alt="">';
+                            ihtml += '</span>';
+                        }
+
+                        ihtml += '</li>';
+                        ihtml += '<li>';
+                        if ((i + 1) < products.length) {
+                            ihtml += '<span id="product_' + products[i + 1].Id + '">';
+                            ihtml += '<pre style="display:none">' + JSON.stringify(products[i + 1]) + '</pre>';
+                            ihtml += '<img src="' + products[i + 1].SmallImg + '" alt="">';
+                            ihtml += '</span>';
+                        }
+                        ihtml += '</li>';
+                        ihtml += '</ul>';
+                        ihtml += '</a>';
+
+                        owl.addItem(ihtml);
+
+                    }
+
+                    if (opts.isAppend) {
+                        owl.goTo(opts.currentItem);
+                    }
+
+                }
+            });
+        }
+
     </script>
 }
 <form id="form1" name="form1">
@@ -437,15 +421,15 @@
                                         </span>
                                         <span class="filter-item">
                                             Clothes
-                                            <input name="Category" type="checkbox" value="1" />
+                                            <input name="Category" type="checkbox" value="Clothes" />
                                         </span>
                                         <span class="filter-item">
                                             Pants
-                                            <input name="Category" type="checkbox" value="2" />
+                                            <input name="Category" type="checkbox" value="Pants" />
                                         </span>
                                         <span class="filter-item">
                                             Shoes
-                                            <input name="Category" type="checkbox" value="3" />
+                                            <input name="Category" type="checkbox" value="Shoes" />
                                         </span>
                                     </dd>
                                 </dl>
@@ -454,23 +438,31 @@
                                     <dd class="filter-entries-values">
                                         <span class="filter-item">
                                             All
-                                            <input name="Color" type="checkbox" value="0" checked />
+                                            <input name="Color" type="checkbox" value="0" />
                                         </span>
                                         <span class="filter-item">
                                             Green
-                                            <input name="Color" type="checkbox" value="1" />
+                                            <input name="Color" type="checkbox" value="Green" />
                                         </span>
                                         <span class="filter-item">
                                             Black
-                                            <input name="Color" type="checkbox" value="2" />
+                                            <input name="Color" type="checkbox" value="Black" />
                                         </span>
                                         <span class="filter-item">
-                                            <input name="Color" type="checkbox" value="3" />
+                                            <input name="Color" type="checkbox" value="Blue" />
                                             Blue
                                         </span>
                                         <span class="filter-item">
-                                            <input name="Color" type="checkbox" value="4" />
+                                            <input name="Color" type="checkbox" value="Orange" />
                                             Orange
+                                        </span>
+                                        <span class="filter-item">
+                                            <input name="Color" type="checkbox" value="Red" />
+                                            Red
+                                        </span>
+                                        <span class="filter-item">
+                                            <input name="Color" type="checkbox" value="Gray" />
+                                            Gray
                                         </span>
                                     </dd>
                                 </dl>
@@ -479,31 +471,31 @@
                                     <dd class="filter-entries-values">
                                         <span class="filter-item">
                                             All
-                                            <input name="Material" type="checkbox" value="0" checked />
+                                            <input name="Material" type="radio" value="0" />
                                         </span>
                                         <span class="filter-item">
                                             Cotton
-                                            <input name="Material" type="checkbox" value="1" />
+                                            <input name="Material" type="radio" value="1" />
                                         </span>
                                         <span class="filter-item">
                                             Wool
-                                            <input name="Material" type="checkbox" value="2" />
+                                            <input name="Material" type="radio" value="2" />
                                         </span>
                                         <span class="filter-item">
                                             Silk
-                                            <input name="Material" type="checkbox" value="3" />
+                                            <input name="Material" type="radio" value="3" />
                                         </span>
                                         <span class="filter-item">
                                             Linen
-                                            <input name="Material" type="checkbox" value="4" />
+                                            <input name="Material" type="radio" value="4" />
                                         </span>
                                         <span class="filter-item">
                                             Nylon
-                                            <input name="Material" type="checkbox" value="5" />
+                                            <input name="Material" type="radio" value="5" />
                                         </span>
                                         <span class="filter-item">
                                             Ramine
-                                            <input name="Material" type="checkbox" value="6" />
+                                            <input name="Material" type="radio" value="6" />
                                         </span>
                                     </dd>
                                 </dl>
