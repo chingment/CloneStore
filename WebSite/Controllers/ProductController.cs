@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebSite.Models;
 using Lumos.Common;
+using System.Linq.Expressions;
 namespace WebSite.Controllers
 {
     public class ProductController : WebSiteController
@@ -44,7 +45,17 @@ namespace WebSite.Controllers
         {
             ProductViewModel model = new ProductViewModel();
             model.Products = GetRandomList(CurrentDb.Product.Where(m => m.Retailer == id).ToList());
+            //where x.Field<string>("fieldname").IndexOf("char")>0
 
+           // Expression  d=Expression.ArrayIndex
+            //string k=",White,";
+            //var a = from c in CurrentDb.Product where k.Contains(c.Colors) select c; 
+
+            string k = ",White,";
+            var a = from c in CurrentDb.Product where c.Colors.ToString().Contains(k) select c; 
+
+            //var a = from c in CurrentDb.Product where c.Colors.IndexOf("Gray")>0 select c;
+            var b = a.ToList();
             if (Request.Cookies[CommonSetting.CartProductsCookiesName] != null)
             {
                 string strCartProducts = System.Web.HttpUtility.UrlDecode(Request.Cookies[CommonSetting.CartProductsCookiesName].Value.ToString());
@@ -56,6 +67,15 @@ namespace WebSite.Controllers
 
             return View(model);
         }
+
+        public JsonResult GetList(string Retailer, string[] Category, string[] Color, string[] Material)
+        {
+
+            var b = "";
+            List<Product> products=GetRandomList(CurrentDb.Product.ToList());
+            return Json(ResultType.Success, products);
+        }
+
 
 
         public JsonResult SetMyCartCookies(string cartProducts)
