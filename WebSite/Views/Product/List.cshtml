@@ -25,9 +25,50 @@
     <script src="~/Scripts/W/owl.carousel.js"></script>
     <script src="~/Scripts/W/jquery.mouseoverbox.js"></script>
     <script type="text/javascript">
+
+        function getNowFormatDate() {
+
+            var date = new Date();
+
+            var seperator1 = "-";
+
+            var seperator2 = ":";
+
+            var month = date.getMonth() + 1;
+
+            var strDate = date.getDate();
+
+            if (month >= 1 && month <= 9) {
+
+                month = "0" + month;
+
+            }
+
+            if (strDate >= 0 && strDate <= 9) {
+
+                strDate = "0" + strDate;
+
+            }
+
+            var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+
+                    + " " + date.getHours() + seperator2 + date.getMinutes()
+
+                    + seperator2 + date.getSeconds();
+
+            return currentdate;
+
+        }
+
+
+
+
         var product = { id: '1', material: '100% Cotton', color: ['red', 'blue'], style: 'striped ', price: '1000', size: ['S', 'M', 'L'], smallImg: '' };
-        var cartProducts = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.CartProducts));
+        var cartProducts = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.CartProducts))
         i = 0;
+
+
+
         $(document).ready(function () {
 
             $(".btn-addtocart").live("click", function () {
@@ -46,28 +87,21 @@
 
 
                 if (!isflag) {
-
+                    pJObj.CreateTime = getNowFormatDate();
                     cartProducts.push(pJObj);
-
-
 
                     $.ajax({
                         type: "post",
                         url: "/Product/SetMyCartCookies",
                         dataType: "json",
-                        data: {cartProducts:JSON.stringify(cartProducts)}
+                        data: { cartProducts: JSON.stringify(cartProducts) }
                     }).done(function (data) {
 
                     });
 
-
-
-
-                    // $.cookie('cartProducts', JSON.stringify(cartProducts));
-
                     var smallImg = pJObj.SmallImg;
 
-                    var id = $(this).attr("id");
+                    var id = pJObj.Id;
                     var owl_cart_item_id = "owl_cart_item" + id;
                     var ihtml = '<a class="item" id="' + owl_cart_item_id + '" >';
                     ihtml += '<span>';

@@ -37,9 +37,9 @@ namespace WebSite.Controllers
             {
                 string strCartProducts = System.Web.HttpUtility.UrlDecode(Request.Cookies[CommonSetting.CartProductsCookiesName].Value.ToString());
                 List<Product> products = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(strCartProducts);
-                model.Clothes = products.Where(m => m.Category == "Clothes").ToList();
-                model.Pants = products.Where(m => m.Category == "Pants").ToList();
-                model.Shoes = products.Where(m => m.Category == "Shoes").ToList();
+                model.Clothes = products.Where(m => m.Category == "Clothes").OrderByDescending(c=>c.CreateTime).ToList();
+                model.Pants = products.Where(m => m.Category == "Pants").OrderByDescending(c => c.CreateTime).ToList();
+                model.Shoes = products.Where(m => m.Category == "Shoes").OrderByDescending(c => c.CreateTime).ToList();
             }
 
             return View(model);

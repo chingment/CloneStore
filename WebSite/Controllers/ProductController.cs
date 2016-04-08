@@ -40,16 +40,17 @@ namespace WebSite.Controllers
 
         //
         // GET: /Product/
-        public ActionResult List(int? id=1)
+        public ActionResult List(int? id = 1)
         {
             ProductViewModel model = new ProductViewModel();
             model.Products = GetRandomList(CurrentDb.Product.Where(m => m.Retailer == id).ToList());
 
             if (Request.Cookies[CommonSetting.CartProductsCookiesName] != null)
             {
-
                 string strCartProducts = System.Web.HttpUtility.UrlDecode(Request.Cookies[CommonSetting.CartProductsCookiesName].Value.ToString());
-                model.CartProducts = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(strCartProducts);
+                List<Product> cartProducts = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(strCartProducts);
+                cartProducts = cartProducts.OrderByDescending(c => c.CreateTime).ToList();
+                model.CartProducts = cartProducts;
             }
 
 
@@ -60,6 +61,7 @@ namespace WebSite.Controllers
         public JsonResult SetMyCartCookies(string cartProducts)
         {
             HttpCookie cookie = new HttpCookie(CommonSetting.CartProductsCookiesName);
+
             cookie.Value = cartProducts;
             cookie.Expires = DateTime.Now.AddDays(7);
             Response.Cookies.Add(cookie);
