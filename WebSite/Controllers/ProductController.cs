@@ -7,6 +7,9 @@ using System.Web.Mvc;
 using WebSite.Models;
 using Lumos.Common;
 using System.Linq.Expressions;
+using System.Data.Entity;
+using System.Data;
+
 namespace WebSite.Controllers
 {
     public class ProductController : WebSiteController
@@ -44,18 +47,20 @@ namespace WebSite.Controllers
         public ActionResult List(int? id = 1)
         {
             ProductViewModel model = new ProductViewModel();
-            model.Products = CurrentDb.Product.Where(m => m.Retailer == id).ToList();
-            //where x.Field<string>("fieldname").IndexOf("char")>0
 
-            // Expression  d=Expression.ArrayIndex
-            //string k=",White,";
-            //var a = from c in CurrentDb.Product where k.Contains(c.Colors) select c; 
 
-            string k = ",White,";
-            var a = from c in CurrentDb.Product where c.Colors.ToString().Contains(k) select c;
 
-            //var a = from c in CurrentDb.Product where c.Colors.IndexOf("Gray")>0 select c;
-            var b = a.ToList();
+            var query = (from u in CurrentDb.Product
+                         where (u.Retailer == id)
+                         select u);
+
+            int pageIndex = 2;
+            int pageSize = 10;
+            query = query.OrderByDescending(r => r.Id).Take(pageIndex * pageSize);
+
+            model.OmittedProductsPages = pageIndex;
+            model.Products = query.ToList();
+
             if (Request.Cookies[CommonSetting.CartProductsCookiesName] != null)
             {
                 string strCartProducts = System.Web.HttpUtility.UrlDecode(Request.Cookies[CommonSetting.CartProductsCookiesName].Value.ToString());
@@ -68,12 +73,71 @@ namespace WebSite.Controllers
             return View(model);
         }
 
-        public JsonResult GetList(string Retailer, string[] Category, string[] Color, string[] Material)
+        public JsonResult GetList(bool IsAppend, string Retailer, string[] Category, string[] Color, string[] Material, int omittedProductsPages)
         {
 
-            var b = "";
-            var sql = "select * from Product";
-            sql += " where 1=1 ";
+
+
+
+            //var b = "";
+            //var sql = "select * from Product";
+            //sql += " where 1=1 ";
+            //if (Category != null)
+            //{
+            //    if (!Category.Contains("0"))
+            //    {
+            //        string s = " and Category in (";
+            //        for (var i = 0; i < Category.Length; i++)
+            //        {
+            //            s += "'" + Category[i] + "',";
+            //        }
+            //        s = s.Substring(0, s.Length - 1);
+            //        s += ")";
+            //        sql += s;
+            //    }
+            //}
+
+
+            //if (Color != null)
+            //{
+            //    string s = " ";
+            //    if (Color.Length > 0)
+            //    {
+            //        s += " and (";
+            //        for (var i = 0; i < Color.Length; i++)
+            //        {
+            //            s += " charindex('" + Color[i] + "',Colors)>0 or";
+            //        }
+
+            //        s = s.Substring(0, s.Length - 2);
+            //        s += ")";
+            //    }
+
+            //    sql += s;
+            //}
+
+
+
+            QueryParam qp = new QueryParam();
+            qp.TableName = " Product  a ";
+            qp.ReturnFields = " * ";
+            qp.Orderfld = " Id desc ";
+            qp.PrimaryKey = " Id ";
+
+            if (IsAppend)
+            {
+                qp.PageIndex = omittedProductsPages + 1;
+                qp.PageSize = 10;
+            }
+            else
+            {
+                qp.PageIndex = 0;
+                qp.PageSize = omittedProductsPages * 10;
+            }
+
+
+            qp.Where = " 1='1' ";
+
             if (Category != null)
             {
                 if (!Category.Contains("0"))
@@ -85,7 +149,7 @@ namespace WebSite.Controllers
                     }
                     s = s.Substring(0, s.Length - 1);
                     s += ")";
-                    sql += s;
+                    qp.Where += s;
                 }
             }
 
@@ -104,13 +168,13 @@ namespace WebSite.Controllers
                     s = s.Substring(0, s.Length - 2);
                     s += ")";
                 }
-
-                sql += s;
+                qp.Where += s;
             }
 
 
+            List<Product> products = CurrentDb.Database.GetPageReocrdByProc(qp).Tables[0].ToList<Product>();
 
-            List<Product> products = CurrentDb.Database.SqlQuery<Product>(sql).ToList();
+            //   List<Product> products = CurrentDb.Database.SqlQuery<Product>(sql).ToList();
             return Json(ResultType.Success, products);
         }
 

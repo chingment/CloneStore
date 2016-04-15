@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Lumos.DAL
 {
 
-    public class FxDbContext : AuthorizeRelayDbContext
+    public class LumosDbContext : AuthorizeRelayDbContext
     {
 
         //public FxDbContext()
@@ -70,12 +70,12 @@ namespace Lumos.DAL
     //    }
     //}
 
-    public class FxContextDatabaseInitializerForCreateDatabaseIfNotExists : CreateDatabaseIfNotExists<FxDbContext>
+    public class FxContextDatabaseInitializerForCreateDatabaseIfNotExists : CreateDatabaseIfNotExists<LumosDbContext>
     {
-        protected override void Seed(FxDbContext context)
+        protected override void Seed(LumosDbContext context)
         {
             //初始用户
-            context.SysStaffUser.Add(new SysStaffUser() { Id = 1, UserName = "admin", SecurityStamp = "61c7b4a2-4197-4d32-b9a5-629425fc2000", PasswordHash = "AD5hJcUUIJ4NxikOI2O1ChwVgoGYwPXDxGHp+nSIX8GHEeQw5h0C9mECSFyXeo/kCw==", IsDelete = false, IsDisable = false, IsModifyPwd = false, Creator = 0, CreateTime = DateTime.Now, PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = false, AccessFailedCount = 0 });
+            context.SysStaffUser.Add(new SysStaffUser() { Id = 1, UserName = "admin", SecurityStamp = "61c7b4a2-4197-4d32-b9a5-629425fc2000", PasswordHash = "AD5hJcUUIJ4NxikOI2O1ChwVgoGYwPXDxGHp+nSIX8GHEeQw5h0C9mECSFyXeo/kCw==", IsDelete = false, IsDisable = false, IsModifyPwd = false, Creator = 0, CreateTime = DateTime.Now, PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = false, AccessFailedCount = 0, RegisterTime = DateTime.Now });
 
             //初始角色
             context.Roles.Add(new SysRole() { Id = 1, Name = "Root Role", PId = 0, Description = "" });
@@ -124,6 +124,40 @@ namespace Lumos.DAL
             products.Add(new Product() { Id = 8, Name = "", Retailer = 3, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/08.jpg", BigImg = "/images/demo/saved/shirt/08.jpg" });
             products.Add(new Product() { Id = 9, Name = "", Retailer = 4, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/09.jpg", BigImg = "/images/demo/saved/shirt/09.jpg" });
             products.Add(new Product() { Id = 10, Name = "", Retailer = 5, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/10.jpg", BigImg = "/images/demo/saved/shirt/10.jpg" });
+
+
+            products.Add(new Product() { Id = 1, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/01.jpg", BigImg = "/images/demo/saved/shirt/01.jpg" });
+            products.Add(new Product() { Id = 2, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/02.jpg", BigImg = "/images/demo/saved/shirt/02.jpg" });
+            products.Add(new Product() { Id = 3, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/03.jpg", BigImg = "/images/demo/saved/shirt/03.jpg" });
+            products.Add(new Product() { Id = 4, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/04.jpg", BigImg = "/images/demo/saved/shirt/04.jpg" });
+            products.Add(new Product() { Id = 5, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/05.jpg", BigImg = "/images/demo/saved/shirt/05.jpg" });
+            products.Add(new Product() { Id = 6, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/06.jpg", BigImg = "/images/demo/saved/shirt/06.jpg" });
+            products.Add(new Product() { Id = 7, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/07.jpg", BigImg = "/images/demo/saved/shirt/07.jpg" });
+            products.Add(new Product() { Id = 8, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/08.jpg", BigImg = "/images/demo/saved/shirt/08.jpg" });
+            products.Add(new Product() { Id = 9, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/09.jpg", BigImg = "/images/demo/saved/shirt/02.jpg" });
+            products.Add(new Product() { Id = 10, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/10.jpg", BigImg = "/images/demo/saved/shirt/01.jpg" });
+
+            products.Add(new Product() { Id = 1, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/01.jpg", BigImg = "/images/demo/saved/shirt/01.jpg" });
+            products.Add(new Product() { Id = 2, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/02.jpg", BigImg = "/images/demo/saved/shirt/02.jpg" });
+            products.Add(new Product() { Id = 3, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/03.jpg", BigImg = "/images/demo/saved/shirt/03.jpg" });
+            products.Add(new Product() { Id = 4, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/04.jpg", BigImg = "/images/demo/saved/shirt/04.jpg" });
+            products.Add(new Product() { Id = 5, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/05.jpg", BigImg = "/images/demo/saved/shirt/05.jpg" });
+            products.Add(new Product() { Id = 6, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/06.jpg", BigImg = "/images/demo/saved/shirt/06.jpg" });
+            products.Add(new Product() { Id = 7, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/07.jpg", BigImg = "/images/demo/saved/shirt/07.jpg" });
+            products.Add(new Product() { Id = 8, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/08.jpg", BigImg = "/images/demo/saved/shirt/08.jpg" });
+            products.Add(new Product() { Id = 9, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/09.jpg", BigImg = "/images/demo/saved/shirt/04.jpg" });
+            products.Add(new Product() { Id = 10, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/10.jpg", BigImg = "/images/demo/saved/shirt/03.jpg" });
+
+            products.Add(new Product() { Id = 1, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/01.jpg", BigImg = "/images/demo/saved/shirt/01.jpg" });
+            products.Add(new Product() { Id = 2, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/02.jpg", BigImg = "/images/demo/saved/shirt/02.jpg" });
+            products.Add(new Product() { Id = 3, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/03.jpg", BigImg = "/images/demo/saved/shirt/03.jpg" });
+            products.Add(new Product() { Id = 4, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/04.jpg", BigImg = "/images/demo/saved/shirt/04.jpg" });
+            products.Add(new Product() { Id = 5, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/05.jpg", BigImg = "/images/demo/saved/shirt/05.jpg" });
+            products.Add(new Product() { Id = 6, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/06.jpg", BigImg = "/images/demo/saved/shirt/06.jpg" });
+            products.Add(new Product() { Id = 7, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/07.jpg", BigImg = "/images/demo/saved/shirt/07.jpg" });
+            products.Add(new Product() { Id = 8, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/08.jpg", BigImg = "/images/demo/saved/shirt/08.jpg" });
+            products.Add(new Product() { Id = 9, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/09.jpg", BigImg = "/images/demo/saved/shirt/06.jpg" });
+            products.Add(new Product() { Id = 10, Name = "", Retailer = 1, Category = "Clothes", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/10.jpg", BigImg = "/images/demo/saved/shirt/05.jpg" });
 
 
             products.Add(new Product() { Id = 11, Name = "", Retailer = 1, Category = "Pants", Materials = "Cotton", Colors = "Blue,Red", Style = "Striped", Price = 2000, Sizes = "30,31,32,33", SmallImg = "/images/demo/saved/pants/01.jpg", BigImg = "/images/demo/saved/pants/01.jpg" });

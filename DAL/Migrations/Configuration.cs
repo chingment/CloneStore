@@ -5,7 +5,7 @@ namespace Lumos.DAL.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Lumos.DAL.FxDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Lumos.DAL.LumosDbContext>
     {
         public Configuration()
         {
@@ -13,7 +13,7 @@ namespace Lumos.DAL.Migrations
             // AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Lumos.DAL.FxDbContext context)
+        protected override void Seed(Lumos.DAL.LumosDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

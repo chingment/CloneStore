@@ -243,6 +243,8 @@ namespace Lumos.DAL.AuthorizeRelay
         /// <returns></returns>
         public bool CreateUser(TUser user, string password)
         {
+            user.RegisterTime = DateTime.Now;
+            user.CreateTime = DateTime.Now;
             var idResult = _userManager.Create<TUser,int>(user, password);
             return idResult.Succeeded;
         }

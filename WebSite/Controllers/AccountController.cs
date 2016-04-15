@@ -57,8 +57,6 @@ namespace WebSite.Controllers
             user.FavoriteColors = model.cb_Colors == null ? null : string.Join(",", model.cb_Colors);
             user.FavoriteRetailers = model.cb_Retailers == null ? null : string.Join(",", model.cb_Retailers);
             user.Address = model.txt_Address;
-            user.CreateTime = DateTime.Now;
-            user.Creator = 0;
             var relay = new AspNetIdentiyAuthorizeRelay<SysClientUser>(CurrentDb);
 
             if (relay.UserExists(user.UserName.Trim()))

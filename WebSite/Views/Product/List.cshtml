@@ -275,7 +275,8 @@
 
                     var owl = $("#owl_product").data('owlCarousel');
                     if (owl.currentItem == owl.maximumItem) {
-                        getProductList({ isAppend: true, currentItem: owl.currentItem });
+                        var omittedPages=parseInt($('#OmittedProductsPages').val())+1;
+                        getProductList({ isAppend: true, currentItem: owl.currentItem,omittedPages:omittedPages });
                     }
                 }
             });
@@ -329,7 +330,8 @@
                     }
                 }
 
-                getProductList({ isAppend: false });
+                $('#OmittedProductsPages').val('@Model.OmittedProductsPages');
+                getProductList({ isAppend: false,omittedPages:@Model.OmittedProductsPages });
 
             });
 
@@ -344,9 +346,12 @@
 
             opts = $.extend({
                 isAppend: false,
-                currentItem: 0
+                currentItem: 0,
+                omittedPages:@Model.OmittedProductsPages,
+
             }, opts || {});
 
+            $("#IsAppend").val(opts.isAppend);
 
             $.ajax({
                 type: "post",
@@ -363,6 +368,11 @@
                     }
 
                     var products = data.content;
+
+                    if(products.length>0) {
+                        $('#OmittedProductsPages').val(opts.omittedPages);
+                    }
+
 
                     for (var i = 0; i < products.length; i = i + 2) {
                         var id = products[i].Id;
@@ -405,6 +415,8 @@
     </script>
 }
 <form id="form1" name="form1">
+    <input name="OmittedProductsPages" id="OmittedProductsPages" type="hidden" value="2" />
+    <input name="IsAppend" id="IsAppend" type="hidden" value="false" />
     <div class="gbr gbr-product" id="gbr_product">
         <div class="wrapper">
             <div class="content clearfix">

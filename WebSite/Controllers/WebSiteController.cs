@@ -16,13 +16,13 @@ namespace WebSite.Controllers
 
         public WebSiteController()
         {
-            _currentDb = new FxDbContext();
+            _currentDb = new LumosDbContext();
         }
 
 
 
-        private FxDbContext _currentDb;
-        public FxDbContext CurrentDb
+        private LumosDbContext _currentDb;
+        public LumosDbContext CurrentDb
         {
             get
             {

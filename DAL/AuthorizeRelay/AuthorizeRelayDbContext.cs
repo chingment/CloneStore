@@ -83,6 +83,8 @@ namespace Lumos.DAL.AuthorizeRelay
             modelBuilder.Entity<SysUserLoginHistory>().Property(t => t.Ip).IsUnicode(false);
 
             modelBuilder.Entity<SysVerifyEmail>().Property(t => t.Email).IsUnicode(false);
+
+
         }
     }
 }

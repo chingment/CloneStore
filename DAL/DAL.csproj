@@ -102,15 +102,17 @@
     <Compile Include="AuthorizeRelay\AuthorizeRelay.cs" />
     <Compile Include="AuthorizeRelay\AuthorizeRelayDbContext.cs" />
     <Compile Include="AuthorizeRelay\AuthorizeRelayIdentityExtensions.cs" />
+    <Compile Include="AuthorizeRelay\DbContextDatabaseExtensions.cs" />
     <Compile Include="AuthorizeRelay\HtmlPermissionExtensions.cs" />
     <Compile Include="AuthorizeRelay\PermissionCodeAttribute.cs" />
+    <Compile Include="AuthorizeRelay\QueryParam.cs" />
     <Compile Include="AuthorizeRelay\SysRoleManager.cs" />
     <Compile Include="AuthorizeRelay\SysUserManager.cs" />
     <Compile Include="ContextFactory.cs" />
     <Compile Include="AuthorizeRelay\PermissionCode.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FxDbContext.cs" />
+    <Compile Include="LumosDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entity\Entity.csproj">

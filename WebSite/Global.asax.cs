@@ -28,7 +28,7 @@ namespace WebSite
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Database.SetInitializer<FxDbContext>(new FxContextDatabaseInitializerForCreateDatabaseIfNotExists());
+            Database.SetInitializer<LumosDbContext>(new FxContextDatabaseInitializerForCreateDatabaseIfNotExists());
             //扩展
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngineExtension());

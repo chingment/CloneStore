@@ -209,8 +209,8 @@ namespace WebSite.Areas.Manager
         }
         #endregion 公共的方法
 
-        private FxDbContext _currentDb;
-        public FxDbContext CurrentDb
+        private LumosDbContext _currentDb;
+        public LumosDbContext CurrentDb
         {
             get
             {
@@ -255,7 +255,7 @@ namespace WebSite.Areas.Manager
 
         public ManagerController()
         {
-            _currentDb = new FxDbContext();
+            _currentDb = new LumosDbContext();
             var identity = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
         }
 
