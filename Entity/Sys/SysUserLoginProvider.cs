@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace Lumos.Entity
 {
-    [Table("SysUserLogin")]
-    public class SysUserLogin : IdentityUserLogin<int>
+    [Table("SysUserLoginProvider")]
+    public class SysUserLoginProvider : IdentityUserLogin<int>
     {
  
     }

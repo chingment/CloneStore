@@ -16,31 +16,40 @@ namespace Lumos.Entity
         /// 城市ID
         /// </summary>
         [Key]
+        [MaxLength(128)]
+        [Required]
         public string Id { get; set; }
 
         /// <summary>
         /// 城市父ID
         /// </summary>
+        [MaxLength(128)]
+        [Required]
         public string PId { get; set; }
 
         /// <summary>
         /// 名称
         /// </summary>
+        [MaxLength(128)]
+        [Required]
         public string Name { get; set; }
 
         /// <summary>
         /// 全称
         /// </summary>
+        [MaxLength(128)]
         public string FullName { get; set; }
 
         /// <summary>
         /// 电话区号
         /// </summary>
+        [MaxLength(50)]
         public string PhoneAreaNo { get; set; }
 
         /// <summary>
         /// 邮政
         /// </summary>
+        [MaxLength(50)]
         public string Zip { get; set; }
 
         /// <summary>

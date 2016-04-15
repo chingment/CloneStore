@@ -21,6 +21,8 @@ namespace Lumos.Entity
         /// <summary>
         ///菜单名称
         /// </summary>
+        [MaxLength(128)]
+        [Required]
         public string Name { get; set; }
 
         /// <summary>
@@ -31,16 +33,20 @@ namespace Lumos.Entity
         /// <summary>
         /// 菜单URL
         /// </summary>
+        [MaxLength(256)]
         public string Url { get; set; }
 
         /// <summary>
         /// 描述
         /// </summary>
+        [MaxLength(512)]
         public string Description { get; set; }
 
         /// <summary>
         /// 优先级
         /// </summary>
         public int Priority { get; set; }
+
+
     }
 }

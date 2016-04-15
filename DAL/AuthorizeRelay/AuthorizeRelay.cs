@@ -56,7 +56,7 @@ namespace Lumos.DAL.AuthorizeRelay
                     {
                         _db = contextDb;
                         _roleManager = new SysRoleManager(new RoleStore<SysRole,int,SysUserRole>(_db));
-                        _userManager = new SysUserManager<TUser>(new UserStore<TUser,SysRole,int,SysUserLogin, SysUserRole, SysUserClaim>(_db));
+                        _userManager = new SysUserManager<TUser>(new UserStore<TUser, SysRole, int, SysUserLoginProvider, SysUserRole, SysUserClaim>(_db));
                     }
                 }
             }
@@ -102,7 +102,7 @@ namespace Lumos.DAL.AuthorizeRelay
                 throw new ArgumentOutOfRangeException("context值为null,没有初始化context。注意：调用前先调用AspNetIdentiyAuthorizeRelay(AuthorizeRelayDbContext context)");
             }
             _roleManager = new SysRoleManager(new RoleStore<SysRole, int, SysUserRole>(_db));
-            _userManager = new SysUserManager<TUser>(new UserStore<TUser, SysRole, int, SysUserLogin, SysUserRole, SysUserClaim>(_db));
+            _userManager = new SysUserManager<TUser>(new UserStore<TUser, SysRole, int, SysUserLoginProvider, SysUserRole, SysUserClaim>(_db));
 
         }
 

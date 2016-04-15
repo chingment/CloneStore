@@ -58,14 +58,18 @@
     <Compile Include="..\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="BizEnumeration.cs" />
     <Compile Include="Biz\Product.cs" />
     <Compile Include="Biz\Retailer.cs" />
     <Compile Include="DBNullCreationConverter.cs" />
     <Compile Include="EnumerationTypeConverter.cs" />
     <Compile Include="PageEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Enumeration.cs" />
+    <Compile Include="SysEnumeration.cs" />
     <Compile Include="Sys\SysClientUser.cs" />
+    <Compile Include="Sys\SysMenuPermission.cs" />
+    <Compile Include="Sys\SysMessages.cs" />
+    <Compile Include="Sys\SysOperateHistory.cs" />
     <Compile Include="Sys\SysRole.cs" />
     <Compile Include="Sys\SysStaffUser.cs" />
     <Compile Include="Sys\SysPermission.cs" />
@@ -75,8 +79,10 @@
     <Compile Include="Sys\SysRoleMenu.cs" />
     <Compile Include="Sys\SysUser.cs" />
     <Compile Include="Sys\SysUserClaim.cs" />
-    <Compile Include="Sys\SysUserLogin.cs" />
+    <Compile Include="Sys\SysUserLoginHistory .cs" />
+    <Compile Include="Sys\SysUserLoginProvider.cs" />
     <Compile Include="Sys\SysUserRole.cs" />
+    <Compile Include="Sys\SysVerifyEmail.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

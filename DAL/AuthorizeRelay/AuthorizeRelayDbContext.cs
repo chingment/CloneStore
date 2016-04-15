@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Lumos.Entity;
 namespace Lumos.DAL.AuthorizeRelay
 {
-    public class AuthorizeRelayDbContext : IdentityDbContext<SysUser, SysRole, int, SysUserLogin,SysUserRole, SysUserClaim>
+    public class AuthorizeRelayDbContext : IdentityDbContext<SysUser, SysRole, int, SysUserLoginProvider, SysUserRole, SysUserClaim>
     {
         public AuthorizeRelayDbContext()
             : base("DefaultConnection")
@@ -31,7 +31,7 @@ namespace Lumos.DAL.AuthorizeRelay
 
         public IDbSet<SysUserRole> SysUserRole { get; set; }
 
-        public IDbSet<SysUserLogin> SysUserLogin { get; set; }
+        public IDbSet<SysUserLoginProvider> SysUserLoginProvider { get; set; }
 
         public IDbSet<SysUserClaim> SysUserClaim { get; set; }
 
@@ -40,6 +40,12 @@ namespace Lumos.DAL.AuthorizeRelay
         public IDbSet<SysProvinceCity> SysProvinceCity { get; set; }
 
         public IDbSet<SysClientUser> SysClientUser { get; set; }
+
+        public IDbSet<SysVerifyEmail> SysVerifyEmail { get; set; }
+
+        public IDbSet<SysOperateHistory> SysOperateHistory { get; set; }
+
+        public IDbSet<SysMessages> SysMessages { get; set; }
 
         public AuthorizeRelayDbContext(string nameOrConnectionString)
             : base(nameOrConnectionString)
@@ -56,8 +62,27 @@ namespace Lumos.DAL.AuthorizeRelay
             modelBuilder.Entity<SysUser>().ToTable("SysUser");
             modelBuilder.Entity<SysUserRole>().HasKey(r => new { r.RoleId, r.UserId }).ToTable("SysUserRole");
             modelBuilder.Entity<SysRole>().ToTable("SysRole");
-            modelBuilder.Entity<SysUserLogin>().ToTable("SysUserLogin");
+            modelBuilder.Entity<SysUserLoginProvider>().ToTable("SysUserLoginProvider");
             modelBuilder.Entity<SysUserClaim>().ToTable("SysUserClaim");
+
+            modelBuilder.Entity<SysMenu>().Property(t => t.Url).IsUnicode(false);
+
+
+            modelBuilder.Entity<SysMenuPermission>().Property(t => t.PermissionId).IsUnicode(false);
+
+            modelBuilder.Entity<SysPermission>().Property(t => t.Id).IsUnicode(false);
+            modelBuilder.Entity<SysPermission>().Property(t => t.PId).IsUnicode(false);
+
+
+            modelBuilder.Entity<SysProvinceCity>().Property(t => t.Id).IsUnicode(false);
+            modelBuilder.Entity<SysProvinceCity>().Property(t => t.PId).IsUnicode(false);
+
+            modelBuilder.Entity<SysRolePermission>().Property(t => t.PermissionId).IsUnicode(false);
+
+
+            modelBuilder.Entity<SysUserLoginHistory>().Property(t => t.Ip).IsUnicode(false);
+
+            modelBuilder.Entity<SysVerifyEmail>().Property(t => t.Email).IsUnicode(false);
         }
     }
 }

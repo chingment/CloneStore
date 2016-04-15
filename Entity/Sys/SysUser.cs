@@ -16,7 +16,7 @@ namespace Lumos.Entity
     //通过一个类的继承来扩展IdentityUser的属性对应的表是AspNetUsers表
     //在这里测试 添加了UserType,Age属性
     [Table("SysUser")]
-    public class SysUser : IdentityUser<int, SysUserLogin, SysUserRole, SysUserClaim>
+    public class SysUser : IdentityUser<int, SysUserLoginProvider, SysUserRole, SysUserClaim>
     {
         public SysUser() { }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<SysUser, int> manager)
@@ -29,44 +29,31 @@ namespace Lumos.Entity
         public SysUser(string name) : this() { UserName = name; }
 
         /// <summary>
-        /// 用户密码
-        /// </summary>
-        [MaxLength(200)]
-        public override string PasswordHash { get; set; }
-
-        
-        [MaxLength(50)]
-        public override string SecurityStamp { get; set; }
-
-        /// <summary>
         /// 用户帐号
         /// </summary>
-        [MaxLength(50)]
+        [MaxLength(128)]
         public override string UserName { get; set; }
 
         /// <summary>
-        /// 姓
+        /// 用户密码
         /// </summary>
-        [MaxLength(50)]
-        public string FirstName { get; set; }
+        [MaxLength(68)]
+        [Required]
+        public override string PasswordHash { get; set; }
 
         /// <summary>
-        /// 名
+        ///  安全钥匙
         /// </summary>
-        [MaxLength(50)]
-        public string LastName { get; set; }
+        [MaxLength(36)]
+        [Required]
+        public override string SecurityStamp { get; set; }
 
         /// <summary>
-        /// 是否删除
+        /// 手机号码
         /// </summary>
-        [DefaultValue(false)]
-        public bool IsDelete { get; set; }
+        [MaxLength(20)]
+        public override string PhoneNumber { get; set; }
 
-        /// <summary>
-        /// 是否禁用
-        /// </summary>
-        [DefaultValue(false)]
-        public bool IsDisable { get; set; }
 
         /// <summary>
         /// 是否修改过密码
@@ -74,9 +61,72 @@ namespace Lumos.Entity
         public bool IsModifyPwd { get; set; }
 
         /// <summary>
+        /// 安全保护问题
+        /// </summary>
+        [MaxLength(256)]
+        public string SafetyProblem { get; set; }
+
+        /// <summary>
+        /// 安全保护问题答案
+        /// </summary>
+        [MaxLength(256)]
+        public string SafetyProblemAnswer { get; set; }
+
+
+        /// <summary>
+        /// 姓
+        /// </summary>
+        [MaxLength(128)]
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// 名
+        /// </summary>
+        [MaxLength(128)]
+        public string LastName { get; set; }
+
+        /// <summary>
+        /// 名
+        /// </summary>
+        [MaxLength(256)]
+        public string Address { get; set; }
+
+        /// <summary>
+        /// 用户头像图片
+        /// </summary>
+        [MaxLength(256)]
+        public string HeadImg { get; set; }
+
+        /// <summary>
         /// 创建人
         /// </summary>
-        public int? Creator { get; set; }
+        public DateTime RegisterTime { get; set; }
+
+        /// <summary>
+        /// 最后登录时间
+        /// </summary>
+        public DateTime? LastLoginTime { get; set; }
+
+        /// <summary>
+        /// 最后登录IP
+        /// </summary>
+        [MaxLength(50)]
+        public string LastLoginIp { get; set; }
+
+        /// <summary>
+        /// 是否删除
+        /// </summary>
+        public bool IsDelete { get; set; }
+
+        /// <summary>
+        /// 是否禁用
+        /// </summary>
+        public bool IsDisable { get; set; }
+
+        /// <summary>
+        /// 创建人
+        /// </summary>
+        public int Creator { get; set; }
 
         /// <summary>
         /// 创建时间
@@ -92,22 +142,6 @@ namespace Lumos.Entity
         /// 最后修改时间
         /// </summary>
         public DateTime? LastUpdateTime { get; set; }
-
-        /// <summary>
-        /// 最后登录时间
-        /// </summary>
-        public DateTime? LastLoginTime { get; set; }
-
-        /// <summary>
-        /// 最后登录IP
-        /// </summary>
-        [MaxLength(50)]
-        public string LastLoginIp { get; set; }
-
-
-        [MaxLength(50)]
-        public string Address { get; set; }
-
 
     }
 }
