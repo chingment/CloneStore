@@ -411,7 +411,7 @@
     <Content Include="images\demo\saved\pants\12.jpg" />
     <Content Include="images\demo\saved\pants\13.jpg" />
     <Content Include="images\demo\saved\pants\14.jpg" />
-    <Content Include="images\demo\saved\pants\15.jpg" />
+    <Content Include="images\demo\saved\pants\00.jpg" />
     <Content Include="images\demo\saved\shirt\01.jpg" />
     <Content Include="images\demo\saved\shirt\02.jpg" />
     <Content Include="images\demo\saved\shirt\03.jpg" />
@@ -426,7 +426,7 @@
     <Content Include="images\demo\saved\shirt\12.jpg" />
     <Content Include="images\demo\saved\shirt\13.jpg" />
     <Content Include="images\demo\saved\shirt\14.jpg" />
-    <Content Include="images\demo\saved\shirt\15.jpg" />
+    <Content Include="images\demo\saved\shirt\00.jpg" />
     <Content Include="images\demo\saved\shoes\01.jpg" />
     <Content Include="images\demo\saved\shoes\02.jpg" />
     <Content Include="images\demo\saved\shoes\03.jpg" />
@@ -441,7 +441,7 @@
     <Content Include="images\demo\saved\shoes\12.jpg" />
     <Content Include="images\demo\saved\shoes\13.jpg" />
     <Content Include="images\demo\saved\shoes\14.jpg" />
-    <Content Include="images\demo\saved\shoes\15.jpg" />
+    <Content Include="images\demo\saved\shoes\00.jpg" />
     <Content Include="images\gallary-pants.png" />
     <Content Include="images\gallary-shirt.png" />
     <Content Include="images\gallary_shoes.png" />

@@ -337,7 +337,7 @@
 
 
 
-            $("#retailers-@id").addClass("select");
+            $("#retailers-@Model.Retailer").addClass("select");
 
         });
 
@@ -405,7 +405,7 @@
                     }
 
                     if (opts.isAppend) {
-                        owl.goTo(opts.currentItem);
+                        owl.jumpTo(opts.currentItem)
                     }
 
                 }
@@ -415,8 +415,9 @@
     </script>
 }
 <form id="form1" name="form1">
-    <input name="OmittedProductsPages" id="OmittedProductsPages" type="hidden" value="2" />
+    <input name="OmittedProductsPages" id="OmittedProductsPages" type="hidden" value="@Model.OmittedProductsPages" />
     <input name="IsAppend" id="IsAppend" type="hidden" value="false" />
+    <input name="Retailer" id="Retailer" type="hidden" value="@Model.Retailer" />
     <div class="gbr gbr-product" id="gbr_product">
         <div class="wrapper">
             <div class="content clearfix">
@@ -487,27 +488,27 @@
                                         </span>
                                         <span class="filter-item">
                                             Cotton
-                                            <input name="Material" type="radio" value="1" />
+                                            <input name="Material" type="radio" value="Cotton" />
                                         </span>
                                         <span class="filter-item">
                                             Wool
-                                            <input name="Material" type="radio" value="2" />
+                                            <input name="Material" type="radio" value="Wool" />
                                         </span>
                                         <span class="filter-item">
                                             Silk
-                                            <input name="Material" type="radio" value="3" />
+                                            <input name="Material" type="radio" value="Silk" />
                                         </span>
                                         <span class="filter-item">
                                             Linen
-                                            <input name="Material" type="radio" value="4" />
+                                            <input name="Material" type="radio" value="Linen" />
                                         </span>
                                         <span class="filter-item">
                                             Nylon
-                                            <input name="Material" type="radio" value="5" />
+                                            <input name="Material" type="radio" value="Nylon" />
                                         </span>
                                         <span class="filter-item">
                                             Ramine
-                                            <input name="Material" type="radio" value="6" />
+                                            <input name="Material" type="radio" value="Ramine" />
                                         </span>
                                     </dd>
                                 </dl>

@@ -44,22 +44,13 @@ namespace WebSite.Controllers
 
         //
         // GET: /Product/
-        public ActionResult List(int? id = 1)
+        public ActionResult List(int id = 1)
         {
             ProductViewModel model = new ProductViewModel();
 
-
-
-            var query = (from u in CurrentDb.Product
-                         where (u.Retailer == id)
-                         select u);
-
-            int pageIndex = 2;
-            int pageSize = 10;
-            query = query.OrderByDescending(r => r.Id).Take(pageIndex * pageSize);
-
-            model.OmittedProductsPages = pageIndex;
-            model.Products = query.ToList();
+            model.Retailer = id;
+            model.OmittedProductsPages = 2;
+            model.Products = GetProductList(false,id,null,null,null, model.OmittedProductsPages);
 
             if (Request.Cookies[CommonSetting.CartProductsCookiesName] != null)
             {
@@ -73,55 +64,13 @@ namespace WebSite.Controllers
             return View(model);
         }
 
-        public JsonResult GetList(bool IsAppend, string Retailer, string[] Category, string[] Color, string[] Material, int omittedProductsPages)
+
+        public List<Product> GetProductList(bool IsAppend, int Retailer, string[] Category, string[] Color, string Material, int omittedProductsPages)
         {
-
-
-
-
-            //var b = "";
-            //var sql = "select * from Product";
-            //sql += " where 1=1 ";
-            //if (Category != null)
-            //{
-            //    if (!Category.Contains("0"))
-            //    {
-            //        string s = " and Category in (";
-            //        for (var i = 0; i < Category.Length; i++)
-            //        {
-            //            s += "'" + Category[i] + "',";
-            //        }
-            //        s = s.Substring(0, s.Length - 1);
-            //        s += ")";
-            //        sql += s;
-            //    }
-            //}
-
-
-            //if (Color != null)
-            //{
-            //    string s = " ";
-            //    if (Color.Length > 0)
-            //    {
-            //        s += " and (";
-            //        for (var i = 0; i < Color.Length; i++)
-            //        {
-            //            s += " charindex('" + Color[i] + "',Colors)>0 or";
-            //        }
-
-            //        s = s.Substring(0, s.Length - 2);
-            //        s += ")";
-            //    }
-
-            //    sql += s;
-            //}
-
-
-
             QueryParam qp = new QueryParam();
             qp.TableName = " Product  a ";
             qp.ReturnFields = " * ";
-            qp.Orderfld = " Id desc ";
+            qp.Orderfld = " RandomNo desc ";
             qp.PrimaryKey = " Id ";
 
             if (IsAppend)
@@ -137,6 +86,17 @@ namespace WebSite.Controllers
 
 
             qp.Where = " 1='1' ";
+
+            if (Retailer != 0)
+            {
+                qp.Where += " and Retailer='" + Retailer + "'";
+            }
+
+            if(!string.IsNullOrEmpty(Material))
+            {
+                qp.Where += " and Materials='" + Material + "'";
+            }
+
 
             if (Category != null)
             {
@@ -173,8 +133,12 @@ namespace WebSite.Controllers
 
 
             List<Product> products = CurrentDb.Database.GetPageReocrdByProc(qp).Tables[0].ToList<Product>();
+            return products;
+        }
 
-            //   List<Product> products = CurrentDb.Database.SqlQuery<Product>(sql).ToList();
+        public JsonResult GetList(bool IsAppend, int Retailer, string[] Category, string[] Color, string Material, int omittedProductsPages)
+        {
+            List<Product> products = GetProductList(IsAppend, Retailer, Category, Color, Material, omittedProductsPages);
             return Json(ResultType.Success, products);
         }
 

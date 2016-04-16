@@ -14,6 +14,8 @@ namespace WebSite.Models
             this.CartProducts = new List<Product>();
         }
 
+        public int Retailer { get; set; }
+
         public int OmittedProductsPages { get; set; }
 
 

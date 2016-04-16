@@ -621,7 +621,7 @@ if (typeof Object.create !== "function") {
                 return false;
             }
             goToPixel = base.positionsInArray[position];
-
+    
             if (base.browser.support3d === true) {
                 base.isCss3Finish = false;
 
@@ -645,11 +645,13 @@ if (typeof Object.create !== "function") {
                 }
                 base.transition3d(goToPixel);
             } else {
+                
                 if (speed === true) {
                     base.css2slide(goToPixel, base.options.paginationSpeed);
                 } else if (speed === "rewind") {
                     base.css2slide(goToPixel, base.options.rewindSpeed);
                 } else {
+            
                     base.css2slide(goToPixel, base.options.slideSpeed);
                 }
             }

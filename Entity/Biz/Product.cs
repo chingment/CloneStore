@@ -38,5 +38,7 @@ namespace Lumos.Entity
         public string Description { get; set; }
 
         public DateTime? CreateTime { get; set; }
+
+        public int RandomNo { get; set; }
     }
 }
