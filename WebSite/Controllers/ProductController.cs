@@ -9,6 +9,7 @@ using Lumos.Common;
 using System.Linq.Expressions;
 using System.Data.Entity;
 using System.Data;
+using WebSite.Models.Product;
 
 namespace WebSite.Controllers
 {
@@ -44,14 +45,23 @@ namespace WebSite.Controllers
 
         //
         // GET: /Product/
-        public ActionResult List(int id = 1)
+        public ActionResult List(int retailer = 1, string category = null)
         {
-            ProductViewModel model = new ProductViewModel();
 
-            model.Retailer = id;
+
+            string[] categorys = null;
+            if(category != null)
+            {
+                categorys = new string[1] { category };
+            }
+    
+
+           ListModel model = new ListModel();
+
+            model.Retailer = retailer;
             model.OmittedProductsPages = 2;
-            model.Products = GetProductList(false,id,null,null,null, model.OmittedProductsPages);
-
+            model.Products = GetProductList(false, retailer, categorys, null, null, model.OmittedProductsPages);
+            model.Retailers = CurrentDb.Retailer.Where(m => m.IsDelete == false).OrderByDescending(m => m.Priority).ToList();
             if (Request.Cookies[CommonSetting.CartProductsCookiesName] != null)
             {
                 string strCartProducts = System.Web.HttpUtility.UrlDecode(Request.Cookies[CommonSetting.CartProductsCookiesName].Value.ToString());
@@ -89,10 +99,10 @@ namespace WebSite.Controllers
 
             if (Retailer != 0)
             {
-                qp.Where += " and Retailer='" + Retailer + "'";
+                qp.Where += " and RetailerId='" + Retailer + "'";
             }
 
-            if(!string.IsNullOrEmpty(Material))
+            if (!string.IsNullOrEmpty(Material))
             {
                 qp.Where += " and Materials='" + Material + "'";
             }
@@ -147,7 +157,6 @@ namespace WebSite.Controllers
         public JsonResult SetMyCartCookies(string cartProducts)
         {
             HttpCookie cookie = new HttpCookie(CommonSetting.CartProductsCookiesName);
-
             cookie.Value = cartProducts;
             cookie.Expires = DateTime.Now.AddDays(7);
             Response.Cookies.Add(cookie);

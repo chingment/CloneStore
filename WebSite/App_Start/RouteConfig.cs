@@ -22,7 +22,12 @@ namespace WebSite
     namespaces: new string[] { "WebSite.Controllers" }
 );
 
-
+            routes.MapRoute(
+name: "ProductList",
+url: "{controller}/{action}/{retailer}/{category}",
+defaults: new { controller = "Product", action = "List", retailer = "0", category = "0" },
+namespaces: new string[] { "WebSite.Controllers" }
+);
 
 
 

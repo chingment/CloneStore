@@ -17,7 +17,7 @@ namespace Lumos.Entity
 
         public string Name { get; set; }
 
-        public int Retailer { get; set; }
+        public int RetailerId { get; set; }
 
         public string Category { get; set; }
 

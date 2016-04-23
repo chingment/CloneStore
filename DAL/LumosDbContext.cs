@@ -25,6 +25,8 @@ namespace Lumos.DAL
 
         public IDbSet<Product> Product { get; set; }
 
+        public IDbSet<Retailer> Retailer { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -110,7 +112,16 @@ namespace Lumos.DAL
             }
 
 
+            List<Retailer> retailers = new List<Retailer>();
+            retailers.Add(new Retailer() { Id = 1, Name = "Bonobos", BannerImg = "/images/01.jpg", CreateTime = DateTime.Now, Creator = 0, Priority = 0, IsDelete = false });
+            retailers.Add(new Retailer() { Id = 2, Name = "Jcrew", BannerImg = "/images/02.jpg", CreateTime = DateTime.Now, Creator = 0, Priority = 0, IsDelete = false });
+            retailers.Add(new Retailer() { Id = 3, Name = "Jack Erwin", BannerImg = "/images/03.jpg", CreateTime = DateTime.Now, Creator = 0, Priority = 0, IsDelete = false });
+            retailers.Add(new Retailer() { Id = 4, Name = "Mr Porter", BannerImg = "/images/05.jpg", CreateTime = DateTime.Now, Creator = 0, Priority = 0, IsDelete = false });
 
+            foreach (var m in retailers)
+            {
+                context.Retailer.Add(m);
+            }
 
             Random r = new Random(unchecked((int)DateTime.Now.Ticks));
             string[] colors = new string[] { "Green", "Black", "Blue", "Orange", "Red", "Gray" };
@@ -132,7 +143,7 @@ namespace Lumos.DAL
 
                 int rNum = r.Next(0, int.MaxValue);
 
-                products.Add(new Product() { Name = "", Retailer = 1, Category = "Clothes", Materials = materials[rMaterialNum], Colors = ""+ colors[rColorNum1] + ","+ colors[rColorNum2] + "", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/0" + rPicNum.ToString() + ".jpg", BigImg = "/images/demo/saved/shirt/0"+ rPicNum.ToString() + ".jpg",RandomNo= rNum });
+                products.Add(new Product() { Name = "", RetailerId = 1, Category = "Clothes", Materials = materials[rMaterialNum], Colors = "" + colors[rColorNum1] + "," + colors[rColorNum2] + "", Style = "Striped", Price = 1000, Sizes = "S,M,L,XL", SmallImg = "/images/demo/saved/shirt/0" + rPicNum.ToString() + ".jpg", BigImg = "/images/demo/saved/shirt/0" + rPicNum.ToString() + ".jpg", RandomNo = rNum });
             }
 
 
@@ -144,9 +155,9 @@ namespace Lumos.DAL
                 int rMaterialNum = r.Next(0, 5);
                 int rPicNum = r.Next(0, 9);
 
-  
+
                 int rNum = r.Next(0, int.MaxValue);
-                products.Add(new Product() {  Name = "", Retailer = 1, Category = "Pants", Materials = materials[rMaterialNum], Colors = "" + colors[rColorNum1] + "," + colors[rColorNum2] + "", Style = "Striped", Price = 2000, Sizes = "30,31,32,33", SmallImg = "/images/demo/saved/pants/0" + rPicNum.ToString() + ".jpg", BigImg = "/images/demo/saved/pants/0" + rPicNum.ToString() + ".jpg", RandomNo = rNum });
+                products.Add(new Product() { Name = "", RetailerId = 1, Category = "Pants", Materials = materials[rMaterialNum], Colors = "" + colors[rColorNum1] + "," + colors[rColorNum2] + "", Style = "Striped", Price = 2000, Sizes = "30,31,32,33", SmallImg = "/images/demo/saved/pants/0" + rPicNum.ToString() + ".jpg", BigImg = "/images/demo/saved/pants/0" + rPicNum.ToString() + ".jpg", RandomNo = rNum });
             }
 
 
@@ -159,7 +170,7 @@ namespace Lumos.DAL
 
 
                 int rNum = r.Next(int.MaxValue);
-                products.Add(new Product() { Id = 21, Name = "", Retailer = 1, Category = "Shoes", Materials = materials[rMaterialNum], Colors = "" + colors[rColorNum1] + "," + colors[rColorNum2] + "", Style = "Striped", Price = 3000, Sizes = "34,35,36,37", SmallImg = "/images/demo/saved/shoes/0"+ rPicNum.ToString() + ".jpg", BigImg = "/images/demo/saved/shoes/0" + rPicNum.ToString() + ".jpg",RandomNo=rNum });
+                products.Add(new Product() { Id = 21, Name = "", RetailerId = 1, Category = "Shoes", Materials = materials[rMaterialNum], Colors = "" + colors[rColorNum1] + "," + colors[rColorNum2] + "", Style = "Striped", Price = 3000, Sizes = "34,35,36,37", SmallImg = "/images/demo/saved/shoes/0" + rPicNum.ToString() + ".jpg", BigImg = "/images/demo/saved/shoes/0" + rPicNum.ToString() + ".jpg", RandomNo = rNum });
             }
 
 

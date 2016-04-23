@@ -1,4 +1,4 @@
-﻿@model WebSite.Models.ProductViewModel
+﻿@model WebSite.Models.Product.ListModel
 @{
     ViewBag.Title = "Retailer";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
@@ -337,7 +337,7 @@
 
 
 
-            $("#retailers-@Model.Retailer").addClass("select");
+            $("#retailer_@Model.Retailer").addClass("select");
 
         });
 
@@ -595,10 +595,10 @@
                             <div class="retailers-box" style="height:410px;">
                                 <span class="title">Retailers</span>
                                 <ul class="options">
-                                    <li><a href="/Product/List/1" id="retailers-1">Bonobos</a> </li>
-                                    <li><a href="/Product/List/2" id="retailers-2">Jcrew</a> </li>
-                                    <li><a href="/Product/List/3" id="retailers-3">Jack Erwin</a> </li>
-                                    <li><a href="/Product/List/4" id="retailers-4">Mr Porter</a> </li>
+                                    @for (int i = 0; i < Model.Retailers.Count; i++)
+                                    {
+                                        <li><a id="retailer_@Model.Retailers[i].Id" href="/Product/List/@Model.Retailers[i].Id/0">@Model.Retailers[i].Name</a> </li>
+                                    }
                                 </ul>
                             </div>
                             <div>
