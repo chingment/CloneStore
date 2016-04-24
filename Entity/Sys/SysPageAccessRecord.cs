@@ -6,17 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace Lumos.Entity
 {
-    [Table("SysMessages")]
-    public class SysMessages
+    [Table("SysPageAccessRecord")]
+    public class SysPageAccessRecord
     {
         /// <summary>
         /// 主键
         /// </summary>
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// 用户ID
@@ -24,14 +23,21 @@ namespace Lumos.Entity
         public int UserId { get; set; }
 
         /// <summary>
-        /// 内容
+        /// 访问时间
         /// </summary>
-        [MaxLength(512)]
-        public string Content { get; set; }
+        [MaxLength(256)]
+        [Column(TypeName = "varchar")]
+        public string PageUrl { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Ip地址
         /// </summary>
-        public DateTime CreateTime { get; set; }
+        [MaxLength(128)]
+        public string Ip { get; set; }
+
+        /// <summary>
+        /// 访问时间
+        /// </summary>
+        public DateTime AccessTime { get; set; }
     }
 }

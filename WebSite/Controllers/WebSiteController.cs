@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Lumos.Mvc;
+using System.Threading.Tasks;
+using Lumos.Entity;
 
 namespace WebSite.Controllers
 {
@@ -68,10 +70,20 @@ namespace WebSite.Controllers
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
+
+        }
+
+        protected override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            base.OnActionExecuted(filterContext);
+            CurrentDb.SysPageAccessRecord.Add(new SysPageAccessRecord() { UserId = User.Identity.GetUserId<int>(), AccessTime = DateTime.Now, PageUrl = filterContext.HttpContext.Request.Url.AbsolutePath, Ip = CommonUtility.GetIP() });
+            CurrentDb.SaveChanges();
+
             ILog log = LogManager.GetLogger(CommonSetting.LoggerAccessWeb);
             log.Info(FormatUtility.AccessWeb(User.Identity.GetUserId<int>(), User.Identity.GetUserName()));
         }
 
- 
+
+
     }
 }

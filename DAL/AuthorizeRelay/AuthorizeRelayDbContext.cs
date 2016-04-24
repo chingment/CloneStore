@@ -33,6 +33,8 @@ namespace Lumos.DAL.AuthorizeRelay
 
         public IDbSet<SysUserLoginProvider> SysUserLoginProvider { get; set; }
 
+        public IDbSet<SysUserLoginHistory> SysUserLoginHistory { get; set; }
+
         public IDbSet<SysUserClaim> SysUserClaim { get; set; }
 
         public IDbSet<SysStaffUser> SysStaffUser { get; set; }
@@ -45,7 +47,9 @@ namespace Lumos.DAL.AuthorizeRelay
 
         public IDbSet<SysOperateHistory> SysOperateHistory { get; set; }
 
-        public IDbSet<SysMessages> SysMessages { get; set; }
+        public IDbSet<SysMessage> SysMessage { get; set; }
+
+        public IDbSet<SysPageAccessRecord> SysPageAccessRecord { get; set; }
 
         public AuthorizeRelayDbContext(string nameOrConnectionString)
             : base(nameOrConnectionString)

@@ -216,7 +216,7 @@
     <Compile Include="Models\GoToViewModel.cs" />
     <Compile Include="Models\Home\IndexModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\Account\MyCartViewModel.cs" />
+    <Compile Include="Models\Account\MyCartModel.cs" />
     <Compile Include="Models\MyModels.cs" />
     <Compile Include="Models\Product\ListModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
