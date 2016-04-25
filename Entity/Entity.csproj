@@ -68,8 +68,9 @@
     <Compile Include="SysEnumeration.cs" />
     <Compile Include="Sys\SysClientUser.cs" />
     <Compile Include="Sys\SysMenuPermission.cs" />
-    <Compile Include="Sys\SysMessages.cs" />
+    <Compile Include="Sys\SysMessage.cs" />
     <Compile Include="Sys\SysOperateHistory.cs" />
+    <Compile Include="Sys\SysPageAccessRecord.cs" />
     <Compile Include="Sys\SysRole.cs" />
     <Compile Include="Sys\SysStaffUser.cs" />
     <Compile Include="Sys\SysPermission.cs" />

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model WebSite.Models.Home.IndexModel
+@{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
@@ -63,9 +64,9 @@
             $("#home_carousel .item img").each(function () {
                 $(this).click(function () {
                     var iscenter = $(this).attr("iscenter");
-                    var id = $(this).attr("id");
+                    var id = $(this).attr("retailer");
                     if (iscenter == "true") {
-                        window.location.href = "/Product/List/" + id;
+                        window.location.href = "/Product/List/" + id + "/0";
                     }
                 });
             });
@@ -79,11 +80,24 @@
             <div id="home_carousel">
                 <p id="title-text"></p>
                 <p id="alt-text"></p>
-                <a href="javascript:void(0)" target="_parent" class="item"><img id="1" class="cloudcarousel" data="1" src="/images/01.jpg" alt="p1" iscenter="true" /></a>
-                <a href="javascript:void(0)" target="_parent" class="item"><img id="2" class="cloudcarousel" data="2" src="/images/02.jpg" alt="p2" iscenter="false" /></a>
-                <a href="javascript:void(0)" target="_parent" class="item"><img id="3" class="cloudcarousel" data="3" src="/images/03.jpg" alt="p3" iscenter="false" /></a>
-                <a href="javascript:void(0)" target="_parent" class="item"><img id="4" class="cloudcarousel" data="4" src="/images/04.jpg" alt="p4" iscenter="false" /></a>
-                <a href="javascript:void(0)" target="_parent" class="item"><img id="5" class="cloudcarousel" data="5" src="/images/05.jpg" alt="p5" iscenter="false" /></a>
+
+                @for (int i = 0; i < Model.Retailers.Count; i++)
+                {
+                    var IsCcenter = "false";
+                    if (i == 0)
+                    {
+                        IsCcenter = "true";
+                    }
+
+                    <a id="Retailer_@Model.Retailers[i].Id" href="javascript:void(0)" target="_parent" class="item"><img id="RetailerBannerImg_@Model.Retailers[i].Id" retailer="@Model.Retailers[i].Id" class="cloudcarousel" data="@(i+1)" src="@Model.Retailers[i].BannerImg" alt="" iscenter="@IsCcenter" /></a>
+                }
+                @*<a href="javascript:void(0)" target="_parent" class="item"><img id="1" class="cloudcarousel" data="1" src="/images/01.jpg" alt="p1" iscenter="true" /></a>
+                    <a href="javascript:void(0)" target="_parent" class="item"><img id="2" class="cloudcarousel" data="2" src="/images/02.jpg" alt="p2" iscenter="false" /></a>
+                    <a href="javascript:void(0)" target="_parent" class="item"><img id="3" class="cloudcarousel" data="3" src="/images/03.jpg" alt="p3" iscenter="false" /></a>
+                    <a href="javascript:void(0)" target="_parent" class="item"><img id="4" class="cloudcarousel" data="4" src="/images/04.jpg" alt="p4" iscenter="false" /></a>
+                    <a href="javascript:void(0)" target="_parent" class="item"><img id="5" class="cloudcarousel" data="5" src="/images/05.jpg" alt="p5" iscenter="false" /></a>*@
+
+
                 <div id="home_carousel_left" class="carouselLeft"></div>
                 <div id="home_carousel_right" class="carouselRight"></div>
             </div>

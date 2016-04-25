@@ -12,6 +12,7 @@ using WebSite.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
+using WebSite.Models.Account;
 
 namespace WebSite.Controllers
 {
@@ -31,8 +32,8 @@ namespace WebSite.Controllers
 
         public ViewResult MyCart()
         {
-            MyCartViewModel model = new MyCartViewModel();
-
+            MyCartModel model = new MyCartModel();
+            model.Retailers = CurrentDb.Retailer.Where(m => m.IsDelete == false).OrderByDescending(m => m.Priority).ToList();
             if (Request.Cookies[CommonSetting.CartProductsCookiesName] != null)
             {
                 string strCartProducts = System.Web.HttpUtility.UrlDecode(Request.Cookies[CommonSetting.CartProductsCookiesName].Value.ToString());

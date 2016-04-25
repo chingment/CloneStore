@@ -1,4 +1,4 @@
-﻿@model WebSite.Models.MyCartViewModel
+﻿@model WebSite.Models.Account.MyCartModel
 @{
     ViewBag.Title = "MyCart";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
@@ -9,8 +9,8 @@
             /*height:100px;*/
         }
 
-        .owl_cart_pants  li{
-            height:103px;
+        .owl_cart_pants li {
+            height: 103px;
         }
     </style>
 }
@@ -117,7 +117,7 @@
                                     <div class="cart-box-null-img">
 
                                     </div>
-                                    <p class="cart-box-null-text">choice <a href="/Product/List">clothes</a> into the cart </p>
+                                    <p class="cart-box-null-text">choice <a href="/Product/List/0/Clothes">clothes</a> into the cart </p>
                                 </div>
                             </div>
                         </div>
@@ -180,7 +180,7 @@
                                         <div class="cart-box-null-img">
 
                                         </div>
-                                        <p class="cart-box-null-text">choice <a href="/Product/List">pants</a> into the cart </p>
+                                        <p class="cart-box-null-text">choice <a href="/Product/List/0/Pants">pants</a> into the cart </p>
                                     </div>
                                 </div>
                             </div>
@@ -203,7 +203,7 @@
                                     <div class="cart-box-null-img">
 
                                     </div>
-                                    <p class="cart-box-null-text">choice <a href="/Product/List">shoes</a> into the cart </p>
+                                    <p class="cart-box-null-text">choice <a href="/Product/List/0/Shoes">shoes</a> into the cart </p>
                                 </div>
                             </div>
                         </div>
@@ -218,10 +218,10 @@
                         <div class="retailers-box" style="height:550px;">
                             <span class="title">Retailers</span>
                             <ul class="options">
-                                <li><a href="/Product/List/1">Bonobos</a> </li>
-                                <li><a href="/Product/List/2">Jcrew</a> </li>
-                                <li><a href="/Product/List/3">Jack Erwin</a> </li>
-                                <li><a href="/Product/List/4">Mr Porter</a> </li>
+                                @for (int i = 0; i < Model.Retailers.Count; i++)
+                                {
+                                    <li><a href="/Product/List/@Model.Retailers[i].Id/0">@Model.Retailers[i].Name</a> </li>
+                                }
                             </ul>
                         </div>
                         <div>
