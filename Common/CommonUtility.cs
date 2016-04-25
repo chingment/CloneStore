@@ -23,8 +23,10 @@ namespace Lumos.Common
 
     public static class CommonUtility
     {
-        public static string LongArrToString(long[] l)
+        #region "数组转字符串"
+        public static string ArraryToString(long[] l)
         {
+           
             if (l == null)
                 return "";
             String s = "";
@@ -38,19 +40,7 @@ namespace Lumos.Common
             }
             return s;
         }
-
-        public static string GetManagerSkin
-        {
-            get
-            {
-                string skin = "base";
-                if (HttpContext.Current.Request.Cookies["Skin_Cookie"] != null)
-                {
-                    skin = HttpContext.Current.Request.Cookies["Skin_Cookie"].Value.ToString();
-                }
-                return skin;
-            }
-        }
+        #endregion 
 
         #region "返回网页路径名称"
         /// <summary>
@@ -337,42 +327,6 @@ namespace Lumos.Common
             }
             return sb.ToString();
 
-        }
-        #endregion
-
-        #region "获取用户IP地址"
-        /// <summary>
-        /// 获取用户IP地址
-        /// </summary>
-        /// <returns></returns>
-        public static string GetIPAddress()
-        {
-
-            try
-            {
-                string user_IP = string.Empty;
-                //if (System.Web.HttpContext.Current.Request.ServerVariables["HTTP_VIA"] != null)
-                //{
-                //    if (System.Web.HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] != null)
-                //    {
-                //        user_IP = System.Web.HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"].ToString();
-                //    }
-                //    else
-                //    {
-                //        user_IP = System.Web.HttpContext.Current.Request.UserHostAddress;
-                //    }
-                //}
-                //else
-                //{
-                //    user_IP = System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"].ToString();
-                //}
-                user_IP = System.Web.HttpContext.Current.Request.UserHostAddress;
-                return user_IP;
-            }
-            catch
-            {
-                return "error ip";
-            }
         }
         #endregion
 
@@ -696,7 +650,7 @@ namespace Lumos.Common
         }
         #endregion
 
-        #region 判断密码强度
+        #region "判断密码强度"
         /// <summary>
         /// 计算密码强度
         /// </summary>
@@ -733,12 +687,49 @@ namespace Lumos.Common
         }
         #endregion
 
+        #region  "去除空格"
         public static string ToTrim(string str)
         {
             if (str == null)
                 return null;
             return Regex.Replace(str.Trim(), @"\s", "");
         }
+        #endregion
+
+        #region "打乱List的顺序"
+        /// <summary>
+        /// 打乱List的顺序
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="inputList"></param>
+        /// <returns></returns>
+        public static List<T> GetRandomList<T>(List<T> inputList)
+        {
+            //Copy to a array
+            T[] copyArray = new T[inputList.Count];
+            inputList.CopyTo(copyArray);
+
+            //Add range
+            List<T> copyList = new List<T>();
+            copyList.AddRange(copyArray);
+
+            //Set outputList and random
+            List<T> outputList = new List<T>();
+            Random rd = new Random(DateTime.Now.Millisecond);
+
+            while (copyList.Count > 0)
+            {
+                //Select an index and item
+                int rdIndex = rd.Next(0, copyList.Count - 1);
+                T remove = copyList[rdIndex];
+
+                //remove it from copyList and add it to output
+                copyList.Remove(remove);
+                outputList.Add(remove);
+            }
+            return outputList;
+        }
+        #endregion
     }
 
 
