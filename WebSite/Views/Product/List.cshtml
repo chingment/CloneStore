@@ -357,8 +357,12 @@
                 type: "post",
                 url: "/Product/GetList",
                 dataType: "json",
-                data: $("#form1").serializeArray()
+                data: $("#form1").serializeArray(),
+                beforeSend:function(){
+                    $('#loading_product').show();
+                }
             }).done(function (data) {
+                $('#loading_product').hide();
                 if (data.result == "Success") {
 
                     var owl = $("#owl_product").data('owlCarousel');
@@ -522,7 +526,7 @@
                             <!-- ProductBox -->
                             <div class="product-box" id="product_box">
                                 <div class="wrapper">
-                                    <div class="content" style="height:300px">
+                                    <div class="content" style="height:300px;position:relative">
                                         <div id="owl_product" class="owl-carousel owl-product">
 
                                             @for (var i = 0; i < Model.Products.Count; i = i + 2)
@@ -551,10 +555,15 @@
                                                 </a>
                                             }
                                         </div>
+
+
+                                        <div id="loading_product" style=" display:none; background-color: #808080; opacity:.3; position:absolute; top:0px; height: 300px;width:100%">
+                                            
+                                        </div>
+
+
                                     </div>
-
                                 </div>
-
                             </div>
                             <!-- ProductBox end -->
                             <!-- CartBox -->

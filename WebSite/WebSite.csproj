@@ -206,10 +206,14 @@
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Controllers\AboutUsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\WebSiteAuthorizeAttribute.cs" />
     <Compile Include="Controllers\WebSiteController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\WebSiteExceptionAttribute.cs" />
+    <Compile Include="Controllers\WebSiteNoResubmitAttribute.cs" />
+    <Compile Include="Controllers\WebSiteStatisticsTrackerAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -217,6 +221,7 @@
     <Compile Include="Models\Home\IndexModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Account\MyCartModel.cs" />
+    <Compile Include="Models\MessageBoxModel.cs" />
     <Compile Include="Models\MyModels.cs" />
     <Compile Include="Models\Product\ListModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
@@ -745,6 +750,7 @@
     <Content Include="Views\Account\SignIn.cshtml" />
     <Content Include="Views\Product\List.cshtml" />
     <Content Include="Views\Account\MyCart.cshtml" />
+    <Content Include="Views\Shared\MessageBox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
