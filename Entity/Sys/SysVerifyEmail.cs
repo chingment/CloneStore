@@ -31,6 +31,7 @@ namespace Lumos.Entity
         /// </summary>
         [MaxLength(128)]
         [Required]
+        [Column(TypeName = "varchar")]
         public string Email { get; set; }
 
         /// <summary>

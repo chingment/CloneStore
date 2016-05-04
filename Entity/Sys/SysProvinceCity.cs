@@ -43,13 +43,13 @@ namespace Lumos.Entity
         /// <summary>
         /// 电话区号
         /// </summary>
-        [MaxLength(50)]
+        [MaxLength(128)]
         public string PhoneAreaNo { get; set; }
 
         /// <summary>
         /// 邮政
         /// </summary>
-        [MaxLength(50)]
+        [MaxLength(128)]
         public string Zip { get; set; }
 
         /// <summary>

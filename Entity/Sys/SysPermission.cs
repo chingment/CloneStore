@@ -18,6 +18,7 @@ namespace Lumos.Entity
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         [MaxLength(128)]
         [Required]
+        [Column(TypeName = "varchar")]
         public string Id { get; set; }
 
         /// <summary>

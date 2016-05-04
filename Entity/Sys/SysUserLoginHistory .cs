@@ -28,25 +28,26 @@ namespace Lumos.Entity
         /// <summary>
         /// IP地址
         /// </summary>
-        [MaxLength(50)]
+        [MaxLength(128)]
+        [Column(TypeName = "varchar")]
         public string Ip { get; set; }
 
         /// <summary>
         /// 国家
         /// </summary>
-        [MaxLength(50)]
+        [MaxLength(128)]
         public string Country { get; set; }
 
         /// <summary>
         /// 省份
         /// </summary>
-        [MaxLength(50)]
+        [MaxLength(128)]
         public string Province { get; set; }
 
         /// <summary>
         /// 市
         /// </summary>
-        [MaxLength(50)]
+        [MaxLength(128)]
         public string City { get; set; }
 
         /// <summary>

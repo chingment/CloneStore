@@ -22,7 +22,7 @@ namespace Lumos.Entity
         /// 权限ID
         /// </summary>
         [Key]
-        [Column(Order = 2)]
+        [Column(Order = 2, TypeName = "varchar")]
         [MaxLength(128)]
         public string PermissionId { get; set; }
     }
