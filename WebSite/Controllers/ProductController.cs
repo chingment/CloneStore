@@ -141,8 +141,7 @@ namespace WebSite.Controllers
                 qp.Where += s;
             }
 
-
-            List<Product> products = CurrentDb.Database.GetPageReocrdByProc(qp).Tables[0].ToList<Product>();
+            List<Product> products = CurrentDb.GetPageReocrdByProc(qp).Tables[0].ToList<Product>();
             return products;
         }
 

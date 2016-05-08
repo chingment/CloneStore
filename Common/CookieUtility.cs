@@ -83,7 +83,7 @@ namespace Lumos.Common
             }
             catch (Exception e)
             {
-
+                throw new ArgumentException("CookieUtility设置Cookie失败", e);
             }
 
         }
@@ -101,7 +101,7 @@ namespace Lumos.Common
             }
             catch (Exception e)
             {
-
+                throw new ArgumentException("CookieUtility 更新 Cookie失败", e);
             }
 
         }

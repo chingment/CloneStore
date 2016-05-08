@@ -1838,14 +1838,14 @@ artDialog._templates =
 artDialog.defaults = {
 								// 消息内容
 	content: '<div class="aui_loading"><span>loading..</span></div>',
-	title: '\u6d88\u606f',		// 标题. 默认'消息'
+	title: 'Messages',		// 标题. 默认'消息'
 	button: null,				// 自定义按钮
 	ok: null,					// 确定按钮回调函数
 	cancel: null,				// 取消按钮回调函数
 	init: null,					// 对话框初始化后执行的函数
 	close: null,				// 对话框关闭前执行的函数
-	okVal: '\u786E\u5B9A',		// 确定按钮文本. 默认'确定'
-	cancelVal: '\u53D6\u6D88',	// 取消按钮文本. 默认'取消'
+	okVal: 'OK',		// 确定按钮文本. 默认'确定'
+	cancelVal: 'Cancle',	// 取消按钮文本. 默认'取消'
 	width: 'auto',				// 内容宽度
 	height: 'auto',				// 内容高度
 	minWidth: 96,				// 最小宽度限制

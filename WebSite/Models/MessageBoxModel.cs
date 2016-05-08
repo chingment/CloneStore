@@ -21,6 +21,8 @@ namespace WebSite.Models
 
         public string Content { get; set; }
 
+        public bool IsPopup { get; set; }
+
         public MessageTip Type { get; set; }
     }
 }

@@ -8,7 +8,7 @@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $.lumos.messageBox({ type: "@Model.Type", isPopup: false, title: "@Model.Title", content: "@Model.Content" })
+            $.lumos.messageBox({ type: "@Model.Type", isPopup: @(Model.IsPopup==true? "true":"false"), title: "@Model.Title", content: "@Model.Content" })
         });
     </script>
 }

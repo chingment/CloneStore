@@ -42,9 +42,18 @@ namespace WebSite
             HttpApplication ap = sender as HttpApplication;
             System.Exception ex = ap.Server.GetLastError();
 
-            log.Error("Application to catch an exception error", ex);
 
+            var httpStatusCode = (ex is HttpException) ? (ex as HttpException).GetHttpCode() : 500; //这里仅仅区分两种错误 
 
+            switch (httpStatusCode)
+            {
+                case 404:
+
+                    break;
+                default:
+                    log.Error("Application to catch an exception error", ex);
+                    break;
+            }
         }
 
     }
@@ -61,6 +70,7 @@ namespace WebSite
             list.Add("~/Views/{1}/{0}.cshtml");
             for (int i = 0; i < viewDir.GetDirectories().Length; i++)
             {
+                list.Add("~/Views/" + viewDir.GetDirectories()[i].Name + "/{0}.cshtml");
                 list.Add("~/Views/" + viewDir.GetDirectories()[i].Name + "/{1}/{0}.cshtml");
             }
 
