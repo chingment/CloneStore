@@ -232,24 +232,62 @@ namespace WebSite.Areas.Manager.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult Login(LoginViewModel model)
         {
-            var identity = new AspNetIdentiyAuthorizeRelay<SysStaffUser>(CurrentDb);
 
-            var user = identity.SignIn(model.txt_UserName, model.txt_Password, model.ckb_RememberMe);
-            if (user != null)
+
+            var result = SignIn(model.txt_UserName, model.txt_Password, model.ckb_RememberMe);
+
+
+            if (result.ResultType == Enumeration.LoginResult.Failure)
             {
-                if (user.IsDisable)
-                    return Json(ResultType.Failure, "The account has been disabled");
 
-                if (!user.IsDelete)
+                if (result.ResultTip == Enumeration.LoginResultTip.UserNotExist || result.ResultTip == Enumeration.LoginResultTip.UserPasswordIncorrect)
                 {
-                    ILog log = LogManager.GetLogger(CommonSetting.LoggerLoginWeb);
-                    log.Info(FormatUtility.LoginInWeb(User.Identity.GetUserId<int>(), User.Identity.GetUserName()));
-                    return Json(ResultType.Success, "Sign In Success");
+                    return Json(ResultType.Failure, "The Account or password incorrect . Please re-enter！");
                 }
 
+                if (result.ResultTip == Enumeration.LoginResultTip.UserDisabled)
+                {
+                    return Json(ResultType.Failure, "The account has been disabled");
+                }
+
+                if (result.ResultTip == Enumeration.LoginResultTip.UserDeleted)
+                {
+                    return Json(ResultType.Failure, "The account has been deleted ");
+                }
             }
-            return Json(ResultType.Failure, "Incorrect Account or password. Please re-enter！");
+
+
+            return Json(ResultType.Success, "Sign In Success");
+
         }
+
+
+
+        private LoginResult<SysStaffUser> SignIn(string username, string password, bool isrememberme)
+        {
+
+            SysUserLoginHistory userLoginHistory = new SysUserLoginHistory();
+            userLoginHistory.Ip = "113.108.198.138";
+            //userLoginHistory.Country = ipInfo.Country;
+            //userLoginHistory.Province = ipInfo.Province;
+            //userLoginHistory.City = ipInfo.City;
+            userLoginHistory.LoginType = Enumeration.LoginType.Computer;
+            var identity = new AspNetIdentiyAuthorizeRelay<SysStaffUser>(CurrentDb);
+
+            var result = identity.Login(username, password, isrememberme, userLoginHistory);
+
+
+            if (result.User != null)
+            {
+
+                ILog log = LogManager.GetLogger(CommonSetting.LoggerLoginWeb);
+                log.Info(FormatUtility.LoginInWeb(result.User.Id, result.User.UserName));
+            }
+
+            return result;
+        }
+
+
 
         /// <summary>
         /// 退出方法

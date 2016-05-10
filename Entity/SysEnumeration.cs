@@ -74,6 +74,17 @@ namespace Lumos.Entity
             Failure = 2
         }
 
+        public enum LoginResultTip
+        {
+            Unknow = 0,
+            VerifyPass = 1,
+            UserNotExist = 2,
+            UserPasswordIncorrect = 3,
+            UserDisabled = 4,
+            UserDeleted = 5
+        }
+
+
         /// <summary>
         /// 控件类型
         /// </summary>

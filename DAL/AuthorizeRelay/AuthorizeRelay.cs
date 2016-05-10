@@ -13,6 +13,55 @@ using System.Runtime.Remoting.Messaging;
 using Lumos.Entity;
 namespace Lumos.DAL.AuthorizeRelay
 {
+    public class LoginResult<TUser> where TUser : SysUser
+    {
+
+        private Enumeration.LoginResult _ResultType;
+        private Enumeration.LoginResultTip _ResultTip;
+        private TUser _User;
+
+        public Enumeration.LoginResult ResultType
+        {
+            get
+            {
+                return _ResultType;
+            }
+        }
+
+
+        public Enumeration.LoginResultTip ResultTip
+        {
+            get
+            {
+                return _ResultTip;
+            }
+        }
+
+
+        public TUser User
+        {
+            get
+            {
+                return _User;
+            }
+        }
+
+
+        public LoginResult(Enumeration.LoginResult type, Enumeration.LoginResultTip tip)
+        {
+            this._ResultType = type;
+            this._ResultTip = tip;
+        }
+
+        public LoginResult(Enumeration.LoginResult type, Enumeration.LoginResultTip tip, TUser user)
+        {
+            this._ResultType = type;
+            this._ResultTip = tip;
+            this._User = user;
+        }
+
+    }
+
     public class AspNetIdentiyAuthorizeRelay<TUser> where TUser : SysUser
     {
 
@@ -138,23 +187,75 @@ namespace Lumos.DAL.AuthorizeRelay
         }
 
 
-        public TUser SignIn(string userName, string password, bool isPersistent)
+        public LoginResult<TUser> Login(string userName, string password, bool isPersistent, SysUserLoginHistory userLoginHistory)
         {
-            var user = _userManager.Find<TUser,int>(userName, password);
-            if (user != null)
+            SysUserLoginHistory loginHis = new SysUserLoginHistory();
+            userName = userName.Trim();
+            var user = _userManager.FindByName<TUser, int>(userName);
+            if (user == null)
             {
-                if (!user.IsDelete && !user.IsDisable)
-                {
-                    user.LastLoginTime = DateTime.Now;
-                    user.LastLoginIp = GetIPAddress();
-                    _db.SaveChanges();
-                    AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                    var identity = _userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-                    AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
-                }
+                return new LoginResult<TUser>(Enumeration.LoginResult.Failure, Enumeration.LoginResultTip.UserNotExist);
             }
 
-            return user;
+            var lastUserInfo =user;
+            loginHis.UserId = user.Id;
+            loginHis.LoginTime = DateTime.Now;
+            loginHis.LoginType = userLoginHistory.LoginType;
+            loginHis.Ip = userLoginHistory.Ip;
+            loginHis.Country = userLoginHistory.Country;
+            loginHis.Province = userLoginHistory.Province;
+            loginHis.City = userLoginHistory.City;
+
+            user = _userManager.Find<TUser, int>(userName, password);
+
+
+
+            if (user == null)
+            {
+                loginHis.Description = "Login failed, password error";
+                loginHis.Result = Enumeration.LoginResult.Failure;
+                _db.SysUserLoginHistory.Add(loginHis);
+                _db.SaveChanges();
+
+                return new LoginResult<TUser>(Enumeration.LoginResult.Failure, Enumeration.LoginResultTip.UserPasswordIncorrect, lastUserInfo);
+            }
+
+            if (user.IsDisable)
+            {
+                loginHis.Description = "Login failed, the account is disabled ";
+                loginHis.Result = Enumeration.LoginResult.Failure;
+                _db.SysUserLoginHistory.Add(loginHis);
+                _db.SaveChanges();
+
+                return new LoginResult<TUser>(Enumeration.LoginResult.Failure, Enumeration.LoginResultTip.UserDisabled, lastUserInfo);
+            }
+
+            if (user.IsDelete)
+            {
+                loginHis.Description = "Login failed, the account has been deleted ";
+                loginHis.Result = Enumeration.LoginResult.Failure;
+                _db.SysUserLoginHistory.Add(loginHis);
+                _db.SaveChanges();
+                return new LoginResult<TUser>(Enumeration.LoginResult.Failure, Enumeration.LoginResultTip.UserDeleted, lastUserInfo);
+            }
+
+
+            loginHis.Description = "Login success ";
+            loginHis.Result = Enumeration.LoginResult.Success;
+            _db.SysUserLoginHistory.Add(loginHis);
+
+            user.LastLoginTime = loginHis.LoginTime;
+            user.LastLoginIp = loginHis.Ip;
+
+            _db.SaveChanges();
+
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+            var identity = _userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
+
+
+
+            return new LoginResult<TUser>(Enumeration.LoginResult.Success, Enumeration.LoginResultTip.VerifyPass, lastUserInfo);
         }
 
         public void SignOut()
@@ -492,31 +593,31 @@ namespace Lumos.DAL.AuthorizeRelay
             return true;
         }
 
-        /// <summary>
-        /// 添加权限到角色
-        /// </summary>
-        /// <param name="permissionId"></param>
-        /// <param name="menuName"></param>
-        /// <returns></returns>
-        public bool SaveRolePermission(int roleId, string[] permissionIds)
-        {
+        ///// <summary>
+        ///// 添加权限到角色
+        ///// </summary>
+        ///// <param name="permissionId"></param>
+        ///// <param name="menuName"></param>
+        ///// <returns></returns>
+        //public bool SaveRolePermission(int roleId, string[] permissionIds)
+        //{
 
-            //List<SysRolePermission> rolePermissionList = _db.SysRolePermission.Where(r => r.RoleId == roleId).ToList();
+        //    //List<SysRolePermission> rolePermissionList = _db.SysRolePermission.Where(r => r.RoleId == roleId).ToList();
 
-            //foreach (var m in rolePermissionList)
-            //{
-            //    _db.SysRolePermission.Remove(m);
-            //}
+        //    //foreach (var m in rolePermissionList)
+        //    //{
+        //    //    _db.SysRolePermission.Remove(m);
+        //    //}
 
-            //foreach (var m in permissionIds)
-            //{
-            //    _db.SysRolePermission.Add(new SysRolePermission { RoleId = roleId, PermissionId = m });
-            //}
+        //    //foreach (var m in permissionIds)
+        //    //{
+        //    //    _db.SysRolePermission.Add(new SysRolePermission { RoleId = roleId, PermissionId = m });
+        //    //}
 
-            //_db.SaveChanges();
+        //    //_db.SaveChanges();
 
-            return false;
-        }
+        //    return false;
+        //}
 
         #endregion 角色相关
 

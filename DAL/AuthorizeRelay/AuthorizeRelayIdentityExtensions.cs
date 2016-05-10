@@ -25,6 +25,34 @@ namespace Microsoft.AspNet.Identity
             }
         }
 
+        public static string GetHiddenUserName(this IIdentity identity)
+        {
+            if (identity == null)
+                return null;
+            if (!identity.IsAuthenticated)
+                return null;
+            var username = identity.GetUserName();
+            char[] c = username.ToCharArray();
+            if (username.Length > 2 & username.Length < 5)
+            {
+                c[1] = '*';
+            }
+            else if (username.Length > 5 && username.Length < 9)
+            {
+                c[3] = '*';
+                c[4] = '*';
+            }
+            else if (username.Length > 9)
+            {
+                c[3] = '*';
+                c[4] = '*';
+                c[5] = '*';
+            }
+            username = new string(c);
+
+            return username;
+        }
+
         /// <summary>
         /// 获取用户所在的角色
         /// </summary>

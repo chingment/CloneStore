@@ -218,18 +218,18 @@ namespace WebSite.Areas.Manager.Controllers
             return Json(ResultType.Failure);
         }
 
-        /// <summary>
-        /// 保存角色所选择权限
-        /// </summary>
-        /// <param name="fc"></param>
-        /// <returns></returns>
-        public JsonResult SaveRolePermission(int roleId, string permissionIds)
-        {
-            var identityManager = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
-            string[] arrPermussionIds = permissionIds.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-            identityManager.SaveRolePermission(roleId, arrPermussionIds);
-            return Json(ResultType.Success, "Success");
-        }
+        ///// <summary>
+        ///// 保存角色所选择权限
+        ///// </summary>
+        ///// <param name="fc"></param>
+        ///// <returns></returns>
+        //public JsonResult SaveRolePermission(int roleId, string permissionIds)
+        //{
+        //    var identityManager = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
+        //    string[] arrPermussionIds = permissionIds.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+        //    identityManager.SaveRolePermission(roleId, arrPermussionIds);
+        //    return Json(ResultType.Success, "Success");
+        //}
 
         /// <summary>
         /// 创建角色

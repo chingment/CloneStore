@@ -38,7 +38,7 @@ namespace WebSite.Controllers
             {
                 string strCartProducts = System.Web.HttpUtility.UrlDecode(Request.Cookies[CommonSetting.CartProductsCookiesName].Value.ToString());
                 List<Product> products = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(strCartProducts);
-                model.Clothes = products.Where(m => m.Category == "Clothes").OrderByDescending(c=>c.CreateTime).ToList();
+                model.Clothes = products.Where(m => m.Category == "Clothes").OrderByDescending(c => c.CreateTime).ToList();
                 model.Pants = products.Where(m => m.Category == "Pants").OrderByDescending(c => c.CreateTime).ToList();
                 model.Shoes = products.Where(m => m.Category == "Shoes").OrderByDescending(c => c.CreateTime).ToList();
             }
@@ -74,7 +74,7 @@ namespace WebSite.Controllers
             CurrentDb.SaveChanges();
 
 
-            relay.SignIn(model.txt_UserName, model.txt_Password, false);
+            SignIn(model.txt_UserName, model.txt_Password, false);
 
 
 
@@ -92,52 +92,66 @@ namespace WebSite.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult SignIn(LoginModel model)
         {
-            var identity = new AspNetIdentiyAuthorizeRelay<SysClientUser>(CurrentDb);
-            var user = identity.SignIn(model.txt_UserName, model.txt_Password, model.ckb_RememberMe);
+
+            var signInResult = SignIn(model.txt_UserName, model.txt_Password, model.ckb_RememberMe);
             CustomJsonResult result = new CustomJsonResult();
             GoToViewModel gotoViewModel = new GoToViewModel();
-            int userId = 0;
-            string userName = model.txt_UserName;
-            if (user != null)
+
+
+            if (signInResult.ResultType == Enumeration.LoginResult.Failure)
             {
-                userId = user.Id;
-                userName = user.UserName;
-                if (!user.IsDelete)
+                gotoViewModel.GotoUrl = @"/Account/SignIn";
+                if (signInResult.ResultTip == Enumeration.LoginResultTip.UserNotExist || signInResult.ResultTip == Enumeration.LoginResultTip.UserPasswordIncorrect)
                 {
-                    if (user.IsDisable)
-                    {
-                        result.Result = ResultType.Failure;
-                        result.Message = "The account has been disabled";
-                        gotoViewModel.GotoUrl = @"/Home/Login";
-                    }
-                    else
-                    {
-                        result.Result = ResultType.Success;
-                        result.Message = "Success";
-                        gotoViewModel.GotoUrl = @"/Home/Index";
-                    }
+                    return Json(ResultType.Failure, gotoViewModel, "Account or password is incorrect. Please try again!");
                 }
-                else
+
+                if (signInResult.ResultTip == Enumeration.LoginResultTip.UserDisabled)
                 {
-                    result.Result = ResultType.Failure;
-                    result.Message = "Account or password is incorrect. Please try again!";
-                    gotoViewModel.GotoUrl = @"/Home/Login";
+                    gotoViewModel.GotoUrl = @"/Account/SignIn";
+                    return Json(ResultType.Failure, gotoViewModel, "The account has been disabled");
+                }
+
+                if (signInResult.ResultTip == Enumeration.LoginResultTip.UserDeleted)
+                {
+                    gotoViewModel.GotoUrl = @"/Account/SignIn";
+                    return Json(ResultType.Failure, gotoViewModel, "The account has been deleted ");
                 }
             }
-            else
+
+
+            gotoViewModel.GotoUrl = @"/Home/Index";
+
+
+
+            return Json(ResultType.Success, gotoViewModel); ;
+        }
+
+        private LoginResult<SysClientUser> SignIn(string username, string password, bool isrememberme)
+        {
+            string loginIp = "113.108.198.138";
+
+
+            SysUserLoginHistory userLoginHistory = new SysUserLoginHistory();
+            userLoginHistory.Ip = loginIp;
+            //userLoginHistory.Country = ipInfo.Country;
+            //userLoginHistory.Province = ipInfo.Province;
+            //userLoginHistory.City = ipInfo.City;
+            userLoginHistory.LoginType = Enumeration.LoginType.Computer;
+            var identity = new AspNetIdentiyAuthorizeRelay<SysClientUser>(CurrentDb);
+
+            var result = identity.Login(username, password, isrememberme, userLoginHistory);
+
+
+            if (result.User != null)
             {
-                result.Result = ResultType.Failure;
-                result.Message = "Account or password is incorrect. Please try again!";
-                gotoViewModel.GotoUrl = @"/Home/Login";
+                ILog log = LogManager.GetLogger(CommonSetting.LoggerLoginWeb);
+                log.Info(FormatUtility.LoginInWeb(result.User.Id, result.User.UserName));
             }
-
-            result.Content = gotoViewModel;
-
-            ILog log = LogManager.GetLogger(CommonSetting.LoggerLoginWeb);
-            log.Info(FormatUtility.LoginInWeb(userId, userName, result.Message));
 
             return result;
         }
+
 
         /// <summary>
         /// 退出方法
