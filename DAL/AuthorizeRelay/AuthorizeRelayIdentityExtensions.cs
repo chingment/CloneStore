@@ -95,29 +95,32 @@ namespace Microsoft.AspNet.Identity
         /// <param name="identity"></param>
         /// <param name="permission">权限代码</param>
         /// <returns></returns>
-        public static bool IsInPermission(this IIdentity identity, string permission)
+        public static bool IsInPermission(this IIdentity identity, params string[] permissions)
         {
             if (identity == null)
                 return false;
             if (!identity.IsAuthenticated)
                 return false;
 
-            //不用判断权限返回true
-            if (permission == PermissionCode.None)
-                return true;
-
-            List<string> list = GetUserPermissions(identity);
-            if (list == null)
+            List<string> listPermissions = GetUserPermissions(identity);
+            if (listPermissions == null)
                 return false;
-            if (list.Count < 1)
+            if (listPermissions.Count < 1)
                 return false;
 
             bool isHas = false;
-            foreach (var p in list)
+            foreach (var permission in listPermissions)
             {
-                if (p.Trim() == permission.Trim())
+                foreach (var m in permissions)
                 {
-                    isHas = true;
+                    if (permission.Trim() == m.Trim())
+                    {
+                        isHas = true;
+                        break;
+                    }
+                }
+                if (isHas)
+                {
                     break;
                 }
             }

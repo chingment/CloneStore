@@ -190,6 +190,7 @@
     <Compile Include="Areas\Manager\Models\LoginViewModel.cs" />
     <Compile Include="Areas\Manager\Models\LogViewModel.cs" />
     <Compile Include="Areas\Manager\Models\MessageBoxViewModel.cs" />
+    <Compile Include="Areas\Manager\Models\SysMenuViewModel.cs" />
     <Compile Include="Areas\Manager\Models\ZTreeViewModel.cs" />
     <Compile Include="Areas\Manager\NoResubmitAttribute.cs" />
     <Compile Include="Areas\Manager\Controllers\PersonalCenter\PersonalCenterController.cs" />

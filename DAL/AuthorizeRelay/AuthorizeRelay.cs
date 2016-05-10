@@ -210,12 +210,32 @@ namespace Lumos.DAL.AuthorizeRelay
         {
             List<string> list = new List<string>();
 
-            var model =
-                (from rolepermission in _db.SysRolePermission
-                 where
-                 (from userrole in _db.SysUserRole where rolepermission.RoleId == userrole.RoleId && userrole.UserId == userId select userrole.RoleId)
-                 .Contains(rolepermission.RoleId)
-                 select rolepermission.PermissionId).Distinct();
+            //var model =
+            //    (from rolepermission in _db.SysRolePermission
+            //     where
+            //     (from userrole in _db.SysUserRole where rolepermission.RoleId == userrole.RoleId && userrole.UserId == userId select userrole.RoleId)
+            //     .Contains(rolepermission.RoleId)
+            //     select rolepermission.PermissionId).Distinct();
+
+
+
+            var model = (from sysMenuPermission in _db.SysMenuPermission
+                         where
+                             (from sysRoleMenu in _db.SysRoleMenu
+                              where
+                              (from userrole in _db.SysUserRole where sysRoleMenu.RoleId == userrole.RoleId && userrole.UserId == userId select userrole.RoleId)
+                              .Contains(sysRoleMenu.RoleId)
+                              select sysRoleMenu.MenuId).Contains(sysMenuPermission.MenuId)
+                         select sysMenuPermission.PermissionId).Distinct();
+
+
+
+
+            if (model != null)
+            {
+                list = model.ToList();
+            }
+
             if (model != null)
             {
                 list = model.ToList();
@@ -356,7 +376,7 @@ namespace Lumos.DAL.AuthorizeRelay
 
             var roleMenus = _db.SysRoleMenu.Where(u => u.RoleId == roleId).Distinct();
 
-            var rolePermission = _db.SysRolePermission.Where(u => u.RoleId == roleId).Distinct();
+           // var rolePermission = _db.SysRolePermission.Where(u => u.RoleId == roleId).Distinct();
 
             var role = _db.Roles.Find(roleId);
 
@@ -370,10 +390,10 @@ namespace Lumos.DAL.AuthorizeRelay
                 _db.SysRoleMenu.Remove(menu);
             }
 
-            foreach (var permission in rolePermission)
-            {
-                _db.SysRolePermission.Remove(permission);
-            }
+            //foreach (var permission in rolePermission)
+            //{
+            //    _db.SysRolePermission.Remove(permission);
+            //}
 
             _db.Roles.Remove(role);
             _db.SaveChanges();
@@ -481,21 +501,21 @@ namespace Lumos.DAL.AuthorizeRelay
         public bool SaveRolePermission(int roleId, string[] permissionIds)
         {
 
-            List<SysRolePermission> rolePermissionList = _db.SysRolePermission.Where(r => r.RoleId == roleId).ToList();
+            //List<SysRolePermission> rolePermissionList = _db.SysRolePermission.Where(r => r.RoleId == roleId).ToList();
 
-            foreach (var m in rolePermissionList)
-            {
-                _db.SysRolePermission.Remove(m);
-            }
+            //foreach (var m in rolePermissionList)
+            //{
+            //    _db.SysRolePermission.Remove(m);
+            //}
 
-            foreach (var m in permissionIds)
-            {
-                _db.SysRolePermission.Add(new SysRolePermission { RoleId = roleId, PermissionId = m });
-            }
+            //foreach (var m in permissionIds)
+            //{
+            //    _db.SysRolePermission.Add(new SysRolePermission { RoleId = roleId, PermissionId = m });
+            //}
 
-            _db.SaveChanges();
+            //_db.SaveChanges();
 
-            return true;
+            return false;
         }
 
         #endregion 角色相关
@@ -512,9 +532,27 @@ namespace Lumos.DAL.AuthorizeRelay
         /// 更新菜单
         /// </summary>
         /// <param name="id"></param>
-        public void UpdateMenu(SysMenu enity)
+        public void UpdateMenu(SysMenu enity, string[] perssions)
         {
             _db.Entry(enity).State = EntityState.Modified;
+
+
+            var menuPermission = _db.SysMenuPermission.Where(r => r.MenuId == enity.Id).ToList();
+            foreach (var m in menuPermission)
+            {
+                _db.SysMenuPermission.Remove(m);
+            }
+
+
+            if (perssions != null)
+            {
+                foreach (var m in perssions)
+                {
+                    _db.SysMenuPermission.Add(new SysMenuPermission { MenuId = enity.Id, PermissionId = m });
+                }
+            }
+
+
             _db.SaveChanges();
         }
 
@@ -545,11 +583,11 @@ namespace Lumos.DAL.AuthorizeRelay
         {
             Type t = permission.GetType();
             List<SysPermission> list = new List<SysPermission>();
-            SysPermission p = new SysPermission();
-            p.Id = "0";
-            p.Name = "权限集合";
-            p.PId = "";
-            list.Add(p);
+            //SysPermission p = new SysPermission();
+            //p.Id = "0";
+            //p.Name = "权限集合";
+            //p.PId = "";
+            //list.Add(p);
             list = GetBasePermissionList(t, list);
             return list;
         }

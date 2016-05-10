@@ -25,9 +25,11 @@ namespace Lumos.DAL.AuthorizeRelay
 
         public IDbSet<SysPermission> SysPermission { get; set; }
 
+        public IDbSet<SysMenuPermission> SysMenuPermission { get; set; }
+
         public IDbSet<SysRoleMenu> SysRoleMenu { get; set; }
 
-        public IDbSet<SysRolePermission> SysRolePermission { get; set; }
+        //public IDbSet<SysRolePermission> SysRolePermission { get; set; }
 
         public IDbSet<SysUserRole> SysUserRole { get; set; }
 

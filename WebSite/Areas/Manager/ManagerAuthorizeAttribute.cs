@@ -21,54 +21,40 @@ namespace WebSite.Areas.Manager
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, Inherited = true, AllowMultiple = true)]
     public class ManagerAuthorizeAttribute : AuthorizeAttribute
     {
+        public ManagerAuthorizeAttribute(params string[] permissions)
+        {
+            if (permissions != null)
+            {
+                if (permissions.Length > 0)
+                {
+                    this.permissions = permissions;
+                }
+            }
+
+        }
+
         /// <summary>
         /// 权限代码
         /// </summary>
-        public string Permission { get; set; }
-
-        public bool IsCheckHasMenu { get; set; }
+        private string[] permissions { get; set; }
 
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             base.OnAuthorization(filterContext);
 
 
-            bool skipAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true)|| filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true);
+            bool skipAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true) || filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true);
             if (skipAuthorization)
             {
                 return;
             }
 
-            //if (HttpContext.Current.Request.IsAuthenticated)
-            //{
-            //    if (!IsCheckHasMenu)
-            //    {
-            //        string menuUrl = filterContext.RequestContext.HttpContext.Request.Url.AbsolutePath;
-            //        bool IsHasMenu = HttpContext.Current.User.Identity.IsInMenu(menuUrl);
-            //        if (!IsHasMenu)
-            //        {
-            //            bool isAjaxRequest = filterContext.RequestContext.HttpContext.Request.IsAjaxRequest();
-            //            if (isAjaxRequest)
-            //            {
-            //                CustomJsonResult jsonResult = new CustomJsonResult(ResultType.Failure, "您没有访问页面权限!");
-            //                jsonResult.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            //                filterContext.Result = jsonResult;
-            //            }
-            //            else
-            //            {
-            //                //MessageBoxModel messbox = new MessageBoxModel();
-            //                //filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home", action = "MessageBox" }));
-            //                filterContext.RequestContext.HttpContext.Response.Write("您没有访问页面权限!");
-            //                filterContext.RequestContext.HttpContext.Response.End();
-            //            }
-            //        }
-            //    }
-            //}
 
             #region 判断是否有该权限
-            if (Permission != null)
+            if (permissions != null)
             {
-                bool IsHasPermission = HttpContext.Current.User.Identity.IsInPermission(Permission);
+                bool IsHasPermission = HttpContext.Current.User.Identity.IsInPermission(permissions);
+
                 if (!IsHasPermission)
                 {
                     bool isAjaxRequest = filterContext.RequestContext.HttpContext.Request.IsAjaxRequest();
@@ -77,13 +63,13 @@ namespace WebSite.Areas.Manager
                         CustomJsonResult jsonResult = new CustomJsonResult(ResultType.Failure, "您没有对应的操作权限!");
                         jsonResult.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                         filterContext.Result = jsonResult;
+                        return;
                     }
                     else
                     {
-                        //MessageBoxModel messbox = new MessageBoxModel();
-                        //filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home", action = "MessageBox" }));
-                        filterContext.RequestContext.HttpContext.Response.Write("您没有对应的操作权限!");
+                        filterContext.RequestContext.HttpContext.Response.Write("<div style=\"text-align:center;\">您没有对应的操作权限!</div>");
                         filterContext.RequestContext.HttpContext.Response.End();
+                        return;
                     }
                 }
             }

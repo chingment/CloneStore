@@ -22,8 +22,8 @@
                 isReSetTabHeight: true,
                 rowFun: function rowtd(p_index, p_row) {
                     var l_Strlimt = "";
-                    l_Strlimt += "@Html.IsInPermission("<a href=\\\"javascript:void(0)\\\" class=\\\"a-btn-edit\\\" onclick=\\\"javascript:$.lumos.openWin(this,'../User/Update?id={key}','【Modify-{title}】', '650px', '500px');\\\" >Modify</a>", PermissionCode.None)";
-                    l_Strlimt += "@Html.IsInPermission("<a href=\\\"javascript:void(0)\\\" class=\\\"a-btn-del\\\" onclick=\\\"javascript:listTableDel(this,false,'{key}');\\\">Delete</a>", PermissionCode.None)";
+                    l_Strlimt += "@Html.IsInPermission("<a href=\\\"javascript:void(0)\\\" class=\\\"a-btn-edit\\\" onclick=\\\"javascript:$.lumos.openWin(this,'../User/Update?id={key}','【Modify-{title}】', '650px', '500px');\\\" >Modify</a>")";
+                    l_Strlimt += "@Html.IsInPermission("<a href=\\\"javascript:void(0)\\\" class=\\\"a-btn-del\\\" onclick=\\\"javascript:listTableDel(this,false,'{key}');\\\">Delete</a>")";
                     var l_StrRows = "";
                     l_StrRows += "<tr>";
                     l_StrRows += "<td class=\"tb_cbox\"  key=\"" + p_row.Id + "\"><a styple=\"padding-left:2px\">" + (p_index + 1) + "</a></td>";
@@ -107,8 +107,8 @@
                     <div class="clear">
                     </div>
                     <div class="l-btn-area">
-                        @Html.IsInPermission("<a id=\"abtn_del\" class=\"a-btn-del lumos_opfun list_checkbox\" href=\"javascript:void(0)\" onclick=\"javascript:return listTableDel(this,true,0);\">Delete </a>", PermissionCode.None)
-                        @Html.IsInPermission("<a id=\"abtn_add\" class=\"a-btn-add lumos_opfun\" href=\"javascript:void(0)\" onclick=\"javascript: $.lumos.openWin(this,'../User/Add', 'Add', '650px', '600px'); \">Add</a>", PermissionCode.None)
+                        @Html.IsInPermission("<a id=\"abtn_del\" class=\"a-btn-del lumos_opfun list_checkbox\" href=\"javascript:void(0)\" onclick=\"javascript:return listTableDel(this,true,0);\">Delete </a>")
+                        @Html.IsInPermission("<a id=\"abtn_add\" class=\"a-btn-add lumos_opfun\" href=\"javascript:void(0)\" onclick=\"javascript: $.lumos.openWin(this,'../User/Add', 'Add', '650px', '600px'); \">Add</a>")
                     </div>
                     <div class="l-list">
                         <table id="list_table" class="l-list-tb">

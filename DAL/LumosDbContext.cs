@@ -111,6 +111,20 @@ namespace Lumos.DAL
                 context.SysRoleMenu.Add(new SysRoleMenu() { MenuId = m.Id, RoleId = 1 });
             }
 
+            //初始权限
+            List<SysPermission> sysPermissions = GetPermissionList(new PermissionCode());
+            foreach (var m in sysPermissions)
+            {
+                context.SysPermission.Add(new SysPermission() { Id = m.Id, PId = m.PId, Name = m.Name });
+            }
+
+
+            context.SysMenuPermission.Add(new SysMenuPermission() { MenuId = 3, PermissionId = PermissionCode.菜单管理 });
+            context.SysMenuPermission.Add(new SysMenuPermission() { MenuId = 4, PermissionId = PermissionCode.角色管理 });
+            context.SysMenuPermission.Add(new SysMenuPermission() { MenuId = 5, PermissionId = PermissionCode.用户管理 });
+            context.SysMenuPermission.Add(new SysMenuPermission() { MenuId = 10, PermissionId = PermissionCode.客户管理 });
+
+
 
             List<Retailer> retailers = new List<Retailer>();
             retailers.Add(new Retailer() { Id = 1, Name = "Bonobos", BannerImg = "/images/01.jpg", CreateTime = DateTime.Now, Creator = 0, Priority = 0, IsDelete = false });
@@ -183,6 +197,42 @@ namespace Lumos.DAL
 
             base.Seed(context);
         }
+
+        public List<SysPermission> GetPermissionList(PermissionCode permission)
+        {
+            Type t = permission.GetType();
+            List<SysPermission> list = new List<SysPermission>();
+            list = GetPermissionList(t, list);
+            return list;
+        }
+
+
+        private List<SysPermission> GetPermissionList(Type t, List<SysPermission> list)
+        {
+            if (t.Name != "Object")
+            {
+                System.Reflection.FieldInfo[] properties = t.GetFields();
+                foreach (System.Reflection.FieldInfo property in properties)
+                {
+                    string pId = "0";
+                    object[] typeAttributes = property.GetCustomAttributes(false);
+                    foreach (PermissionCodeAttribute attribute in typeAttributes)
+                    {
+                        pId = attribute.PId;
+                    }
+                    object id = property.GetValue(null);
+                    string name = property.Name;
+                    SysPermission model = new SysPermission();
+                    model.Id = id.ToString();
+                    model.Name = name;
+                    model.PId = pId;
+                    list.Add(model);
+                }
+                list = GetPermissionList(t.BaseType, list);
+            }
+            return list;
+        }
+
     }
 
     //public class FxContextDatabaseInitializerForDropCreateDatabaseIfModelChanges : DropCreateDatabaseIfModelChanges<FxDbContext>

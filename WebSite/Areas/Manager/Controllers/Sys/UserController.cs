@@ -20,6 +20,7 @@ using Lumos.Common;
 
 namespace WebSite.Areas.Manager.Controllers
 {
+    [ManagerAuthorize(PermissionCode.用户管理)]
     public class UserController : ManagerController
     {
 

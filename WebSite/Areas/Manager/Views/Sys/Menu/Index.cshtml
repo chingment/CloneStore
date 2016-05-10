@@ -1,4 +1,5 @@
-﻿@{
+﻿@model WebSite.Areas.Manager.Models.SysMenuViewModel
+@{
     ViewBag.Title = "Menus Setting";
     Layout = "~/Areas/Manager/Views/Shared/_LayoutTree.cshtml";
 }
@@ -72,9 +73,21 @@
                     if (data.result == "Success") {
                         $("#lbl_PName").text(parentName);
                         $("#txt_PName").val(parentName);
-                        $("#txt_Name").val(data.content.Name);
-                        $("#txt_Url").val(data.content.Url);
-                        $("#txt_Description").val(data.content.Description);
+
+                        var menu = data.content.Menu;
+
+                        $("#txt_Name").val(menu.Name);
+                        $("#txt_Url").val(menu.Url);
+                        $("#txt_Description").val(menu.Description);
+
+
+                        $("input[name=cb_Permission]").attr("checked", false);
+
+                        var menuPermission = data.content.MenuPermission
+
+                        for (var i = 0; i < menuPermission.length; i++) {
+                            $("input[name=cb_Permission][value=" + menuPermission[i].PermissionId + "]").attr("checked", true);
+                        }
                     }
                 }
             });
@@ -275,6 +288,25 @@
                                                     <input name="txt_Url" type="text" autocomplete="off" id="txt_Url"
                                                            class="form-control" style="width: 350px;" />
                                                     @*<span id="txt_UrlTip"></span>*@
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="f-tb-t">
+                                                    Permission：
+                                                </td>
+                                                <td class="f-tb-c">
+
+                                                    @for (int i = 0; i < Model.Permission.Count; i++)
+                                                    {
+                                                        if (Model.Permission[i].Id != "1")
+                                                        {
+                                                            <span>
+                                                                <input id="cb_Permission_@i" type="checkbox" name="cb_Permission" value="@Model.Permission[i].Id" />
+                                                                <label for="cb_Permission_@i">@Model.Permission[i].Name</label>
+                                                            </span>
+                                                        }
+                                                    }
+
                                                 </td>
                                             </tr>
                                             <tr>

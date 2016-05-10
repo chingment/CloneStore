@@ -8,21 +8,32 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebSite.Areas.Manager.Models;
 
 namespace WebSite.Areas.Manager.Controllers
 {
+    [ManagerAuthorize(PermissionCode.菜单管理)]
     public class MenuController : ManagerController
     {
         //
         // GET: /Menu/
         public ActionResult Index()
         {
-            return View();
+            SysMenuViewModel mode = new SysMenuViewModel();
+            var identity = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
+            List<SysPermission> list = identity.GetPermissionList(new PermissionCode());
+            mode.Permission = list;
+            return View(mode);
         }
 
         public ActionResult Add()
         {
-            return View();
+            SysMenuViewModel mode = new SysMenuViewModel();
+            var identity = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
+            List<SysPermission> list = identity.GetPermissionList(new PermissionCode());
+
+            mode.Permission = list;
+            return View(mode);
         }
 
         public ActionResult Sort()
@@ -37,8 +48,11 @@ namespace WebSite.Areas.Manager.Controllers
         /// <returns></returns>
         public JsonResult GetMenuDetail(int menuId)
         {
-            SysMenu role = CurrentDb.SysMenu.First(u => u.Id == menuId);
-            return Json(ResultType.Success, role);
+            SysMenuViewModel model = new SysMenuViewModel();
+            SysMenu menu = CurrentDb.SysMenu.First(u => u.Id == menuId);
+            model.Menu = menu;
+            model.MenuPermission = CurrentDb.SysMenuPermission.Where(u => u.MenuId == menuId).ToList();
+            return Json(ResultType.Success, model);
         }
 
         /// <summary>
@@ -97,7 +111,12 @@ namespace WebSite.Areas.Manager.Controllers
             model.Url = fc["txt_Url"].Trim();
             model.Description = fc["txt_Description"].ToString();
             var identityManager = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
-            identityManager.UpdateMenu(model);
+            string[] permissons = null;
+            if (fc["cb_Permission"] != null)
+            {
+                permissons = fc["cb_Permission"].Trim().Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+            }
+            identityManager.UpdateMenu(model, permissons);
             return Json(ResultType.Success, "Success");
 
         }

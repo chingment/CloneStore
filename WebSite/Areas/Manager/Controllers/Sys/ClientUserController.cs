@@ -21,6 +21,7 @@ using Lumos.Common;
 
 namespace WebSite.Areas.Manager.Controllers
 {
+    [ManagerAuthorize(PermissionCode.客户管理)]
     public class ClientUserController : ManagerController
     {
         #region 视图

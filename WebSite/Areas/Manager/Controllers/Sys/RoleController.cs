@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace WebSite.Areas.Manager.Controllers
 {
+    [ManagerAuthorize(PermissionCode.角色管理)]
     public class RoleController : ManagerController
     {
         #region 视图
@@ -208,11 +209,13 @@ namespace WebSite.Areas.Manager.Controllers
         public JsonResult GetRolePermissionTreeList(int roleId)
         {
 
-            List<string> checkedPermissions = CurrentDb.SysRolePermission.Where(r => r.RoleId == roleId).Select(p => p.PermissionId).ToList();
-            var identity = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
-            object json = ConvertToZTreeJson(identity.GetPermissionList(new PermissionCode()).ToArray(), checkedPermissions.ToArray(), "id", "pid", "name", "opfun");
+            //List<string> checkedPermissions = CurrentDb.SysRolePermission.Where(r => r.RoleId == roleId).Select(p => p.PermissionId).ToList();
+            //var identity = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
+            //object json = ConvertToZTreeJson(identity.GetPermissionList(new PermissionCode()).ToArray(), checkedPermissions.ToArray(), "id", "pid", "name", "opfun");
 
-            return Json(ResultType.Success, json);
+            //return Json(ResultType.Success, json);
+
+            return Json(ResultType.Failure);
         }
 
         /// <summary>
