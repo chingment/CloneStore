@@ -23,12 +23,13 @@ namespace WebSite.Controllers
             MessageBoxModel messageBox = new MessageBoxModel();
             messageBox.No = Guid.NewGuid().ToString();
             messageBox.Type = MessageTip.Exception;
-            messageBox.Title = "抱歉,访问出错";
-            messageBox.Content = "<a href=\"/Home/Index\">返回主页</a>";
-
+            messageBox.Title = "Hmmm... It seems we are unable to process your request";
+            messageBox.Content = "<a href=\"/Home/Index\">Return HomePage</a>";
+           
             //判断是否异步调用
             if (isAjaxRequest)
             {
+                messageBox.IsPopup = true;
                 CustomJsonResult jsonResult = new CustomJsonResult(ResultType.Exception, messageBox.No, messageBox.Title, messageBox);
                 jsonResult.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                 filterContext.Result = jsonResult;
@@ -37,6 +38,7 @@ namespace WebSite.Controllers
             }
             else
             {
+                messageBox.IsPopup = false;
                 filterContext.Result = new ViewResult { ViewName = "MessageBox", MasterName = "_LayoutHome", ViewData = new ViewDataDictionary { Model = messageBox } };
             }
 

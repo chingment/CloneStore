@@ -385,6 +385,9 @@
     <Content Include="Content\Manager\base\images\zTreeStandard2.gif" />
     <Content Include="Content\Manager\base\owl.carousel.css" />
     <Content Include="Content\Manager\base\Site.css" />
+    <Content Include="Content\W\images\icon_messagesbox_error.png" />
+    <Content Include="Content\W\images\icon_messagesbox_success.png" />
+    <Content Include="Content\W\images\icon_messagesbox_warn.png" />
     <Content Include="Content\W\images\shoppingcart3.png" />
     <Content Include="Content\W\images\templatemo_slider_left1.png" />
     <Content Include="Content\W\images\templatemo_slider_right1.png" />
@@ -722,6 +725,7 @@
     <Content Include="Scripts\W\jquery.formValidator.js" />
     <Content Include="Scripts\W\jquery.formValidatorRegex.js" />
     <Content Include="Scripts\W\jquery.js" />
+    <Content Include="Scripts\W\jquery.lumos.front.1.0.0.js" />
     <Content Include="Scripts\W\jquery.mouseoverbox.js" />
     <Content Include="Scripts\W\jquery.mousewheel.js" />
     <Content Include="Scripts\W\jquery.resizeEnd.js" />
@@ -752,6 +756,7 @@
     <Content Include="Views\Product\List.cshtml" />
     <Content Include="Views\Account\MyCart.cshtml" />
     <Content Include="Views\Shared\MessageBox.cshtml" />
+    <Content Include="Views\Shared\Error404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

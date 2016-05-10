@@ -353,67 +353,137 @@
 
             $("#IsAppend").val(opts.isAppend);
 
-            $.ajax({
-                type: "post",
+
+            var sendloading = "loading products......";
+            $.lumos.postJson({
                 url: "/Product/GetList",
-                dataType: "json",
-                data: $("#form1").serializeArray(),
-                beforeSend:function(){
-                    $('#loading_product').show();
-                }
-            }).done(function (data) {
-                $('#loading_product').hide();
-                if (data.result == "Success") {
+                data:$("#form1").serializeArray(),
+                timeout: 60000,
+                beforeSend: function () {
+                    dialog = art.dialog.tips(sendloading,this.timeout);
+                },
+                success: function (data) {
+                    dialog.close();
+                    if (data.result == "Success") {
+                      
+                        var owl = $("#owl_product").data('owlCarousel');
 
-                    var owl = $("#owl_product").data('owlCarousel');
-
-                    if (!opts.isAppend) {
-                        $("#owl_product").html("");
-                    }
-
-                    var products = data.content;
-
-                    if(products.length>0) {
-                        $('#OmittedProductsPages').val(opts.omittedPages);
-                    }
-
-
-                    for (var i = 0; i < products.length; i = i + 2) {
-                        var id = products[i].Id;
-                        var owl_cart_item_id = "owl_cart_item" + id;
-                        var ihtml = '<a class="item" id="' + owl_cart_item_id + '" >';
-                        ihtml += '<ul>';
-                        ihtml += '<li>';
-
-                        if (i < products.length) {
-                            ihtml += '<span id="product_' + products[i].Id + '">';
-                            ihtml += '<pre style="display:none">' + JSON.stringify(products[i]) + '</pre>';
-                            ihtml += '<img src="' + products[i].SmallImg + '" alt="">';
-                            ihtml += '</span>';
+                        if (!opts.isAppend) {
+                            $("#owl_product").html("");
                         }
 
-                        ihtml += '</li>';
-                        ihtml += '<li>';
-                        if ((i + 1) < products.length) {
-                            ihtml += '<span id="product_' + products[i + 1].Id + '">';
-                            ihtml += '<pre style="display:none">' + JSON.stringify(products[i + 1]) + '</pre>';
-                            ihtml += '<img src="' + products[i + 1].SmallImg + '" alt="">';
-                            ihtml += '</span>';
+                        var products = data.content;
+
+                        if(products.length>0) {
+                            $('#OmittedProductsPages').val(opts.omittedPages);
                         }
-                        ihtml += '</li>';
-                        ihtml += '</ul>';
-                        ihtml += '</a>';
 
-                        owl.addItem(ihtml);
+
+                        for (var i = 0; i < products.length; i = i + 2) {
+                            var id = products[i].Id;
+                            var owl_cart_item_id = "owl_cart_item" + id;
+                            var ihtml = '<a class="item" id="' + owl_cart_item_id + '" >';
+                            ihtml += '<ul>';
+                            ihtml += '<li>';
+
+                            if (i < products.length) {
+                                ihtml += '<span id="product_' + products[i].Id + '">';
+                                ihtml += '<pre style="display:none">' + JSON.stringify(products[i]) + '</pre>';
+                                ihtml += '<img src="' + products[i].SmallImg + '" alt="">';
+                                ihtml += '</span>';
+                            }
+
+                            ihtml += '</li>';
+                            ihtml += '<li>';
+                            if ((i + 1) < products.length) {
+                                ihtml += '<span id="product_' + products[i + 1].Id + '">';
+                                ihtml += '<pre style="display:none">' + JSON.stringify(products[i + 1]) + '</pre>';
+                                ihtml += '<img src="' + products[i + 1].SmallImg + '" alt="">';
+                                ihtml += '</span>';
+                            }
+                            ihtml += '</li>';
+                            ihtml += '</ul>';
+                            ihtml += '</a>';
+
+                            owl.addItem(ihtml);
+
+                        }
+
+                        if (opts.isAppend) {
+                            owl.jumpTo(opts.currentItem)
+                        }
 
                     }
-
-                    if (opts.isAppend) {
-                        owl.jumpTo(opts.currentItem)
-                    }
-
                 }
             });
+
+
+
+
+
+            //$.ajax({
+            //    type: "post",
+            //    url: "/Product/GetList",
+            //    dataType: "json",
+            //    data: $("#form1").serializeArray(),
+            //    beforeSend:function(){
+            //        $('#loading_product').show();
+            //    }
+            //}).done(function (data) {
+            //    $('#loading_product').hide();
+            //    if (data.result == "Success") {
+
+            //        var owl = $("#owl_product").data('owlCarousel');
+
+            //        if (!opts.isAppend) {
+            //            $("#owl_product").html("");
+            //        }
+
+            //        var products = data.content;
+
+            //        if(products.length>0) {
+            //            $('#OmittedProductsPages').val(opts.omittedPages);
+            //        }
+
+
+            //        for (var i = 0; i < products.length; i = i + 2) {
+            //            var id = products[i].Id;
+            //            var owl_cart_item_id = "owl_cart_item" + id;
+            //            var ihtml = '<a class="item" id="' + owl_cart_item_id + '" >';
+            //            ihtml += '<ul>';
+            //            ihtml += '<li>';
+
+            //            if (i < products.length) {
+            //                ihtml += '<span id="product_' + products[i].Id + '">';
+            //                ihtml += '<pre style="display:none">' + JSON.stringify(products[i]) + '</pre>';
+            //                ihtml += '<img src="' + products[i].SmallImg + '" alt="">';
+            //                ihtml += '</span>';
+            //            }
+
+            //            ihtml += '</li>';
+            //            ihtml += '<li>';
+            //            if ((i + 1) < products.length) {
+            //                ihtml += '<span id="product_' + products[i + 1].Id + '">';
+            //                ihtml += '<pre style="display:none">' + JSON.stringify(products[i + 1]) + '</pre>';
+            //                ihtml += '<img src="' + products[i + 1].SmallImg + '" alt="">';
+            //                ihtml += '</span>';
+            //            }
+            //            ihtml += '</li>';
+            //            ihtml += '</ul>';
+            //            ihtml += '</a>';
+
+            //            owl.addItem(ihtml);
+
+            //        }
+
+            //        if (opts.isAppend) {
+            //            owl.jumpTo(opts.currentItem)
+            //        }
+
+            //    }
+            //});
+
+
         }
 
     </script>
@@ -557,8 +627,8 @@
                                         </div>
 
 
-                                        <div id="loading_product" style=" display:none; background-color: #808080; opacity:.3; position:absolute; top:0px; height: 300px;width:100%">
-                                            
+                                        <div id="loading_product" style=" display:none; background-color #808080; opacity:.3; position:absolute; top:0px; height 300px;width:100%">
+
                                         </div>
 
 

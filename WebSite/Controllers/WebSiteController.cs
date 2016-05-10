@@ -13,6 +13,7 @@ using Lumos.Entity;
 
 namespace WebSite.Controllers
 {
+    [WebSiteException]
     public class WebSiteController : BaseController
     {
 

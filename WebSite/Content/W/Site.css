@@ -870,3 +870,63 @@ ul.horizontal li {
 	overflow: hidden;
 	color: #000;
 }
+
+
+/*信息提示框 start*/
+.messagebox {
+    padding: 20px;
+}
+
+
+.messagebox .wrapper > .content {
+}
+
+.messagebox dl {
+    background-color: #edfed0;
+    border: 1px solid #c0cdd1;
+}
+
+.messagebox dt {
+    width: 100px;
+    height: 100px;
+    background-color: #27ae60;
+    float: left;
+}
+
+.messagebox dd {
+    margin-left: 120px;
+    height: 100px;
+    background-color: #edfed0;
+}
+
+.messagebox h1 {
+    line-height: 30px;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.messagebox p {
+    line-height: 18px;
+    font-size: 12px;
+}
+
+.messagebox .warn {
+    background-color: #428bca;
+    background-image: url(images/icon_messagesbox_warn.png);
+}
+
+.messagebox .success {
+    background-color: #2980b9;
+    background-image: url(images/icon_messagesbox_success.png);
+}
+
+.messagebox .failure {
+    background-color: #e74c3c;
+    background-image: url(images/icon_messagesbox_warn.png);
+}
+
+.messagebox .exception {
+    background-color: #e74c3c;
+    background-image: url(images/icon_messagesbox_error.png);
+}
+/*信息提示框 end*/
