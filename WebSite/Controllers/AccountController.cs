@@ -153,7 +153,7 @@ namespace WebSite.Controllers
 
         private LoginResult<SysClientUser> SignIn(string username, string password, bool isrememberme)
         {
-            string loginIp = "113.108.198.138";
+            string loginIp =CommonUtils.GetIP();
 
 
             SysUserLoginHistory userLoginHistory = new SysUserLoginHistory();

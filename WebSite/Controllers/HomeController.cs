@@ -30,7 +30,6 @@ namespace WebSite.Controllers
         [AllowAnonymous]
         public ActionResult AboutUs()
         {
-            int a = int.Parse("dsadsa");
             return View();
         }
 
