@@ -1,0 +1,96 @@
+﻿@model WebSite.Areas.Manager.Models.Biz.Retailer.RetailerModel
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Areas/Manager/Views/Shared/_LayoutHomeDialog.cshtml";
+}
+
+@section scripts{
+    <script type="text/javascript">
+        <!--
+        //配置树形
+
+        $(this).ready(function () {
+            $.formValidator.initConfig({ formID: "form1", onError: function (msg) { }, onSuccess: function () { return update(); } });
+
+            $("#txt_FirstName").formValidator({ onShow: "&nbsp;", onFocus: "Required,no more than 50 char", onCorrect: "&nbsp;" }).inputValidator({ min: 1, max: 50, onError: "Required,no more than 20 char" }).defaultPassed();
+            $("#txt_LastName").formValidator({ onShow: "&nbsp;", onFocus: "Required,no more than 50 char", onCorrect: "&nbsp;" }).inputValidator({ min: 1, max: 50, onError: "Required,no more than 20 char" }).defaultPassed();
+            $("#txt_Email").formValidator({ onShow: "&nbsp;", onFocus: "Email format and no more than 100 char", onCorrect: "&nbsp;", empty: true, onEmpty: "&nbsp;" }).regexValidator({ regExp: regexEnum.email, onError: "Email format and no more than 100 char" });
+            $("#txt_PhoneNumber").formValidator({ onShow: "&nbsp;", onFocus: "Mobile format and no more than 100 char", onCorrect: "&nbsp;", empty: true, onEmpty: "&nbsp;" }).regexValidator({ regExp: regexEnum.mobile, onError: "Mobile format and no more than 100 char" });
+
+            $(".uploadimg").initUploadImage({path:"/Retailer"});
+
+        
+        });
+
+        function update() {
+
+
+            var postData = $("#form1").serializeArray();
+
+            $.lumos.postJson({
+                url: "../Retailer/Update",
+                data: postData,
+                success: function (data) {
+
+                    if (data.result == "Success") {
+                        var win = art.dialog.open.origin;
+                        win.listTable.loadData();
+                        win.art.dialog.tips(data.message);
+                        $.lumos.cloaseDialog();
+                    }
+                    else {
+                        art.dialog.tips(data.message);
+                    }
+                }
+            });
+            return false;
+        }
+
+        //-->
+    </script>
+}
+<div class="gbr-row">
+    <form id="form1" name="form1" method="post">
+        @Html.AntiForgeryToken()
+        <input name="Id" type="hidden" value="@Model.Id" />
+        <table class="f-tb" cellpadding="0" cellspacing="1">
+            <tr>
+                <td class="f-tb-t">
+                    Name：
+                </td>
+                <td class="f-tb-c">
+                    <label id="lbl_UserName">@Model.Name</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="f-tb-t">
+                    Banner：
+                </td>
+                <td class="f-tb-c" style="padding-top:15px;padding-bottom:10px ">
+                    <div class="uploadimg uploadimgbox" inputname="BannerImg" style="position:relative;">
+                        <img class="uploadclick"  style="height:100px" src="@Model.BannerImg" />
+                        <span class="uploadclick" style="position:absolute;top:40px; left:25px; width:80px;display:block;">点击上传图片</span>
+                        <input name="BannerImg" type="hidden" value="@Model.BannerImg" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="f-tb-t">
+                    Description：
+                </td>
+                <td class="f-tb-c" style="white-space:normal;">
+                    <textarea name="Description" rows="5" cols="42" id="txt_Description" class="input-control">@Model.Description</textarea>
+                    <span id="txt_DescriptionTip"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="f-tb-t"></td>
+                <td class="f-tb-c">
+                    <input type="submit" name="btn_Submit" id="btn_Submit" value="Save" class="btn btn-save" />
+                    <input type="button" name="btn_Cancle" id="btn_Cancle" value="Close" class="btn btn-close dialog-close" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+

@@ -152,7 +152,8 @@ namespace Lumos.Common
                 this.OriginalPath = domain + originalSavePath;
                 this.OriginalWidth = originalImage.Width;
                 this.OriginalHeight = originalImage.Height;
-
+                originalImage.Dispose();
+             
                 if (GreateMiniImageModel(serverOriginalSavePath, serverBigSavePath, bigImgSize[0], bigImgSize[1]))
                 {
                     this.BigPath = domain + bigSavePath;
@@ -292,7 +293,7 @@ namespace Lumos.Common
                 b.Save(savepath);
                 b.Dispose();
                 SImage.Dispose();
-
+                b.Dispose();
                 return true;
             }
             catch

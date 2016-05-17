@@ -1,4 +1,5 @@
-﻿@{
+﻿@model WebSite.Models.Account.SignUpModel
+@{
     ViewBag.Title = "SignUp";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
@@ -27,8 +28,8 @@
 }
 
 @section scripts{
-    <script type="text/javascript" src="~/Scripts/W/jquery.formValidator.js"></script>
-    <script type="text/javascript" src="~/Scripts/W/jquery.formValidatorRegex.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.formValidator.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.formValidatorRegex.js"></script>
     <script type="text/javascript">
         $(this).ready(function () {//art.dialog.alert(msg);
             $.formValidator.initConfig({
@@ -74,32 +75,35 @@
                     </div>
                     <ul class="signup-fields">
                         <li><span>Create An Account</span></li>
-                        <li><input type="text" id="txt_UserName" name="txt_UserName" placeholder="Email" /></li>
+                        <li><input type="text" id="txt_UserName" name="UserName" placeholder="Email" /></li>
                         <li><input type="password" id="txt_Password1" placeholder="Password" /></li>
-                        <li><input type="password" id="txt_Password" name="txt_Password" placeholder="Confirm Password" /></li>
-                        <li><input type="text" id="txt_FirstName" name="txt_FirstName" placeholder="FirstName" /> <input type="text" name="txt_LastName" placeholder="LastName" /></li>
-                        <li><input type="text" id="txt_Address" name="txt_Address" placeholder="Address" style="width:306px" /></li>
+                        <li><input type="password" id="txt_Password" name="Password" placeholder="Confirm Password" /></li>
+                        <li><input type="text" id="txt_FirstName" name="FirstName" placeholder="FirstName" /> <input type="text" name="LastName" placeholder="LastName" /></li>
+                        <li><input type="text" id="txt_Address" name="Address" placeholder="Address" style="width:306px" /></li>
                     </ul>
                     <ul class="signup-fields">
                         <li><span>Other Option</span></li>
                         <li><span>Top 5 Favorite Retailers</span></li>
                         <li>
-                            <span><input type="checkbox" id="cb_Retailers0" name="cb_Retailers" value="Bonobos" /><label for="cb_Retailers0">Bonobos</label></span>
-                            <span><input type="checkbox" id="cb_Retailers1" name="cb_Retailers" value="Jcrew" /><label for="cb_Retailers1">Jcrew</label></span>
-                            <span><input type="checkbox" id="cb_Retailers2" name="cb_Retailers" value="JackErwin" /><label for="cb_Retailers2">Jack Erwin</label></span>
-                            <span><input type="checkbox" id="cb_Retailers3" name="cb_Retailers" value="MrPorter" /><label for="cb_Retailers3">Mr Porter</label></span>
+
+                            @{
+                                for (int i=0;i<Model.Retailers.Count;i++)
+                                {
+                                    <span><input type="checkbox" id="cb_Retailers@(i)" name="Retailers" value="@Model.Retailers[i].Name" /><label for="cb_Retailers@(i)">@Model.Retailers[i].Name</label></span>
+                                }
+                            }
+
+                           
 
                         </li>
                         <li><span>Favorite Colors</span></li>
                         <li>
-                            <span><input type="checkbox" id="cb_Colors0" name="cb_Colors" value="Red" /><label for="cb_Colors0">Red</label></span>
-                            <span><input type="checkbox" id="cb_Colors1" name="cb_Colors" value="Green" /><label for="cb_Colors1">Green</label></span>
-                            <span><input type="checkbox" id="cb_Colors2" name="cb_Colors" value="Black" /><label for="cb_Colors2">Black</label></span>
-                            <span><input type="checkbox" id="cb_Colors3" name="cb_Colors" value="Orange" /><label for="cb_Colors3">Orange</label></span>
-                            <span><input type="checkbox" id="cb_Colors4" name="cb_Colors" value="Pink" /><label for="cb_Colors4">Pink</label></span>
-                            <span><input type="checkbox" id="cb_Colors5" name="cb_Colors" value="White" /><label for="cb_Colors5">White</label></span>
-                            <span><input type="checkbox" id="cb_Colors6" name="cb_Colors" value="Gray" /><label for="cb_Colors6">Gray</label></span>
-                            <span><input type="checkbox" id="cb_Colors7" name="cb_Colors" value="Blue" /><label for="cb_Colors7">Blue</label></span>
+                            @{
+                                for (int i = 0; i < Model.Colors.Count; i++)
+                                {
+                                    <span><input type="checkbox" id="cb_Colors@(i)" name="Colors" value="@Model.Colors[i]" /><label for="cb_Colors@(i)">@Model.Colors[i]</label></span>
+                                }
+                            }
                         </li>
                         <li style="line-height:50px;">
                             <input type="submit" class="btn" id="btn_Register" value="Register" style="display:none" />

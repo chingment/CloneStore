@@ -180,6 +180,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Manager\Controllers\Biz\RetailerController.cs" />
     <Compile Include="Areas\Manager\Controllers\CommonController.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manager\Controllers\Sys\ClientUserController.cs" />
@@ -202,6 +203,8 @@
     <Compile Include="Areas\Manager\ManagerOperateTipUtils.cs" />
     <Compile Include="Areas\Manager\ManagerStatisticsTrackerAttribute.cs" />
     <Compile Include="Areas\Manager\ManagerUtils.cs" />
+    <Compile Include="Areas\Manager\Models\Biz\Retailer\RetailerModel.cs" />
+    <Compile Include="Areas\Manager\Models\Biz\Retailer\RetailerSearchCondition.cs" />
     <Compile Include="Areas\Manager\Models\Home\ChangePasswordModel.cs" />
     <Compile Include="Areas\Manager\Models\Home\LoginModel.cs" />
     <Compile Include="Areas\Manager\Models\SearchCondition.cs" />
@@ -230,11 +233,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Home\IndexModel.cs" />
-    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\Account\SignInModel.cs" />
     <Compile Include="Models\Account\MyCartModel.cs" />
-    <Compile Include="Models\MyModels.cs" />
     <Compile Include="Models\Product\ListModel.cs" />
-    <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\Account\SignUpModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -625,7 +627,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
     <Content Include="Views\Home\AboutUs.cshtml" />
@@ -684,6 +685,15 @@
     <Content Include="Areas\Manager\Views\Sys\ClientUser\Add.cshtml" />
     <Content Include="Areas\Manager\Views\Sys\ClientUser\Index.cshtml" />
     <Content Include="Areas\Manager\Views\Sys\ClientUser\Update.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Manager\Views\Sys\ClientUser\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Manager\Views\Biz\Retailer\Update.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Manager\Views\Biz\Retailer\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

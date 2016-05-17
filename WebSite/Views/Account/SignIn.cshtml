@@ -22,8 +22,8 @@
 }
 
 @section scripts{
-    <script type="text/javascript" src="~/Scripts/W/jquery.formValidator.js"></script>
-    <script type="text/javascript" src="~/Scripts/W/jquery.formValidatorRegex.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.formValidator.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.formValidatorRegex.js"></script>
     <script type="text/javascript">
 
 
@@ -51,7 +51,7 @@
             }).done(function (data) {
                 if (data.result == "Success") {
                     $.formValidator.setformTip("");
-                    window.location.href = data.content.GotoUrl;
+                    window.location.href = data.content.Url;
                 }
                 else {
                     $.formValidator.setformTip(data.message);
@@ -73,8 +73,8 @@
 
                     </div>
                     <ul class="signin-fields">
-                        <li><input type="text" id="txt_UserName" name="txt_UserName" placeholder="Email" style="width:210px;" /></li>
-                        <li><input type="password" id="txt_Password" name="txt_Password" placeholder="Password" style="width:210px;" /></li>
+                        <li><input type="text" id="txt_UserName" name="UserName" placeholder="Email" style="width:210px;" /></li>
+                        <li><input type="password" id="txt_Password" name="Password" placeholder="Password" style="width:210px;" /></li>
                         <li>
                             <input type="submit" name="btn_SignIn" id="btn_SignIn" value="Sign In" style="display:none" />
                             <a class="a-btn" href="javascript:void(0)" onclick="$('#btn_SignIn').click()">Sign In</a>

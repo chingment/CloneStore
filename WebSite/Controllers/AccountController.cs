@@ -18,6 +18,21 @@ namespace WebSite.Controllers
 {
     public class AccountController : WebSiteController
     {
+
+        public List<string> GetColors()
+        {
+            List<string> colors = new List<string>();
+            colors.Add("Red");
+            colors.Add("Green");
+            colors.Add("Black");
+            colors.Add("Orange");
+            colors.Add("Pink");
+            colors.Add("White");
+            colors.Add("Gray");
+            colors.Add("Blue");
+            return colors;
+        }
+
         //
         // GET: /Account/
         public ViewResult SignIn()
@@ -27,7 +42,16 @@ namespace WebSite.Controllers
 
         public ViewResult SignUp()
         {
-            return View();
+            SignUpModel model = new SignUpModel();
+            var retailers = CurrentDb.Retailer.Where(m => m.IsDelete == false).OrderByDescending(m => m.Priority).ToList();
+            if (retailers != null)
+            {
+                model.Retailers = retailers;
+            }
+
+            model.Colors = GetColors();
+
+            return View(model);
         }
 
         public ViewResult MyCart()
@@ -48,16 +72,16 @@ namespace WebSite.Controllers
 
 
         [HttpPost]
-        public JsonResult SignUp(RegisterModel model)
+        public JsonResult SignUp(SignUpModel model)
         {
             SysClientUser user = new SysClientUser();
-            user.UserName = model.txt_UserName;
-            user.PasswordHash = model.txt_Password;
-            user.FirstName = model.txt_FirstName;
-            user.LastName = model.txt_LastName;
-            user.FavoriteColors = model.cb_Colors == null ? null : string.Join(",", model.cb_Colors);
-            user.FavoriteRetailers = model.cb_Retailers == null ? null : string.Join(",", model.cb_Retailers);
-            user.Address = model.txt_Address;
+            user.UserName = model.UserName;
+            user.PasswordHash = model.Password;
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.FavoriteColors = model.Colors == null ? null : string.Join(",", model.Colors);
+            // user.FavoriteRetailers = model.Retailers == null ? null : string.Join(",", model.Retailers);
+            user.Address = model.Address;
             var relay = new AspNetIdentiyAuthorizeRelay<SysClientUser>(CurrentDb);
 
             if (relay.UserExists(user.UserName.Trim()))
@@ -74,7 +98,7 @@ namespace WebSite.Controllers
             CurrentDb.SaveChanges();
 
 
-            SignIn(model.txt_UserName, model.txt_Password, false);
+            SignIn(model.UserName, model.Password, false);
 
 
 
@@ -90,10 +114,10 @@ namespace WebSite.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public JsonResult SignIn(LoginModel model)
+        public JsonResult SignIn(SignInModel model)
         {
 
-            var signInResult = SignIn(model.txt_UserName, model.txt_Password, model.ckb_RememberMe);
+            var signInResult = SignIn(model.UserName, model.Password, model.IsRememberMe);
             CustomJsonResult result = new CustomJsonResult();
             GoToViewModel gotoViewModel = new GoToViewModel();
 

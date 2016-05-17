@@ -736,6 +736,7 @@
                 '<form class=\"uploadImageForm\" enctype="multipart/form-data" style=\"display:none\">' +
                 '<input type="hidden" name="valueinputname" value="' + inputName + '" />' +
                 '<input type="hidden" name="fileinputname" value="' + from_FileName + '" />' +
+                '<input type="hidden" name="savepath" value="' + _path + '" />' +
                 '<input type="file" name="' + from_FileName + '" /></form>';
             var form = $(formTemplate);
 

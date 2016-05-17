@@ -78,6 +78,7 @@ namespace Lumos.DAL
         {
             //初始用户
             context.SysStaffUser.Add(new SysStaffUser() { Id = 1, UserName = "admin", SecurityStamp = "61c7b4a2-4197-4d32-b9a5-629425fc2000", PasswordHash = "AD5hJcUUIJ4NxikOI2O1ChwVgoGYwPXDxGHp+nSIX8GHEeQw5h0C9mECSFyXeo/kCw==", IsDelete = false, IsDisable = false, IsModifyPwd = false, Creator = 0, CreateTime = DateTime.Now, PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = false, AccessFailedCount = 0, RegisterTime = DateTime.Now });
+            context.SysClientUser.Add(new SysClientUser() { Id = 2, UserName = "chingment", SecurityStamp = "61c7b4a2-4197-4d32-b9a5-629425fc2000", PasswordHash = "AD5hJcUUIJ4NxikOI2O1ChwVgoGYwPXDxGHp+nSIX8GHEeQw5h0C9mECSFyXeo/kCw==", IsDelete = false, IsDisable = false, IsModifyPwd = false, Creator = 0, CreateTime = DateTime.Now, PhoneNumberConfirmed = false, TwoFactorEnabled = false, LockoutEnabled = false, AccessFailedCount = 0, RegisterTime = DateTime.Now });
 
             //初始角色
             context.Roles.Add(new SysRole() { Id = 1, Name = "Root Role", PId = 0, Description = "" });
@@ -96,8 +97,11 @@ namespace Lumos.DAL
             sysMenus.Add(new SysMenu() { Id = 7, Name = "LogView", PId = 2, Url = "/Manager/Sys/LogView/Index", Description = "", Priority = 3 });
 
 
-            // sysMenus.Add(new SysMenu() { Id = 9, Name = "User Management", PId = 1, Url = "#", Description = "", Priority = 0 });
-            // sysMenus.Add(new SysMenu() { Id = 10, Name = "User List", PId = 9, Url = "/Sys/ClientUser/Index", Description = "", Priority = 0 });
+            sysMenus.Add(new SysMenu() { Id = 8, Name = "User Management", PId = 1, Url = "#", Description = "", Priority = 0 });
+            sysMenus.Add(new SysMenu() { Id = 9, Name = "User List", PId = 8, Url = "/Manager/Sys/ClientUser/Index", Description = "", Priority = 0 });
+
+            sysMenus.Add(new SysMenu() { Id = 10, Name = "Retailer Management", PId = 1, Url = "#", Description = "", Priority = 0 });
+            sysMenus.Add(new SysMenu() { Id = 11, Name = "Retailer List", PId = 10, Url = "/Manager/Biz/Retailer/Index", Description = "", Priority = 0 });
 
             //初始菜单
             foreach (var m in sysMenus)

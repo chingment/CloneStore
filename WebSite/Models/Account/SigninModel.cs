@@ -1,19 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebSite.Models
+namespace WebSite.Models.Account
 {
-    public class LoginModel
+    public class SignInModel
     {
         [Required]
         [Display(Name = "账号")]
-        public string txt_UserName { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "密码")]
-        public string txt_Password { get; set; }
+        public string Password { get; set; }
 
         [Display(Name = "记住密码?")]
-        public bool ckb_RememberMe { get; set; }
+        public bool IsRememberMe { get; set; }
     }
 }
