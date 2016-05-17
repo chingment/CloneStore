@@ -1,83 +1,55 @@
-﻿@model WebSite.Areas.Manager.Models.LogViewModel
+﻿@model WebSite.Areas.Manager.Models.LogView.IndexModel
 @{
-    ViewBag.Title = "Log View";
-    Layout = "~/Areas/Manager/Views/Shared/_LayoutTree.cshtml";
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Manager/Views/Shared/_LayoutHomeMainList.cshtml";
 }
-@section scripts{
-    <style type="text/css">
-        .breadcrumbs {
-            width: 97%;
-            margin: 8px auto;
-            border: solid 1px #dddddd;
-            background-color: #eeeeee;
-            display: block;
-            text-align: left;
-            font-size: 14px;
-            height: 26px;
-            line-height: 26px;
-        }
 
-            .breadcrumbs span {
-                padding-left: 15px;
-                font-weight: bold;
-                float: left;
-                display: block;
-            }
 
-        li {
-            line-height: 150%;
-        }
-    </style>
-}
-<div class="gbr gbr-maintitle" id="gbr-maintitle">
-    <div class="wrapper">
-        <div class="content">
-            <span class="title-icon">@ViewBag.Title</span>
-            <span class="title-message"></span>
-        </div>
-    </div>
-</div>
-<div class="gbr gbr-mainbody" id="gbr-mainbody">
-    <div class="wrapper">
-        <div class="content">
-            <div class="breadcrumbs">
-                <span>
-                    <a href="?">Logs</a>
-                    @{ var currentPath = "\\";
-                     var parents = Model.Parent.Trim().Split(new char[] { '\\' }, StringSplitOptions.RemoveEmptyEntries);
-                     foreach (var parent in parents)
-                     {
-                         currentPath += parent;
-                        <a href="?Parent=@currentPath">@parent</a>
-                     }
-                    }
-                </span>
-            </div>
-            <ul>
-                @*@{
-                    if (Model.Dirs != null)
-                    {
-                        foreach (var dir in Model.Dirs)
-                        {
-                            <li> <a href="?Parent=">@dir.Name</a></li>
-                        }
-                    }
-                }*@
 
-                @{
-                    if (Model.Files != null)
-                    {
-                        foreach (var file in Model.Files)
-                        {
+<table class="list-tb" cellpadding="0" cellspacing="0">
+    <thead>
+        <tr>
+            <th style="width:20%">
+                Log
+            </th>
+            <th style="width:80%">
+                LastTime
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (Model.Files.Length>0)
+            {
+                foreach (var file in Model.Files)
+                {
 
-                            <li>
-                                <a href="?Parent=@Model.Parent&File=@file.Name">@file.Name</a>
-                            </li>
-                        }
-                    }
+                    <tr>
+                        <td>
+                            <a href="?Parent=@Model.Parent&File=@file.Name">@file.Name</a>
+                        </td>
+                        <td>
+                            @file.LastWriteTime.ToUnifiedFormatDateTime()
+                        </td>
+                    </tr>
                 }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="emptytip">No data</td>
+                </tr>
+            }
+        }
 
-            </ul>
-        </div>
-    </div>
-</div>
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+

@@ -18,7 +18,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
   
   var bool,
       docElem  = doc.documentElement,
-      refNode  = docElem.firstElementChild || docElem.firstChild,
+      refNode  = docElem.FirstElementChild || docElem.FirstChild,
       // fakeBody required for <FF4 when executed in <head>
       fakeBody = doc.createElement('body'),
       div      = doc.createElement('div');
@@ -196,7 +196,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 					
 			body.appendChild( div );
 								
-			docElem.insertBefore( body, docElem.firstChild );
+			docElem.insertBefore( body, docElem.FirstChild );
 								
 			ret = div.offsetWidth;
 								
@@ -213,7 +213,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 			return ret;
 		},
 		
-		//cached container for 1em value, populated the first time it's needed 
+		//cached container for 1em value, populated the First time it's needed 
 		eminpx,
 		
 		//enable/disable styles

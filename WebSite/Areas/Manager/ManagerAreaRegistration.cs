@@ -21,6 +21,14 @@ namespace WebSite.Areas.Manager
                namespaces: new string[] { "WebSite.Areas.Manager.Controllers" }
             );
 
+
+            context.MapRoute(
+         name: "Manager_biz",
+         url: "Manager/Biz/{controller}/{action}/{type}/{id}",
+         defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional, type = UrlParameter.Optional },
+         namespaces: new string[] { "WebSite.Areas.Manager.Controllers" }
+      );
+
             context.MapRoute(
 name: "Manager_default",
 url: "Manager/{controller}/{action}/{type}/{id}",

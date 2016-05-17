@@ -1,14 +1,10 @@
 ﻿using ICSharpCode.SharpZipLib.Core;
 using ICSharpCode.SharpZipLib.Zip;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using WebSite.Areas.Manager.Models;
+using WebSite.Areas.Manager.Models.LogView;
 
 namespace WebSite.Areas.Manager.Controllers
 {
@@ -90,13 +86,13 @@ namespace WebSite.Areas.Manager.Controllers
         private String getBaseDir()
         {
             String baseDir = null;
-            if (ConfigurationManager.AppSettings["app_LogPath"] == null)
+            if (ConfigurationManager.AppSettings["custom::WebSiteLogPath"] == null)
             {
-                baseDir = HttpRuntime.AppDomainAppPath + "/Log-data";
+                baseDir =  Server.MapPath(@"/Log-data");
             }
             else
             {
-                baseDir = ConfigurationManager.AppSettings["app_LogPath"];
+                baseDir = ConfigurationManager.AppSettings["custom::WebSiteLogPath"];
             }
 
 
@@ -124,7 +120,7 @@ namespace WebSite.Areas.Manager.Controllers
             {
                 DownloadFile();
             }
-            LogViewModel model = new LogViewModel();
+            IndexModel model = new IndexModel();
             model.Dirs = this.Dirs;
             model.Files = this.Files;
             model.Parent = this.Parent;
@@ -132,9 +128,5 @@ namespace WebSite.Areas.Manager.Controllers
         }
 
 
-        public ActionResult WebBack()
-        {
-            return View();
-        }
     }
 }

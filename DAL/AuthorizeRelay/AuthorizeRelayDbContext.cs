@@ -31,7 +31,7 @@ namespace Lumos.DAL.AuthorizeRelay
         }
         public DateTime GetDataBaseDateTime()
         {
-            
+
             return this.Database.SqlQuery<DateTime>("select getdate()").FirstOrDefault();
         }
 

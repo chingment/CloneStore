@@ -65,7 +65,7 @@ namespace WebSite.Controllers
                 return Json("text/html", ResultType.Failure, "This account already exists");
             }
 
-            bool r = relay.CreateUser(user, user.PasswordHash);
+            bool r = relay.CreateUser(user);
             if (!r)
             {
                 return Json("text/html", ResultType.Failure, "Failure");
@@ -100,7 +100,7 @@ namespace WebSite.Controllers
 
             if (signInResult.ResultType == Enumeration.LoginResult.Failure)
             {
-                gotoViewModel.GotoUrl = @"/Account/SignIn";
+                gotoViewModel.Url = @"/Account/SignIn";
                 if (signInResult.ResultTip == Enumeration.LoginResultTip.UserNotExist || signInResult.ResultTip == Enumeration.LoginResultTip.UserPasswordIncorrect)
                 {
                     return Json(ResultType.Failure, gotoViewModel, "Account or password is incorrect. Please try again!");
@@ -108,19 +108,19 @@ namespace WebSite.Controllers
 
                 if (signInResult.ResultTip == Enumeration.LoginResultTip.UserDisabled)
                 {
-                    gotoViewModel.GotoUrl = @"/Account/SignIn";
+                    gotoViewModel.Url = @"/Account/SignIn";
                     return Json(ResultType.Failure, gotoViewModel, "The account has been disabled");
                 }
 
                 if (signInResult.ResultTip == Enumeration.LoginResultTip.UserDeleted)
                 {
-                    gotoViewModel.GotoUrl = @"/Account/SignIn";
+                    gotoViewModel.Url = @"/Account/SignIn";
                     return Json(ResultType.Failure, gotoViewModel, "The account has been deleted ");
                 }
             }
 
 
-            gotoViewModel.GotoUrl = @"/Home/Index";
+            gotoViewModel.Url = @"/Home/Index";
 
 
 
@@ -146,7 +146,7 @@ namespace WebSite.Controllers
             if (result.User != null)
             {
                 ILog log = LogManager.GetLogger(CommonSetting.LoggerLoginWeb);
-                log.Info(FormatUtility.LoginInWeb(result.User.Id, result.User.UserName));
+                log.Info(FormatUtils.LoginInWeb(result.User.Id, result.User.UserName));
             }
 
             return result;
@@ -162,7 +162,7 @@ namespace WebSite.Controllers
         public ActionResult SignOut()
         {
             ILog log = LogManager.GetLogger(CommonSetting.LoggerLoginWeb);
-            log.Info(FormatUtility.LoginOffWeb(User.Identity.GetUserId<int>(), User.Identity.GetUserName()));
+            log.Info(FormatUtils.LoginOffWeb(User.Identity.GetUserId<int>(), User.Identity.GetUserName()));
             var identity = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
             identity.SignOut();
             return RedirectToAction("Index", "Home");

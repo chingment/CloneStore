@@ -11,6 +11,7 @@ using System.Reflection;
 using log4net;
 using Lumos.Common;
 using System.Globalization;
+using Lumos.Mvc;
 
 namespace WebSite.Areas.Manager
 {
@@ -53,6 +54,17 @@ namespace WebSite.Areas.Manager
             #region 判断是否有该权限
             if (permissions != null)
             {
+
+                MessageBoxModel messageBox = new MessageBoxModel();
+                messageBox.No = Guid.NewGuid().ToString();
+                messageBox.Type = MessageBoxTip.Exception;
+                messageBox.Title = "You do not have permission to access the possible link timeout ";
+
+                if (!filterContext.HttpContext.Request.IsAuthenticated)
+                {
+                    messageBox.Content = "Please re <a href=\"javascript:void(0)\" onclick=\"window.top.location.href='" + ManagerUtils.GetLoginPage() + "'\">sigin</a>";
+                }
+
                 bool IsHasPermission = HttpContext.Current.User.Identity.IsInPermission(permissions);
 
                 if (!IsHasPermission)
@@ -60,15 +72,22 @@ namespace WebSite.Areas.Manager
                     bool isAjaxRequest = filterContext.RequestContext.HttpContext.Request.IsAjaxRequest();
                     if (isAjaxRequest)
                     {
-                        CustomJsonResult jsonResult = new CustomJsonResult(ResultType.Failure, "您没有对应的操作权限!");
+                        CustomJsonResult jsonResult = new CustomJsonResult(ResultType.Exception, messageBox.No, messageBox.Title, messageBox);
                         jsonResult.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                         filterContext.Result = jsonResult;
+                        filterContext.Result.ExecuteResult(filterContext);
+                        filterContext.HttpContext.Response.End();
                         return;
                     }
                     else
                     {
-                        filterContext.RequestContext.HttpContext.Response.Write("<div style=\"text-align:center;\">您没有对应的操作权限!</div>");
-                        filterContext.RequestContext.HttpContext.Response.End();
+                        string masterName = "_LayoutHome";
+                        if (filterContext.HttpContext.Request.QueryString["dialogtitle"] != null)
+                        {
+                            masterName = "_Layout";
+                        }
+
+                        filterContext.Result = new ViewResult { ViewName = "MessageBox", MasterName = masterName, ViewData = new ViewDataDictionary { Model = messageBox } };
                         return;
                     }
                 }
@@ -80,7 +99,7 @@ namespace WebSite.Areas.Manager
         {
             base.HandleUnauthorizedRequest(filterContext);
 
-            filterContext.Result = new RedirectResult("/Manager/Home/Login");
+            filterContext.Result = new RedirectResult(ManagerUtils.GetLoginPage());
 
         }
     }

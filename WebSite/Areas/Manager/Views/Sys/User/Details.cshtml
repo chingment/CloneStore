@@ -1,0 +1,61 @@
+﻿@model WebSite.Areas.Manager.Models.User.UserModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Manager/Views/Shared/_LayoutHomeDialog.cshtml";
+}
+
+
+<div class="gbr-row">
+    <form id="form1" name="form1" method="post">
+        @Html.AntiForgeryToken()
+        <table class="f-tb" cellpadding="0" cellspacing="1">
+            <tr>
+                <td class="f-tb-t">
+                    Username：
+                </td>
+                <td class="f-tb-c">
+                    @Model.UserName
+                </td>
+            </tr>
+            <tr>
+                <td class="f-tb-t">
+                    FirstName：
+                </td>
+                <td class="f-tb-c">
+                    @Model.FirstName
+                </td>
+            </tr>
+            <tr>
+                <td class="f-tb-t">
+                    LastName：
+                </td>
+                <td class="f-tb-c">
+                    @Model.LastName
+                </td>
+            </tr>
+            <tr>
+                <td class="f-tb-t">
+                    E-mail：
+                </td>
+                <td class="f-tb-c">
+                    @Model.Email
+                </td>
+            </tr>
+            <tr>
+                <td class="f-tb-t">
+                    Phone：
+                </td>
+                <td class="f-tb-c">
+                    @Model.PhoneNumber
+                </td>
+            </tr>
+            <tr>
+                <td class="f-tb-t"></td>
+                <td class="f-tb-c">
+                    <input type="button" name="btn_Cancle" id="btn_Cancle" value="Close" class="btn btn-close dialog-close" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+

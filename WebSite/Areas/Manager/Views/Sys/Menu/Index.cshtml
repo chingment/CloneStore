@@ -1,12 +1,13 @@
-﻿@model WebSite.Areas.Manager.Models.SysMenuViewModel
+﻿@model WebSite.Areas.Manager.Models.Menu.MenuModel
 @{
-    ViewBag.Title = "Menus Setting";
-    Layout = "~/Areas/Manager/Views/Shared/_LayoutTree.cshtml";
-}
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Manager/Views/Shared/_LayoutHomeMainTree.cshtml";
 
+}
 @section scripts{
+    <script src="~/Areas/Manager/Scripts/jquery.formValidator.js"></script>
+    <script src="~/Areas/Manager/Scripts/jquery.formValidatorRegex.js"></script>
     <script type="text/javascript">
-     <!--
         //设置菜单树形属性
         var setting = {
             view: {
@@ -18,14 +19,14 @@
                     enable: true
                 },
                 key: {
-                    url:"_url"
+                    url: "_url"
                 }
             },
             callback: {
                 onClick: onClick
             },
             async: {
-                url:""
+                url: ""
             }
 
         };
@@ -40,7 +41,6 @@
             }
         }
 
-
         function onClick(event, treeId, treeNode, clickFlag) {
             $("#txt_PName").defaultPassed();
             $("#txt_Name").defaultPassed();
@@ -48,117 +48,111 @@
             var parentName = "/";
             if (treeNode.getParentNode() != null) {
                 parentName = treeNode.getParentNode().name;
-                $(".a-btn-del").show();
+                $("#btn_delete").show();
             }
             else {
-                $(".a-btn-del").hide();
+                $("#btn_delete").hide();
             }
 
             /*最大支持几级菜单由maxMum决定 可修改这个值*/
             num = 0;
             getChildNodeGrade(treeNode);
             if (num >= maxMum) {
-                $(".a-btn-add").hide();
+                $("#btn_add").hide();
             }
             else {
-                $(".a-btn-add").show();
+                $("#btn_add").show();
             }
 
-
-            $.lumos.post({
-                url:  "../Menu/GetMenuDetail",
+            $.lumos.postJson({
+                url: "../Menu/GetDetail",
                 data: { menuId: treeNode.id },
                 success: function (data) {
 
                     if (data.result == "Success") {
                         $("#lbl_PName").text(parentName);
                         $("#txt_PName").val(parentName);
-
-                        var menu = data.content.Menu;
-
+                        var menu = data.content;
                         $("#txt_Name").val(menu.Name);
                         $("#txt_Url").val(menu.Url);
                         $("#txt_Description").val(menu.Description);
 
 
-                        $("input[name=cb_Permission]").attr("checked", false);
+                        $("input[name=Permission]").attr("checked", false);
 
-                        var menuPermission = data.content.MenuPermission
+                        var menuPermission = menu.SysMenuPermission
 
                         for (var i = 0; i < menuPermission.length; i++) {
-                            $("input[name=cb_Permission][value=" + menuPermission[i].PermissionId + "]").attr("checked", true);
+                            $("input[name=Permission][value=" + menuPermission[i].PermissionId + "]").attr("checked", true);
                         }
+
                     }
                 }
             });
 
         }
 
-        var treeControlID = "treemenu";
+        function getSelectedNode() {
+            var selObj = zTree.getSelectedNodes();
+            if ($.lumos.isNullOrEmpty(selObj)) {
+                art.dialog.tips("Please select the node on the left");
+                return null;
+            }
+            return selObj[0];
+        }
+
+        var zTree;
         $(this).ready(function () {
+
+            $(".tab").tab();
 
             loadTreeList();
 
             //表单验证处理
-            $.formValidator.initConfig({ formID: "form1", onError: function (msg) { art.dialog.alert(msg); }, onSuccess: function () { return edit(); } });
-            $("#txt_PName").formValidator({ onShow: "Please select a node on the left!", onFocus: "Please select a node on the left!", onCorrect: "&nbsp;" }).inputValidator({ min: 1, onError: "Please select a node on the left!" });
-            $("#txt_Name").formValidator({ onShow: "Required!", onFocus: "Required,and no more than 50 characters！", onCorrect: "&nbsp;" }).inputValidator({ min: 1, max: 50, empty: { leftEmpty: false, emptyError: "Required!" }, onError: "Required,and no more than 50 characters！" });
-            $("#txt_Url").formValidator().inputValidator({ min: 0, max: 250, onError: "Url is no more than 250 characters!" });
-            $("#txt_Description").formValidator().inputValidator({ min: 0, max: 500, onError: "Remark is no more than 500 characters!" });
-
+            $.formValidator.initConfig({ formID: "form1", onError: function (msg) { }, onSuccess: function () { return update(); } });
+            $("#txt_Name").formValidator({ onShow: "&nbsp;", onFocus: "Required,no more than 20 char", onCorrect: "&nbsp;" }).inputValidator({ min: 1, max: 20, onError: "Required,no more than 20 char" });
+            $("#txt_Url").formValidator({ onShow: "&nbsp;", onFocus: "No more than 200 char", onCorrect: "&nbsp;", empty: true, onEmpty: "&nbsp;" }).inputValidator({ min: 0, max: 200, onError: "No more than 200 char" });
+            $("#txt_Description").formValidator({ onShow: "&nbsp;", onFocus: "No more than 500 char", onCorrect: "&nbsp;", empty: true, onEmpty: "&nbsp;" }).inputValidator({ min: 0, max: 500, onError: "No more than 500 char" });
             //处理添加按钮
-            $("#abtn_Add").click(function () {
-                var treeObj = $.fn.zTree.getZTreeObj(treeControlID).getSelectedNodes();
-                if ($.lumos.common.isNullOrEmpty(treeObj)) {
-                    art.dialog.alert("Please select a node on the left!");
+            $("#btn_add").click(function () {
+                var selObj = getSelectedNode();
+                if (selObj == null) {
                     return;
                 }
 
-
-                $.lumos.openWin(this, '../Menu/Add?id=' + treeObj[0].id + '&pName=' + escape(treeObj[0].name), 'Add Menu', '700px', '300px');
-
+                $.lumos.openDialog('../Menu/Add?id=' + selObj.id + '&pName=' + escape(selObj.name), 'New', '700px', '480px');
             });
 
-
-            $("#abtn-Sort").click(function () {
-                var treeObj = $.fn.zTree.getZTreeObj(treeControlID).getSelectedNodes();
-                if ($.lumos.common.isNullOrEmpty(treeObj)) {
-                    art.dialog.alert("Please select a node on the left!");
-                    return;
-                }
-                if (typeof treeObj[0].children == "undefined") {
-                    art.dialog.alert("The node does not have a child node");
-                    return;
-                }
-                $.lumos.openWin(this, '../Menu/Sort?id=' + treeObj[0].id + '&pName=' + escape(treeObj[0].name), 'Modified Sort', '650px', '420px');
-
-            });
 
             //处理删除按钮
-            $("#abtn_Del").click(function () {
-                var treeObj = $.fn.zTree.getZTreeObj(treeControlID).getSelectedNodes();
-                if ($.lumos.common.isNullOrEmpty(treeObj)) {
-                    art.dialog.alert("Please select a node on the left!");
+            $("#btn_delete").click(function () {
+
+                var selObj = getSelectedNode();
+                if (selObj == null) {
                     return;
                 }
 
                 var l_txt = $("#txt_PName").val();
                 if (l_txt == "/") {
-                    art.dialog.alert("Root node cannot be deleted!");
+                    art.dialog.tips("Root node cannot be deleted");
                     return;
                 }
 
                 art.dialog.confirm(
-                    "Confirm delete [" + treeObj[0].name + "] the node and its children？",
+                    "Confirm Delete [" + selObj.name + "] the node and it's children？",
                     function () {
-                        var id = treeObj[0].id;
-                        var ids = [];
-                        ids = getChildrenIds(ids, treeObj[0])
-                        $.lumos.post({
-                            url: "../Menu/RemoveMenu",
-                            data: { menuIds: ids },
+                        var id = selObj.id;
+                        var data = [];
+                        var nodes = zTree.getSelectedNodeFollowChildren();
+                        $.each(nodes, function (i, n) {
+                            data.push({ name: "id", value: n.id });
+                        });
+
+                        $.lumos.postJson({
+                            url: "../Menu/Delete",
+                            data: data,
                             success: function (data) {
-                                art.dialog.alert(data.message);
+                                art.dialog.tips(data.message);
                                 loadTreeList(id);
                             }
                         });
@@ -167,172 +161,151 @@
                 return false;
             });
 
+            $("#btn_sort").click(function () {
+                var selObj = getSelectedNode();
+                if (selObj == null) {
+                    return;
+                }
+
+                if (typeof selObj.children == "undefined") {
+                    art.dialog.tips("The Node does not have a child node");
+                    return;
+                }
+
+                $.lumos.openDialog('../Menu/Sort?id=' + selObj.id + '&pName=' + escape(selObj.name), '【Sort】', '650px', '420px');
+
+            });
 
         });
 
+        function update() {
+            var selObj = getSelectedNode();
+            if (selObj == null) {
+                return false;
+            }
 
+            var id = selObj.id;
+            var postData = $("#form1").serializeArray();
 
-        function getChildrenIds(ids, treeNode) {
-            ids.push(treeNode.id);//选中节点id，即父节点id
-            if (treeNode.isParent) {
-                for (var obj in treeNode.children) {
-                    getChildrenIds(ids, treeNode.children[obj]);
+            postData.push({ name: "Id", value: id });
+            $.lumos.postJson({
+                url: "../Menu/Update",
+                data: postData,
+                success: function (data) {
+                    art.dialog.tips(data.message);
+                    loadTreeList(id);
                 }
-            }
-            return ids;
-        }
-
-        function edit() {
-            var treeObj = $.fn.zTree.getZTreeObj(treeControlID).getSelectedNodes();
-            if ($.lumos.common.isNullOrEmpty(treeObj)) {
-                art.dialog.alert("Please select a node on the left!");
-            }
-            else {
-                var id = treeObj[0].id
-                var l_Data = $("#form1").serializeArray();
-                $.lumos.dataParmsPush(l_Data, "id", id);
+            });
 
 
-                $.lumos.post({
-                    url: "../Menu/UpdateMenu",
-                    data:l_Data,
-                    success: function (data) {
-                        art.dialog.alert(data.message);
-                        loadTreeList(id);
-
-                    }
-                });
-
-            }
             return false;
         }
 
         function loadTreeList(id) {
 
-            $.lumos.post({
-                url: "../Menu/GetMenuTree?pId=0",
+            $.lumos.postJson({
+                url: "../Menu/GetTree?pId=0",
                 success: function (data) {
-                    var obj = eval(data.content);
-                    $.fn.zTree.init($("#" + treeControlID), setting, obj);
-                    var node = $.fn.zTree.getZTreeObj(treeControlID).getNodeByParam("id", id, null);
-                    $.fn.zTree.getZTreeObj(treeControlID).selectNode(node);
-                    $.lumos.common.setIframeObjectHeight(treeControlID);
+                    var obj = data.content;
+                    zTree = $.fn.zTree.init($("#treemenu"), setting, obj);
+                    var node = zTree.getNodeByParam("id", id, null);
+                    zTree.selectNode(node);
                 }
-              });
+            });
         }
 
-  //-->
     </script>
 }
 
-<div class="gbr gbr-maintitle" id="gbr-maintitle">
-    <div class="wrapper">
-        <div class="content">
-            <span class="title-icon">@ViewBag.Title</span>
-            <span class="title-message"></span>
-        </div>
-    </div>
-</div>
+<form name="form1" id="form1">
+    @Html.AntiForgeryToken()
+    <dl class="tree-tab">
+        <dd class="tree-tab-left">
+            <ul id="treemenu" class="ztree"></ul>
+        </dd>
+        <dd class="tree-tab-right">
+            <div class="tab" id="tab1">
+                <div class="tab-item">
+                    <ul>
+                        <li class="item First selected"><a href="javascript:void(0)">Basic information</a></li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div class="subcontent">
+                        <div class="f-btn-area">
+                            <input type="button" class="btn btn-add" id="btn_add" value="New" style="margin-right:5px;" />
+                            <input type="button" class="btn btn-delete" id="btn_delete" value="Delete" />
+                            <input type="button" class="btn btn-sort" id="btn_sort" value="Modified Sort" />
+                        </div>
+                        <table class="f-tb" cellpadding="0" cellspacing="1">
+                            <tr>
+                                <td class="f-tb-t">
+                                    ParentName：
+                                </td>
+                                <td class="f-tb-c">
+                                    <label id="lbl_PName">/</label>
+                                    <input name="txt_PName" type="hidden" id="txt_PName" />
+                                    <input name="txt_PId" type="hidden" id="txt_PId" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="f-tb-t">
+                                    Name：
+                                </td>
+                                <td class="f-tb-c">
+                                    <input name="Name" type="text" autocomplete="off" id="txt_Name" style="width: 250px;" class="input-control" />
+                                    <span id="txt_NameTip"></span>
+                                </td>
+                            </tr>
+                            <tr class="tr_url">
+                                <td class="f-tb-t">
+                                    Url：
+                                </td>
+                                <td class="f-tb-c">
+                                    <input name="Url" type="text" autocomplete="off" id="txt_Url"
+                                           class="input-control" style="width: 350px;" />
+                                    <span id="txt_UrlTip"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="f-tb-t">
+                                    Permissions：
+                                </td>
+                                <td class="f-tb-c">
+                                    @for (int i = 0; i < Model.SysPermission.Count; i++)
+                                    {
+                                        if (Model.SysPermission[i].Id != "1")
+                                        {
+                                            <span>
+                                                <input id="cb_Permission_@i" type="checkbox" name="Permission" value="@Model.SysPermission[i].Id" />
+                                                <label for="cb_Permission_@i">@Model.SysPermission[i].Name</label>
+                                            </span>
+                                        }
+                                    }
 
-<div class="gbr gbr-mainbody" id="gbr-mainbody">
-    <div class="wrapper">
-        <div class="content">
-            <form name="form1" method="post" id="form1">
-                @AntiForgery.GetHtml()
-                <table cellpadding="0" cellspacing="0" class="table-tabtree">
-                    <tr>
-                        <td class="left-tree">
-                            <ul id="treemenu" class="ztree"></ul>
-                        </td>
-                        <td class="right-tab">
-
-                            <div class="tab" id="tabbox">
-                                <div class="tab-item">
-                                    <ul>
-                                        <li class="item first selected"><a class="a-btn-info" href="javascript:void(0)">Basic Information </a></li>
-                                    </ul>
-                                </div>
-                                <div class="tab-content">
-                                    <div class="content" style="display:block">
-                                        <div class="f-btn-area">
-                                            <a id="abtn_Add" class="a-btn-add" href="javascript:void(0)" target="_self">Add Sub Menu</a>
-                                            <a id="abtn_Del" class="a-btn-del hide" href="javascript:void(0)">Delete Menu </a>
-                                            <a id="abtn-Sort" class="a-btn-sort lumos_opfun" href="javascript:void(0)">Modified Sort</a>
-                                        </div>
-
-                                        <table class="f-tb" cellpadding="0" cellspacing="1">
-                                            <tr>
-                                                <td class="f-tb-t">
-                                                    Parent Name：
-                                                </td>
-                                                <td class="f-tb-c">
-                                                    <label id="lbl_PName">/</label>
-                                                    <input name="txt_PName" type="hidden" id="txt_PName" />
-                                                    <input name="txt_PId" type="hidden" id="txt_PId" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="f-tb-t">
-                                                    Name：
-                                                </td>
-                                                <td class="f-tb-c">
-                                                    <input name="txt_Name" type="text" autocomplete="off" id="txt_Name" style="width: 250px;" class="form-control" />
-                                                    <span id="txt_NameTip"></span>
-                                                </td>
-                                            </tr>
-                                            <tr class="tr_url">
-                                                <td class="f-tb-t">
-                                                    Url：
-                                                </td>
-                                                <td class="f-tb-c">
-                                                    <input name="txt_Url" type="text" autocomplete="off" id="txt_Url"
-                                                           class="form-control" style="width: 350px;" />
-                                                    @*<span id="txt_UrlTip"></span>*@
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="f-tb-t">
-                                                    Permission：
-                                                </td>
-                                                <td class="f-tb-c">
-
-                                                    @for (int i = 0; i < Model.Permission.Count; i++)
-                                                    {
-                                                        if (Model.Permission[i].Id != "1")
-                                                        {
-                                                            <span>
-                                                                <input id="cb_Permission_@i" type="checkbox" name="cb_Permission" value="@Model.Permission[i].Id" />
-                                                                <label for="cb_Permission_@i">@Model.Permission[i].Name</label>
-                                                            </span>
-                                                        }
-                                                    }
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="f-tb-t">
-                                                    Remark：
-                                                </td>
-                                                <td class="f-tb-c">
-                                                    <textarea name="txt_Description" rows="5" cols="42" id="txt_Description" class="form-control"></textarea>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="f-tb-t">
-                                                    &nbsp;
-                                                </td>
-                                                <td class="f-tb-c">
-                                                    <input type="submit" name="btn_Save" value="Save" id="btn_Save" class="f-ctb-btn btn" />
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </div>
-    </div>
-</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="f-tb-t">
+                                    Remarks：
+                                </td>
+                                <td class="f-tb-c">
+                                    <textarea name="Description" rows="5" cols="46" id="txt_Description" class="input-control"></textarea>
+                                    <span id="txt_DescriptionTip"></span>
+                                  </td>
+                            </tr>
+                            <tr>
+                                <td class="f-tb-t">
+                                    &nbsp;
+                                </td>
+                                <td class="f-tb-c">
+                                    <input type="submit" name="btn_Save" value="Save" id="btn_Save" class="btn btn-save" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </dd>
+    </dl>
+</form>

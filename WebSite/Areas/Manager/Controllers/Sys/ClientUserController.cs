@@ -21,7 +21,7 @@ using Lumos.Common;
 
 namespace WebSite.Areas.Manager.Controllers
 {
-    [ManagerAuthorize(PermissionCode.客户管理)]
+    [ManagerAuthorize(PermissionCode.ClientManagement)]
     public class ClientUserController : ManagerController
     {
         #region 视图
@@ -55,7 +55,7 @@ namespace WebSite.Areas.Manager.Controllers
         {
 
             string userName = "";
-            string firstName = "";
+            string FirstName = "";
             string lastName = "";
             if (Request.Form["txt_UserName"] != null)
             {
@@ -63,7 +63,7 @@ namespace WebSite.Areas.Manager.Controllers
             }
             if (Request.Form["txt_FirstName"] != null)
             {
-                firstName = Request.Form["txt_FirstName"].Trim();
+                FirstName = Request.Form["txt_FirstName"].Trim();
             }
 
             if (Request.Form["txt_LastName"] != null)
@@ -271,13 +271,13 @@ namespace WebSite.Areas.Manager.Controllers
         //删除客户
         public JsonResult RemoveUser(FormCollection fc)
         {
-            int[] userIds = fc["userIds"].ToString().Replace("'", "").Split(',').Select(s => int.Parse(s)).ToArray(); ;
+            //int[] userIds = fc["userIds"].ToString().Replace("'", "").Split(',').Select(s => int.Parse(s)).ToArray(); ;
 
-            var identiy = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
-            foreach (int userId in userIds)
-            {
-                identiy.DeleteUser(userId);
-            }
+            //var identiy = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
+            //foreach (int userId in userIds)
+            //{
+            //    identiy.DeleteUser(userId);
+            //}
             return Json(ResultType.Success, "删除成功");
         }
 

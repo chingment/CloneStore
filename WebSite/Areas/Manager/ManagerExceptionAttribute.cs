@@ -6,6 +6,8 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using WebSite.Areas.Manager.Models;
+using Lumos.Mvc;
 
 namespace WebSite.Areas.Manager
 {
@@ -50,41 +52,45 @@ namespace WebSite.Areas.Manager
             string controller = (string)filterContext.RouteData.Values["controller"];
             string action = (string)filterContext.RouteData.Values["action"];
 
+
+            MessageBoxModel messageBox = new MessageBoxModel();
+            messageBox.No = Guid.NewGuid().ToString();
+            messageBox.Type = MessageBoxTip.Exception;
+            messageBox.Title = "I'm sorry,Access error";
+            messageBox.Content = "<a href=\"javascript:void(0)\" onclick=\"window.top.location.href='" + ManagerUtils.GetHomePage() + "'\">Go Home</a>";
+
+            if (ManagerUtils.CanViewErrorStackTrace())
+            {
+                messageBox.ErrorStackTrace = CommonUtils.ToHtml(filterContext.Exception.Message + "\r\n" + filterContext.Exception.StackTrace);
+            }
+
+
+            //判断是否异步调用
             if (isAjaxRequest)
             {
-                //异步调用处理方式,返回JSON字符串
-
-                string exceptionName = filterContext.Exception.GetType().Name;
-                switch (exceptionName)
-                {
-                    case "HttpRequestValidationException":
-                        this._Message = "输入的字符不符合规范！";
-                        break;
-                }
-
-                CustomJsonResult jsonResult = new CustomJsonResult(ResultType.Exception, this._Message);
+                CustomJsonResult jsonResult = new CustomJsonResult(ResultType.Exception, messageBox.No, messageBox.Title, messageBox);
                 jsonResult.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                 filterContext.Result = jsonResult;
                 filterContext.Result.ExecuteResult(filterContext);
                 filterContext.HttpContext.Response.End();
-
-                filterContext.ExceptionHandled = true;//标识错误已经处理，Application_Error 不在捕捉该错误
             }
             else
             {
-                //非异步调用处理方式,返回文本
+                string masterName = "_LayoutHome";
+                if (filterContext.HttpContext.Request.QueryString["dialogtitle"] != null)
+                {
+                    masterName = "_Layout";
+                }
 
-                //输出文本方式
-                string stackTrace = string.Format("{0}:{1}<br/>{2}<br/>{3}", controller, action, this.Message, filterContext.Exception.StackTrace);
-                filterContext.RequestContext.HttpContext.Response.Write(stackTrace);
+                                     
+                filterContext.Result = new ViewResult {  ViewName = "MessageBox", MasterName = masterName, ViewData = new ViewDataDictionary { Model = messageBox } };
 
-                //跳转到指定的URL方式
-                //filterContext.Result = new RedirectResult(this.ErrorUrl);
-                //filterContext.Result.ExecuteResult(filterContext);
-
-                filterContext.ExceptionHandled = true;//标识错误已经处理，Application_Error 不在捕捉该错误
             }
-            log.Error(this._Message, filterContext.Exception);
+
+
+            filterContext.ExceptionHandled = true;
+            log.Error("An exception error occurred [number:" + messageBox.No + "]", filterContext.Exception);
+
 
         }
     }

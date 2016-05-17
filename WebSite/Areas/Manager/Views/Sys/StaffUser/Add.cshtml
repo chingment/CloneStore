@@ -1,0 +1,161 @@
+﻿@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Manager/Views/Shared/_LayoutHomeDialog.cshtml";
+}
+@section scripts{
+    <script type="text/javascript">
+        <!--
+        //配置树形
+        var setting = {
+            view: {
+                selectedMulti: false
+            },
+            check: {
+                enable: true,
+                chkboxType : { "Y" : "s", "N" : "s" }
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            }
+        };
+
+        function loadTreeList() {
+            $.lumos.postJson({
+                url: "../StaffUser/GetUserRoleTree",
+                data: $("#form1").serializeArray(),
+                success: function (data) {
+                    var zNodes = data.content;
+                    zTree=$.fn.zTree.init($("#treeul"), setting, zNodes);
+                }
+            });
+        }
+
+        var zTree;
+        $(this).ready(function () {
+            $.formValidator.initConfig({ formID: "form1", onSuccess: function () { return add(); } });
+            $("#txt_UserName").formValidator({ onShow: "&nbsp;", onFocus: "Required,3 to 20 Numbers, letters or underscores", onCorrect: "&nbsp;" }).regexValidator({ min: 3, max: 20, regExp: "^[0-9a-zA-Z_]{3,20}$", onError: "Required,6 to 20 Numbers, letters or underscores" });
+            $("#txt_Password").formValidator({ onShow: "&nbsp;", onFocus: "Required,6 to 20 Numbers, letters or underscores", onCorrect: "&nbsp;" }).regexValidator({ regExp: regexEnum.password, onError: "Required,6 to 20 Numbers, letters or underscores" });
+            $("#txt_FirstName").formValidator({ onShow: "&nbsp;", onFocus: "Required,no more than 50 char", onCorrect: "&nbsp;" }).inputValidator({ min: 1, max: 50, onError: "Required,no more than 20 char" });
+            $("#txt_LastName").formValidator({ onShow: "&nbsp;", onFocus: "Required,no more than 50 char", onCorrect: "&nbsp;" }).inputValidator({ min: 1, max: 50, onError: "Required,no more than 20 char" });
+            $("#txt_Email").formValidator({ onShow: "&nbsp;", onFocus: "Email format and no more than 100 char", onCorrect: "&nbsp;", empty: true, onEmpty: "&nbsp;" }).regexValidator({ regExp: regexEnum.email, onError: "Email format and no more than 100 char" });
+            $("#txt_PhoneNumber").formValidator({ onShow: "&nbsp;", onFocus: "Mobile format and no more than 100 char", onCorrect: "&nbsp;", empty: true, onEmpty: "&nbsp;" }).regexValidator({ regExp: regexEnum.mobile, onError: "Mobile format and no more than 100 char" });
+
+            loadTreeList();
+
+
+        });
+
+        function add() {
+
+            var postData = $("#form1").serializeArray();
+
+            var nodes = zTree.getCheckedNodes(true);
+
+            $.each(nodes, function (i, n) {
+                postData.push({ name: "UserRoleIds", value: n.id });
+            });
+
+            $.lumos.postJson({
+                url: "../StaffUser/Add",
+                data: postData,
+                success: function (data) {
+           
+                    if (data.result == "Success") {
+                        var win = art.dialog.open.origin;
+                        win.listTable.loadData();
+                        win.art.dialog.tips(data.message);
+                        $.lumos.cloaseDialog();
+                    }
+                    else{
+                        art.dialog.tips(data.message);
+                    }
+                   
+                }
+            });
+            return false;
+        }
+
+        //-->
+    </script>
+}
+
+
+<div class="gbr-row">
+    <form id="form1" name="form1"  method="post">
+        @Html.AntiForgeryToken()
+        <table class="f-tb" cellpadding="0" cellspacing="1">
+            <tr>
+                <td class="f-tb-t">
+                    UserName：
+                </td>
+                <td class="f-tb-c">
+                    <input name="UserName" class="input-control" autocomplete="off" type="text" id="txt_UserName" style="width: 150px;" clear="on" />
+                    <span id="txt_UserNameTip"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="f-tb-t">
+                    Password：
+                </td>
+                <td class="f-tb-c">
+                    <input name="Password" class="input-control" autocomplete="off" type="password" id="txt_Password" style="width: 150px;" />
+                    <span id="txt_PasswordTip"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="f-tb-t">
+                    FirstName：
+                </td>
+                <td class="f-tb-c">
+                    <input name="FirstName" class="input-control" type="text" id="txt_FirstName" style="width: 150px;" />
+                    <span id="txt_FirstNameTip"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="f-tb-t">
+                    LastName：
+                </td>
+                <td class="f-tb-c">
+                    <input name="LastName" class="input-control" type="text" id="txt_LastName" style="width: 150px;" />
+                    <span id="txt_LastNameTip"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="f-tb-t">
+                    E-mail：
+                </td>
+                <td class="f-tb-c">
+                    <input name="Email" class="input-control" type="text" id="txt_Email" style="width: 150px;" />
+                    <span id="txt_EmailTip"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="f-tb-t">
+                    Phone：
+                </td>
+                <td class="f-tb-c">
+                    <input name="PhoneNumber" class="input-control" type="text" id="txt_PhoneNumber" style="width: 150px;" />
+                    <span id="txt_PhoneNumberTip"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="f-tb-t">
+                    Roles：
+                </td>
+                <td class="f-tb-c" >
+                    <ul id="treeul" class="ztree"></ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="f-tb-t"></td>
+                <td class="f-tb-c">
+                    <input type="submit" name="btn_Submit" id="btn_Submit" value="Confirm" class="btn btn-sure" />
+                    <input type="button" name="btn_Cancle" id="btn_Cancle" value="Close" class="btn btn-close dialog-close" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+

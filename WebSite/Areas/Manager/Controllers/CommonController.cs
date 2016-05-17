@@ -17,87 +17,13 @@ namespace WebSite.Areas.Manager.Controllers
     public class CommonController : ManagerController
     {
 
-        public ViewResult SelectClient()
+        public JsonResult UploadImage(string fileinputname, string savepath, string oldfilename)
         {
-            return View();
-        }
-
-
-        public JsonResult GetClientList()
-        {
-            //string userName = Request.Form["txt_UserName"].ToString();
-            //string realName = Request.Form["txt_RealName"].ToString();
-
-
-            //var list = (from ur in CurrentDb.SysClientUser
-            //            join u in CurrentDb.Users on ur.Id equals u.Id
-            //            where
-            //               ur.IsDelete == false && 
-            //                (userName.Length == 0 || u.UserName.Contains(userName)) &&
-            //                (realName.Length == 0 || ur.RealUserName.Contains(realName)) 
-            //            select new { ur.Id, ur.RealUserName, u.UserName }).Distinct();
-
-            //int total = list.Count();
-
-            //int pageIndex = int.Parse(Request.Form["pageindex"].ToString());
-            //int pageSize = 10;
-            //list = list.OrderBy(r => r.UserName).Skip(pageSize * (pageIndex)).Take(pageSize);
-
-            //PageEntity pageEntity = new PageEntity { PageSize = pageSize, TotalRecord = total, Rows = list };
-
-            //return Json(ResultType.Success, pageEntity);
-
-            return Json(ResultType.Success);
-        }
-
-      
-
-
-
-
-        //[AllowAnonymous]
-        //public JsonResult UploadImageToServer()
-        //{
-        //    CustomJsonResult r = new CustomJsonResult();
-        //    try
-        //    {
-        //        string path = Request.QueryString["path"];
-        //        if (path == null)
-        //            path = "/temp";
-
-        //        foreach (string f in Request.Files.AllKeys)
-        //        {
-        //            HttpPostedFileBase file = Request.Files[f];
-
-        //            ImageUpload s = new ImageUpload();
-        //            string domain = System.Configuration.ConfigurationManager.AppSettings["ImagesServerUrl"];
-        //            string imagesServerUrl = CommonSetting.GetUploadPath(path);
-        //            if (s.Save(file, domain, imagesServerUrl, ""))
-        //            {
-        //                r.Content = s;
-        //            }
-
-        //        }
-        //        r.Result = ResultType.Success;
-        //        r.Message = "上传成功";
-        //    }
-        //    catch (System.Exception ex)
-        //    {
-        //        r.Result = ResultType.Exception;
-        //        r.Message = "上传失败";
-        //        Log.Error("远程上传图片", ex);
-        //    }
-
-        //    return Json("text/html", r.Result, r.Content, r.Message);
-        //}
-
-        public JsonResult UploadImage(string fileInputName, string path, string oldFileName)
-        {
-            CustomJsonResult rm = new CustomJsonResult();
-            rm.ContentType = "text/html";
+            CustomJsonResult r = new CustomJsonResult();
+            r.ContentType = "text/html";
             try
             {
-                HttpPostedFileBase file_upload = Request.Files[fileInputName];
+                HttpPostedFileBase file_upload = Request.Files[fileinputname];
 
                 if (file_upload == null)
                     return Json("text/html", ResultType.Failure, "上传失败");
@@ -108,36 +34,46 @@ namespace WebSite.Areas.Manager.Controllers
                     return Json("text/html", ResultType.Failure, "上传的文件不是图片格式(jpg,png,gif,bmp)");
                 }
 
-
-                string strUrl = System.Configuration.ConfigurationManager.AppSettings["app_ImagesServerUploadUrl"] + "?date=" + DateTime.Now.ToString("yyyyMMddhhmmssfff");
-
-
-                byte[] bytes = null;
-                using (var binaryReader = new BinaryReader(file_upload.InputStream))
+                ImageUpload s = new ImageUpload();
+                string domain = System.Configuration.ConfigurationManager.AppSettings["custom:Domain"];
+                string imagesServerUrl = CommonSetting.GetUploadPath(savepath);
+                if (s.Save(file_upload, domain, imagesServerUrl, ""))
                 {
-                    bytes = binaryReader.ReadBytes(file_upload.ContentLength);
+                    r.Content = s;
                 }
-                string fileExt = Path.GetExtension(file_upload.FileName).ToLower();
-                UploadFileEntity entity = new UploadFileEntity();
-                entity.FileName = DateTime.Now.ToString("yyyyMMddhhmmssfff") + fileExt;//自定义文件名称，这里以当前时间为例
-                entity.FileData = bytes;
-                entity.UploadFolder = path;
-                rm = HttpClientOperate.Post<CustomJsonResult>(path, strUrl, entity);//封装的POST提交方
-                rm.ContentType = "text/html";
-                if (rm.Result == ResultType.Exception || rm.Result == ResultType.Unknown)
-                {
-                    rm.Message = "上传图片发生异常";
-                }
+
+                r.Result = ResultType.Success;
+                r.Message = "上传成功";
+
             }
             catch (Exception ex)
             {
-                rm.Result = ResultType.Exception;
-                rm.Message = "上传图片发生异常";
-                Log.Error(ex);
-            }
-            return rm;
+                r.Result = ResultType.Exception;
+                r.Message = "上传图片发生异常";
+                throw (ex);
 
+            }
+            return r;
         }
 
+
+
+
+        /// <summary>
+        /// 获取验证码的图片 使用方式 请求url:/Common/GetImgVerifyCode?name=sessionname
+        /// </summary>
+        /// <param name="name">代表后台session的名称</param>
+        /// <returns>返回一张带数字的图片</returns>
+        [AllowAnonymous]
+        public ActionResult GetImgVerifyCode(string name)
+        {
+            VerifyCodeHelper v = new VerifyCodeHelper();
+            v.CodeSerial = "0,1,2,3,4,5,6,7,8,9";
+            string code = v.CreateVerifyCode(); //取随机码 
+            v.CreateImageOnPage(code, ControllerContext.HttpContext);   //输出图片
+            Session[name] = code;   //Session 取出验证码
+            Response.End();
+            return null;
+        }
     }
 }

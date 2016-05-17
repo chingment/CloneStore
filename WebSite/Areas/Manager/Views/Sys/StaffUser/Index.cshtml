@@ -1,0 +1,156 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Manager/Views/Shared/_LayoutHomeMainList.cshtml";
+}
+
+
+<script type="text/javascript">
+
+    var listTable;
+
+    $(document).ready(function () {
+        listTable = $("#list_table").loadDataTable({
+            url: "../StaffUser/GetList",
+            pageIndex: 0,
+            searchParams: $("#form1").serializeArray(),
+            searchButtonId: "btn_Search",
+            containerId: "form1",
+            rowDataCombie: function (p_index, p_row) {
+                var l_Strlimt = "";
+                l_Strlimt += "@Html.IsInPermission("<a href=\\\"javascript:void(0)\\\" class=\\\"a-btn a-btn-edit\\\" onclick=\\\"javascript:$.lumos.openDialog('../StaffUser/Update?id={key}','【Modify -{title}】', '650px', '500px');\\\" >Modify</a>")";
+                l_Strlimt += "@Html.IsInPermission("<a href=\\\"javascript:void(0)\\\" operate=\\\"delete\\\"  class=\\\"a-btn\\\" >Delete</a>")";
+                var l_StrRows = "";
+                l_StrRows += "<tr key=\'{\"Id\":\"" + p_row.Id + "\"}\'>";
+                l_StrRows += "<td class=\"no\" >" + (p_index + 1) + "</td>";
+                l_StrRows += "<td class=\"overflow tipitem\" title=\"" + p_row.UserName + "\"   >" + p_row.UserName + "</td>";
+                l_StrRows += "<td class=\"overflow\" title=\"" + p_row.FirstName + "\">" + p_row.FirstName + "</td>";
+                l_StrRows += "<td class=\"overflow\" title=\"" + p_row.LastName + "\">" + p_row.LastName + "</td>";
+                l_StrRows += "<td class=\"overflow\" title=\"" + p_row.PhoneNumber + "\">" + p_row.PhoneNumber + "</td>";
+                l_StrRows += "<td class=\"overflow\" title=\"" + p_row.Email + "\">" + p_row.Email + "</td>";
+                l_StrRows += "<td class=\"overflow\" title=\"" + p_row.CreateTime + "\">" + p_row.CreateTime + "</td>";
+                l_StrRows += "<td class=\"operation\">";
+                l_StrRows += l_Strlimt;
+                l_StrRows = l_StrRows.replace(/{key}/g, p_row.Id);
+                l_StrRows = l_StrRows.replace(/{title}/g, p_row.UserName);
+                l_StrRows += "</td>";
+                l_StrRows += "</tr>";
+                return l_StrRows;
+            },
+            operate: [
+                {
+                    "delete": function (keys) {
+
+                        var array = new Array();
+                        $.each(keys, function (i, n) {
+                            array.push({ name: "userIds", value: n.Id });
+                        });
+
+                        $.lumos.postJson({
+                            url: "../StaffUser/Delete",
+                            data: array,
+                            success: function (data) {
+                                listTable.loadData(0);
+                                art.dialog.tips(data.message);
+                            }
+                        });
+
+                    }
+                }
+
+            ]
+        });
+
+
+        $("#btn_Add").openDialog("../StaffUser/Add", "New", "650px", "500px");
+
+    
+
+
+    });
+
+
+
+
+</script>
+
+<form id="form1" name="form1">
+    @Html.AntiForgeryToken()
+
+    <div class="search-bar">
+        <div class="filter">
+            <span class="filter-label">UserName：</span>
+            <span class="filter-input">
+                <input type="text" class="input-control" name="UserName" style="width:120px;" />
+            </span>
+        </div>
+        <div class="filter">
+            <span class="filter-label">FirstName：</span>
+            <span class="filter-input">
+                <input type="text" class="input-control" name="FirstName" style="width:120px;" />
+            </span>
+        </div>
+        <div class="filter">
+            <span class="filter-label">LastName：</span>
+            <span class="filter-input">
+                <input type="text" class="input-control" name="LastName" style="width:120px;" />
+            </span>
+        </div>
+        <div class="filter"><input type="button" class="btn btn-search" id="btn_Search" value="Search" /> </div>
+
+        <div class="filter" style="float:right"><input type="button" class="btn btn-add" id="btn_Add" value="New"  /><input type="button" class="btn btn-delete" id="btn_Add" value="Delete" multiple="true" operate="delete" style="margin-left:5px"  />  </div>
+    </div>
+    <div class="list">
+        <table id="list_table" class="list-tb" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th style="width:15%" class="no">
+                        <input type="checkbox" name="list_table_ckb" childname="list_table_ckb_child" />
+                    </th>
+                    <th style="width:15%">
+                        UserName
+                    </th>
+                    <th style="width:15%">
+                        FirstName
+                    </th>
+                    <th style="width:15%">
+                        LastName
+                    </th>
+                    <th style="width:15%">
+                        Phone
+                    </th>
+                    <th style="width:15%">
+                        Email
+                    </th>
+                    <th style="width:15%">
+                        CreateTime
+                    </th>
+                    <th style="width:10%" class="operation">
+                        Operate
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="9">
+                        <div class="pull-left">
+
+                        </div>
+                        <div class="pull-right pagination">
+                            <div class="pagination-info">
+
+                            </div>
+                            <div class="pagination-index">
+
+                            </div>
+                            <div class="pagination-goto">
+
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</form>
+

@@ -89,15 +89,15 @@ namespace Lumos.DAL
             //初始菜单
             sysMenus.Add(new SysMenu() { Id = 1, Name = "Background System Menu", PId = 0, Url = "#", Description = "", Priority = 0 });
             sysMenus.Add(new SysMenu() { Id = 2, Name = "System Admin", PId = 1, Url = "#", Description = "", Priority = 0 });
-            sysMenus.Add(new SysMenu() { Id = 3, Name = "Menus", PId = 2, Url = "/Sys/Menu/Index", Description = "", Priority = 6 });
-            sysMenus.Add(new SysMenu() { Id = 4, Name = "Roles", PId = 2, Url = "/Sys/Role/Index", Description = "", Priority = 5 });
-            sysMenus.Add(new SysMenu() { Id = 5, Name = "Users", PId = 2, Url = "/Sys/User/Index", Description = "", Priority = 4 });
-            sysMenus.Add(new SysMenu() { Id = 6, Name = "LogView", PId = 2, Url = "/Sys/LogView/Index", Description = "", Priority = 3 });
-            sysMenus.Add(new SysMenu() { Id = 7, Name = "My Account", PId = 1, Url = "#", Description = "", Priority = 4 });
-            sysMenus.Add(new SysMenu() { Id = 8, Name = "Modify Password", PId = 7, Url = "/PersonalCenter/ChangePassword", Description = "", Priority = 3 });
+            sysMenus.Add(new SysMenu() { Id = 3, Name = "Menus", PId = 2, Url = "/Manager/Sys/Menu/Index", Description = "", Priority = 6 });
+            sysMenus.Add(new SysMenu() { Id = 4, Name = "Roles", PId = 2, Url = "/Manager/Sys/Role/Index", Description = "", Priority = 5 });
+            sysMenus.Add(new SysMenu() { Id = 5, Name = "Background Users ", PId = 2, Url = "/Manager/Sys/StaffUser/Index", Description = "", Priority = 4 });
+            sysMenus.Add(new SysMenu() { Id = 6, Name = "All Users", PId = 2, Url = "/Manager/Sys/User/Index", Description = "", Priority = 4 });
+            sysMenus.Add(new SysMenu() { Id = 7, Name = "LogView", PId = 2, Url = "/Manager/Sys/LogView/Index", Description = "", Priority = 3 });
 
-            sysMenus.Add(new SysMenu() { Id = 9, Name = "User Management", PId = 1, Url = "#", Description = "", Priority = 0 });
-            sysMenus.Add(new SysMenu() { Id = 10, Name = "User List", PId = 9, Url = "/Sys/ClientUser/Index", Description = "", Priority = 0 });
+
+            // sysMenus.Add(new SysMenu() { Id = 9, Name = "User Management", PId = 1, Url = "#", Description = "", Priority = 0 });
+            // sysMenus.Add(new SysMenu() { Id = 10, Name = "User List", PId = 9, Url = "/Sys/ClientUser/Index", Description = "", Priority = 0 });
 
             //初始菜单
             foreach (var m in sysMenus)
@@ -119,10 +119,10 @@ namespace Lumos.DAL
             }
 
 
-            context.SysMenuPermission.Add(new SysMenuPermission() { MenuId = 3, PermissionId = PermissionCode.菜单管理 });
-            context.SysMenuPermission.Add(new SysMenuPermission() { MenuId = 4, PermissionId = PermissionCode.角色管理 });
-            context.SysMenuPermission.Add(new SysMenuPermission() { MenuId = 5, PermissionId = PermissionCode.用户管理 });
-            context.SysMenuPermission.Add(new SysMenuPermission() { MenuId = 10, PermissionId = PermissionCode.客户管理 });
+            context.SysMenuPermission.Add(new SysMenuPermission() { MenuId = 3, PermissionId = PermissionCode.MenuManagement });
+            context.SysMenuPermission.Add(new SysMenuPermission() { MenuId = 4, PermissionId = PermissionCode.RoleManagement });
+            context.SysMenuPermission.Add(new SysMenuPermission() { MenuId = 5, PermissionId = PermissionCode.UserManagement });
+            context.SysMenuPermission.Add(new SysMenuPermission() { MenuId = 10, PermissionId = PermissionCode.ClientManagement });
 
 
 

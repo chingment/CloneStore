@@ -1,38 +1,34 @@
 ﻿using Lumos.Common;
-using Lumos.DAL;
 using Lumos.DAL.AuthorizeRelay;
 using Lumos.Entity;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using WebSite.Areas.Manager.Models;
+using WebSite.Areas.Manager.Models.Menu;
 
 namespace WebSite.Areas.Manager.Controllers
 {
-    [ManagerAuthorize(PermissionCode.菜单管理)]
+    [ManagerAuthorize(PermissionCode.MenuManagement)]
     public class MenuController : ManagerController
     {
-        //
-        // GET: /Menu/
+
         public ActionResult Index()
         {
-            SysMenuViewModel mode = new SysMenuViewModel();
+            MenuModel mode = new MenuModel();
             var identity = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
             List<SysPermission> list = identity.GetPermissionList(new PermissionCode());
-            mode.Permission = list;
+            mode.SysPermission = list;
             return View(mode);
         }
 
         public ActionResult Add()
         {
-            SysMenuViewModel mode = new SysMenuViewModel();
+            MenuModel mode = new MenuModel();
             var identity = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
             List<SysPermission> list = identity.GetPermissionList(new PermissionCode());
 
-            mode.Permission = list;
+            mode.SysPermission = list;
             return View(mode);
         }
 
@@ -41,25 +37,21 @@ namespace WebSite.Areas.Manager.Controllers
             return View();
         }
 
-        /// <summary>
-        /// 获取菜单详细信息
-        /// </summary>
-        /// <param name="menuId">菜单Id</param>
-        /// <returns></returns>
-        public JsonResult GetMenuDetail(int menuId)
+
+
+        public JsonResult GetDetail(int menuId)
         {
-            SysMenuViewModel model = new SysMenuViewModel();
-            SysMenu menu = CurrentDb.SysMenu.First(u => u.Id == menuId);
-            model.Menu = menu;
-            model.MenuPermission = CurrentDb.SysMenuPermission.Where(u => u.MenuId == menuId).ToList();
+            MenuModel model = new MenuModel();
+            SysMenu menu = CurrentDb.SysMenu.Where(u => u.Id == menuId).FirstOrDefault();
+            model.SysMenuPermission = CurrentDb.SysMenuPermission.Where(u => u.MenuId == menuId).ToList();
+            model.Id = menu.Id;
+            model.Name = menu.Name;
+            model.Description = menu.Description;
+            model.Url = menu.Url;
             return Json(ResultType.Success, model);
         }
 
-        /// <summary>
-        /// 获取菜单树形列表
-        /// </summary>
-        /// <returns></returns>
-        public JsonResult GetMenuTree(int pId)
+        public JsonResult GetTree(int pId)
         {
             SysMenu[] arr;
             if (pId == 0)
@@ -76,68 +68,54 @@ namespace WebSite.Areas.Manager.Controllers
         }
 
 
-        /// <summary>
-        /// 添加菜单
-        /// </summary>
-        /// <param name="fc"></param>
-        /// <returns></returns>
         [HttpPost]
         [NoResubmit]
-        public JsonResult AddMenu(FormCollection fc)
+        [ValidateAntiForgeryToken]
+        public JsonResult Add(MenuModel model)
         {
-            var identityManager = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
-            int pId = int.Parse(fc["pId"].Trim());
-            SysMenu model = new SysMenu();
-            model.PId = pId;
-            model.Name = fc["txt_Name"].Trim();
-            model.Url = fc["txt_Url"].Trim();
-            model.Description = fc["txt_Description"].ToString();
-            identityManager.CreateMenu(model);
-            return Json(ResultType.Success, "Success");
+            var identity = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
+            int pId = model.PId;
+            SysMenu menu = new SysMenu();
+            menu.PId = pId;
+            menu.Name = model.Name;
+            menu.Url = model.Url;
+            menu.Description = model.Description;
+            identity.CreateMenu(menu, model.Permission);
+            return Json(ResultType.Success, ManagerOperateTipUtils.ADD_SUCCESS);
 
         }
 
-        //[ValidateInput(false)]
-        /// <summary>
-        /// 修改菜单
-        /// </summary>
-        /// <param name="fc"></param>
-        /// <returns></returns>
-        public JsonResult UpdateMenu(FormCollection fc)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult Update(MenuModel model)
         {
-            int menuId = int.Parse(fc["Id"].Trim());
-            SysMenu model = CurrentDb.SysMenu.Find(menuId);
-            model.Name = fc["txt_Name"].Trim();
-            model.Url = fc["txt_Url"].Trim();
-            model.Description = fc["txt_Description"].ToString();
+            int menuId = model.Id;
+            SysMenu menu = CurrentDb.SysMenu.Find(menuId);
+            menu.Name = model.Name;
+            menu.Url = model.Url;
+            menu.Description = model.Description;
             var identityManager = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
-            string[] permissons = null;
-            if (fc["cb_Permission"] != null)
+            identityManager.UpdateMenu(menu, model.Permission);
+            return Json(ResultType.Success, ManagerOperateTipUtils.UPDATE_SUCCESS);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult Delete(int[] id)
+        {
+            var identity = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
+
+            foreach (int menuId in id)
             {
-                permissons = fc["cb_Permission"].Trim().Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                identity.DeleteMenu(menuId);
             }
-            identityManager.UpdateMenu(model, permissons);
-            return Json(ResultType.Success, "Success");
-
+            return Json(ResultType.Success, ManagerOperateTipUtils.DELETE_SUCCESS);
         }
 
-        /// <summary>
-        /// 删除菜单
-        /// </summary>
-        /// <param name="fc"></param>
-        /// <returns></returns>
-        public JsonResult RemoveMenu(FormCollection fc)
-        {
-            var identityManager = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
-            int[] menuIds = fc["menuIds"].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(s => int.Parse(s)).ToArray();
-            foreach (int menuId in menuIds)
-            {
-                identityManager.DeleteMenu(menuId);
-            }
-            return Json(ResultType.Success, "Success");
-        }
-
-        public JsonResult SaveSort()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult UpdateSort()
         {
 
             for (int i = 0; i < Request.Form.Count; i++)
@@ -148,11 +126,14 @@ namespace WebSite.Areas.Manager.Controllers
                     int id = int.Parse(name.Split('_')[1].Trim());
                     int priority = int.Parse(Request.Form[i].Trim());
                     SysMenu model = CurrentDb.SysMenu.Where(m => m.Id == id).FirstOrDefault();
-                    model.Priority = priority;
-                    CurrentDb.SaveChanges();
+                    if (model != null)
+                    {
+                        model.Priority = priority;
+                        CurrentDb.SaveChanges();
+                    }
                 }
             }
-            return Json(ResultType.Success, "Success");
+            return Json(ResultType.Success, ManagerOperateTipUtils.UPDATE_SUCCESS);
 
         }
 

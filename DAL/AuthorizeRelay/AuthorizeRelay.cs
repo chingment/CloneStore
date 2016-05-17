@@ -104,7 +104,7 @@ namespace Lumos.DAL.AuthorizeRelay
                     if (_db == null)
                     {
                         _db = contextDb;
-                        _roleManager = new SysRoleManager(new RoleStore<SysRole,int,SysUserRole>(_db));
+                        _roleManager = new SysRoleManager(new RoleStore<SysRole, int, SysUserRole>(_db));
                         _userManager = new SysUserManager<TUser>(new UserStore<TUser, SysRole, int, SysUserLoginProvider, SysUserRole, SysUserClaim>(_db));
                     }
                 }
@@ -113,7 +113,7 @@ namespace Lumos.DAL.AuthorizeRelay
         }
 
 
-        public  AuthorizeRelayDbContext Db
+        public AuthorizeRelayDbContext Db
         {
             get
             {
@@ -134,7 +134,7 @@ namespace Lumos.DAL.AuthorizeRelay
         public AspNetIdentiyAuthorizeRelay(AuthorizeRelayDbContext context)
         {
 
-           // SetDb(context);
+            // SetDb(context);
 
             AuthorizeRelayDbContext db = CallContext.GetData(efKey) as AuthorizeRelayDbContext;
             if (db == null)
@@ -197,7 +197,7 @@ namespace Lumos.DAL.AuthorizeRelay
                 return new LoginResult<TUser>(Enumeration.LoginResult.Failure, Enumeration.LoginResultTip.UserNotExist);
             }
 
-            var lastUserInfo =user;
+            var lastUserInfo = user;
             loginHis.UserId = user.Id;
             loginHis.LoginTime = DateTime.Now;
             loginHis.LoginType = userLoginHistory.LoginType;
@@ -272,8 +272,8 @@ namespace Lumos.DAL.AuthorizeRelay
         /// <returns></returns>
         public TUser GetUser(int id)
         {
-     
-            return _userManager.FindById<TUser,int>(id);
+
+            return _userManager.FindById<TUser, int>(id);
         }
 
         /// <summary>
@@ -297,7 +297,7 @@ namespace Lumos.DAL.AuthorizeRelay
 
             if (model != null)
             {
-                listMenu = model.OrderByDescending(m=>m.Priority).ToList();
+                listMenu = model.OrderByDescending(m => m.Priority).ToList();
             }
             return listMenu;
         }
@@ -347,7 +347,7 @@ namespace Lumos.DAL.AuthorizeRelay
 
         public bool UserExists(string username)
         {
-            var idResult = _db.Users.Where(m=>m.UserName==username).FirstOrDefault();
+            var idResult = _db.Users.Where(m => m.UserName == username).FirstOrDefault();
             if (idResult != null)
                 return true;
 
@@ -362,12 +362,38 @@ namespace Lumos.DAL.AuthorizeRelay
         /// <param name="user"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public bool CreateUser(TUser user, string password)
+        public bool CreateUser(TUser user, params int[] roleIds)
         {
             user.RegisterTime = DateTime.Now;
             user.CreateTime = DateTime.Now;
-            var idResult = _userManager.Create<TUser,int>(user, password);
-            return idResult.Succeeded;
+            var result = _userManager.Create<TUser, int>(user, user.PasswordHash);
+
+            if (result.Succeeded)
+            {
+                List<SysUserRole> userRoleList = _db.SysUserRole.Where(m => m.UserId == user.Id).ToList();
+                foreach (var userRole in userRoleList)
+                {
+                    _db.SysUserRole.Remove(userRole);
+                }
+
+                if (roleIds != null)
+                {
+                    if (roleIds.Length > 0)
+                    {
+                        foreach (int roleId in roleIds)
+                        {
+                            if (roleId != 0)
+                            {
+                                _db.SysUserRole.Add(new SysUserRole { UserId = user.Id, RoleId = roleId });
+                            }
+                        }
+                    }
+                }
+                _db.SaveChanges();
+            }
+
+
+            return result.Succeeded;
         }
 
         /// <summary>
@@ -376,43 +402,71 @@ namespace Lumos.DAL.AuthorizeRelay
         /// <param name="user"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public bool UpdateUser(TUser user, string password)
+        public bool UpdateUser(TUser user, string password, params int[] roleIds)
         {
             if (!string.IsNullOrWhiteSpace(password))
             {
                 user.PasswordHash = _userManager.PasswordHasher.HashPassword(password);
             }
-  
-            var idResult = _userManager.Update<TUser,int>(user);
-            return idResult.Succeeded;
+
+            var result = _userManager.Update<TUser, int>(user);
+            if (result.Succeeded)
+            {
+                List<SysUserRole> userRoleList = _db.SysUserRole.Where(m => m.UserId == user.Id).ToList();
+
+                foreach (var userRole in userRoleList)
+                {
+                    _db.SysUserRole.Remove(userRole);
+                }
+
+                if (roleIds != null)
+                {
+                    if (roleIds.Length > 0)
+                    {
+                        foreach (int roleId in roleIds)
+                        {
+                            if (roleId != 0)
+                            {
+                                _db.SysUserRole.Add(new SysUserRole { UserId = user.Id, RoleId = roleId });
+                            }
+                        }
+                    }
+                }
+                _db.SaveChanges();
+            }
+
+
+            return result.Succeeded;
         }
 
 
-        /// <summary>
-        /// 修改用户
-        /// </summary>
-        /// <param name="user"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        public bool DeleteUser(int userId)
+        public bool DeleteUser(int[] userIds)
         {
-            SysUser user = _db.Users.Find(userId);
-            user.IsDelete = true;
-            user.Mender = AuthenticationManager.User.Identity.GetUserId<int>();
-            user.LastUpdateTime = DateTime.Now;
-            int r =_db.SaveChanges();
-            if(r>0)
-            {
-                return true;
-            }
-            else
-            {
+
+            if (userIds==null)
                 return false;
+
+            if (userIds.Length <= 0)
+                return false;
+
+
+            foreach (int userId in userIds)
+            {
+                SysUser user = _db.Users.Find(userId);
+                user.IsDelete = true;
+                user.Mender = AuthenticationManager.User.Identity.GetUserId<int>();
+                user.LastUpdateTime = DateTime.Now;
+                _db.SaveChanges();
             }
+
+            return true;
+
         }
+
+
 
         //重置密码
-        public bool ResetPassword(int userId,string password)
+        public bool ResetPassword(int userId, string password)
         {
 
             string resetPwd = password;
@@ -431,7 +485,7 @@ namespace Lumos.DAL.AuthorizeRelay
         {
 
             IdentityResult result = _userManager.ChangePassword(userId, oldPassword, newPassword);
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 return true;
             }
@@ -477,7 +531,7 @@ namespace Lumos.DAL.AuthorizeRelay
 
             var roleMenus = _db.SysRoleMenu.Where(u => u.RoleId == roleId).Distinct();
 
-           // var rolePermission = _db.SysRolePermission.Where(u => u.RoleId == roleId).Distinct();
+            // var rolePermission = _db.SysRolePermission.Where(u => u.RoleId == roleId).Distinct();
 
             var role = _db.Roles.Find(roleId);
 
@@ -516,7 +570,7 @@ namespace Lumos.DAL.AuthorizeRelay
         /// <param name="userId"></param>
         /// <param name="roleName"></param>
         /// <returns></returns>
-        public bool AddUserToRole(int userId, int roleId)
+        public bool AddUserToRole( int roleId,int userId)
         {
             _db.SysUserRole.Add(new SysUserRole { UserId = userId, RoleId = roleId });
             _db.SaveChanges();
@@ -543,12 +597,15 @@ namespace Lumos.DAL.AuthorizeRelay
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="roleName"></param>
-        public void RemoveUserFromRole(int userId, int roleId)
+        public void RemoveUserFromRole(int roleId,int userId)
         {
 
-            SysUserRole userRole = _db.SysUserRole.Find(roleId, userId);
-            _db.SysUserRole.Remove(userRole);
-            _db.SaveChanges();
+            SysUserRole userRole = _db.SysUserRole.Where(m=>m.RoleId==roleId&&m.UserId==userId).FirstOrDefault();
+            if (userRole != null)
+            {
+                _db.SysUserRole.Remove(userRole);
+                _db.SaveChanges();
+            }
         }
 
 
@@ -583,11 +640,15 @@ namespace Lumos.DAL.AuthorizeRelay
                 _db.SysRoleMenu.Remove(roleMenu);
             }
 
-            foreach (var menuId in menuIds)
-            {
-                _db.SysRoleMenu.Add(new SysRoleMenu { RoleId = roleId, MenuId = menuId });
-            }
 
+            if (menuIds != null)
+            {
+                foreach (var menuId in menuIds)
+                {
+                    _db.SysRoleMenu.Add(new SysRoleMenu { RoleId = roleId, MenuId = menuId });
+                }
+
+            }
             _db.SaveChanges();
 
             return true;
@@ -622,10 +683,20 @@ namespace Lumos.DAL.AuthorizeRelay
         #endregion 角色相关
 
         #region 菜单相关
-        public int CreateMenu(SysMenu enity)
+        public int CreateMenu(SysMenu enity, string[] perssion)
         {
             _db.SysMenu.Add(enity);
             _db.SaveChanges();
+
+            if (perssion != null)
+            {
+                foreach (var m in perssion)
+                {
+                    _db.SysMenuPermission.Add(new SysMenuPermission { MenuId = enity.Id, PermissionId = m });
+                }
+            }
+            _db.SaveChanges();
+
             return enity.Id;
         }
 
@@ -650,6 +721,7 @@ namespace Lumos.DAL.AuthorizeRelay
                 foreach (var m in perssions)
                 {
                     _db.SysMenuPermission.Add(new SysMenuPermission { MenuId = enity.Id, PermissionId = m });
+
                 }
             }
 

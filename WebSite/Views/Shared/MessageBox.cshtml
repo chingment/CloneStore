@@ -1,4 +1,4 @@
-﻿@model WebSite.Models.MessageBoxModel
+﻿@model  Lumos.Mvc.MessageBoxModel
 @{
     ViewBag.Title = "MessageBox";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
@@ -8,7 +8,7 @@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $.lumos.messageBox({ type: "@Model.Type", isPopup: @(Model.IsPopup==true? "true":"false"), title: "@Model.Title", content: "@Model.Content" })
+            $.lumos.messageBox({ type: "@Model.Type", isPopup: @(Model.IsPopup==true? "true":"false"), title: "@Model.Title", content: "@Model.Content", errorStackTrace: "@Html.Raw(Model.ErrorStackTrace)" })
         });
     </script>
 }

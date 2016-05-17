@@ -1,182 +1,144 @@
 ﻿@{
-    Layout = null;
+    ViewBag.Title = "Login";
+    Layout = "~/Areas/Manager/Views/Shared/_LayoutHome.cshtml";
 }
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Sign In</title>
-    <link href="~/Content/Manager/base/Site.css" rel="stylesheet" />
-    <script src="~/Scripts/Manager/jquery-1.8.3.min.js"></script>
+@section styles{
     <style type="text/css">
-        body {
-            background-repeat: repeat-x;
-            padding: 0px;
-            margin: 0px;
+        .gbr-main, .gbr-main > .wrapper > .content {
+            background-color: transparent;
         }
 
-        #tableLogin {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin: -127px 0 0 -263px;
-        }
-
-        html, body {
-            margin: 0;
-            height: 100%;
-        }
-
-        .devTechSupport {
-            margin-top: 25px;
-            text-align: right;
-            font: 12px "宋体", "Arial Narrow", HELVETICA;
-            padding-right: 15px;
-            line-height: 24px;
-            color: #515151;
+        .gbr-footer, .gbr-footer a, .gbr-footer a:visited,.gbr-footer .copyright {
+            color: #fff;
         }
     </style>
-
-</head>
-<body>
-    <div id="tableLogin_PageImage" style="position: absolute; color:#ffffff ;text-align:right; top: 0px; left: 0px; height: 100%; width: 100%; z-index: -10; background-position: center 0; background-repeat: no-repeat; background-attachment: fixed; background-size: cover; zoom: 1; ">
-        @ViewBag.DevVersion
-    </div>
-    <form name="form1"  id="form1" onsubmit="return login()">
+}
+<div class="bg-page-login"></div>
+<div class="gbr-row gbr-row-login">
+    <form id="form1" onsubmit="return login()">
         @Html.AntiForgeryToken()
-        <table id="tableLogin" width="527" height="254" border="0" cellpadding="0" cellspacing="0" align="center">
-            <tr>
-                <td height="50px"></td>
-            </tr>
-            <tr>
-                <td valign="top">
-                    <table width="100%" border="0" class="TableConditionLogin" style="margin-top:0px">
-                        <tbody>
-                            <tr>
-                                <td width="35%" colspan="2" height="30">
-                                    &nbsp;
-                                </td>
-                                <td width="20%" align="right" colspan="3" style="text-align:center;">
-                                   <span id="txt_Message" style="color:red;"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="35%" colspan="2" height="30">
-                                    &nbsp;
-                                </td>
-                                <td width="20%" align="right">
-                                    <span id="lblAccont">Account：</span>
-                                </td>
-                                <td width="38%" align="left">
-                                    <input name="txt_UserName" type="text" value="" id="txt_UserName" style="width:130px;" />
-                                </td>
-                                <td width="7%" colspan="2" class="LoginTB3-TD2"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" height="30"></td>
-                                <td align="right">
-                                    <span id="lblPassword">Password：</span>
-                                </td>
-                                <td align="left">
-                                    <input name="txt_Password" type="password" id="txt_Password" style="width:130px;" value="" />
-                                </td>
-                                <td class="LoginTB3-TD2" colspan="2"></td>
-                            </tr>
-                            <tr>
-                                <td class="style1" colspan="2"></td>
-                                <td class="style1"></td>
-                                <td class="style1">
-                                    <table width="100%">
-                                        <tr>
-                                            <td align="left">
-                                                <input type="submit" id="btn_Login" name="btn_Login" value="Sign In" style="width:80px" class="btn" />
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                                <td class="style1" colspan="2"></td>
-                            </tr>
-                            <tr>
-                                <td class="LoginTB3-TD2" colspan="5" height="25" style="padding-left:15px;"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="devTechSupport">@ViewBag.DevTechSupport</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    &nbsp;
-                </td>
-            </tr>
-        </table>
+        <div class="h-form-container login-box">
+            <div class="h-message">
+                <span id="lbl_Message"></span>
+            </div>
+            <dl class="h-entry clearfix">
+                <dt class="h-entry-label">UserName：</dt>
+                <dd class="h-entry-values">
+                    <span class="h-item "><input type="text" id="txt_UserName" name="UserName" value="" style="width:180px;" /></span>
+                    <div class="clear"></div>
+                </dd>
+            </dl>
+            <div class="h-line"></div>
+            <dl class="h-entry">
+                <dt class="h-entry-label">Password：</dt>
+                <dd class="h-entry-values">
+                    <span class="h-item"><input type="password" id="txt_Password" name="Password" value="" style="width: 180px;" /></span>
+                    <div class="clear"></div>
+                </dd>
+            </dl>
+            <div class="h-line"></div>
+            <dl class="h-entry clearfix">
+                <dt class="h-entry-label">Code：</dt>
+                <dd class="h-entry-values">
+                    <span class="h-item"><input type="text" id="txt_VerifyCode" name="txt_VerifyCode" value="" style="width: 100px;" /><img id="img_VerifyCode" style="border:0px;" class="img-verify" alt="验证码" /></span>
+                    <div class="clear"></div>
+                </dd>
+            </dl>
+            <div class="h-line"></div>
+            <div class="h-button">
+                <input type="submit" id="btn_Login" name="btn_Login" value="Sign In" style="width: 100%;" />
+                <div class="clear"></div>
+            </div>
+        </div>
     </form>
+</div>
 
+@section scriptsbyend{
     <script type="text/javascript">
 
-        $(document).ready(function () {
+        function login() {
+            var msgObj = $("#lbl_Message");
+            $(msgObj).text("");
+            var userName = $("#txt_UserName").val().replace(/(^\s*)|(\s*$)/g, "");
+            var passWord=$("#txt_Password").val();
+            var verifyCode=$("#txt_VerifyCode").val().replace(/(^\s*)|(\s*$)/g, "");
 
-            //判断是否在子frames里呈现本页面,如何是跳转到window.top打开
-            var pfs = parent.frames;
-            if (pfs.length > 0) {
-                window.top.location = "@Url.AreaContent("/Home/Login")";
+            if (userName.length == 0) {
+                $(msgObj).text("Please enter your account");
+                return false;
             }
 
-            if (navigator.userAgent.toLowerCase().indexOf("chrome") != -1) {
-                var selectors = $("input[clear=on]");
-                for (var i = 0; i < selectors.length; i++) {
 
-                    var input = selectors[i];
-                    var inputName = selectors[i].name;
-                    var inputid = selectors[i].id;
+            @*else {
+                var myReg =@Html.Raw(@"/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/");
+                if(!myReg.test(userName))
+                {
+                    $(msgObj).text("用户名必须为邮箱格式");
+                    return false;
+                }
+            }*@
 
-                    selectors[i].removeAttribute("name");
-                    selectors[i].removeAttribute("id");
-                    setTimeout(function () {
-                        input.setAttribute("name", inputName);
-                        input.setAttribute("id", inputid);
-                    }, 1)
+            if (passWord.length == 0) {
+                $(msgObj).text("Please enter your password");
+                return false;
+            }
 
+            if (verifyCode.length == 0) {
+                $(msgObj).text("Please enter code");
+                return false;
+            }
+            else {
+                if(verifyCode.length!=4){
+                    $(msgObj).text("Code must be a four bit character");
+                    return false;
                 }
             }
-
-
-        });
-
-        function login() {
-            var msgObj = $("#txt_Message");
-            $(msgObj).text("");
-            if ($("#txt_UserName").val().length == 0) {
-                $(msgObj).text("Please enter your account!");
-                return false;
-            }
-
-            if ($("#txt_Password").val().length == 0) {
-                $(msgObj).text("Please enter your password!");
-                return false;
-            }
-            var dialog;
+            $("#btn_Login").attr("disabled","disabled");
             $.ajax({
                 type: "post",
-                url: "@Url.AreaContent("/Home/Login")",
+                url: "/Manager/Home/Login",
                 dataType: "json",
                 data: $('#form1').serialize(),
                 beforeSend: function (data) {
-                    $(msgObj).text("loading...");
+                    $(msgObj).text("login...");
+                },
+                complete: function (XMLHttpRequest, status) {
+                    if (status == 'timeout') {
+                        $("#btn_Login").removeAttr("disabled")
+                        art.dialog.tips("Network request timeout, please re open the page ");
+                    }
+                    else if (status == 'error') {
+                        $("#btn_Login").removeAttr("disabled");
+                        art.dialog.tips("Network request failed, please check whether the network has been connected ");
+                    }
                 }
             }).done(function (data) {
                 if (data.result == "Success") {
                     $(msgObj).text("");
-                    window.location.href = "@Url.AreaContent("/Home/Index")";
+                    window.location.href = data.content.Url;
                 }
                 else {
+                    $("#btn_Login").removeAttr("disabled");
+                    imgVerifyCode.getCode();
                     $(msgObj).text(data.message);
                 }
             });
             return false;
         }
 
-    </script>
+        var imgVerifyCode;
+        $(document).ready(function () {
 
-</body>
-</html>
+            imgVerifyCode = $.imgVerifyCode.init({
+                imgId: 'img_VerifyCode',
+                btnId: 'a_VerifyCode',
+                sessionName: 'ManagerLoginVerifyCode'
+            });
+
+        });
+    </script>
+}
+
+
+
+

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="~/manager/home/index" title="Home"  description="Home">
+    <siteMapNode url="#1_1" title="System Admin" description="System Admin" >
+      <siteMapNode url="~/manager/sys/menu/index" title="Menus" description="Menus"  />
+      <siteMapNode url="~/manager/sys/role/index" title="Roles" description="Roles"  />
+      <siteMapNode url="~/manager/sys/user/index" title="Users" description="Users"  />
+      <siteMapNode url="~/manager/sys/logview/index" title="LoginView" description="LoginView"  />
+    </siteMapNode>
+    <siteMapNode url="~/Manager/Home/ChangePassword" title="ModifyPassword" description="ModifyPassword"  />
+  </siteMapNode>
+</siteMap>

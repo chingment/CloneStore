@@ -53,6 +53,8 @@
   <ItemGroup>
     <Compile Include="BaseApiController.cs" />
     <Compile Include="BaseController.cs" />
+    <Compile Include="GoToViewModel.cs" />
+    <Compile Include="MessageBoxModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

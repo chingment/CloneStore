@@ -1,5 +1,6 @@
 ﻿using log4net;
 using Lumos.Common;
+using Lumos.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace WebSite.Controllers
 
             MessageBoxModel messageBox = new MessageBoxModel();
             messageBox.No = Guid.NewGuid().ToString();
-            messageBox.Type = MessageTip.Exception;
+            messageBox.Type = MessageBoxTip.Exception;
             messageBox.Title = "Hmmm... It seems we are unable to process your request";
             messageBox.Content = "<a href=\"/Home/Index\">Return HomePage</a>";
            

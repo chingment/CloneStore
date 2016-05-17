@@ -13,10 +13,10 @@ namespace System
     /// </summary>
     public class PermissionCode
     {
-        public const string 用户管理 = "Sys1000";
-        public const string 角色管理 = "Sys2000";
-        public const string 菜单管理 = "Sys3000";
-        public const string 客户管理 = "Sys4000";
+        public const string UserManagement  = "Sys1000";
+        public const string RoleManagement = "Sys2000";
+        public const string MenuManagement = "Sys3000";
+        public const string ClientManagement = "Sys4000";
     }
 
      //public const string None = "1";

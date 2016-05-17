@@ -1,6 +1,7 @@
-﻿@{
-    ViewBag.Title = "Add Menu";
-    Layout = "~/Areas/Manager/Views/Shared/_LayoutTree.cshtml";
+﻿@model WebSite.Areas.Manager.Models.Menu.MenuModel
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Manager/Views/Shared/_LayoutHomeDialog.cshtml";
 }
 @section scripts{
     <script type="text/javascript">
@@ -10,26 +11,24 @@
             var pName = $.lumos.getUrlParamValue("pName");
             $("#lbl_PName").text(pName);
 
-            $.formValidator.initConfig({ formID: "form1", onError: function (msg) { art.dialog.alert(msg); }, onSuccess: function () { return add(); } });
-            $("#txt_Name").formValidator({ onShow: "Required!", onFocus: "Required,and no more than 50 characters！", onCorrect: "&nbsp;" }).inputValidator({ min: 1, max: 50, empty: { leftEmpty: false, emptyError: "Required!" }, onError: "Required,and no more than 50 characters！" });
-            $("#txt_Url").formValidator().inputValidator({ min: 0, max: 250, onError: "Url is no more than 250 characters!" });
-            $("#txt_Description").formValidator().inputValidator({ min: 0, max: 500, onError: "Remark is no more than 500 characters!" });
+            $.formValidator.initConfig({ formID: "form1", onError: function (msg) { }, onSuccess: function () { return add(); } });
+            $("#txt_Name").formValidator({ onShow: "&nbsp;", onFocus: "Required,no more than 20 char", onCorrect: "&nbsp;" }).inputValidator({ min: 1, max: 20, onError: "Required,no more than 20 char" });
+            $("#txt_Url").formValidator({ onShow: "&nbsp;", onFocus: "No more than 200 char", onCorrect: "&nbsp;", empty: true, onEmpty: "&nbsp;" }).inputValidator({ min: 0, max: 200, onError: "No more than 200 char" });
+            $("#txt_Description").formValidator({ onShow: "&nbsp;", onFocus: "No more than 500 char", onCorrect: "&nbsp;", empty: true, onEmpty: "&nbsp;" }).inputValidator({ min: 0, max: 500, onError: "No more than 500 char" });
         });
 
         function add() {
             var l_Data = $("#form1").serializeArray();
-            l_Data.push({ name: "pId", value: $.lumos.getUrlParamValue("id") });
-            $.lumos.post({
-                url: "../Menu/AddMenu",
+            l_Data.push({ name: "PId", value: $.lumos.getUrlParamValue("id") });
+            $.lumos.postJson({
+                url: "../Menu/Add",
                 data: l_Data,
                 success: function (data) {
                     if (data.result == "Success") {
                         var win = art.dialog.open.origin;
                         win.loadTreeList($.lumos.getUrlParamValue("id"));
-                        art.dialog.alert(data.message, function () { art.dialog.close(); });
-                    }
-                    else {
-                        art.dialog.alert(data.message);
+                        win.art.dialog.tips(data.message);
+                        $.lumos.cloaseDialog();
                     }
                 }
             });
@@ -37,86 +36,73 @@
         }
     </script>
 }
-<div class="gbr gbr-maintitle" id="gbr-maintitle">
-    <div class="wrapper">
-        <div class="content">
-            <span class="title-icon">@ViewBag.Title</span>
-            <span class="title-message"></span>
-        </div>
-    </div>
-</div>
+<form name="form1" method="post" action="#" id="form1">
+    @AntiForgery.GetHtml()
+    <table class="f-tb" cellpadding="0" cellspacing="1">
+        <tr>
+            <td class="f-tb-t">
+                Parent Name：
+            </td>
+            <td class="f-tb-c">
+                <label id="lbl_PName"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="f-tb-t">
+                Name：
+            </td>
+            <td class="f-tb-c">
+                <input name="Name" type="text" autocomplete="off" id="txt_Name" style="width:250px;" class="input-control" />
+                <span id="txt_NameTip"></span>
+            </td>
+        </tr>
+        <tr class="tr_url">
+            <td class="f-tb-t">
+                Url：
+            </td>
+            <td class="f-tb-c">
+                <input name="Url" type="text" autocomplete="off" id="txt_Url" class="input-control"
+                       style="width: 350px;" />
+                <span id="txt_UrlTip"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="f-tb-t">
+                Permissions：
+            </td>
+            <td class="f-tb-c">
 
-<div class="gbr gbr-mainbody" id="gbr-mainbody">
-    <div class="wrapper">
-        <div class="content">
-            <form name="form1" method="post" action="#" id="form1">
-                @Html.GenerateUniqueSubmitIdentifier()
-                @AntiForgery.GetHtml()
-                <table class="f-tb" cellpadding="0" cellspacing="1">
-                    <tr>
-                        <td class="f-tb-t">
-                            Parent Name：
-                        </td>
-                        <td class="f-tb-c">
-                            <label id="lbl_PName"></label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="f-tb-t">
-                            Name：
-                        </td>
-                        <td class="f-tb-c">
-                            <input name="txt_Name" type="text" autocomplete="off" id="txt_Name" style="width:250px;" class="form-control" />
-                            <span id="txt_NameTip" width="80%"></span>
-                        </td>
-                    </tr>
-                    <tr class="tr_url">
-                        <td class="f-tb-t">
-                            Url：
-                        </td>
-                        <td class="f-tb-c">
-                            <input name="txt_Url" type="text" autocomplete="off" id="txt_Url" class="form-control"
-                                   style="width: 350px;" />
-                            @*<span id="txt_UrlTip"></span>*@
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="f-tb-t">
-                            Permission：
-                        </td>
-                        <td class="f-tb-c">
+                @for (int i = 0; i < Model.SysPermission.Count; i++)
+                {
+                    if (Model.SysPermission[i].Id != "1")
+                    {
+                        <span>
+                            <input id="cb_Permission_@i" type="checkbox" name="Permission" value="@Model.SysPermission[i].Id" />
+                            <label for="cb_Permission_@i">@Model.SysPermission[i].Name</label>
+                        </span>
+                    }
+                }
 
-                            @for (int i = 0; i < Model.Permission.Count; i++)
-                            {
-                                if (Model.Permission[i].Id != "1")
-                                {
-                                    <span>
-                                        <input id="cb_Permission_@i" type="checkbox" name="cb_Permission" value="@Model.Permission[i].Id" />
-                                        <label for="cb_Permission_@i">@Model.Permission[i].Name</label>
-                                    </span>
-                                }
-                            }
+            </td>
+        </tr>
+        <tr>
+            <td class="f-tb-t">
+                Remark：
+            </td>
+            <td class="f-tb-c">
+                <textarea name="txt_Description" rows="5" cols="46" id="txt_Description" class="input-control"></textarea>
+                <span id="txt_DescriptionTip"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="f-tb-t"></td>
+            <td class="f-tb-c">
+                <input type="submit" name="btn_Submit" id="btn_Submit" value="Confirm" class="btn btn-sure" />
+                <input type="button" name="btn_Cancle" id="btn_Cancle" value="Close" class="btn btn-close dialog-close" />
+            </td>
+        </tr>
+    </table>
+</form>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="f-tb-t">
-                            Remark：
-                        </td>
-                        <td class="f-tb-c">
-                            <textarea name="txt_Description" rows="5" cols="42" id="txt_Description" class="form-control"></textarea>
-                        </td>
-                    </tr>
 
-                    <tr>
-                        <td class="f-tb-t"></td>
-                        <td class="f-tb-c">
-                            <input type="submit" name="btn_Submit" id="btn_Submit" value="Confirm" class="f-tb-btn btn" />
-                            <input type="button" name="btn_Cancle" id="btn_Cancle" value="Cloase" class="f-tb-btn btn" />
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </div>
-    </div>
-</div>
+

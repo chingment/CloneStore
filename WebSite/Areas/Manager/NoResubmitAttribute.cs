@@ -41,7 +41,7 @@ namespace WebSite.Areas.Manager
                         {
                             if (isAjaxRequest)
                             {
-                                CustomJsonResult jsonResult = new CustomJsonResult(ResultType.Resubmit, "你已经提交了,请勿重复提交,关闭窗口或刷新后再次提交！");
+                                CustomJsonResult jsonResult = new CustomJsonResult(ResultType.Resubmit, "You have submitted, do not repeat the submission, close the window or refresh again after the submission");
                                 jsonResult.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                                 filterContext.Result = jsonResult;
                                 filterContext.Result.ExecuteResult(filterContext);

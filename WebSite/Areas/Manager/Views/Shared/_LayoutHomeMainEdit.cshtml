@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "_LayoutHomeMainEdit";
+    Layout = "~/Areas/Manager/Views/Shared/_LayoutHomeMainTree.cshtml";
+}
+@section styles{
+    @RenderSection("styles", required: false)
+}
+@section scripts{
+    <script src="~/Areas/Manager/Scripts/jquery.formValidator.js"></script>
+    <script src="~/Areas/Manager/Scripts/jquery.formValidatorRegex.js"></script>
+    @RenderSection("scripts", required: false)
+}
+
+@RenderBody()
+@section scriptsbyend{
+    @RenderSection("scriptsbyend", required: false)
+}

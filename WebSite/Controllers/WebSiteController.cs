@@ -71,11 +71,11 @@ namespace WebSite.Controllers
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
-            CurrentDb.SysPageAccessRecord.Add(new SysPageAccessRecord() { UserId = User.Identity.GetUserId<int>(), AccessTime = DateTime.Now, PageUrl = filterContext.HttpContext.Request.Url.AbsolutePath, Ip = CommonUtility.GetIP() });
+            CurrentDb.SysPageAccessRecord.Add(new SysPageAccessRecord() { UserId = User.Identity.GetUserId<int>(), AccessTime = DateTime.Now, PageUrl = filterContext.HttpContext.Request.Url.AbsolutePath, Ip = CommonUtils.GetIP() });
             CurrentDb.SaveChanges();
 
             ILog log = LogManager.GetLogger(CommonSetting.LoggerAccessWeb);
-            log.Info(FormatUtility.AccessWeb(User.Identity.GetUserId<int>(), User.Identity.GetUserName()));
+            log.Info(FormatUtils.AccessWeb(User.Identity.GetUserId<int>(), User.Identity.GetUserName()));
         }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)

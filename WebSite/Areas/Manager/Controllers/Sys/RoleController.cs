@@ -1,18 +1,15 @@
 ﻿using Lumos.Common;
-using Lumos.DAL;
 using Lumos.DAL.AuthorizeRelay;
 using Lumos.Entity;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using WebSite.Areas.Manager.Models.Role;
 
 namespace WebSite.Areas.Manager.Controllers
 {
-    [ManagerAuthorize(PermissionCode.角色管理)]
+    [ManagerAuthorize(PermissionCode.RoleManagement)]
     public class RoleController : ManagerController
     {
         #region 视图
@@ -26,159 +23,28 @@ namespace WebSite.Areas.Manager.Controllers
             return View();
         }
 
-        public ViewResult RoleUser()
+        public ViewResult AddUserToRole()
         {
             return View();
         }
 
-        public ViewResult RoleUserSel()
-        {
-            return View();
-        }
-
-        public ViewResult RoleMenu()
-        {
-            return View();
-        }
-
-        public ViewResult RolePermission()
-        {
-            return View();
-        }
         #endregion
 
         #region 方法
-        /// <summary>
-        /// 获取角色的树形列表格式是ZTreeJson
-        /// </summary>
-        /// <returns></returns>
         public JsonResult GetRoleTree()
         {
             object json = ConvertToZTreeJson(CurrentDb.Roles.ToArray(), "id", "pid", "name", "role");
             return Json(ResultType.Success, json);
         }
 
-        /// <summary>
-        /// 根据角色id获取信息
-        /// </summary>
-        /// <param name="roleId"></param>
-        /// <returns></returns>
-        public JsonResult GetRoleDetail(int roleId)
+
+        public JsonResult GetDetail(int roleId)
         {
-            var identityManager = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
-            SysRole role = identityManager.RoleManager.FindById(roleId);
+            var identity = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
+            SysRole role = identity.RoleManager.FindById(roleId);
             return Json(ResultType.Success, role);
         }
 
-        /// <summary>
-        /// 获取角色的用户列表
-        /// </summary>
-        /// <param name="fc"></param>
-        /// <returns></returns>
-        public JsonResult GetRoleUserList(int roleId)
-        {
-            string userName = Request.Form["txt_UserName"].Trim();
-            string realName = Request.Form["txt_RealName"].Trim();
-
-
-            var list = (from ur in CurrentDb.SysUserRole
-                        join r in CurrentDb.Roles on ur.RoleId equals r.Id
-                        join u in CurrentDb.SysStaffUser on ur.UserId equals u.Id
-                        where ur.RoleId == roleId &&
-                            (userName.Length == 0 || u.UserName.Contains(userName)) &&
-                            (realName.Length == 0 || u.RealName.Contains(realName)) &&
-                              u.IsDelete == false
-                        select new { ur.UserId, u.RealName, u.UserName, ur.RoleId, r.Name }).Distinct();
-
-            int total = list.Count();
-
-            int pageIndex = int.Parse(Request.Form["pageindex"].ToString());
-            int pageSize = 10;
-            list = list.OrderBy(r => r.UserId).Skip(pageSize * (pageIndex)).Take(pageSize);
-
-            PageEntity pageEntity = new PageEntity { PageSize = pageSize, TotalRecord = total, Rows = list };
-
-            return Json(ResultType.Success, pageEntity);
-        }
-
-        /// <summary>
-        /// 获取未绑定到该角色的用户列表
-        /// </summary>
-        /// <param name="roleId"></param>
-        /// <returns></returns>
-        public JsonResult GetNotBindUsers(int roleId)
-        {
-            string userName = Request.Form["txt_UserName"].Trim();
-            string realName = Request.Form["txt_RealName"].Trim();
-
-            var list = (from u in CurrentDb.SysStaffUser
-                        where !(from d in CurrentDb.SysUserRole
-
-                                where d.RoleId == roleId
-                                select d.UserId).Contains(u.Id)
-
-                        where
-                                               (userName.Length == 0 || u.UserName.Contains(userName)) &&
-                                               (realName.Length == 0 || u.RealName.Contains(realName)) &&
-                                                u.IsDelete == false
-                        select new { u.Id, u.RealName, u.UserName }).Distinct();
-
-            int total = list.Count();
-
-            int pageIndex = int.Parse(Request.Form["pageindex"].ToString());
-            int pageSize = 10;
-            list = list.OrderBy(r => r.Id).Skip(pageSize * (pageIndex)).Take(pageSize);
-
-            PageEntity pageEntity = new PageEntity { PageSize = pageSize, TotalRecord = total, Rows = list };
-
-            return Json(ResultType.Success, pageEntity);
-        }
-
-        /// <summary>
-        /// 添加用户到该角色
-        /// </summary>
-        /// <param name="fc"></param>
-        /// <returns></returns>
-        public JsonResult AddRoleUser(int roleId, string userIds)
-        {
-            if (!string.IsNullOrWhiteSpace(userIds))
-            {
-                int[] arrUserIds = userIds.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(s => int.Parse(s)).ToArray();
-                foreach (int userId in arrUserIds)
-                {
-                    var identityManager = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
-                    identityManager.AddUserToRole(userId, roleId);
-                }
-            }
-            return Json(ResultType.Success, "Success");
-        }
-
-        /// <summary>
-        /// 移除角色用户
-        /// </summary>
-        /// <param name="roleId"></param>
-        /// <param name="userIds"></param>
-        /// <returns></returns>
-        public JsonResult RemoveRoleUser(int roleId, string userIds)
-        {
-            if (!string.IsNullOrWhiteSpace(userIds))
-            {
-                int[] arrUserIds = userIds.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(s => int.Parse(s)).ToArray();
-                foreach (int userId in arrUserIds)
-                {
-                    var identityManager = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
-                    identityManager.RemoveUserFromRole(userId, roleId);
-                }
-            }
-
-            return Json(ResultType.Success, "Success");
-        }
-
-        /// <summary>
-        /// 获取角色菜单
-        /// </summary>
-        /// <param name="fc"></param>
-        /// <returns></returns>
         public JsonResult GetRoleMenuTreeList(int roleId)
         {
 
@@ -191,114 +57,145 @@ namespace WebSite.Areas.Manager.Controllers
             return Json(ResultType.Success, json);
         }
 
-        /// <summary>
-        /// 保存角色所选择的菜单
-        /// </summary>
-        /// <param name="fc"></param>
-        /// <returns></returns>
-        public JsonResult SaveRoleMenu(int roleId, string menuIds)
-        {
-            var identityManager = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
-            int[] arrMenuIds = menuIds.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(s => int.Parse(s)).ToArray();
-
-            identityManager.SaveRoleMenu(roleId, arrMenuIds);
-
-            return Json(ResultType.Success, "Success");
-        }
-
-        public JsonResult GetRolePermissionTreeList(int roleId)
+        public JsonResult GetRoleUserList(RoleUserSearchCondition condition)
         {
 
-            //List<string> checkedPermissions = CurrentDb.SysRolePermission.Where(r => r.RoleId == roleId).Select(p => p.PermissionId).ToList();
-            //var identity = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
-            //object json = ConvertToZTreeJson(identity.GetPermissionList(new PermissionCode()).ToArray(), checkedPermissions.ToArray(), "id", "pid", "name", "opfun");
 
-            //return Json(ResultType.Success, json);
 
-            return Json(ResultType.Failure);
+            var list = (from ur in CurrentDb.SysUserRole
+                        join r in CurrentDb.Roles on ur.RoleId equals r.Id
+                        join u in CurrentDb.Users on ur.UserId equals u.Id
+                        where ur.RoleId == condition.RoleId &&
+                            (condition.UserName == null || u.UserName.Contains(condition.UserName)) &&
+                            (condition.FullName == null || u.FullName.Contains(condition.FullName)) &&
+                              u.IsDelete == false
+                        select new { ur.UserId, ur.RoleId, u.FullName, u.UserName }).Distinct();
+
+            int total = list.Count();
+
+            int pageIndex = condition.PageIndex;
+            int pageSize = 10;
+            list = list.OrderBy(r => r.UserId).Skip(pageSize * (pageIndex)).Take(pageSize);
+
+            PageEntity pageEntity = new PageEntity { PageSize = pageSize, TotalRecord = total, Rows = list };
+
+            return Json(ResultType.Success, pageEntity);
         }
 
-        ///// <summary>
-        ///// 保存角色所选择权限
-        ///// </summary>
-        ///// <param name="fc"></param>
-        ///// <returns></returns>
-        //public JsonResult SaveRolePermission(int roleId, string permissionIds)
-        //{
-        //    var identityManager = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
-        //    string[] arrPermussionIds = permissionIds.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-        //    identityManager.SaveRolePermission(roleId, arrPermussionIds);
-        //    return Json(ResultType.Success, "Success");
-        //}
+        public JsonResult GetNotBindUsers(RoleUserSearchCondition condition)
+        {
 
-        /// <summary>
-        /// 创建角色
-        /// </summary>
-        /// <param name="fc"></param>
-        /// <returns></returns>
+            var list = (from u in CurrentDb.Users
+                        where !(from d in CurrentDb.SysUserRole
+
+                                where d.RoleId == condition.RoleId
+                                select d.UserId).Contains(u.Id)
+
+                        where
+                                             (condition.UserName == null || u.UserName.Contains(condition.UserName)) &&
+                            (condition.FullName == null || u.FullName.Contains(condition.FullName)) &&
+                                                u.IsDelete == false
+                        select new { u.Id, u.FullName, u.UserName }).Distinct();
+
+            int total = list.Count();
+
+            int pageIndex = condition.PageIndex;
+            int pageSize = 10;
+            list = list.OrderBy(r => r.Id).Skip(pageSize * (pageIndex)).Take(pageSize);
+
+            PageEntity pageEntity = new PageEntity { PageSize = pageSize, TotalRecord = total, Rows = list };
+
+            return Json(ResultType.Success, pageEntity);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult Create(FormCollection fc)
+        public JsonResult AddUserToRole(int roleId, int[] userIds)
         {
-            string pId = fc["pId"].Trim();
-            string txt_RoleName = fc["txt_Name"].Trim();
-            string txt_Description = fc["txt_Description"].ToString();
+            var identityManager = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
+            foreach (int userId in userIds)
+            {
+                identityManager.AddUserToRole(roleId,userId);
+            }
+
+            return Json(ResultType.Success, ManagerOperateTipUtils.SELECT_SUCCESS);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult RemoveUserFromRole(int roleId, int[] userIds)
+        {
 
             var identityManager = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
-            if (!identityManager.RoleExists(txt_RoleName))
+
+            foreach (int userId in userIds)
+            {
+                identityManager.RemoveUserFromRole(roleId, userId);
+            }
+
+            return Json(ResultType.Success, ManagerOperateTipUtils.REMOVE_SUCCESS);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult SaveRoleMenu(int roleId, int[] menuIds)
+        {
+            var identity = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
+            identity.SaveRoleMenu(roleId, menuIds);
+
+            return Json(ResultType.Success, ManagerOperateTipUtils.SAVE_SUCCESS);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult Add(RoleModel model)
+        {
+            var identityManager = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
+            if (!identityManager.RoleExists(model.Name))
             {
                 SysRole role = new SysRole();
-                role.PId = int.Parse(pId);
-                role.Name = txt_RoleName;
-                role.Description = txt_Description;
+                role.PId = model.PId;
+                role.Name = model.Name;
+                role.Description = model.Description;
                 identityManager.CreateRole(role);
-                return Json(ResultType.Success, "Success");
+                return Json(ResultType.Success, ManagerOperateTipUtils.ADD_SUCCESS);
             }
             else
             {
-                return Json(ResultType.Failure, "The role is exist");
+                return Json(ResultType.Failure, ManagerOperateTipUtils.ROLE_EXISTS);
             }
         }
 
-        /// <summary>
-        /// 修改角色
-        /// </summary>
-        /// <param name="fc"></param>
-        /// <returns></returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult Update(FormCollection fc)
+        public JsonResult Update(RoleModel model)
         {
-            int roleId = int.Parse(fc["roleId"].Trim());
-            string txt_RoleName = fc["txt_Name"].Trim();
-            string txt_Description = fc["txt_Description"].ToString();
 
             var identityManager = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
 
-            SysRole role = identityManager.RoleManager.FindById(roleId);
-            role.Name = txt_RoleName;
-            role.Description = txt_Description;
+            SysRole role = identityManager.RoleManager.FindById(model.Id);
+            role.Name = model.Name;
+            role.Description = model.Description;
 
             identityManager.UpdateRole(role);
-            return Json(ResultType.Success, "Success");
+            return Json(ResultType.Success, ManagerOperateTipUtils.UPDATE_SUCCESS);
         }
 
-        /// <summary>
-        /// 删除角色
-        /// </summary>
-        /// <param name="fc"></param>
-        /// <returns></returns>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult Delete(FormCollection fc)
+        public JsonResult Delete(int[] id)
         {
-            int[] roleIds = fc["roleIds"].Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(s => int.Parse(s)).ToArray();
+
             var identityManager = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
-            foreach (int roleId in roleIds)
+            foreach (int roleId in id)
             {
                 identityManager.DeleteRole(roleId);
             }
-            return Json(ResultType.Success, "Success");
+            return Json(ResultType.Success, ManagerOperateTipUtils.DELETE_SUCCESS);
         }
 
         #endregion
