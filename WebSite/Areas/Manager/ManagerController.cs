@@ -257,6 +257,8 @@ namespace WebSite.Areas.Manager
         {
             _currentDb = new LumosDbContext();
             var identity = new AspNetIdentiyAuthorizeRelay<SysUser>(CurrentDb);
+
+
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -270,7 +272,21 @@ namespace WebSite.Areas.Manager
             }
 
             ILog log = LogManager.GetLogger(CommonSetting.LoggerAccessWeb);
-            log.Info(FormatUtils.AccessWeb(User.Identity.GetUserId<int>(),User.Identity.GetUserName()));
+            log.Info(FormatUtils.AccessWeb(User.Identity.GetUserId<int>(), User.Identity.GetUserName()));
+
+
+            //if (filterContext.HttpContext.Request.Url.AbsolutePath.IndexOf(ManagerUtils.GetLoginPage()) == -1)
+            //{
+            //    if (Request.IsAuthenticated)
+            //    {
+            //        var userId = User.Identity.GetUserId<int>();
+            //        var user = CurrentDb.SysStaffUser.Where(m => m.Id == userId).FirstOrDefault();
+            //        if (user == null)
+            //        {
+            //            Response.Redirect(ManagerUtils.GetLoginPage());
+            //        }
+            //    }
+            //}
 
         }
 
@@ -320,7 +336,8 @@ namespace WebSite.Areas.Manager
                 {
                     file_upload.SaveAs(filePath);
 
-                    if(oldFileName!=null) {
+                    if (oldFileName != null)
+                    {
                         DelFile(oldFileName);
                     }
                 }

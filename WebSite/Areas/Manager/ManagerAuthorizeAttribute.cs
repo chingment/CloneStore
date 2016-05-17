@@ -51,6 +51,8 @@ namespace WebSite.Areas.Manager
             }
 
 
+
+
             #region 判断是否有该权限
             if (permissions != null)
             {
