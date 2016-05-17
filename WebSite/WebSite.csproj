@@ -205,12 +205,14 @@
     <Compile Include="Areas\Manager\Models\Home\ChangePasswordModel.cs" />
     <Compile Include="Areas\Manager\Models\Home\LoginModel.cs" />
     <Compile Include="Areas\Manager\Models\SearchCondition.cs" />
+    <Compile Include="Areas\Manager\Models\Sys\ClientUser\ClientUserModel.cs" />
+    <Compile Include="Areas\Manager\Models\Sys\ClientUser\ClientUserSearchCondition.cs" />
     <Compile Include="Areas\Manager\Models\Sys\LogView\LogViewModel.cs" />
     <Compile Include="Areas\Manager\Models\Sys\Menu\MenuModel.cs" />
     <Compile Include="Areas\Manager\Models\Sys\Role\RoleModel.cs" />
     <Compile Include="Areas\Manager\Models\Sys\Role\RoleUserSearchCondition.cs" />
-    <Compile Include="Areas\Manager\Models\Sys\StaffUser\UserModel.cs" />
-    <Compile Include="Areas\Manager\Models\Sys\StaffUser\UserSearchCondition.cs" />
+    <Compile Include="Areas\Manager\Models\Sys\StaffUser\StaffUserModel.cs" />
+    <Compile Include="Areas\Manager\Models\Sys\StaffUser\StaffUserSearchCondition.cs" />
     <Compile Include="Areas\Manager\Models\Sys\User\UserModel.cs" />
     <Compile Include="Areas\Manager\Models\Sys\User\UserSearchCondition.cs" />
     <Compile Include="Areas\Manager\NoResubmitAttribute.cs" />
@@ -677,6 +679,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Manager\Views\Sys\User\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Manager\Views\Sys\ClientUser\Add.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\ClientUser\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Sys\ClientUser\Update.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
