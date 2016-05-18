@@ -6,9 +6,9 @@ using System.Web;
 
 namespace WebSite.Models.Home
 {
-    public class IndexModel
+    public class IndexViewModel
     {
-        public IndexModel()
+        public IndexViewModel()
         {
             this.Retailers = new List<Retailer>();
         }

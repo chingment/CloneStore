@@ -45,9 +45,6 @@ a:active {
 	text-decoration: none;
 }
 
-input[type=text], input[type=password] {
-	height: 18px;
-}
 
 .clearfix:before, .clearfix:after {
 	content: "";
@@ -135,9 +132,6 @@ input[type=text], input[type=password] {
 	line-height: 20px;
 }
 
-
-
-
 /*media screen, projection*/
 .filter-lists-container .filter-entries-label {
 	float: left;
@@ -182,12 +176,225 @@ a.a-btn:hover {
 
 a.a-btn, .a.a-btn:visited {
 	color: #fff;
-	padding: 8px 23px;
+	padding: 8px 22px;
 	text-decoration: none;
 	background: #95bcf2;
 	font-size: 16px;
 	font-weight: bold;
 }
+
+
+
+
+
+							/*垂直表单 start*/
+.h-form-container .form-tip ul, .h-form-container .form-tip p {
+	line-height: 18px;
+	padding: 5px 0px;
+}
+
+.h-form-container .form-tip p {
+	text-align: center;
+}
+
+.h-form-container .h-message {
+	text-align: center;
+	line-height: 30px;
+	height: 30px;
+}
+
+.h-form-container .h-text {
+	height: 30px;
+	line-height: 30px;
+	white-space: nowrap;
+}
+
+
+.h-form-container .h-entry {
+	line-height: 20px;
+}
+
+.h-form-container .h-line {
+	height: 12px;
+}
+
+.h-form-container .h-button {
+}
+
+.h-form-container .h-header {
+	background-color: #f0f0f0;
+	padding: 9px;
+}
+
+	.h-form-container .h-header .title {
+		color: #2299eb;
+		font-size: 16px;
+		margin-right: 25px;
+	}
+
+	.h-form-container .h-header .info {
+		font-size: 12px;
+		color: #848383;
+	}
+
+.h-form-container .h-item {
+	position: relative;
+	background-image: inherit;
+	display: inline;
+	line-height: 34px;
+	text-align: left;
+	margin: 0 3px 0px 3px;
+	display: inline-block;
+	padding-left: 5px;
+	padding-right: 5px;
+	white-space: nowrap;
+}
+
+.h-form-container span.h-entry-text {
+	white-space: pre-line;
+	word-break: break-all;
+	display: block;
+}
+
+.h-form-container .h-entry-label {
+	float: left;
+	margin-right: 0px;
+	width: 110px;
+	text-align: right;
+	line-height: 34px;
+}
+
+.h-form-container .h-entry-more {
+	float: right;
+}
+
+.h-form-container .h-entry-values {
+	margin-left: 110px;
+	margin-right: 0px;
+	text-align: left;
+	*display: inline-block;
+}
+
+.h-form-container .h-item-show {
+	display: inline;
+}
+
+.h-form-container .onEmpty {
+	padding-left: 25px;
+	font-size: 12px;
+	line-height: 24px;
+	display: inline;
+	background-position: 0px -3px;
+	*display: inline-block;
+	*vertical-align: top;
+	*height: 36px;
+	*line-height: 40px;
+	*background-position: 0px 10px;
+}
+
+.h-form-container .onShow {
+	background: url('images/onShow.gif') no-repeat;
+	padding-left: 25px;
+	font-size: 12px;
+	line-height: 24px;
+	display: inline;
+	background-position: 0px -4px;
+	*display: inline-block;
+	*vertical-align: top;
+	*height: 36px;
+	*line-height: 40px;
+	*background-position: 0px 10px;
+}
+
+.h-form-container .onFocus {
+	background: url('images/onFocus.gif') no-repeat;
+	padding-left: 25px;
+	font-size: 12px;
+	line-height: 24px;
+	display: inline;
+	background-position: 0px -4px;
+	*display: inline-block;
+	*vertical-align: top;
+	*height: 36px;
+	*line-height: 40px;
+	*background-position: 0px 10px;
+}
+
+.h-form-container .onError {
+	background: url('images/onError.gif') no-repeat;
+	padding-left: 25px;
+	font-size: 12px;
+	line-height: 24px;
+	display: inline;
+	background-position: 0px -4px;
+	*display: inline-block;
+	*vertical-align: top;
+	*height: 36px;
+	*line-height: 40px;
+	*background-position: 0px 10px;
+}
+
+.h-form-container .onCorrect {
+	background: url('images/onCorrect.gif') no-repeat;
+	padding-left: 25px;
+	font-size: 12px;
+	line-height: 24px;
+	display: inline;
+	background-position: 0px -4px;
+	*display: inline-block;
+	*vertical-align: top;
+	*height: 36px;
+	*line-height: 40px;
+	*background-position: 0px 10px;
+}
+
+.h-form-container .onLoad {
+	background: url('images/onLoad.gif') no-repeat 3px 3px;
+	padding-left: 25px;
+	font-size: 12px;
+	line-height: 24px;
+	display: inline;
+	background-position: 0px -4px;
+	*display: inline-block;
+	*vertical-align: top;
+	*height: 36px;
+	*line-height: 40px;
+	*background-position: 0px 10px;
+}
+
+
+
+
+
+	.input-control {
+	padding: 0px 12px;
+	font-size: 14px;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	border: 1px solid #bfbfbf;
+	box-shadow: none;
+	border-radius: 4px;
+	height: 32px;
+	line-height: 32px;
+}
+
+	.input-control:focus {
+		border: 1px solid #30a5ff;
+	}
+
+
+
+
+
+
+
 
 .owl-prev {
 	display: block;

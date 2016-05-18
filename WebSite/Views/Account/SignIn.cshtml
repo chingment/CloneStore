@@ -9,14 +9,8 @@
         }
 
         .signin-box {
-            width: 220px;
+            width: 430px;
             margin: 0px auto;
-        }
-
-
-        .signin-fields > li {
-            line-height: 40px;
-            height: 40px;
         }
     </style>
 }
@@ -27,37 +21,52 @@
     <script type="text/javascript">
 
 
-        $(this).ready(function () {
-            var a = $.formValidator.initConfig({
-                formID: "form1", onError: function (msg, a, errorList) {
-                    $.formValidator.setformTip(errorList);
-                }, onSuccess: function () { return login(); }
-            });
-            $("#txt_UserName").formValidator({ onShow: "Please enter email address.", onFocus: "Please enter email address.", onCorrect: "&nbsp;" }).regexValidator({ min: 1, regExp: regexEnum.email, onError: "Please enter a valid email address." });
-            $("#txt_Password").formValidator({ onShow: "Please enter password.", onFocus: "Please enter password.", onCorrect: "&nbsp;" }).inputValidator({ min: 1, onError: "Please enter password." });
+        function signin() {
 
-        });
+            var msgObj = $("#lbl_Message");
+            $(msgObj).text("");
+            var userName = $("#txt_UserName").val().replace(/(^\s*)|(\s*$)/g, "");
+            var passWord=$("#txt_Password").val();
 
+            if (userName.length == 0) {
+                $(msgObj).text("Please enter your account");
+                return false;
+            }
+            else {
+                var myReg =@Html.Raw(@"/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/");
+                if(!myReg.test(userName))
+                {
+                    $(msgObj).text("Account must be email format");
+                    return false;
+                }
+            }
 
-        function login() {
+            if (passWord.length == 0) {
+                $(msgObj).text("Please enter your password");
+                return false;
+            }
+
             $.ajax({
                 type: "post",
                 url: "/Account/SignIn",
                 dataType: "json",
                 data: $('#form1').serialize(),
                 beforeSend: function (data) {
-                    $.formValidator.setformTip("sign in");
+                    $(msgObj).text("SignIn...");
                 }
             }).done(function (data) {
+
                 if (data.result == "Success") {
-                    $.formValidator.setformTip("");
+                    $(msgObj).text("");
                     window.location.href = data.content.Url;
                 }
                 else {
-                    $.formValidator.setformTip(data.message);
+                    $(msgObj).text(data.message);
                 }
 
             });
+
+
             return false;
         }
 
@@ -68,19 +77,40 @@
         <div class="content clearfix">
             <form id="form1">
                 @Html.AntiForgeryToken()
-                <div class="signin-box">
-                    <div class="form-tip">
-
-                    </div>
-                    <ul class="signin-fields">
-                        <li><input type="text" id="txt_UserName" name="UserName" placeholder="Email" style="width:210px;" /></li>
-                        <li><input type="password" id="txt_Password" name="Password" placeholder="Password" style="width:210px;" /></li>
-                        <li>
-                            <input type="submit" name="btn_SignIn" id="btn_SignIn" value="Sign In" style="display:none" />
-                            <a class="a-btn" href="javascript:void(0)" onclick="$('#btn_SignIn').click()">Sign In</a>
-                            <a class="a-btn" href="/Account/SignUp">Sign Up</a>
-                        </li>
-                    </ul>
+                <div class="h-form-container signin-box">
+                    <dl class="h-entry clearfix">
+                        <dt class="h-entry-label">&nbsp;</dt>
+                        <dd class="h-entry-values">
+                            <span class="h-item " id="lbl_Message"></span>
+                            <div class="clear"></div>
+                        </dd>
+                    </dl>
+                    <dl class="h-entry clearfix">
+                        <dt class="h-entry-label">UserName：</dt>
+                        <dd class="h-entry-values">
+                            <span class="h-item "><input type="text" id="txt_UserName" name="UserName" class="input-control" value="" style="width:180px;" /></span>
+                            <div class="clear"></div>
+                        </dd>
+                    </dl>
+                    <div class="h-line"></div>
+                    <dl class="h-entry">
+                        <dt class="h-entry-label">Password：</dt>
+                        <dd class="h-entry-values">
+                            <span class="h-item"><input type="password" id="txt_Password" name="Password" class="input-control" value="" style="width: 180px;" /></span>
+                            <div class="clear"></div>
+                        </dd>
+                    </dl>
+                    <div class="h-line"></div>
+                    <dl class="h-entry">
+                        <dt class="h-entry-label">&nbsp;</dt>
+                        <dd class="h-entry-values">
+                            <span class="h-item">
+                                <a class="a-btn" href="javascript:void(0)" onclick="signin()">Sign In</a>
+                                <a class="a-btn" href="/Account/SignUp">Sign Up</a>
+                            </span>
+                            <div class="clear"></div>
+                        </dd>
+                    </dl>
                 </div>
             </form>
         </div>

@@ -6,9 +6,9 @@ using System.Web;
 
 namespace WebSite.Models.Account
 {
-    public class MyCartModel
+    public class MyCartViewModel
     {
-        public MyCartModel()
+        public MyCartViewModel()
         {
             this.Pants = new List<Lumos.Entity.Product>();
             this.Shoes = new List<Lumos.Entity.Product>();

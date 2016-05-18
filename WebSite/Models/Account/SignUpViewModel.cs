@@ -6,9 +6,9 @@ using System.Web;
 
 namespace WebSite.Models.Account
 {
-    public class SignUpModel
+    public class SignUpViewModel
     {
-        public SignUpModel()
+        public SignUpViewModel()
         {
             this.Retailers = new List<Retailer>();
             this.Colors = new List<string>();

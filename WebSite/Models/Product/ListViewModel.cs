@@ -6,9 +6,9 @@ using System.Web;
 
 namespace WebSite.Models.Product
 {
-    public class ListModel
+    public class ListViewModel
     {
-        public ListModel()
+        public ListViewModel()
         {
             this.Products = new List<Lumos.Entity.Product>();
             this.CartProducts = new List<Lumos.Entity.Product>();

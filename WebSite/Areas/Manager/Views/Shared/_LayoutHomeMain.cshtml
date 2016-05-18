@@ -15,15 +15,25 @@
             delay: 100,
             isLoad: true
         }, function () {
-            var height = $('#gbr_main').height();
 
-            var navmenuleft = $('#gbr_main_content_left');
-            if (navmenuleft.length > 0) {
-                $(navmenuleft).height(height);
-            }
-            else {
+            var windowHeight = $(window).height();
+            var headerHeight = $('#gbr_header').height();
+            var footerHeight = $('#gbr_footer').height();
+            var mainHeight = windowHeight - headerHeight - footerHeight - 2;
 
+            var tempMainHeight = $('#gbr_main').height();
+            if (tempMainHeight > mainHeight) {
+                mainHeight = tempMainHeight;
             }
+            if (mainHeight < 500) {
+                mainHeight = 500;
+            }
+
+            $('#gbr_main').height(mainHeight);
+
+            var breadcrumbHeight = $('#gbr_row_breadcrumb').height();
+            $('#gbr_row_functionpage').height(mainHeight - breadcrumbHeight - 20);
+            $('#gbr_main_content_left').height(mainHeight);
         });
 
         $(document).ready(function () {
@@ -37,48 +47,48 @@
 }
 
 @*<dl>
-    <dl style="width:200px;float:left">
-        <ul class="navmenu-left">
-            @using Microsoft.AspNet.Identity
-            @if (Request.IsAuthenticated)
-            {
-                var menus = User.Identity.GetUserMenus();
-
-                var menuLevel1 = from c in menus where c.PId == 1 select c;
-                foreach (var menuLevel1Child in menuLevel1)
+        <dl style="width:200px;float:left">
+            <ul class="navmenu-left">
+                @using Microsoft.AspNet.Identity
+                @if (Request.IsAuthenticated)
                 {
+                    var menus = User.Identity.GetUserMenus();
 
-                    <li class="parent">
-                        <span><span class="icon icon_navmenu_level1_common"></span><span>@menuLevel1Child.Name</span></span>
-                        <ul class="children">
-                            @{
-                                var menuLevel2 = from c in menus where c.PId == menuLevel1Child.Id select c;
-                                foreach (var menuLevel2Child in menuLevel2)
-                                {
-                                    <li>
-                                        <a href="@menuLevel2Child.Url.ToLower()">
-                                            <span class="icon"></span><span>@menuLevel2Child.Name</span>
-                                        </a>
-                                    </li>
-                                }
-                            }
+                    var menuLevel1 = from c in menus where c.PId == 1 select c;
+                    foreach (var menuLevel1Child in menuLevel1)
+                    {
 
-                        </ul>
-                    </li>
+                        <li class="parent">
+                            <span><span class="icon icon_navmenu_level1_common"></span><span>@menuLevel1Child.Name</span></span>
+                            <ul class="children">
+                                @{
+                                    var menuLevel2 = from c in menus where c.PId == menuLevel1Child.Id select c;
+                                    foreach (var menuLevel2Child in menuLevel2)
+                                    {
+                                        <li>
+                                            <a href="@menuLevel2Child.Url.ToLower()">
+                                                <span class="icon"></span><span>@menuLevel2Child.Name</span>
+                                            </a>
+                                        </li>
                                     }
                                 }
-        </ul>
-    </dl>
-    <dd style="margin-left:200px">
-        <div class="gbr-row gbr-row-breadcrumb" >
-            @WebSite.Areas.Manager.ManagerBreadcrumb.Render(SiteMap.CurrentNode)
-        </div>
-        <div class="gbr-row gbr-row-functionpage">
-            @RenderBody()
-        </div>
 
-    </dd>
-</dl>*@
+                            </ul>
+                        </li>
+                                        }
+                                    }
+            </ul>
+        </dl>
+        <dd style="margin-left:200px">
+            <div class="gbr-row gbr-row-breadcrumb" >
+                @WebSite.Areas.Manager.ManagerBreadcrumb.Render(SiteMap.CurrentNode)
+            </div>
+            <div class="gbr-row gbr-row-functionpage">
+                @RenderBody()
+            </div>
+
+        </dd>
+    </dl>*@
 
 
 <div class="content-left gbr-main-content-left" id="gbr_main_content_left">
@@ -86,6 +96,7 @@
         @using Microsoft.AspNet.Identity
         @if (Request.IsAuthenticated)
         {
+
             var menus = User.Identity.GetUserMenus();
 
             var menuLevel1 = from c in menus where c.PId == 1 select c;
@@ -96,30 +107,31 @@
                     <span><span class="icon icon_navmenu_level1_common"></span><span>@menuLevel1Child.Name</span></span>
                     <ul class="children">
                         @{
-                            var menuLevel2 = from c in menus where c.PId == menuLevel1Child.Id select c;
-                            foreach (var menuLevel2Child in menuLevel2)
-                            {
-                                <li>
-                                    <a href="@menuLevel2Child.Url.ToLower()">
-                                        <span class="icon"></span><span>@menuLevel2Child.Name</span>
-                                    </a>
-                                </li>
-                            }
+                var menuLevel2 = from c in menus where c.PId == menuLevel1Child.Id select c;
+                foreach (var menuLevel2Child in menuLevel2)
+                {
+                    <li>
+                        <a href="@menuLevel2Child.Url.ToLower()">
+                            <span class="icon"></span><span>@menuLevel2Child.Name</span>
+                        </a>
+                    </li>
+                }
                         }
 
                     </ul>
                 </li>
-                                }
-                            }
+            }
+
+        }
     </ul>
 </div>
 
 
-<div class="content-right gbr-main-content-right"  id="gbr_main_content_right">
-    <div class="gbr-row gbr-row-breadcrumb">
+<div class="content-right gbr-main-content-right" id="gbr_main_content_right">
+    <div class="gbr-row gbr-row-breadcrumb" id="gbr_row_breadcrumb">
         @WebSite.Areas.Manager.ManagerBreadcrumb.Render(SiteMap.CurrentNode)
     </div>
-    <div class="gbr-row gbr-row-functionpage">
+    <div class="gbr-row gbr-row-functionpage" id="gbr_row_functionpage">
         @RenderBody()
     </div>
 </div>

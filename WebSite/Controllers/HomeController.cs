@@ -21,7 +21,7 @@ namespace WebSite.Controllers
                 Response.Cookies.Add(cartProducts);
             }
 
-            IndexModel model = new IndexModel();
+            IndexViewModel model = new IndexViewModel();
             model.Retailers = CurrentDb.Retailer.Where(m => m.IsDelete == false).OrderByDescending(m => m.Priority).ToList();
 
             return View(model);

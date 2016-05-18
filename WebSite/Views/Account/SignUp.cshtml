@@ -1,4 +1,4 @@
-﻿@model WebSite.Models.Account.SignUpModel
+﻿@model WebSite.Models.Account.SignUpViewModel
 @{
     ViewBag.Title = "SignUp";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
@@ -19,11 +19,13 @@
             margin-right: auto;
         }
 
+            .signup-box .h-entry-label {
+                width: 120px;
+            }
 
-        .signup-fields > li {
-            line-height: 30px;
-            height: 30px;
-        }
+            .signup-box .h-entry-values {
+                margin-left: 120px;
+            }
     </style>
 }
 
@@ -37,9 +39,12 @@
                     $.formValidator.setformTip(errorList);
                 }, onSuccess: function () { return register(); }
             });
-            $("#txt_UserName").formValidator({ onShow: "Please enter address.", onFocus: "Please enter address.", onCorrect: "&nbsp;" }).regexValidator({ min: 1, max: 100, regExp: regexEnum.email, onError: "Please enter a valid email address." });
-            $("#txt_Password1").formValidator({ onShow: "Please enter password.", onFocus: "Please enter password.", onCorrect: "&nbsp;" }).regexValidator({ regExp: regexEnum.password, onError: "Please enter 6 to 20 characters." });
-            $("#txt_Password").formValidator({ onShow: "Please enter confirm password.", onFocus: "Please enter confirm password.", onCorrect: "&nbsp;" }).regexValidator({ regExp: regexEnum.password, onError: "Please enter 6 to 20 characters." }).compareValidator({ desID: "txt_Password1", operateor: "=", onError: "The two passwords differ." });
+
+            $("#txt_FirstName").formValidator({ onShow: "&nbsp;", onFocus: "Required,no more than 20 char", onCorrect: "&nbsp;" }).inputValidator({ min: 1, max: 50, onError: "Required,no more than 50 char" });
+            $("#txt_LastName").formValidator({ onShow: "&nbsp;", onFocus: "Required,no more than 20 char", onCorrect: "&nbsp;" }).inputValidator({ min: 1, max: 50, onError: "Required,no more than 50 char" });
+            $("#txt_UserName").formValidator({ onShow: "&nbsp;", onFocus: "Required,email format and no more than 100 char", onCorrect: "&nbsp;" }).regexValidator({ min: 1, max: 100, regExp: regexEnum.email, onError: "Required,,email format and no more than 100 char" });
+            $("#txt_Password1").formValidator({ onShow: "&nbsp;", onFocus: "Required,6 to 20 Numbers, letters or underscores", onCorrect: "&nbsp;" }).regexValidator({ regExp: regexEnum.password, onError: "Required,6 to 20 Numbers, letters or underscores" });
+            $("#txt_Password").formValidator({ onShow: "&nbsp;", onFocus: "Required,6 to 20 Numbers, letters or underscores", onCorrect: "&nbsp;" }).regexValidator({ regExp: regexEnum.password, onError: "Please enter 6 to 20 char." }).compareValidator({ desID: "txt_Password1", operateor: "=", onError: "The two passwords differ." });
         });
 
         function register() {
@@ -67,51 +72,117 @@
     <div class="wrapper">
         <div class="content clearfix">
             <form id="form1" name="form1" enctype="multipart/form-data" method="post">
-
-                @Html.AntiForgeryToken()
-                <div class="signup-box">
-                    <div class="form-tip">
-
+                <div class="h-form-container signup-box">
+                    <div class="h-header">
+                        <span class="title">Create An Account</span>
                     </div>
-                    <ul class="signup-fields">
-                        <li><span>Create An Account</span></li>
-                        <li><input type="text" id="txt_UserName" name="UserName" placeholder="Email" /></li>
-                        <li><input type="password" id="txt_Password1" placeholder="Password" /></li>
-                        <li><input type="password" id="txt_Password" name="Password" placeholder="Confirm Password" /></li>
-                        <li><input type="text" id="txt_FirstName" name="FirstName" placeholder="FirstName" /> <input type="text" name="LastName" placeholder="LastName" /></li>
-                        <li><input type="text" id="txt_Address" name="Address" placeholder="Address" style="width:306px" /></li>
-                    </ul>
-                    <ul class="signup-fields">
-                        <li><span>Other Option</span></li>
-                        <li><span>Top 5 Favorite Retailers</span></li>
-                        <li>
-
-                            @{
-                                for (int i=0;i<Model.Retailers.Count;i++)
-                                {
-                                    <span><input type="checkbox" id="cb_Retailers@(i)" name="Retailers" value="@Model.Retailers[i].Name" /><label for="cb_Retailers@(i)">@Model.Retailers[i].Name</label></span>
-                                }
+                    <div class="h-line"></div>
+                    <dl class="h-entry">
+                        <dt class="h-entry-label">FirstName：</dt>
+                        <dd class="h-entry-values">
+                            <span class="h-item">
+                                <input type="text" id="txt_FirstName" name="FirstName" class="input-control" style="width: 100px;" />
+                                <span id="txt_FirstNameTip"></span>
+                            </span>
+                            <div class="clear"></div>
+                        </dd>
+                    </dl>
+                    <div class="h-line"></div>
+                    <dl class="h-entry">
+                        <dt class="h-entry-label">LastName：</dt>
+                        <dd class="h-entry-values">
+                            <span class="h-item">
+                                <input type="text" id="txt_LastName" name="LastName" class="input-control" value="" style="width: 100px;" />
+                                <span id="txt_LastNameTip"></span>
+                            </span>
+                            <div class="clear"></div>
+                        </dd>
+                    </dl>
+                    <div class="h-line"></div>
+                    <dl class="h-entry clearfix">
+                        <dt class="h-entry-label">UserName：</dt>
+                        <dd class="h-entry-values">
+                            <span class="h-item ">
+                                <input type="text" id="txt_UserName" name="UserName" class="input-control" style="width:180px;" />
+                                <span id="txt_UserNameTip"></span>
+                            </span>
+                            <div class="clear"></div>
+                        </dd>
+                    </dl>
+                    <div class="h-line"></div>
+                    <dl class="h-entry">
+                        <dt class="h-entry-label">Password：</dt>
+                        <dd class="h-entry-values">
+                            <span class="h-item">
+                                <input type="password" id="txt_Password1" class="input-control" style="width:180px;" />
+                                <span id="txt_Password1Tip"></span>
+                            </span>
+                            <div class="clear"></div>
+                        </dd>
+                    </dl>
+                    <div class="h-line"></div>
+                    <dl class="h-entry">
+                        <dt class="h-entry-label">Confirm Password：</dt>
+                        <dd class="h-entry-values">
+                            <span class="h-item">
+                               <input type="password" id="txt_Password" name="Password" class="input-control" style="width:180px;" /><span id="txt_PasswordTip"></span>
+                            </span>
+                            <div class="clear"></div>
+                        </dd>
+                    </dl>
+                    <div class="h-line"></div>
+                    <dl class="h-entry">
+                        <dt class="h-entry-label">Address：</dt>
+                        <dd class="h-entry-values">
+                            <span class="h-item"><input type="text" id="txt_Address" name="Address" class="input-control" style="width:360px" /></span>
+                            <div class="clear"></div>
+                        </dd>
+                    </dl>
+                    <div class="h-line"></div>
+                    <div class="h-header">
+                        <span class="title">Top 5 Favorite Retailers</span>
+                    </div>
+                    <div class="h-line"></div>
+                    <div>
+                        @{
+                            for (int i = 0; i < Model.Retailers.Count; i++)
+                            {
+                                <span><input type="checkbox" id="cb_Retailers@(i)" name="Retailers" value="@Model.Retailers[i].Name" /><label for="cb_Retailers@(i)">@Model.Retailers[i].Name</label></span>
                             }
-
-                           
-
-                        </li>
-                        <li><span>Favorite Colors</span></li>
-                        <li>
-                            @{
-                                for (int i = 0; i < Model.Colors.Count; i++)
-                                {
-                                    <span><input type="checkbox" id="cb_Colors@(i)" name="Colors" value="@Model.Colors[i]" /><label for="cb_Colors@(i)">@Model.Colors[i]</label></span>
-                                }
+                        }
+                    </div>
+                    <div class="h-line"></div>
+                    <div class="h-header">
+                        <span class="title">Favorite Colors</span>
+                    </div>
+                    <div class="h-line"></div>
+                    <div>
+                        @{
+                            for (int i = 0; i < Model.Colors.Count; i++)
+                            {
+                                <span><input type="checkbox" id="cb_Colors@(i)" name="Colors" value="@Model.Colors[i]" /><label for="cb_Colors@(i)">@Model.Colors[i]</label></span>
                             }
-                        </li>
-                        <li style="line-height:50px;">
+                        }
+                    </div>
+                    <div class="h-line"></div>
+                    <dl class="h-entry">
+                        <dt class="h-entry-label">&nbsp;</dt>
+                        <dd class="h-entry-values">
                             <input type="submit" class="btn" id="btn_Register" value="Register" style="display:none" />
                             <a class="a-btn" href="javascript:void(0)" onclick="$('#btn_Register').click()">Register</a>
                             <a class="a-btn" href="/Account/SignIn">SignIn</a>
-                        </li>
-                    </ul>
+                            <div class="clear"></div>
+                        </dd>
+                    </dl>
+                    <div class="h-line"></div>
                 </div>
+
+
+
+
+
+                @Html.AntiForgeryToken()
+
             </form>
         </div>
     </div>

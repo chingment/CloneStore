@@ -2,7 +2,7 @@
 
 namespace WebSite.Models.Account
 {
-    public class SignInModel
+    public class SignInViewModel
     {
         [Required]
         [Display(Name = "账号")]

@@ -56,7 +56,7 @@ namespace WebSite.Controllers
             }
     
 
-           ListModel model = new ListModel();
+           ListViewModel model = new ListViewModel();
 
             model.Retailer = retailer;
             model.OmittedProductsPages = 2;

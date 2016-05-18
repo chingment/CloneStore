@@ -275,18 +275,25 @@ namespace WebSite.Areas.Manager
             log.Info(FormatUtils.AccessWeb(User.Identity.GetUserId<int>(), User.Identity.GetUserName()));
 
 
-            //if (filterContext.HttpContext.Request.Url.AbsolutePath.IndexOf(ManagerUtils.GetLoginPage()) == -1)
-            //{
-            //    if (Request.IsAuthenticated)
-            //    {
-            //        var userId = User.Identity.GetUserId<int>();
-            //        var user = CurrentDb.SysStaffUser.Where(m => m.Id == userId).FirstOrDefault();
-            //        if (user == null)
-            //        {
-            //            Response.Redirect(ManagerUtils.GetLoginPage());
-            //        }
-            //    }
-            //}
+            bool skipAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true) || filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true);
+            if (!skipAuthorization)
+            {
+                if (filterContext.HttpContext.Request.Url.AbsolutePath.IndexOf(ManagerUtils.GetLoginPage()) == -1)
+                {
+                    if (Request.IsAuthenticated)
+                    {
+                        var userId = User.Identity.GetUserId<int>();
+                        var user = CurrentDb.SysStaffUser.Where(m => m.Id == userId).FirstOrDefault();
+                        if (user == null)
+                        {
+                            Response.Redirect(ManagerUtils.GetLoginPage() + "?out=0");
+                        }
+                    }
+                }
+            }
+
+
+
 
         }
 

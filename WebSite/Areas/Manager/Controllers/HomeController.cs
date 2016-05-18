@@ -29,7 +29,10 @@ namespace WebSite.Areas.Manager.Controllers
             Session["ManagerLoginVerifyCode"] = null;
             if (Request.IsAuthenticated)
             {
-                return Redirect(ManagerUtils.GetHomePage());
+                if (Request.QueryString["out"] == null)
+                {
+                    return Redirect(ManagerUtils.GetHomePage());
+                }
             }
 
             return View();

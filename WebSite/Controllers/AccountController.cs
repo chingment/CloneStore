@@ -42,7 +42,7 @@ namespace WebSite.Controllers
 
         public ViewResult SignUp()
         {
-            SignUpModel model = new SignUpModel();
+            SignUpViewModel model = new SignUpViewModel();
             var retailers = CurrentDb.Retailer.Where(m => m.IsDelete == false).OrderByDescending(m => m.Priority).ToList();
             if (retailers != null)
             {
@@ -56,7 +56,7 @@ namespace WebSite.Controllers
 
         public ViewResult MyCart()
         {
-            MyCartModel model = new MyCartModel();
+            MyCartViewModel model = new MyCartViewModel();
             model.Retailers = CurrentDb.Retailer.Where(m => m.IsDelete == false).OrderByDescending(m => m.Priority).ToList();
             if (Request.Cookies[CommonSetting.CartProductsCookiesName] != null)
             {
@@ -72,7 +72,7 @@ namespace WebSite.Controllers
 
 
         [HttpPost]
-        public JsonResult SignUp(SignUpModel model)
+        public JsonResult SignUp(SignUpViewModel model)
         {
             SysClientUser user = new SysClientUser();
             user.UserName = model.UserName;
@@ -114,7 +114,7 @@ namespace WebSite.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public JsonResult SignIn(SignInModel model)
+        public JsonResult SignIn(SignInViewModel model)
         {
 
             var signInResult = SignIn(model.UserName, model.Password, model.IsRememberMe);
