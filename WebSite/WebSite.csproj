@@ -427,6 +427,12 @@
     <Content Include="Content\base\images\icon_messagesbox_error.png" />
     <Content Include="Content\base\images\icon_messagesbox_success.png" />
     <Content Include="Content\base\images\icon_messagesbox_warn.png" />
+    <Content Include="Content\base\images\onCorrect.gif" />
+    <Content Include="Content\base\images\onError.gif" />
+    <Content Include="Content\base\images\onFocus.gif" />
+    <Content Include="Content\base\images\onLoad.gif" />
+    <Content Include="Content\base\images\onShow.gif" />
+    <Content Include="Content\base\images\onSuccess.gif" />
     <Content Include="Content\base\images\shoppingcart3.png" />
     <Content Include="Content\base\images\templatemo_slider_left1.png" />
     <Content Include="Content\base\images\templatemo_slider_right1.png" />
@@ -434,7 +440,6 @@
     <Content Include="Content\base\owl.carousel.css" />
     <Content Include="Content\base\owl.theme.css" />
     <Content Include="Content\base\Site.css" />
-    <Content Include="Content\base\Site_test.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
