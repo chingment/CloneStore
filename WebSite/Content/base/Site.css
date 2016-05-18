@@ -439,6 +439,9 @@ ul.horizontal li {
 .gbr-top a:link, .gbr-top a:visited {
 	color: #fff;
 }
+.gbr-top a:hover {
+	color: #00a9e0;
+}
 
 .gbr-top {
 	background-color: #333;
