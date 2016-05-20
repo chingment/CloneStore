@@ -67,10 +67,13 @@
                     Banner：
                 </td>
                 <td class="f-tb-c" style="padding-top:15px;padding-bottom:10px ">
-                    <div class="uploadimg uploadimgbox" inputname="BannerImg" style="position:relative;">
-                        <img class="uploadclick"  style="height:100px" src="@Model.BannerImg" />
-                        <span class="uploadclick" style="position:absolute;top:40px; left:25px; width:80px;display:block;">点击上传图片</span>
-                        <input name="BannerImg" type="hidden" value="@Model.BannerImg" />
+                    <div class="uploadimgbox">
+                        <span class="uploadimg" inputname="BannerImg">
+                            <img src="@Model.BannerImg" />
+                            <span class="uploadimg-click" style="">Upload</span>
+                            <input value="@Model.BannerImg" name="BannerImg" type="hidden" />
+                        </span>
+                        <span class="uploadimg-view" style="">View</span>
                     </div>
                 </td>
             </tr>

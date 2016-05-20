@@ -1369,6 +1369,48 @@ span.img-verify-change {
 
 /*信息提示框 end*/
 
+.uploadimgbox {
+	position: relative;
+	width: 100px;
+	height: 80px;
+}
+
+	.uploadimgbox img {
+		height: 100%;
+		width: 100%;
+	}
+
+
+	.uploadimgbox .uploadimg-click {
+		position: absolute;
+		padding: 2px;
+		width: 40px;
+		cursor: pointer;
+		text-align: center;
+		border-radius: 2px;
+		display: block;
+		background-color: #09C;
+		border: 1px solid #428bca;
+		color: #fff;
+		top: 30px;
+		left: 28px;
+	}
+
+	.uploadimgbox .uploadimg-view {
+		position: absolute;
+		right: 0px;
+		top: 0px;
+		width: 40px;
+		border-radius: 2px;
+		cursor: pointer;
+		z-index: 99999;
+		line-height: 18px;
+		background-color: #09C;
+		border: 1px solid #428bca;
+		color: #fff;
+		text-align: center;
+	}
+
 
 .btn-dropdownmenu > li {
 	text-align: center;

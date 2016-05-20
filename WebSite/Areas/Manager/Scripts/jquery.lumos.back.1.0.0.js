@@ -840,6 +840,24 @@
 
 
 
+        $(".uploadimg-view").on('click', function () {
+            var url = $(this).parent().find('img').attr("src");
+            if (url == "") {
+                art.dialog.tips("Please upload image");
+                return;
+            }
+            window.top.art.dialog({
+                isPicBox: true,
+                id: "open-bigimg",
+                padding: 0,
+                top: "75px",
+                title: 'View',
+                width: '200px',
+                height: '300px',
+                content: '<img src="' + url + '">',
+                lock: true
+            });
+        });
 
     }
 
